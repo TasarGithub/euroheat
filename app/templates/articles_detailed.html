@@ -1,0 +1,19 @@
+<?php if (!empty($GLOBALS['tpl_item']['image'])): ?>
+<img src="/public/images/articles/<?php echo $GLOBALS['tpl_item']['image']; ?>" class="pull-left" alt="<?php echo htmlspecialchars($GLOBALS['tpl_item']['h1'], ENT_QUOTES); ?>" />
+<?php endif; ?>
+
+<?php echo $GLOBALS['tpl_item']['text']; ?>
+
+<br />
+
+<a class="page_back" href="../">&laquo; на страницу Статьи</a>
+<div class="clear"></div><br />
+
+<?php if (!empty($GLOBALS['tpl_another_articles'])): # блок "Другие статьи" ?>
+<div class="h4">Другие статьи</div>
+
+<?php foreach($GLOBALS['tpl_another_articles'] as $item): ?>
+<div class="news_item"><a class="news_item_a" href="/sovet/<?php echo $item['url']; ?>/"><?php echo $item['h1']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/sovet/<?php echo $item['url']; ?>/">Подробнее &raquo;</a></div>
+<?php endforeach; ?>
+
+<?php endif; # /блок "Другие статьи" ?>

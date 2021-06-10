@@ -1,0 +1,700 @@
+@media only screen and (min-width: 240px) and (max-width: 767px) {
+    .header{
+        position: absolute;
+    }
+    .logo {
+        margin: 5px 0 0 15px;
+        width: 245px;
+        height: 75px;
+        background: url(/public/images/logo-dark-1.jpg) no-repeat 0 0 / 90px auto;
+    }
+.logo div {
+    padding-left: 105px;
+    font-size: 14px;
+margin-top: 3px;
+}
+    .slogan{
+        display: none;
+        font-size: 15px;
+        width: 280px;
+    }
+    .b_width{
+        width: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .phone_b{
+        margin-top: -10px;
+padding: 12px 0 12px 65px;
+        background: #cdaea0 url(/public/images/icon_sprite_2.png) no-repeat 15px -95px;
+float: left;
+margin-left: 0;
+width: 100%;
+text-align: left;
+    }
+    .phone_b .phone{
+        font-size: 28px;
+color: #fff;
+    }
+    .offer_img{
+        display: none;
+    }
+    .offer_txt{
+        text-align: center;
+    }
+    .offer_price{
+        float: none;
+        display: inline-block;
+    }
+    .visual_bg {
+        padding: 25px 0 15px 0;
+    }
+    .owl-carousel{
+        width: 225px !important;
+    }
+    .white_bg .container {
+        width: 100%;
+        margin: 0;
+    }
+    .adv_b div {
+        width: 175px;
+font-size: 16px;
+text-align: center;
+    }
+    .adv_b div div {
+        margin: 0 65px 8px 65px;
+    }
+    .action_b {
+        margin: 0 0 0 310px;
+font-size: 28px;
+    }
+    .blue_btn_1 {
+        font-size: 18px;
+        padding: 10px 30px 10px 30px;
+    }
+    .order_btn_2 {
+        font-size: 16px;
+        padding: 12px 38px 12px 64px;
+    }
+    .order_btn_1 {
+        font-size: 18px;
+        padding: 12px 38px 12px 64px;
+    }
+    .owl-carousel_b_reviews_txt .owl-stage-outer{
+        height: 350px;
+    }
+    .news_b_1 .h3 a {
+        font-size: 26px;
+margin: 5px 0 25px 0;
+    }
+    .news_b_1 .h3 span {
+        font-size: 22px;
+    }
+    .footer .slogan {
+        display: block;
+        margin: 5px 0 15px 30px;
+    }
+    .h1{
+line-height: 0.8;
+    }  
+    .h1 a {
+        font-size: 32px;
+line-height: 0.8;
+    } 
+    .news_b_1 {
+        margin: 0 -5px 40px -5px;
+    } 
+    .get_call {
+        display: none;
+    }   
+    .footer .phone_b{
+        margin-top: 5px;
+padding: 12px 0 12px 75px;
+        background: url(/public/images/icon_sprite_2.png) no-repeat 25px -95px;
+float: left;
+margin-left: 0;
+width: 100%;
+text-align: left;
+    }    
+    /* .switch_menu{
+        display: block;
+    }
+    .m_menu{
+        display: none;
+    }
+    .m_menu ul{
+        width: 100%;
+        flex-direction: column;
+    }
+    .menu_active .m_menu{
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+    }
+    .menu_active .m_menu li{
+        margin-left: 0;
+    } */
+    .header.active{
+        position: absolute;
+    }
+    .review_b {
+        padding: 20px 20px;
+    }
+    .review_b .est {
+        float: left;
+margin-bottom: 12px;
+    }
+    .owl-carousel_b_reviews_txt .owl-dots {
+        margin: 0 0 20px 75px;
+    }
+    .spec_pr{
+        display: none;
+    }
+    .price_table td:nth-child(1) {
+        display: none;
+    }
+    .price_table td:nth-child(3) {
+        display: none;
+    }
+    .price_table td:nth-child(4) {
+        display: none;
+    }
+    .order_btn{
+        font-size: 20px;
+    }
+    .owl-carousel_b_photos .item {
+        width: 222px;
+        height: 164px;
+        position: relative;
+    }
+    .owl-carousel_b_photos .item img{
+        margin: 0 0 20px 0;
+        height: 156px;
+    }
+    .owl-carousel_b_photos .owl-nav div{
+        top: 55px;
+    }
+    .adv_b div {
+        margin: 15px 0 20px 0;
+    }
+    .mob_zakaz{
+        display: block;
+    }
+    .header_gap{
+        height: 128px;
+    }
+    .visual_b{
+        display: none;
+    }
+    .modal-dialog {
+        width: 290px;
+    }
+    .arrow_1{
+        display: none; 
+    }
+    .white_bg {
+        padding: 20px 0;
+    }
+    .grey_bg {
+        padding: 20px 0;
+    }
+    .web_dev{
+        font-size: 12px;
+margin: 20px 0 0 -47px;
+    }
+    .h2{
+        display: inline-block;
+        padding: 0 20px;
+        text-align: center;
+    }
+    .visual_inside{
+        display: none;
+    }
+    .site_map{
+        display: none;
+    }
+    .page_back{
+        text-align: center;
+    }
+    .breadcrumbs{
+        text-align: center;
+    }
+    .h4{
+        text-align: center;
+    }
+
+    .projects_b .item {
+        margin-left: 0;
+    }
+    .submenu ul li{
+        float: none;
+    }  
+    .submenu{
+        width: 100%;
+    }   
+    .form_b{
+        padding: 15px 20px 30px 20px;
+        width: auto;
+    }    
+    .cat_col_1 {
+        width: 100%;
+        text-align: center;
+    }
+    .cat_col_1 a{
+        margin-bottom: 20px;
+        display: block;
+    }
+    .cat_col_2 {
+        width: 100%;
+    }
+    .cat_col_3 {
+        width: 100%;
+        margin-top: 0;
+    }
+    .cat_col_3 .order_btn_1.btn_md {
+        width: 170px;
+        margin-left: 25px;
+    } 
+    .cat_price {
+        margin-left: 0;
+    }
+    .cat_col_3 .txt_1{
+        margin-left: 0;
+    }
+    .h1{
+        font-size: 32px;
+    }
+    .item_col_1 {
+        width: 100%;
+    }
+    .item_col_2 {
+        width: 100%;
+    }
+    .collapse_sm{
+        display: none;
+    }
+    .btn_md_2{
+        margin-bottom: 20px;
+    }
+    .btn_pad_1 {
+        margin: 0 5px 10px 0;
+    }
+    .client_logo_1{
+       width: 260px;
+    }
+   .page_form{
+        width: 100%;
+   }
+   .page_form button {
+       width: 100%;
+   }
+   .order_btn.calc_2{
+       font-size: 18px;
+       background: #81ce26 url(/public/images/icon_sprite_2.png) no-repeat 38px -1480px;
+   }
+   .order_btn.calc_2:hover{
+       font-size: 18px;
+       background: #90df34 url(/public/images/icon_sprite_2.png) no-repeat 38px -1480px;
+   }
+   .brand_logo{
+       float: none; 
+       margin: -10px 0 0 0;
+   }
+   .form-calculator-water-data{
+      flex-wrap: wrap;
+    }
+    .form-calculator-sizes-data{      
+      flex-wrap: wrap;
+    }
+    .form-calculator-diametr{
+      flex-wrap: wrap;
+    }
+    .form-calculator-contact-data{
+      flex-wrap: wrap;
+    }
+    .form-calculator-diametr-col{
+      flex: 1 1 100%;
+    }
+    .form-calculator-diametr-col__label {
+      margin-top: 20px;
+     }
+     .form-calculator-sizes-data__input{
+       margin-bottom: 10px;
+     }
+     .form-calculator-water-data__input{
+       margin-bottom: 10px;
+     }
+.top_menu li a div{
+   color: #fff;
+}
+.form-calculator-diametr-col__select{
+   margin-bottom: 10px;
+}
+.form-calculator{
+   padding: 15px 10px 30px 20px;
+}
+.new-year .header .logo {
+    background: url(/public/images/new-year-logo.jpg) no-repeat 0 center / 65px auto;
+    height: 55px;
+}
+.new-year .logo div {
+    padding-left: 80px;
+    font-size: 14px;
+    margin-top: 0;
+}
+.header-email{
+   display: none;
+}
+    .catalog-page-wr{
+       flex-wrap: wrap;
+    }
+}
+ 
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .logo {
+        margin: 0 0 0 0;
+       width: 240px;
+        background: url(/public/images/logo-dark-1.jpg) no-repeat 0 center / 90px auto;
+    }
+    .slogan {
+        margin-left: 20px;
+        display: block;
+        font-size: 13px;
+        width: 180px;
+    }
+    .slogan a{
+        font-size: 13px;
+    }
+    .footer .slogan{
+        display: block;
+    }
+    .slogan div{
+        font-size: 13px;
+    }
+    .b_width{
+        width: 750px;
+    }
+    .container {
+        width: 750px;
+    }
+    .phone_b {
+       margin-top: 15px;
+padding: 2px 0 0 55px;
+        background: url(/public/images/icon_sprite_2.png) no-repeat 0 0;
+float: right;
+    }
+.header-email {
+    float: none;
+    display: block;
+    margin-bottom: 2px;
+}
+    .phone_b .phone{
+        font-size: 28px;
+    }
+    .top_menu li a {
+        font-size: 18px;
+        padding: 17px 0;
+    }
+    .top_menu li a div{
+       font-size: 16px;
+    }
+    .offer_img{
+        display: none;
+    }
+    .offer_txt {
+        text-align: center;
+    }
+    .offer_price{
+        float: none;
+        display: inline-block;
+    }
+    .visual_bg {
+        padding: 25px 0 15px 0;
+    }
+    .owl-carousel{
+        width: 600px !important;
+    }
+    .white_bg .container {
+        width: 760px;
+        margin: 0;
+    }
+    .adv_b div {
+        width: 145px;
+font-size: 14px;
+text-align: center;
+    }
+    .adv_b div div {
+        margin: 0 0 8px 33px;
+    }
+    .action_b {
+        margin: 0 0 0 180px;
+font-size: 25px;
+    }
+    .blue_btn_1 {
+        font-size: 16px;
+        padding: 8px 20px 8px 20px;
+    }
+    .order_btn_2 {
+        font-size: 18px;
+        padding: 12px 28px 12px 64px;
+    }
+    .order_btn_1 {
+        font-size: 18px;
+        padding: 12px 28px 12px 64px;
+    }
+    .owl-carousel_b_reviews_txt .owl-stage-outer{
+        height: 155px;
+    }
+    .news_b_1 .h3 a {
+        font-size: 22px;
+margin: 10px 0 25px 0;
+    }
+    .news_b_1 .h3 span {
+        font-size: 22px;
+    }
+    .footer .slogan {
+        margin: 23px 0 0 20px;
+    }
+    .h1{
+line-height: 1.0;
+    }  
+    .h1 a {
+        font-size: 39px;
+line-height: 1.0;
+    }
+    .news_b_1 {
+        margin: 0 -5px;
+    }
+    .get_call {
+        display: inline-block;
+    }
+    .header.active{
+        position: fixed;
+    }
+    .header.active .logo {
+        margin: 0 0 0 0;
+        height: 65px;
+    }
+    .header.active .phone_b {
+        margin-top: 3px;
+    }
+
+.header.active .slogan {
+    margin-top: 5px;
+}
+    .web_dev{
+        font-size: 12px;
+    }
+    .cat_col_1 {
+        width: 200px;
+    }
+    .cat_col_2 {
+        width: 280px;
+    }
+    .cat_col_3 {
+        width: 200px;
+    }
+    .cat_col_3 .order_btn_1.btn_md {
+        width: 170px;
+        margin-left: 25px;
+    }
+    .item_col_1 {
+        width: 270px;
+        margin-right: 30px;
+    }
+    .item_col_2 {
+        width: 430px;
+    }
+    .item_col_2 .btn_md{
+        font-size: 14px;
+    }
+   .footer .logo {
+      width: 230px;
+      font-size: 13px;
+   }
+   .logo div {
+       color: #333;
+       font-size: 14px;
+       line-height: 1.0;
+       padding-left: 105px;
+       margin-top: 17px;
+   }
+    .header.active .logo div{
+       margin-top: 2px;
+    }
+   .slider-bg-2 {
+       background: url(/public/images/slider-bg-8-new.png) no-repeat center / auto 380px;
+       padding-top: 225px;
+       height: 380px;
+       box-sizing: border-box;
+    }
+   .slider-bg-2 h3{
+       font-size: 20px;
+       min-height: 45px;
+       margin-left: 0;
+       padding-bottom: 0;
+       margin-top: 0;
+    }
+    .slider-bg-2 .btn-secondary{
+       margin-left: 0;
+    }
+    .slider-bg-2 .col-md-4:nth-child(3) h3{
+       margin-left: 20px;
+       min-height: 35px;
+   }
+    .slider-bg-2 .col-md-4:nth-child(3) .btn-secondary{
+       margin-left: 20px;
+   }
+    .new-year .header.active .logo{   
+        margin-top: 5px;     
+        background: url(/public/images/new-year-logo.jpg) no-repeat 0 0 / 70px auto;
+   }
+   .header.active .logo div{
+        padding-left: 85px;
+   }
+    .catalog-page-wr{
+       flex-wrap: wrap;
+    }
+}
+ 
+@media only screen and (min-width: 1024px) {
+    .logo {
+        margin: 0 0 0 0;
+    }
+    .logo div{
+        margin-top: 17px;
+    }
+    .slogan {
+        margin-left: 50px;
+        display: block;
+        font-size: 15px;
+        width: 300px;
+    }
+    .footer .slogan{
+        display: block;
+    }
+    .b_width{
+        width: 1000px;
+    }
+    .container {
+        max-width: 1140px;
+    }
+    .phone_b {
+        margin-top: 18px;
+padding: 2px 0 0 55px;
+        background: url(/public/images/icon_sprite_2.png) no-repeat 0 0;
+float: right;
+    }
+.header .phone_b{
+text-align: right;
+}
+    .footer .phone_b {
+        margin-top: 8px;
+}
+    .phone_b .phone{
+        font-size: 36px;
+    }
+    .top_menu li a {
+        font-size: 18px;
+    }
+    .offer_img{
+        display: block;
+    }
+    .offer_txt {
+        text-align: left;
+    }
+    .offer_price{
+        float: left;
+        display: block;
+    }
+    .visual_bg {
+        padding: 40px 0 30px 0;
+    }
+    .owl-carousel{
+        width: 920px !important;
+    }
+    .white_bg .container {
+        margin: 0 40px;
+    }
+    .adv_b div {
+        width: 175px;
+font-size: 16px;
+text-align: center;
+    }
+    .adv_b div div {
+        margin: 0 45px 8px 45px;
+    }
+    .action_b {
+        margin: 0 0 0 310px;
+font-size: 28px;
+    }
+    .blue_btn_1 {
+        font-size: 18px;
+        padding: 10px 30px 10px 30px;
+    }
+    .order_btn_2 {
+        font-size: 20px;
+        padding: 12px 38px 12px 64px;
+    }
+    .order_btn_1 {
+        font-size: 20px;
+        padding: 12px 38px 12px 64px;
+    }
+    .owl-carousel_b_reviews_txt .owl-stage-outer{
+        height: 140px;
+    }
+    .news_b_1 .h3 a {
+        font-size: 30px;
+margin: 5px 0 25px 0;
+    }
+    .news_b_1 .h3 span {
+        font-size: 26px;
+    }
+    .footer .slogan {
+        margin: 15px 0 0 50px;
+    }
+    .h1{
+line-height: 1.0;
+    }  
+    .h1 a {
+        font-size: 39px;
+line-height: 1.0;
+    }
+    .news_b_1 {
+        margin: 0 -5px;
+    }
+    .get_call {
+        display: inline-block;
+    }
+    .header.active .logo {
+        margin: 10px 0 0 0;
+        height: 65px;
+        background: url(/public/images/logo-dark-1.jpg) no-repeat 0 0 / 85px auto;
+    }
+    .header.active .logo {
+        margin: 10px 0 0 0;
+        height: 65px;
+        background: url(/public/images/logo-dark-1.jpg) no-repeat 0 0 / 85px auto;
+    }
+    .new-year .header.active .logo{        
+       background: url(/public/images/new-year-logo.jpg) no-repeat 0 0 / 70px auto;
+   }
+   .new-year .header.active .logo div {
+       padding-left: 85px;
+   }
+    .header.active .logo div {
+       padding-left: 100px;
+       margin-top: 0;
+       font-size: 14px;
+   }
+    .header.active .phone_b {
+        margin-top: 10px;
+    }
+    .white_bg .container.projects_p{
+        width: 1000px;
+    }
+    .projects_b{
+        margin: 0 -25px;
+    }
+}

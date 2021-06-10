@@ -1,0 +1,52 @@
+1. add this to admin's module
+<!-- подключаем модуль для backup'а всех полей -->
+<script src='/control/js/jquery.backup/jquery.backup.js'></script>
+<link href='/control/js/jquery.backup/jquery.backup.css' rel='stylesheet' type='text/css' />
+        
+<!-- подключаем js-скрипты для текущего раздела админки -->
+<script src='/control/static_sections.js'></script>
+
+2. редактируем jquery.backup.js, jquery.backup.ajax.php:
+1) путь к php-скриптам в jquery.backup.js
+2) HTTP_REFERER в jquery.backup.ajax.php
+        
+3. create: 
+
+<!-- hidden fields -->
+<input id='section_name' type='hidden' value='edit_item' />
+
+4. remove unnecessary br's after field in admin's panel
++ add id for admin's panel's fields which will be used for backups
+        
+5. create admin's module .js file, for example: static_sections.js
+
+$(document).ready(function($){ // jquery ready
+    var section_name = $('#section_name').val();
+    
+    // при редактировании продукции
+    if (section_name == 'edit_item' && isGetVarExists('itemID')){
+        // формируем список backup'ов для указанных полей
+        $.backup({ 'table_name' : 'static_sections', 'entry_id' : isGetVarExists('itemID'), 'fields_name' : ['name', 'page_title', 'navigation', 'h1', 'text']});
+    } // /при редактировании продукции
+    
+}); // /jquery ready
+
+// ОПРЕДЕЛЯЕМ, СУЩЕСТВУЕТ ЛИ GET-ПЕРЕМЕННАЯ
+function isGetVarExists(var_name){
+	if (typeof var_name === "undefined") return;
+	
+	var url = location.search; // console.log(url);
+	url = url.replace('#', ''); 
+	url = url.replace('?', ''); // console.log(url);
+	
+	if (url == var_name) return 1; // example: /?calc
+	
+	var vars = url.split("&");  // console.log(vars); // example: /?a=1&calc
+	for (var i=0; i < vars.length; i++){
+		var vars2 = vars[i].split("="); // console.log(vars2[0]);
+		if (vars2[0] == var_name) return vars2[1]; // content of variable
+	}
+	return;
+} // /ОПРЕДЕЛЯЕМ, СУЩЕСТВУЕТ ЛИ GET-ПЕРЕМЕННАЯ
+
+6. Создаем таблицу backups

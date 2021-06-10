@@ -1,0 +1,143 @@
+/* styles for the toolbar buttons */
+.disabled {
+	BORDER-TOP-WIDTH: 0px; 
+	PADDING-RIGHT: 0px; 
+	PADDING-LEFT: 0px; 
+	BORDER-LEFT-WIDTH: 0px;
+	FILTER: mask() mask(color=#AAAAAA) ;
+	/*FILTER: progid:DXImageTransform.Microsoft.MaskFilter() progid:DXImageTransform.Microsoft.MaskFilter(color=#AAAAAA);*/
+	VISIBILITY: visible; 
+	BORDER-BOTTOM-WIDTH: 0px; 
+	PADDING-BOTTOM: 0px; 
+	MARGIN: 1px; 
+	VERTICAL-ALIGN: middle; 
+	PADDING-TOP: 0px; 
+	BORDER-RIGHT-WIDTH: 0px
+}
+.ready {
+	border-right: threedface 1px solid; 
+	padding-right: 0px; 
+	border-top: threedface 1px solid; 
+	padding-left: 0px; 
+	visibility: visible; 
+	padding-bottom: 0px; 
+	margin: 0px; 
+	vertical-align: middle; 
+	border-left: threedface 1px solid; 
+	padding-top: 0px; 
+	border-bottom: threedface 1px solid; 
+}
+.over {
+	border-right: buttonshadow 1px solid; 
+	padding-right: 0px; 
+	border-top: buttonhighlight 1px solid; 
+	padding-left: 0px; 
+	visibility: visible; 
+	padding-bottom: 0px; 
+	margin: 0px; 
+	vertical-align: middle; 
+	border-left: buttonhighlight 1px solid; 
+	padding-top: 0px; 
+	border-bottom: buttonshadow 1px solid; 
+}
+.down {
+	border-right: 1px solid threedhighlight; 
+	padding-right: 0px; 
+	border-top: 1px solid threedshadow; 
+	padding-left: 0px; 
+	visibility: visible; 
+	padding-bottom: 0px; 
+	margin: 0px; 
+	vertical-align: middle; 
+	border-left: 1px solid threedshadow; 
+	padding-top: 0px; 
+	border-bottom: 1px solid threedhighlight; 
+}
+.spacer {
+	background-color: threedshadow;
+}
+.latched {
+	border-right: 1px inset; 
+	padding-right: 0px; 
+	border-top: 1px inset; 
+	padding-left: 0px; 
+	visibility: visible; 
+	padding-bottom: 0px; 
+	margin: 0px; 
+	vertical-align: middle; 
+	border-left: 1px inset; 
+	padding-top: 0px; 
+	border-bottom: 1px inset; 
+	BACKGROUND-COLOR: #eeeeee
+}
+/* the toolbars */
+.toolbar {
+	margin: 1px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 10px;
+}
+.toolbar td {
+	margin: 1px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 10px;
+}
+/* tabs */
+.tbuttonUp {
+	font-size: 9px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+	border-bottom: 1px solid threeddarkshadow;
+	border-left: 1px solid threeddarkshadow;
+	border-right: 1px solid threeddarkshadow;
+	background-color:#ffffff;
+	cursor: default;
+}
+.tbuttonMouseDown {
+	font-size: 9px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #ffffff;
+	border-bottom: 1px solid threeddarkshadow;
+	border-top: 1px solid threeddarkshadow;
+	border-left: 1px solid threeddarkshadow;
+	border-right: 1px solid threeddarkshadow;
+	background-color: threedshadow;
+	cursor: default;
+}
+.tbuttonDown {
+	font-size: 9px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+	border-bottom: 1px solid threeddarkshadow;
+	border-top: 1px solid threeddarkshadow;
+	border-left: 1px solid threeddarkshadow;
+	border-right: 1px solid threeddarkshadow;
+	background-color: threedface;
+	cursor: default;
+}
+.styled {
+	font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+}
+a.styled {
+	font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+}
+/* html textarea */
+.html_edit_area {
+	border-top: 1px solid threeddarkshadow; 
+	border-left: 1px solid threeddarkshadow; 
+	border-right: 1px solid threeddarkshadow; 
+	border-bottom: 0px solid threeddarkshadow; 
+	background-color: #ffffff; 
+	width: 100%;
+}
+/* Alternate browser specific themes */
+.mozToolbar {
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 10px;
+}
+.toolButton {
+	border: 1px solid threedface;
+}

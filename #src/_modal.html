@@ -1,0 +1,138 @@
+<!-- модальное окно Рассчитать стоимость -->
+<div id="calc_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header gradient">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-title" id="myModalLabel">Расчет стоимости</div>
+			</div>
+			<div class="modal-body">
+				<p>
+					<input id="calc_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+				</p>
+				<p>
+					<input id="calc_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+				</p>
+
+			</div>
+			<div id="calc_form_submit_button" class="modal-footer">
+				<button type="button" class="btn btn-primary btn-lg">Рассчитать</button>
+				<span id="calc_form_ajax_preloader" class="modal_ajax_preloader"></span>
+			</div>
+			<div class="modal-policy">Нажимая кнопку «Рассчитать», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+		</div>
+	</div>
+</div>
+<!-- /модальное окно Рассчитать стоимость -->
+
+<!-- модальное окно Отправить заявку -->
+<div id="rent_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header gradient">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-title" id="myModalLabel">Отправить заявку</div>
+			</div>
+			<div class="modal-body">
+				<p>
+					<input id="rent_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+				</p>
+				<p>
+					<input id="rent_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+				</p>
+
+			</div>
+			<div class="modal-footer">
+				<button id="rent_form_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
+				<span id="rent_form_ajax_preloader" class="modal_ajax_preloader"></span>
+			</div>
+			<div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+		</div>
+	</div>
+</div>
+<!-- /модальное окно Отправить заявку -->
+
+<!-- модальное окно Добавить отзыв-->
+<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header gradient">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-title" id="myModalLabel">Добавить отзыв</div>
+			</div>
+			<div class="modal-body">
+				<p>
+					<input id="feedback_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+				</p>
+				<p>
+					<input id="feedback_form_activity" type="text" value="" class="form-control" placeholder="Род деятельности" />
+				</p>
+				<p>
+					<textarea id="feedback_form_text" rows="3" class="form-control" placeholder="Текст отзыва"></textarea>
+
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button id="feedback_form_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
+				<span id="feedback_form_ajax_preloader" class="modal_ajax_preloader"></span>
+			</div>
+			<div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+		</div>
+	</div>
+</div>
+<!-- /модальное окно Добавить отзыв-->
+
+<!-- модальное окно Заказать звонок -->
+<div class="modal fade" id="callback_modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header gradient">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-title" id="myModalLabel">Заказать звонок</div>
+			</div>
+			<div class="modal-body">
+				<p>
+					<input id="callback_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+				</p>
+				<p>
+					<input id="callback_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button id="callback_form_submit_button" type="button" class="btn btn-primary btn-lg">Перезвоните мне</button>
+				<span id="callback_form_ajax_preloader" class="modal_ajax_preloader"></span>
+			</div>
+			<div class="modal-policy">Нажимая кнопку «Перезвоните мне», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+		</div>
+	</div>
+</div>
+<!-- /модальное окно Заказать звонок -->
+
+<!-- модальное окно Заявка на полный прайс-лист -->
+<div class="modal fade" id="full-price_modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header gradient">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-title" id="myModalLabel">Получить полный прайс-лист</div>
+			</div>
+			<div class="modal-body">
+				<p>
+					<input id="callback_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+				</p>
+				<p>
+					<input id="callback_form_name" type="emai" value="" class="form-control" placeholder="Ваш E-mail" />
+				</p>
+				<p>
+					<input id="callback_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button id="callback_form_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
+				<span id="callback_form_ajax_preloader" class="modal_ajax_preloader"></span>
+			</div>
+			<div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+		</div>
+	</div>
+</div>
+<!-- /модальное окно Заявка на полный прайс-лист -->

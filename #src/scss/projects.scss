@@ -1,0 +1,24 @@
+.projects {
+  // .projects__container
+  &__container {
+  }
+  // .projects__title
+  &__title {
+    @include adaptiv-value(margin-bottom, 50, 15, 1);
+  }
+  // .projects__subtitle
+  &__subtitle {
+  }
+}
+
+.projects-slider {
+  // .projects-slider__wrapper
+  &__wrapper {
+  }
+  // .projects-slider__slide
+  &__slide {
+  }
+  // .projects-slider__image
+  &__image {
+  }
+}

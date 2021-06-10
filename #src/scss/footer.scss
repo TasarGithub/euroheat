@@ -1,0 +1,104 @@
+.footer {
+  // .footer__wrapper
+  padding: 20px 0;
+  &__wrapper {
+  }
+  // .footer__container
+  &__container {
+    margin: 0 auto;
+  }
+  // .footer__content
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $light;
+    & a {
+      color: inherit;
+    }
+    @media (max-width: 620px) {
+      flex-wrap: wrap;
+    }
+  }
+  // .footer__column
+  &__column {
+    flex: 0 1 30%;
+
+    &:nth-child(1) {
+      @media (max-width: $md2+px) {
+        display: none;
+      }
+    }
+    &:nth-child(2) {
+      flex: 0 1 50%;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      @media (max-width: $md1+px) {
+        flex: 0 1 25%;
+      }
+      @media (max-width: $md2+px) {
+        flex: 0 1 30%;
+      }
+      @media (max-width: 620px) {
+        flex: 0 1 100%;
+        // margin: 0px 0px 25px 0px;
+      }
+    }
+
+    &:nth-child(3) {
+      @media (max-width: 620px) {
+        display: none;
+        // flex: 0 1 50%;
+        // margin: 0 auto 15px auto;
+      }
+    }
+    @media (max-width: $md2+px) {
+      &:nth-child(2) {
+        flex: 0 1 50%;
+      }
+      &:nth-child(3) {
+        flex: 0 1 50%;
+      }
+    }
+  }
+  // .footer__logo
+  &__logo {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  // .footer__adress
+  &__adress {
+    margin: 0px 0px 8px 0px;
+  }
+  // .footer__contacts
+  &__contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  // .footer__phone
+  &__phone {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0px 0px 20px auto;
+
+    @media (max-width: $md1+px) {
+      font-size: 25px;
+      padding: 3px 0 2px 36px;
+    }
+  }
+  // .footer__email
+  &__email {
+    font-size: 25px;
+    margin: 0px 0 0px auto;
+    @media (max-width: $md1+px) {
+      font-size: 20px;
+    }
+  }
+}
