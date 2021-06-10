@@ -1272,6 +1272,7 @@
           //создание объекта слайда, если он еще не создан
           fsLightboxInstances[n] || (fsLightboxInstances[n] = new FsLightbox());
 
+          //вывывывывыввы
           var i = null;
           // определяем, нет ли в первом символе # - то есть id в href, ктр задается для некартиночного медиаконтента.
           //если есть, то в i элементу, получаемому по id document.getElementById(o.substring(1))
