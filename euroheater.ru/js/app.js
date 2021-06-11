@@ -1464,7 +1464,8 @@ const swiper = new Swiper('.swiper-container', {
   // Optional parameters
   // direction: 'vertical',
   loop: true,
-
+  slidesPerView: 3,
+  //slidesPerGroup: 3,
   // If we need pagination
   // pagination: {
   //   el: '.swiper-pagination',
