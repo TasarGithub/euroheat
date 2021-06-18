@@ -1,108 +1,113 @@
 <?php
 
-# запуск сессий
+# Р·Р°РїСѓСЃРє СЃРµСЃСЃРёР№
 session_start();
 
-# echo '<pre>'.(print_r($_SESSION, true)).'</pre>';
 
-# echo '<!-- '.$_SERVER['REQUEST_URI'].' -->';
+echo '<pre>'.(print_r($_SESSION, true)).'</pre>';
+
+echo '<!-- '.$_SERVER['REQUEST_URI'].' -->';
 
 # unset($_SESSION['auth']);
 
-### отладка
-# print_r($_GET);
-# print_r($_POST);
-# print_r($_FILES);
-# echo '<pre>'.(print_r($_COOKIE, true)).'</pre>';
+### РѕС‚Р»Р°РґРєР°
+print_r($_GET);
+print_r($_POST);
+print_r($_FILES);
+echo '<pre>'.(print_r($_COOKIE, true)).'</pre>';
 
-# конфиг
+# РєРѕРЅС„РёРі
 include('config.php');
 
-# класс "реестр": в нем хранятся экземпляры других классов
+# РєР»Р°СЃСЃ "СЂРµРµСЃС‚СЂ": РІ РЅРµРј С…СЂР°РЅСЏС‚СЃСЏ СЌРєР·РµРјРїР»СЏСЂС‹ РґСЂСѓРіРёС… РєР»Р°СЃСЃРѕРІ
 $registry = new registry;
 
-# настройки mysql и инициализация соединения: http://ru2.php.net/manual/en/book.pdo.php
+# РЅР°СЃС‚СЂРѕР№РєРё mysql Рё РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃРѕРµРґРёРЅРµРЅРёСЏ: http://ru2.php.net/manual/en/book.pdo.php
+
+echo "include('db.connection.pdo.php');";
+
 include('db.connection.pdo.php');
 $registry->set('dbh', $dbh);
 
-# класс шаблонизатор на базе php
+echo $dbh;
+# РєР»Р°СЃСЃ С€Р°Р±Р»РѕРЅРёР·Р°С‚РѕСЂ РЅР° Р±Р°Р·Рµ php
 include(DOCUMENT_ROOT.'/app/library/templates.php');
 $tpl = new templates();
 $registry->set('tpl', $tpl);
 
-# класс "маршрутизатор"
+# РєР»Р°СЃСЃ "РјР°СЂС€СЂСѓС‚РёР·Р°С‚РѕСЂ"
 $router = new router($registry);
 $router->setPath(MVC_PATH);
 $registry->set('router', $router);
-# $router->showRouterInfo = 1; # вывести отладочную информацию
-$router->showRouterInfo = 0; # вывести отладочную информацию
+# $router->showRouterInfo = 1; # РІС‹РІРµСЃС‚Рё РѕС‚Р»Р°РґРѕС‡РЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
+$router->showRouterInfo = 0; # РІС‹РІРµСЃС‚Рё РѕС‚Р»Р°РґРѕС‡РЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
 
-# класс защиты пользовательских данных
+# РєР»Р°СЃСЃ Р·Р°С‰РёС‚С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РґР°РЅРЅС‹С…
 $defence = new defence;
 $registry->set('defence', $defence);
 $GLOBALS['registry'] = $registry;
 
-# выводим переменные для сайта
-# телефон (задается в шаблоне в админке, меняется на всем сайте)
+# РІС‹РІРѕРґРёРј РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ СЃР°Р№С‚Р°
+# С‚РµР»РµС„РѕРЅ (Р·Р°РґР°РµС‚СЃСЏ РІ С€Р°Р±Р»РѕРЅРµ РІ Р°РґРјРёРЅРєРµ, РјРµРЅСЏРµС‚СЃСЏ РЅР° РІСЃРµРј СЃР°Р№С‚Рµ)
 $GLOBALS["phone"] = $tpl->getTemplate('phone.html');
 $GLOBALS["phone_for_link"] = preg_replace('/[^0-9]/i', '', $GLOBALS["phone"]);
 $GLOBALS["phone_for_link"] = preg_replace('/^8/i', '+7', $GLOBALS["phone_for_link"]);
 
-# подключаем общие функции
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё
 include(DOCUMENT_ROOT.'/app/library/functions.php');
 
-### настройка динамичных путей
+### РЅР°СЃС‚СЂРѕР№РєР° РґРёРЅР°РјРёС‡РЅС‹С… РїСѓС‚РµР№
 
-# 15 июля 2016 заменено на URL selector
-# Статичные страницы
-# Сортировки по мощности
+# 15 РёСЋР»СЏ 2016 Р·Р°РјРµРЅРµРЅРѕ РЅР° URL selector
+# РЎС‚Р°С‚РёС‡РЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
+# РЎРѕСЂС‚РёСЂРѕРІРєРё РїРѕ РјРѕС‰РЅРѕСЃС‚Рё
 # $router->addRoute(array('path' => '/^generatora\/(10-kvt)|(15-kvt)|(16-kvt)|(20-kvt)|(30-kvt)|(40-kvt)|(50-kvt)|(60-kvt)|(64-kvt)|(70-kvt)|(80-kvt)|(100-kvt)|(120-kvt)|(150-kvt)|(160-kvt)|(200-kvt)|(220-kvt)|(240-kvt)|(250-kvt)|(300-kvt)|(320-kvt)|(400-kvt)|(500-kvt)|(600-kvt)|(650-kvt)|(800-kvt)|(1000-kvt)$/', 'controller' => 'site_section_default', 'action' => 'index'));
 
-# 15 июля 2016 заменено на URL selector
-# Электростанции. Подробно
+# 15 РёСЋР»СЏ 2016 Р·Р°РјРµРЅРµРЅРѕ РЅР° URL selector
+# Р­Р»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё. РџРѕРґСЂРѕР±РЅРѕ
 # $router->addRoute(array('path' => '/^generatora\/([-\/_0-9.a-zA-Z]*)$/', 'controller' => 'catalog', 'action' => 'showItem', 'vars' => array(1 => 'itemURL')));
 
-# URL selector: либо это статичный раздел, либо это электростанция подробно
+# URL selector: Р»РёР±Рѕ СЌС‚Рѕ СЃС‚Р°С‚РёС‡РЅС‹Р№ СЂР°Р·РґРµР», Р»РёР±Рѕ СЌС‚Рѕ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёСЏ РїРѕРґСЂРѕР±РЅРѕ
 $router->addRoute(array('path' => '/^generatora\/([-\/_0-9.a-zA-Z]*)$/', 'controller' => 'site_section_default', 'action' => 'urlSelectorGeneratora', 'vars' => array(1 => 'itemURL')));
 
-# Новости. Постраничный вывод
+# РќРѕРІРѕСЃС‚Рё. РџРѕСЃС‚СЂР°РЅРёС‡РЅС‹Р№ РІС‹РІРѕРґ
 $router->addRoute(array('path' => '/^novosti\/page([0-9]*)$/', 'controller' => 'site_section_default', 'action' => 'index', 'vars' => array(1 => 'page')));
-# Новости. Подробно
+# РќРѕРІРѕСЃС‚Рё. РџРѕРґСЂРѕР±РЅРѕ
 $router->addRoute(array('path' => '/^novosti\/([-0-9]{10})$/', 'controller' => 'news', 'action' => 'showItem', 'vars' => array(1 => 'itemURL')));
 
-# Отзывы. Постраничный вывод
+# РћС‚Р·С‹РІС‹. РџРѕСЃС‚СЂР°РЅРёС‡РЅС‹Р№ РІС‹РІРѕРґ
 $router->addRoute(array('path' => '/^otzyvy\/page([0-9]*)$/', 'controller' => 'site_section_default', 'action' => 'index', 'vars' => array(1 => 'page')));
-# Отзывы. Подробно
+# РћС‚Р·С‹РІС‹. РџРѕРґСЂРѕР±РЅРѕ
 $router->addRoute(array('path' => '/^otzyvy\/([\/0-9]*)$/', 'controller' => 'feedback', 'action' => 'showItem', 'vars' => array(1 => 'itemURL')));
 
-# Вопросы-ответы. Постраничный вывод
+# Р’РѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹. РџРѕСЃС‚СЂР°РЅРёС‡РЅС‹Р№ РІС‹РІРѕРґ
 $router->addRoute(array('path' => '/^vopros\/page([0-9]*)$/', 'controller' => 'site_section_default', 'action' => 'index', 'vars' => array(1 => 'page')));
-# Вопросы-ответы. Подробно
+# Р’РѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹. РџРѕРґСЂРѕР±РЅРѕ
 $router->addRoute(array('path' => '/^vopros\/([-\/_0-9.a-zA-Z]*)$/', 'controller' => 'faq', 'action' => 'showItem', 'vars' => array(1 => 'itemURL')));
 
-# Статьи. Постраничный вывод
+# РЎС‚Р°С‚СЊРё. РџРѕСЃС‚СЂР°РЅРёС‡РЅС‹Р№ РІС‹РІРѕРґ
 $router->addRoute(array('path' => '/^sovet\/page([0-9]*)$/', 'controller' => 'site_section_default', 'action' => 'index', 'vars' => array(1 => 'page')));
-# Статьи. Подробно
+# РЎС‚Р°С‚СЊРё. РџРѕРґСЂРѕР±РЅРѕ
 $router->addRoute(array('path' => '/^sovet\/([-\/_0-9.a-zA-Z]*)$/', 'controller' => 'articles', 'action' => 'showItem', 'vars' => array(1 => 'itemURL')));
 
-# Карта сайта
+# РљР°СЂС‚Р° СЃР°Р№С‚Р°
 $router->addRoute(array('path' => '/^karta-sajta/', 'controller' => 'map', 'action' => 'index'));
 
-### /настройка динамичных путей
+### /РЅР°СЃС‚СЂРѕР№РєР° РґРёРЅР°РјРёС‡РЅС‹С… РїСѓС‚РµР№
 
-# Инициализация классов: подключаем контроллеры в loader
-# нестандартный функционал
+# РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃРѕРІ: РїРѕРґРєР»СЋС‡Р°РµРј РєРѕРЅС‚СЂРѕР»Р»РµСЂС‹ РІ loader
+# РЅРµСЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С„СѓРЅРєС†РёРѕРЅР°Р»
 /*
 include(MVC_PATH.'cars_controller.php');
 $cars_controller = new cars_controller($registry);
-# получаем список мин. цен для столбца слева
+# РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РјРёРЅ. С†РµРЅ РґР»СЏ СЃС‚РѕР»Р±С†Р° СЃР»РµРІР°
 $_ = $cars_controller->model->getCarsMinCostForLeftColumn(); # echo '<pre>'.(print_r($_, true)).'</pre>';
 $GLOBALS['tpl_cars_min_cost'] = $_;
 */
 
-# ФУНКЦИОНАЛ
+# Р¤РЈРќРљР¦РРћРќРђР›
 
-# подключаем контроллеры
+# РїРѕРґРєР»СЋС‡Р°РµРј РєРѕРЅС‚СЂРѕР»Р»РµСЂС‹
 # include(MVC_PATH.'articles_controller.php');
 # include(MVC_PATH.'news_controller.php');
 # include(MVC_PATH.'faq_controller.php');
@@ -117,21 +122,21 @@ $GLOBALS['tpl_cars_min_cost'] = $_;
 # $news_controller = $news_controller->load('news');
 # $faq_controller = $faq_controller->load('faq');
 # $feedback_controller = $feedback_controller->load('feedback');
-# /подключаем контроллеры
+# /РїРѕРґРєР»СЋС‡Р°РµРј РєРѕРЅС‚СЂРѕР»Р»РµСЂС‹
 
-# /ФУНКЦИОНАЛ
+# /Р¤РЈРќРљР¦РРћРќРђР›
 
-# загрузка классов "на лету"
+# Р·Р°РіСЂСѓР·РєР° РєР»Р°СЃСЃРѕРІ "РЅР° Р»РµС‚Сѓ"
 function __autoload($class_name)
 {
 	$filename = strtolower($class_name); # echo "filename: ".$filename."<hr />";
-	# для не-MVC классов
+	# РґР»СЏ РЅРµ-MVC РєР»Р°СЃСЃРѕРІ
 	$file = DOCUMENT_ROOT.'/app/library/'.$filename.'.php';
-	# для MVC-классов
+	# РґР»СЏ MVC-РєР»Р°СЃСЃРѕРІ
     $file2 = DOCUMENT_ROOT.'/app/library/mvc_'.$filename.'.php';
-    # для контроллеров и моделей
+    # РґР»СЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРІ Рё РјРѕРґРµР»РµР№
     $file3 = DOCUMENT_ROOT.'/app/mvc/'.$filename.'.php';
-	/* # отладка
+	/* # РѕС‚Р»Р°РґРєР°
 	echo "file: {$file} (exists: ".file_exists($file).")<br />";
 	echo "file2: {$file2} (exists: ".file_exists($file2).")<br />";
 	echo "file3: {$file3} (exists: ".file_exists($file3).")<hr />";
@@ -141,4 +146,4 @@ function __autoload($class_name)
 	elseif (file_exists($file2)) include($file2);
 	elseif (file_exists($file3)) include($file3);
 	else return;
-} # /загрузка классов "на лету"
+} # /Р·Р°РіСЂСѓР·РєР° РєР»Р°СЃСЃРѕРІ "РЅР° Р»РµС‚Сѓ"

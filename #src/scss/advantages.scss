@@ -1,7 +1,10 @@
 .advantages {
   // .advantages__container
+
   &__container {
     // margin: 0px 0px 30px 0px;
+    @include adaptiv-value(padding-top, 50, 15, 1);
+    @include adaptiv-value(padding-bottom, 50, 15, 1);
   }
   // .advantages__list
   &__list {

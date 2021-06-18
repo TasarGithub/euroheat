@@ -1,24 +1,77 @@
 .projects {
   // .projects__container
   &__container {
+    @include adaptiv-value(padding-top, 50, 15, 1);
+    @include adaptiv-value(padding-bottom, 50, 15, 1);
   }
   // .projects__title
   &__title {
+    & a {
+      color: $black;
+    }
     @include adaptiv-value(margin-bottom, 50, 15, 1);
   }
   // .projects__subtitle
   &__subtitle {
+    @include adaptiv-value(margin-bottom, 50, 15, 1);
   }
 }
 
 .projects-slider {
   // .projects-slider__wrapper
+  width: 95%;
+
   &__wrapper {
+    // justify-self: center;
   }
   // .projects-slider__slide
   &__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
   }
   // .projects-slider__image
-  &__image {
+  // &__image {
+  //   margin: 0 auto;
+  // }
+  // .projects-slider__caption
+  &__caption {
+    color: $primary-font;
+    @include adaptiv-value(font-size, 15, 10, 1);
+    text-align: center;
+    padding: 10px 0 0 0;
+    display: none;
   }
+}
+
+.projects-slider__image {
+  & a {
+    display: block;
+
+    & img {
+      @include adaptiv-value(width, 350, 300, 1);
+      border: 4px solid transparent;
+      &:hover {
+        border: 4px solid #cdaea0;
+      }
+    }
+  }
+}
+// .projects-slider__image a:hover {
+//   border: 4px solid #cdaea0;
+// }
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  // background: url("../images/icons/arrow-prev.png") no-repeat center/cover;
+  color: $primary;
+  font-weight: bold;
+}
+
+.swiper-button-prev::after {
+  margin-right: $margin-swiper-arrow;
+}
+.swiper-button-next::after {
+  margin-left: $margin-swiper-arrow;
 }

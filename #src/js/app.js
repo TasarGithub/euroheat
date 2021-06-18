@@ -30,7 +30,14 @@ const swiper = new Swiper('.swiper-container', {
   // Optional parameters
   // direction: 'vertical',
   loop: true,
-  slidesPerView: 3,
+  slidesPerView: 3,   //'auto',
+  // autoHeight: true,
+  //Отключение функционала, если слайдов меньше чем нужно
+  watchOverflow: true,
+  //Отступ между слайдами
+  //spaceBetween: 10,
+  // Активный слайд по центру
+  // centeredSlides: true,
   //slidesPerGroup: 3,
   // If we need pagination
   // pagination: {
