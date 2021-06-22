@@ -6258,6 +6258,10 @@ body._lock {
   padding-bottom: 50px;
 }
 
+.projects__container .order_btn {
+  margin: 0 auto;
+}
+
 .projects__title {
   margin-bottom: 50px;
 }

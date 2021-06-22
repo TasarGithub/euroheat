@@ -3,6 +3,10 @@
   &__container {
     @include adaptiv-value(padding-top, 50, 15, 1);
     @include adaptiv-value(padding-bottom, 50, 15, 1);
+
+    & .order_btn {
+      margin: 0 auto;
+    }
   }
   // .projects__title
   &__title {
