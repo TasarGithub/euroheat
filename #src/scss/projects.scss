@@ -19,7 +19,7 @@
 
 .projects-slider {
   // .projects-slider__wrapper
-  width: 95%;
+  width: 85%;
 
   &__wrapper {
     // justify-self: center;
@@ -42,7 +42,7 @@
     @include adaptiv-value(font-size, 15, 10, 1);
     text-align: center;
     padding: 10px 0 0 0;
-    display: none;
+    // display: none;
   }
 }
 
@@ -51,7 +51,7 @@
     display: block;
 
     & img {
-      @include adaptiv-value(width, 350, 300, 1);
+      @include adaptiv-value(width, 315, 250, 1);
       border: 4px solid transparent;
       &:hover {
         border: 4px solid #cdaea0;

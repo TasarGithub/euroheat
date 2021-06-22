@@ -6271,7 +6271,7 @@ body._lock {
 }
 
 .projects-slider {
-  width: 95%;
+  width: 85%;
 }
 
 .projects-slider__slide {
@@ -6287,7 +6287,6 @@ body._lock {
   font-size: 15px;
   text-align: center;
   padding: 10px 0 0 0;
-  display: none;
 }
 
 .projects-slider__image a {
@@ -6295,7 +6294,7 @@ body._lock {
 }
 
 .projects-slider__image a img {
-  width: 350px;
+  width: 315px;
   border: 4px solid transparent;
 }
 
@@ -6706,7 +6705,7 @@ body._lock {
   }
 
   .projects-slider__image a img {
-    width: calc( 300px + 50 * ((100vw - 320px) / 850));
+    width: calc( 250px + 65 * ((100vw - 320px) / 850));
   }
 
   .title--h2 {
