@@ -61,9 +61,11 @@
   top: 0;
   z-index: 1000;
   // }
+  // .header__container
   &__container {
     margin: 0 auto;
   }
+  // .header__top-wrapper
   &__top-wrapper {
     width: 100%;
     position: fixed;
@@ -77,7 +79,7 @@
       background: #fff;
     }
   }
-
+  // .header__content
   &__content {
     display: flex;
     justify-content: space-between;
@@ -91,7 +93,7 @@
     //   padding: 0 10px;
     // }
   }
-
+  // .header__column
   &__column {
     // flex: 1 1 25%;
     text-align: center;
@@ -99,7 +101,7 @@
     justify-content: center;
     align-items: center;
   }
-
+  // .header__column
   &__column:nth-child(1) {
     flex: 0 1 auto;
     // @media screen and (max-width: 576px) {
@@ -109,8 +111,11 @@
       flex: 0 0 auto;
     }
   }
+  // .header__column
   &__column:nth-child(2) {
     flex: 1 0 auto;
+    flex-direction: column;
+    align-items: center;
     @media screen and (max-width: 1050px) {
       flex: 1 0 auto;
     }
@@ -118,8 +123,12 @@
     //   flex: 1 1 80%;
     // }
   }
+  // .header__column
   &__column:nth-child(3) {
     flex: 0 1 auto;
+    flex-direction: column;
+    align-items: flex-end;
+
     // @media screen and (max-width: 576px) {
     //   flex: 1 1 30%;
     // }
@@ -135,12 +144,11 @@
   // &__column:last-child {
   // 	flex: 1 1 50%
   // }
-
-  &__contacts {
+  // .header__contacts
+  &__email {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    flex: 1 1 100%;
+    flex-direction: column;
+    align-items: flex-start;
 
     @media screen and (max-width: $md2+px) {
       flex-direction: column;
@@ -161,17 +169,14 @@
       min-height: 40px;
     }
   }
-
+  // .header__phone
   &__phone {
     color: #333;
     font-size: 35px;
-    font-weight: 700;
-    text-decoration: none;
-    line-height: 1;
-    padding: 0px 0 0px 41px;
     margin: 0 auto;
     // margin: 0 30px 0 auto;
-    background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / contain;
+    background: url(../images/icons/phone-braun.png) no-repeat 0 center /
+      contain;
 
     @media screen and (max-width: $md1+px) {
       // padding: 4px 0 4px 35px;
@@ -212,20 +217,57 @@
     }
   }
 
-  &__email {
-    // float: left;
-    // display: flex;
-    // align-items: center;
+  // .header__get-call
+  &__get-call {
+    color: #b28d7d;
+    font-size: 16px;
+    line-height: 1.2;
+    text-decoration: none;
+    border-bottom: 1px dotted #b28d7d;
+    text-align: right;
+  }
+  // &__get-call {
+  //   padding: 10px 20px;
+  //   border-radius: 30px;
+  //   color: $primary;
+  //   font-size: 16px;
+  //   line-height: 1;
+  //   text-decoration: none;
+  //   // border-bottom: 1px dotted $primary-dark;
+  //   background-color: $primary;
+  //   margin: 0 0 0 auto;
+  //   color: $light;
+  //   &:hover {
+  //     background-color: $primary-dark;
+  //     text-decoration: none;
+  //     color: $light;
+  //     // border: none;
+  //   }
+  //   @media screen and (max-width: 768px) {
+  //     padding: 10px 25px;
+  //     font-size: 15px;
+  //   }
+  //   @media (max-width: $md4+px) {
+  //     padding: 10px 14px;
+  //     font-size: 13px;
+  //   }
+  //   @media screen and (max-width: $md5+px) {
+  //     padding: 6px 12px;
+  //     font-size: 12px;
+  //   }
+  // }
+}
 
-    color: $dark;
-
-    font-size: 26px;
-
-    // padding: 6px 0 6px 35px;
-    padding: 0px 0 0px 35px;
-
-    text-align: left;
-    background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 28px auto;
+.email-header {
+  // .email-header__body
+  &__body {
+    // padding: 0px 0 0px 35px;
+    // text-align: left;
+    // background: url(../images/icons/icon-mail.png) no-repeat 0 center / 28px
+    //   auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 
     @media screen and (max-width: $md1+px) {
       // padding: 4px 0 4px 35px;
@@ -262,36 +304,22 @@
       text-decoration: underline;
     }
   }
-
-  &__get-call {
-    padding: 10px 20px;
-    border-radius: 30px;
-    color: $primary;
+  // .email-header__mail
+  &__mail {
+    padding: 0 0 0 45px;
+    color: black;
+    font-weight: bold;
+    font-size: 35px;
+    background: url(/images/icons/icon-mail.webp) no-repeat 0 6px/35px;
+    font-variant: small-caps;
+  }
+  // .email-header__label
+  &__label {
     font-size: 16px;
-    line-height: 1;
+    line-height: 1.2;
     text-decoration: none;
-    // border-bottom: 1px dotted $primary-dark;
-    background-color: $primary;
-    margin: 0 0 0 auto;
-    color: $light;
-    &:hover {
-      background-color: $primary-dark;
-      text-decoration: none;
-      color: $light;
-      // border: none;
-    }
-    @media screen and (max-width: 768px) {
-      padding: 10px 25px;
-      font-size: 15px;
-    }
-    @media (max-width: $md4+px) {
-      padding: 10px 14px;
-      font-size: 13px;
-    }
-    @media screen and (max-width: $md5+px) {
-      padding: 6px 12px;
-      font-size: 12px;
-    }
+    border-bottom: 1px dotted #b28d7d;
+    text-align: right;
   }
 }
 
