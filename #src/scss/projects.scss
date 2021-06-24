@@ -1,9 +1,8 @@
 .projects {
   // .projects__container
+  @include adaptiv-value(padding-top, 50, 15, 1);
+  @include adaptiv-value(padding-bottom, 50, 15, 1);
   &__container {
-    @include adaptiv-value(padding-top, 50, 15, 1);
-    @include adaptiv-value(padding-bottom, 50, 15, 1);
-
     & .order_btn {
       margin: 0 auto;
     }
@@ -77,18 +76,21 @@
 
 .projects-slider-prev,
 .projects-slider-next {
+  top: 40%;
+}
+.slider-prev,
+.slider-next {
   position: absolute;
   width: 20px;
   height: 36px;
-  top: 40%;
   cursor: pointer;
 }
 
-.projects-slider-prev {
+.slider-prev {
   background: url("../images/icons/arrow-prev.png") no-repeat center/cover;
   left: 5%;
 }
-.projects-slider-next {
+.slider-next {
   background: url("../images/icons/arrow-next.png") no-repeat center/cover;
   right: 5%;
 }

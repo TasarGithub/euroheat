@@ -2696,6 +2696,14 @@ textarea.form-markirovka {
 @import "footer";
 @import "my_ui";
 
+.h2,
+.h2 a {
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 1;
+  color: #181818;
+}
+
 .title {
   font-weight: bold;
   // .title--h2

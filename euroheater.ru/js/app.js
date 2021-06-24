@@ -1,4 +1,6 @@
 
+
+
 function email_test(input) {
 	return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
 };
@@ -1460,7 +1462,7 @@ burgerClass.addEventListener("click", function (e) {
 
 
 
-const swiper = new Swiper('.swiper-container', {
+const swiper = new Swiper('.projects-slider__container', {
   // Optional parameters
   // direction: 'vertical',
   loop: true,
@@ -1492,23 +1494,32 @@ const swiper = new Swiper('.swiper-container', {
 
 refreshFsLightbox();
 
-// import lightGallery from "https://cdn.skypack.dev/lightgallery@2.0.0-beta.4";
 
-// import lgZoom from "https://cdn.skypack.dev/lightgallery@2.0.0-beta.4/plugins/zoom";
-
-// lightGallery(document.getElementById("lightgallery"), {
+const clientsSwiper = new Swiper('.clients-slider__container', {
   
-//   speed: 500,
-//   plugins: [lgZoom],
-//   showZoomInOutIcons: true,
-//   actualSize: false
-// });
+  // Optional parameters
+  // direction: 'vertical',
+  loop: true,
+  slidesPerView: 5,   //'auto',
+  // autoHeight: true,
+  //Отключение функционала, если слайдов меньше чем нужно
+  watchOverflow: true,
+  //Отступ между слайдами
+  //spaceBetween: 10,
+  // Активный слайд по центру
+  // centeredSlides: true,
+  //slidesPerGroup: 3,
+  // If we need pagination
+  // pagination: {
+  //   el: '.swiper-pagination',
+  // },
 
+  // Navigation arrows
+  navigation: {
+    nextEl: '.clients-slider-next',
+    prevEl: '.clients-slider-prev',
+  },
 
-// console.log('lightGallery: ', lightGallery);
+});
 
-// lightGallery(document.getElementById('lightgallery'), {
-//         plugins: [lgZoom, lgThumbnail],
-//         speed: 500,
-//         // ... other settings
-//     });
+console.log('clientsSwiper: ', clientsSwiper);

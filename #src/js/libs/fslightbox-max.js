@@ -1265,13 +1265,13 @@
       //   СОЗДАНИЕ
       //
       function le() {
-        console.log("e: ", e, "n: ", n, "t: ", t);
+        // //console.log("e: ", e, "n: ", n, "t: ", t);
         t = function (t) {
           if (!e[t].hasAttribute("data-fslightbox")) return "continue";
 
           var n = e[t].getAttribute("data-fslightbox"),
             o = e[t].getAttribute("href");
-          console.log("n: ", n);
+          //console.log("n: ", n);
           //создание объекта слайда, если он еще не создан
           fsLightboxInstances[n] || (fsLightboxInstances[n] = new FsLightbox());
 
@@ -1286,15 +1286,15 @@
           var r = fsLightboxInstances[n].props.sources.length - 1;
           (e[t].onclick = function (e) {
             e.preventDefault(), fsLightboxInstances[n].open(r);
-            console.log(
-              "e.preventDefault(), fsLightboxInstances[n].open(r): ",
-              e,
+            //console.log(
+            //   "e.preventDefault(), fsLightboxInstances[n].open(r): ",
+            //   e,
 
-              n,
-              r,
-              "fsLightboxInstances",
-              fsLightboxInstances
-            );
+            //   n,
+            //   r,
+            //   "fsLightboxInstances",
+            //   fsLightboxInstances
+            // );
           }),
             d("types", "data-type"),
             d("videosPosters", "data-video-poster"),
@@ -1328,14 +1328,14 @@
               (fsLightboxInstances[n].props[o][r] = e[t].getAttribute(i));
           }
         };
-        console.log("e: ", e, "n: ", n, "t: ", t);
+        //console.log("e: ", e, "n: ", n, "t: ", t);
         for (
           var e = document.getElementsByTagName("a"), n = 0;
           n < e.length;
           n++
         )
           t(n);
-        console.log("e: ", e, "n: ", n, "t: ", t);
+        //console.log("e: ", e, "n: ", n, "t: ", t);
         var o = Object.keys(fsLightboxInstances);
         window.fsLightbox = fsLightboxInstances[o[o.length - 1]];
       }
