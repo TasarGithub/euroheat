@@ -1,638 +1,638 @@
-<?php 
-# Модуль админки для работы с вопросами-ответами (таблица faq)
-# romanov.egor@gmail.com; 2015.6.3
-
-# подключаем файл конфига
-include('../loader.control.php');
-
-# подключаем общие функции для index.php и ajax.php
-include('common.functions.php');
-
-# НАСТРОЙКИ
-$GLOBALS['tpl_title'] = 'Вопросы-ответы';
-$GLOBALS['imagesPath'] = '/public/images/faq/';
-
-# ЗАЩИТА
-if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
-
-# ЛОГИКА
-if ($_GET['action'] == "addItem")
-{ 
-    $GLOBALS['tpl_title'] .= ' > добавляем вопрос-ответ';
-    $GLOBALS['tpl_h1'] = 'Добавляем вопрос-ответ'; 
-    $GLOBALS['tpl_content'] = showAddForm();
-}
-elseif ($_GET['action'] == "addItemSubmit") {
-    $GLOBALS['tpl_title'] .= ' > добавляем вопрос-ответ';
-    $GLOBALS['tpl_h1'] = 'Добавляем вопрос-ответ'; 
-    $GLOBALS['tpl_content'] = addItemSubmit(); 
-}
-elseif ($_GET['action'] == "editItem") {
-    $GLOBALS['tpl_title'] .= ' > редактируем вопрос-ответ';
-    $GLOBALS['tpl_h1'] = 'Редактируем вопрос-ответ'; 
-    $GLOBALS['tpl_content'] = showEditForm(); 
-}
-elseif ($_GET['action'] == "deleteItem") {
-    $GLOBALS['tpl_title'] .= ' > удаляем вопрос-ответ';
-    $GLOBALS['tpl_h1'] = 'Удаляем вопрос-ответ'; 
-    $GLOBALS['tpl_content'] = deleteItem(); 
-}
-else { 
-    $GLOBALS['tpl_title'] .= ' > все вопросы-ответы';
-    $GLOBALS['tpl_h1'] = 'Все вопросы-ответы ('.$dbh->query('select count(1) from '.DB_PREFIX.'faq')->fetchColumn().')'; 
-    $GLOBALS['tpl_content'] = showItems(); 
-}
-# /ЛОГИКА
-
-# выводим главный шаблон
-$tpl->setMainTemplate('template_for_all_pages.php');
-$tpl->echoMainTemplate();
-
-# ФУНКЦИОНАЛ
-
-# ФОРМИРУЕМ СПИСОК ВСЕХ ВОПРОСОВ-ОТВЕТОВ
-function showItems($count = null)
-{
-    global $dbh;
-    
-    # получаем список вопросов-ответов
-    $sql = '
-    select id,
-           name,
-           url,
-           is_showable
-    from '.DB_PREFIX.'faq
-    order by name
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sql_for_count = '
-    select count(id)
-    from '.DB_PREFIX.'faq
-    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
-	$pages = new pages($_GET["page"], # текущая страница
-					   25, # записей на страницу
-					   $dbh, # объект базы данных
-                       '', # routeVars
-					   $sql, # sql-запрос
-					   $sql_for_count, # sql-запрос для подсчета количества записей
-					   '/control/faq/', # ссыка на 1ю страницу
-					   '/control/faq/?page=%page%', # ссыка на остальные страницы
-						1500 # максимальное количество записей на страницу
-						);
-	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
-    $_ = $_result['resultSet'];
-    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">Страницы: '.$_result['pagesSet'].'</div>';
-    $_c = count($_);
-	$rows = array();
-    for ($i=0;$i<$_c;$i++)
-	{
-        # ссылка
-        $link = '<a href="/vopros/'.$_[$i]['url'].'/" target="_blank">смотреть</a>';
-        
-        # is_showable
-        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
-        else unset($trClass);
-        
-        $rows[] = '
-		<tr'.$trClass.'>
-            <td class="center vertical_middle">
-                <a class="block" href="/control/faq/?action=editItem&itemID='.$_[$i]['id'].'">
-                    <i class="fa fa-edit size_18"></i>
-                </a>
-            </td>
-			<td class="center vertical_middle">'.$link.'</td>
-			<td>'.$_[$i]['name'].'</td>
-			<td class="center vertical_middle">
-                <a class="block" title="Удалить вопрос-ответ" href="/control/faq/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Вопрос-ответ будет удален безвозвратно. Удалить вопрос-ответ?\')">
-                    <i class="fa fa-trash-o size_18"></i>
-                </a>
-			</td>
-		</tr>
-		';
-    }
-	
-	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
-	else unset($rows);
-    
-    $result = '
-	<script type="text/javascript" src="/control/faq/index.js"></script>
-	
-    <div style="width:50%;float:left">
-        <b>URL:</b>&nbsp; <a href="/vopros/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/vopros/</a>
-    </div>
-    <div style="width:50%;float:right;text-align:right;padding-right:15px">
-        Поиск по названию: &nbsp;
-        <input id="search" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
-    </div>
-    <br style="clear:both" />
-    
-    <div class="center" style="margin-bottom:15px">
-        <a href="/control/faq/?action=addItem">
-            <button id="parse_all_projects" class="btn btn-success" type="button">
-                <i class="fa fa-plus-square" style="margin-right:3px"></i>
-                    Добавить вопрос-ответ
-            </button>
-        </a>
-    </div>
-    ';
-    
-    if (empty($rows)) $result .= 'В системе не задан ни один вопрос-ответ.';
-    else
-    {
-        $result .= '
-        <div id="resultSet">
-        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
-            <tr>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Правка</th>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Ссылка</th>
-                <th class="center vertical_middle">Название</th>
-                <th class="center vertical_middle" style="width:100px;white-space:nowrap">Удаление</th>
-            </tr>
-            '.$rows.'
-        </table>
-        '.$pagesList.'
-        </div>';
-    }
-    
-    return $result;
-} # / ФОРМИРУЕМ СПИСОК ВСЕХ ВОПРОСОВ-ОТВЕТОВ
-
-# ФОРМА РЕДАКТИРОВАНИЯ ВОПРОСА-ОТВЕТА
-function showEditForm()
-{
-    global $dbh;
-    
-    $showEditForm = 1;
-
-    # выводим сообщение
-    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'Вопрос-ответ успешно добавлен.';
-    
-    # сохраняем изменения в бд
-    if ($_GET['subaction'] == 'submit' && !empty($_POST))
-    {
-        $sql = '
-        update '.DB_PREFIX.'faq
-        set name = :name,
-            url = :url,
-            title = :title,
-            navigation = :navigation,
-            full_navigation = :full_navigation,
-            h1 = :h1,
-            footeranchor = :footeranchor,
-            is_showable = :is_showable
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':name', $_POST['faq_form_name']);
-        $sth->bindParam(':url', $_POST['faq_form_url']);
-        $sth->bindParam(':title', $_POST['faq_form_title']);
-        $sth->bindParam(':navigation', $_POST['faq_form_navigation']);
-        # full_navigation
-        if (empty($_POST['faq_form_full_navigation'])) $_POST['faq_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['faq_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['faq_form_h1']);
-        # is_showable
-        $isShowable = !empty($_POST['faq_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-        # footeranchor
-        if ($_POST['faq_form_footeranchor'] == '') $_POST['faq_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['faq_form_footeranchor']);
-        # id
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute())
-        {
-            $GLOBALS['tpl_success'] = 'Информация сохранена.';
-            
-			# сохраняем текст в файл
-			saveContentToFile($_GET['itemID'],
-							  $_POST['faq_form_text']);
-        }
-        else
-        {
-            $GLOBALS['tpl_failure'] = 'К сожалению, информация не сохранена. Пжл, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-        }
-    }
-
-    # выводим форму редактирования
-    if ($showEditForm)
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-        
-        # защита
-        if (!$itemInfo['id']) exit('
-		Не существует записи с ID='.$_GET['itemID'].'
-		<br /><a href="/control/faq/">Перейти к списку вопросов-ответов</a>
-		');
-        
-		# читаем текст вопрос-ответа из файла
-        if (!empty($itemInfo['file_name']))
-        {
-            $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_faq/'.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
-            if (file_exists($fullPathToFile))
-            {
-                $content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
-                # prepare for showing
-                $content = htmlspecialchars($content, ENT_QUOTES);
-                $content = str_replace("\t", "", $content);
-            }
-        }
-
-        # prepare all values for showing
-        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
-        
-        return "
-		<script type='text/javascript' src='/control/faq/index.js'></script>
-		<form id='faq_form' action='/control/faq/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='faq_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
-            
-            <button class='btn btn-primary submit_button' type='submit'>Сохранить информацию</button>
-
-            &nbsp;&nbsp;&nbsp; <a href='/control/faq/'><button class='btn btn-success' type='button'>
-            <i class='fa fa-share-square' style='margin-right:3px'></i>
-            Перейти к списку
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/faq/?action=addItem'><button class='btn btn-success' type='button'>
-            <i class='fa fa-plus-square' style='margin-right:3px'></i>
-            Добавить вопрос-ответ
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/faq/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"Вопрос-ответ будет удалена безвозвратно. Удалить вопрос-ответ?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> Удалить вопрос-ответ</button></a>
-
-			<br><br><b>URL:</b>&nbsp; <a href='/vopros/".$itemInfo['url']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/vopros/".$itemInfo['url']."/</a>
-            
-            <br><br>
-            <div class='form-group' style='width:60%'>
-                <label>Директория (по-английски): <span style='color:red'>*</span></label>
-                <input type='text' name='faq_form_url' id='faq_form_url' class='form-control form_required' data-required-label='Пжл, укажите директорию (например: kak-oplatit-zakaz)' value='".$itemInfo['url']."' />
-            </div>
-
-            <div class='form-group' style='width:60%'>
-                <label>Название (вопрос): <span style='color:red'>*</span></label>
-                <input type='text' name='faq_form_name' id='faq_form_name' class='form-control form_required' data-required-label='Пжл, укажите название (вопрос) по-русски' value='".$itemInfo['name']."' />
-            </div>
-            
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок страницы:</label>
-                <input type='text' name='faq_form_title' id='faq_form_title' class='form-control' data-required-label='Пжл, укажите заголовок страницы' value='".$itemInfo['title']."' />
-            </div>
-            
-            <div class='form-group' style='width:90%'>
-                <label>Строка навигации:</label>
-                <input type='text' name='faq_form_navigation' id='faq_form_navigation' class='form-control' value='".$itemInfo['navigation']."' />
-            </div>
-            
-			<div class='form-group' style='width:95%'>
-                <label>Строка навигации в ручном режиме:
-                       <br />
-                       <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-                </label>
-                <textarea name='faq_form_full_navigation' id='faq_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
-            </div>
-
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок h1:</label>
-                <input type='text' name='faq_form_h1' id='faq_form_h1' class='form-control' value='".$itemInfo['h1']."' />
-            </div>
-
-            <div class='form-group'>
-                <label>Ответ:</label>
-                <textarea name='faq_form_text' id='faq_form_text' class='form-control lined' style='width:90%;height:270px'>".$content."</textarea>
-            </div>
-            
-            <div class='form-group' style='width:95%'>
-                <label>Анкор для перелинковки в подвале:</label> &nbsp; 
-                <textarea name='faq_form_footeranchor' id='faq_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
-            </div>
-            
-            <div class='form-group' style='margin-bottom:0'>
-                <label>
-                    <input type='checkbox' name='faq_form_is_showable' id='faq_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checekd"' : '')." />&nbsp; Отображать вопрос-ответ на сайте
-                </label>
-            </div>
-            
-            <br />
-			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>Сохранить информацию</button>
-            
-		</form>
-		";
-    }
-} # /ФОРМА РЕДАКТИРОВАНИЯ ВОПРОСА-ОТВЕТА
-
-# ФОРМА ДОБАВЛЕНИЯ ВОПРОСА-ОТВЕТА
-function showAddForm()
-{
-    global $dbh;
-    
-    return "
-	<script type='text/javascript' src='/control/faq/index.js'></script>
-	<form id='faq_form' action='/control/faq/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
-        <button class='btn btn-primary submit_button' type='submit'>Добавить вопрос-ответ</button>
-        
-        &nbsp;&nbsp;&nbsp; <a href='/control/faq/'><button class='btn btn-success' type='button'>
-        <i class='fa fa-share-square' style='margin-right:3px'></i>
-        Перейти к списку
-        </button></a>
-        
-		<br /><br /><b>URL:</b>&nbsp; <a href='/vopros/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/vopros/</a>
-
-        <br /><br />
-        <div class='form-group' style='width:60%'>
-            <label>Директория (по-английски): <span style='color:red'>*</span></label>
-            <input type='text' name='faq_form_url' id='faq_form_url' class='form-control form_required' data-required-label='Пжл, укажите директорию (например: kak-oplatit-zakaz)' value='".$_POST['url']."' />
-        </div>
-
-        <div class='form-group' style='width:60%'>
-            <label>Название (вопрос): <span style='color:red'>*</span></label>
-            <input type='text' name='faq_form_name' id='faq_form_name' class='form-control form_required' data-required-label='Пжл, укажите название (вопрос) по-русски' value='".$_POST['name']."' />
-        </div>
-
-        <div id='faq_form_name_alert_div' class='alert alert-info hidden width_95'></div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок страницы:</label>
-            <input type='text' name='faq_form_title' id='faq_form_title' class='form-control' data-required-label='Пжл, укажите заголовок страницы' value='".$_POST['title']."' />
-        </div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Строка навигации:</label>
-            <input type='text' name='faq_form_navigation' id='faq_form_navigation' class='form-control' value='".$_POST['navigation']."' />
-        </div>
-        
-        <div class='form-group' style='width:95%'>
-            <label>Строка навигации в ручном режиме:
-                   <br />
-                   <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-            </label>
-            <textarea name='faq_form_full_navigation' id='faq_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['faq_form_full_navigation']."</textarea>
-        </div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок h1:</label>
-            <input type='text' name='faq_form_h1' id='faq_form_h1' class='form-control' value='".$_POST['h1']."' />
-        </div>
-
-        <div class='form-group'>
-            <label>Ответ:</label>
-            <textarea name='faq_form_text' id='faq_form_text' class='form-control lined' style='width:90%;height:270px'></textarea>
-        </div>
-        
-        <div class='form-group' style='width:95%'>
-            <label>Анкор для перелинковки в подвале:</label> &nbsp;
-            <textarea name='faq_form_footeranchor' id='faq_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['faq_form_footeranchor']."</textarea>
-        </div>
-        
-        <div class='form-group' style='margin-bottom:0'>
-            <label>
-                <input type='checkbox' name='faq_form_is_showable' id='faq_form_is_showable' class='form_checkbox' checked='checekd' />&nbsp; Отображать вопрос-ответ на сайте
-            </label>
-        </div>
-        
-        <br />
-        
-        <button class='btn btn-primary submit_button' type='submit'>Добавить вопрос-ответ</button>
-	</form>
-	";
-} # /ФОРМА ДОБАВЛЕНИЯ НОВОСТИ
-
-# ДОБАВЛЯЕМ ВОПРОС-ОТВЕТ В БД
-function addItemSubmit()
-{
-	global $dbh, $html;
-	
-	# print_r($_POST);
-	# защита от прямого запроса URL'а: /control/faq/?action=addItemSubmit
-	if (!empty($_POST))
-	{
-        # проверка + нужная кодировка POST-переменных
-        preparePOSTVariables(); # print_r($_POST); exit;
-
-		# добавляем вопрос-ответ в БД
-		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
-		# если вопрос-ответ успешно добавлен
-		if (!empty($lastInsertID))
-		{
-			# сохраняем текст в файл
-			saveContentToFile($lastInsertID,
-							  $_POST['faq_form_text']);
-            
-			# делаем перенаправление на форму редактирования
-			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/faq/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
-			header('Location: '.$fullUrlForEdit);
-		}
-		# если возникла ошибка и вопрос-ответ не добавлен
-		else
-		{
-            $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и вопрос-ответ не добавлен. Пожалуйста, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-		}
-	}
-	# если набран: /control/faq/addItemSubmit/ и при этом $_POST пустой
-	else
-	{
-		# выводим список вопросов-ответов
-        $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и вопрос-ответ не добавлен. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-        return showAddForm();
-	}
-} # /ДОБАВЛЯЕМ ВОПРОС-ОТВЕТ В БД
-
-# УДАЛЯЕМ ВОПРОС-ОТВЕТ
-function deleteItem(){
-	
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID']))
-	{
-		# выводим ошибку
-		$GLOBALS['tpl_failure'] = 'Вопрос-ответ не удален. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-		# выводим список вопросов-ответов
-        showItems();
-	}
-	else
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-
-		# удаляем вопрос-ответ из БД
-        $sql = '
-        delete from '.DB_PREFIX.'faq
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute())
-		{
-			$GLOBALS['tpl_success'] = 'Вопрос-ответ успешно удален.';
-            
-            # удаляем файл вопроса-ответа
-            if (!empty($itemInfo['file_name']))
-            {
-                $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_faq/'.basename($itemInfo['file_name']);
-                if (is_file($fullPathToFile)) unlink($fullPathToFile);
-            }
-            
-            # уадялем backup'ы
-            $sql = '
-            delete from '.DB_PREFIX.'backups
-            where table_name = "faq"
-                  and entry_id = :entry_id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            
-			# выводим список вопросов-ответов
-			return showItems();
-		}
-		else
-		{
-            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'К сожалению, вопрос-ответ не удален. Пожалуйста, обратитесь к разработчикам сайта.';
-			# выводим список вопросов-ответов
-			return showItems();
-		}
-	}
-} # /УДАЛЯЕМ ВОПРОС-ОТВЕТ
-
-# ДОБАВЛЯЕМ ВОПРОС-ОТВЕТ В БД
-function addItemToDB()
-{
-	global $dbh;
-	
-	if (!empty($_POST['faq_form_name']))
-	{ 
-        $sql = '
-        insert into '.DB_PREFIX.'faq
-        (name, 
-         url,
-         title,
-         full_navigation,
-         navigation,
-         h1,
-         footeranchor,
-         is_showable)
-        values
-        (:name,
-         :url,
-         :title,
-         :full_navigation,
-         :navigation,
-         :h1,
-         :footeranchor,
-         :is_showable)
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':name', $_POST['faq_form_name']);
-        $sth->bindParam(':url', $_POST['faq_form_url']);
-        $sth->bindParam(':title', $_POST['faq_form_title']);
-        $sth->bindParam(':navigation', $_POST['faq_form_navigation']);
-        # full_navigation
-        if (empty($_POST['faq_form_full_navigation'])) $_POST['faq_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['faq_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['faq_form_h1']);
-        # footeranchor
-        if ($_POST['faq_form_footeranchor'] == '') $_POST['faq_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['faq_form_footeranchor']);
-        # is_showable
-        $isShowable = !empty($_POST['faq_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-		try { if ($sth->execute()) {
-            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
-			if (!empty($last_insert_id))
-            {
-                # фиксируем имя файла вопроса-ответа
-                $sql = '
-                update '.DB_PREFIX.'faq
-                set file_name = :file_name
-                where id = :id
-                '; # echo '<pre>'.$sql."</pre><hr />";
-                $sth = $dbh->prepare($sql);
-                # file_name
-                $file_name = $last_insert_id.'.php';
-                $sth->bindParam(':file_name', $file_name);
-                $sth->bindParam(':id', $last_insert_id, PDO::PARAM_INT);
-                $sth->execute();
-                # /фиксируем имя файла вопроса-ответа
-                
-                return $last_insert_id;
-            }
-			else return;
-        }}
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
-	}
-    else echo 'В метод addItemToDB не передано faq_form_name.';
-} # /ДОБАВЛЯЕМ ВОПРОС-ОТВЕТ В БД
-
-# ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-function getItemInfo()
-{
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID'])) return;
-	
-	$sql = '
-	select *
-	from '.DB_PREFIX.'faq
-	where id = :id
-	'; # echo '<pre>'.$sql."</pre><hr />";
-	$sth = $dbh->prepare($sql);
-    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-    $sth->execute();
-    $itemInfo = $sth->fetch();
-	if (!empty($itemInfo)) return $itemInfo;
-	else return;
-} # /ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-
-# СОХРАНЯЕМ КОНТЕНТ В ФАЙЛ
-function saveContentToFile($itemID,
-						   $text)
-{
-    /*
-    echo 'itemID: '.$itemID.'<br />';
-    echo 'text: '.$text.'<br />';
-    */
-
-	# проверка переменных
-	if (empty($itemID)) return;
-	if (empty($text)) return;
-	
-	$fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_faq/'.basename($itemID.'.php'); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
-    
-    file_put_contents($fullPathToFile, $text, LOCK_EX);
-    if (is_file($fullPathToFile)) chmod($fullPathToFile, 0755);
-} # /СОХРАНЯЕМ КОНТЕНТ В ФАЙЛ
-
-# СТРОИМ SELECT С АНКОРАМИ ДЛЯ ПЕРЕЛИНКОВКИ В ПОДВАЛЕ
-/* function buildAllFooteranchors($footerAnchorID = NULL)
-{
-    global $dbh;
-    
-    $sql = '
-    select id,
-           anchor
-    from '.DB_PREFIX.'footeranchors
-    order by anchor
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-    $sth->execute();
-    $_ = $sth->fetchAll();
-    $options = array();
-    foreach ($_ as $item)
-    {
-        # selected
-        if (!empty($footerAnchorID) && $footerAnchorID == $item['id']) $selected = ' selected="selected"';
-        else unset($selected);
-        
-        $options[] = '<option value="'.$item['id'].'"'.$selected.'>'.$item['anchor'].'</option>';
-    }
-    if (!empty($options) and is_array($options)) $options = implode(PHP_EOL, $options);
-    $result = '<select id="faq_form_footeranchor_id" name="faq_form_footeranchor_id" class="form-control">'.PHP_EOL.'<option value="null">не выбран</option>'.PHP_EOL.$options.'</select>';
-    if (!empty($result)) return $result;
-} */ # /СТРОИМ SELECT С АНКОРАМИ ДЛЯ ПЕРЕЛИНКОВКИ В ПОДВАЛЕ
-
-# /ФУНКЦИОНАЛ
+<?php 
+# РњРѕРґСѓР»СЊ Р°РґРјРёРЅРєРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РІРѕРїСЂРѕСЃР°РјРё-РѕС‚РІРµС‚Р°РјРё (С‚Р°Р±Р»РёС†Р° faq)
+# romanov.egor@gmail.com; 2015.6.3
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р» РєРѕРЅС„РёРіР°
+include('../loader.control.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+include('common.functions.php');
+
+# РќРђРЎРўР РћР™РљР
+$GLOBALS['tpl_title'] = 'Р’РѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹';
+$GLOBALS['imagesPath'] = '/public/images/faq/';
+
+# Р—РђР©РРўРђ
+if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
+
+# Р›РћР“РРљРђ
+if ($_GET['action'] == "addItem")
+{ 
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚'; 
+    $GLOBALS['tpl_content'] = showAddForm();
+}
+elseif ($_GET['action'] == "addItemSubmit") {
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚'; 
+    $GLOBALS['tpl_content'] = addItemSubmit(); 
+}
+elseif ($_GET['action'] == "editItem") {
+    $GLOBALS['tpl_title'] .= ' > СЂРµРґР°РєС‚РёСЂСѓРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚';
+    $GLOBALS['tpl_h1'] = 'Р РµРґР°РєС‚РёСЂСѓРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚'; 
+    $GLOBALS['tpl_content'] = showEditForm(); 
+}
+elseif ($_GET['action'] == "deleteItem") {
+    $GLOBALS['tpl_title'] .= ' > СѓРґР°Р»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚';
+    $GLOBALS['tpl_h1'] = 'РЈРґР°Р»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚'; 
+    $GLOBALS['tpl_content'] = deleteItem(); 
+}
+else { 
+    $GLOBALS['tpl_title'] .= ' > РІСЃРµ РІРѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹';
+    $GLOBALS['tpl_h1'] = 'Р’СЃРµ РІРѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹ ('.$dbh->query('select count(1) from '.DB_PREFIX.'faq')->fetchColumn().')'; 
+    $GLOBALS['tpl_content'] = showItems(); 
+}
+# /Р›РћР“РРљРђ
+
+# РІС‹РІРѕРґРёРј РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
+$tpl->setMainTemplate('template_for_all_pages.php');
+$tpl->echoMainTemplate();
+
+# Р¤РЈРќРљР¦РРћРќРђР›
+
+# Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ Р’РћРџР РћРЎРћР’-РћРўР’Р•РўРћР’
+function showItems($count = null)
+{
+    global $dbh;
+    
+    # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ
+    $sql = '
+    select id,
+           name,
+           url,
+           is_showable
+    from '.DB_PREFIX.'faq
+    order by name
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sql_for_count = '
+    select count(id)
+    from '.DB_PREFIX.'faq
+    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
+	$pages = new pages($_GET["page"], # С‚РµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°
+					   25, # Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+					   $dbh, # РѕР±СЉРµРєС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+                       '', # routeVars
+					   $sql, # sql-Р·Р°РїСЂРѕСЃ
+					   $sql_for_count, # sql-Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
+					   '/control/faq/', # СЃСЃС‹РєР° РЅР° 1СЋ СЃС‚СЂР°РЅРёС†Сѓ
+					   '/control/faq/?page=%page%', # СЃСЃС‹РєР° РЅР° РѕСЃС‚Р°Р»СЊРЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
+						1500 # РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+						);
+	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
+    $_ = $_result['resultSet'];
+    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">РЎС‚СЂР°РЅРёС†С‹: '.$_result['pagesSet'].'</div>';
+    $_c = count($_);
+	$rows = array();
+    for ($i=0;$i<$_c;$i++)
+	{
+        # СЃСЃС‹Р»РєР°
+        $link = '<a href="/vopros/'.$_[$i]['url'].'/" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>';
+        
+        # is_showable
+        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
+        else unset($trClass);
+        
+        $rows[] = '
+		<tr'.$trClass.'>
+            <td class="center vertical_middle">
+                <a class="block" href="/control/faq/?action=editItem&itemID='.$_[$i]['id'].'">
+                    <i class="fa fa-edit size_18"></i>
+                </a>
+            </td>
+			<td class="center vertical_middle">'.$link.'</td>
+			<td>'.$_[$i]['name'].'</td>
+			<td class="center vertical_middle">
+                <a class="block" title="РЈРґР°Р»РёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚" href="/control/faq/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Р’РѕРїСЂРѕСЃ-РѕС‚РІРµС‚ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅ Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚?\')">
+                    <i class="fa fa-trash-o size_18"></i>
+                </a>
+			</td>
+		</tr>
+		';
+    }
+	
+	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+	else unset($rows);
+    
+    $result = '
+	<script type="text/javascript" src="/control/faq/index.js"></script>
+	
+    <div style="width:50%;float:left">
+        <b>URL:</b>&nbsp; <a href="/vopros/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/vopros/</a>
+    </div>
+    <div style="width:50%;float:right;text-align:right;padding-right:15px">
+        РџРѕРёСЃРє РїРѕ РЅР°Р·РІР°РЅРёСЋ: &nbsp;
+        <input id="search" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
+    </div>
+    <br style="clear:both" />
+    
+    <div class="center" style="margin-bottom:15px">
+        <a href="/control/faq/?action=addItem">
+            <button id="parse_all_projects" class="btn btn-success" type="button">
+                <i class="fa fa-plus-square" style="margin-right:3px"></i>
+                    Р”РѕР±Р°РІРёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚
+            </button>
+        </a>
+    </div>
+    ';
+    
+    if (empty($rows)) $result .= 'Р’ СЃРёСЃС‚РµРјРµ РЅРµ Р·Р°РґР°РЅ РЅРё РѕРґРёРЅ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚.';
+    else
+    {
+        $result .= '
+        <div id="resultSet">
+        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+            <tr>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РџСЂР°РІРєР°</th>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РЎСЃС‹Р»РєР°</th>
+                <th class="center vertical_middle">РќР°Р·РІР°РЅРёРµ</th>
+                <th class="center vertical_middle" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+            </tr>
+            '.$rows.'
+        </table>
+        '.$pagesList.'
+        </div>';
+    }
+    
+    return $result;
+} # / Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ Р’РћРџР РћРЎРћР’-РћРўР’Р•РўРћР’
+
+# Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ Р’РћРџР РћРЎРђ-РћРўР’Р•РўРђ
+function showEditForm()
+{
+    global $dbh;
+    
+    $showEditForm = 1;
+
+    # РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ
+    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'Р’РѕРїСЂРѕСЃ-РѕС‚РІРµС‚ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ.';
+    
+    # СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+    if ($_GET['subaction'] == 'submit' && !empty($_POST))
+    {
+        $sql = '
+        update '.DB_PREFIX.'faq
+        set name = :name,
+            url = :url,
+            title = :title,
+            navigation = :navigation,
+            full_navigation = :full_navigation,
+            h1 = :h1,
+            footeranchor = :footeranchor,
+            is_showable = :is_showable
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':name', $_POST['faq_form_name']);
+        $sth->bindParam(':url', $_POST['faq_form_url']);
+        $sth->bindParam(':title', $_POST['faq_form_title']);
+        $sth->bindParam(':navigation', $_POST['faq_form_navigation']);
+        # full_navigation
+        if (empty($_POST['faq_form_full_navigation'])) $_POST['faq_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['faq_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['faq_form_h1']);
+        # is_showable
+        $isShowable = !empty($_POST['faq_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+        # footeranchor
+        if ($_POST['faq_form_footeranchor'] == '') $_POST['faq_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['faq_form_footeranchor']);
+        # id
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute())
+        {
+            $GLOBALS['tpl_success'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°.';
+            
+			# СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚ РІ С„Р°Р№Р»
+			saveContentToFile($_GET['itemID'],
+							  $_POST['faq_form_text']);
+        }
+        else
+        {
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РёРЅС„РѕСЂРјР°С†РёСЏ РЅРµ СЃРѕС…СЂР°РЅРµРЅР°. РџР¶Р», РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+        }
+    }
+
+    # РІС‹РІРѕРґРёРј С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+    if ($showEditForm)
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+        
+        # Р·Р°С‰РёС‚Р°
+        if (!$itemInfo['id']) exit('
+		РќРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р·Р°РїРёСЃРё СЃ ID='.$_GET['itemID'].'
+		<br /><a href="/control/faq/">РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ</a>
+		');
+        
+		# С‡РёС‚Р°РµРј С‚РµРєСЃС‚ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚Р° РёР· С„Р°Р№Р»Р°
+        if (!empty($itemInfo['file_name']))
+        {
+            $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_faq/'.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
+            if (file_exists($fullPathToFile))
+            {
+                $content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
+                # prepare for showing
+                $content = htmlspecialchars($content, ENT_QUOTES);
+                $content = str_replace("\t", "", $content);
+            }
+        }
+
+        # prepare all values for showing
+        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
+        
+        return "
+		<script type='text/javascript' src='/control/faq/index.js'></script>
+		<form id='faq_form' action='/control/faq/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='faq_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
+            
+            <button class='btn btn-primary submit_button' type='submit'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+
+            &nbsp;&nbsp;&nbsp; <a href='/control/faq/'><button class='btn btn-success' type='button'>
+            <i class='fa fa-share-square' style='margin-right:3px'></i>
+            РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/faq/?action=addItem'><button class='btn btn-success' type='button'>
+            <i class='fa fa-plus-square' style='margin-right:3px'></i>
+            Р”РѕР±Р°РІРёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/faq/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"Р’РѕРїСЂРѕСЃ-РѕС‚РІРµС‚ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅР° Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> РЈРґР°Р»РёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚</button></a>
+
+			<br><br><b>URL:</b>&nbsp; <a href='/vopros/".$itemInfo['url']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/vopros/".$itemInfo['url']."/</a>
+            
+            <br><br>
+            <div class='form-group' style='width:60%'>
+                <label>Р”РёСЂРµРєС‚РѕСЂРёСЏ (РїРѕ-Р°РЅРіР»РёР№СЃРєРё): <span style='color:red'>*</span></label>
+                <input type='text' name='faq_form_url' id='faq_form_url' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ (РЅР°РїСЂРёРјРµСЂ: kak-oplatit-zakaz)' value='".$itemInfo['url']."' />
+            </div>
+
+            <div class='form-group' style='width:60%'>
+                <label>РќР°Р·РІР°РЅРёРµ (РІРѕРїСЂРѕСЃ): <span style='color:red'>*</span></label>
+                <input type='text' name='faq_form_name' id='faq_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ (РІРѕРїСЂРѕСЃ) РїРѕ-СЂСѓСЃСЃРєРё' value='".$itemInfo['name']."' />
+            </div>
+            
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹:</label>
+                <input type='text' name='faq_form_title' id='faq_form_title' class='form-control' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$itemInfo['title']."' />
+            </div>
+            
+            <div class='form-group' style='width:90%'>
+                <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё:</label>
+                <input type='text' name='faq_form_navigation' id='faq_form_navigation' class='form-control' value='".$itemInfo['navigation']."' />
+            </div>
+            
+			<div class='form-group' style='width:95%'>
+                <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                       <br />
+                       <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+                </label>
+                <textarea name='faq_form_full_navigation' id='faq_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
+            </div>
+
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє h1:</label>
+                <input type='text' name='faq_form_h1' id='faq_form_h1' class='form-control' value='".$itemInfo['h1']."' />
+            </div>
+
+            <div class='form-group'>
+                <label>РћС‚РІРµС‚:</label>
+                <textarea name='faq_form_text' id='faq_form_text' class='form-control lined' style='width:90%;height:270px'>".$content."</textarea>
+            </div>
+            
+            <div class='form-group' style='width:95%'>
+                <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp; 
+                <textarea name='faq_form_footeranchor' id='faq_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
+            </div>
+            
+            <div class='form-group' style='margin-bottom:0'>
+                <label>
+                    <input type='checkbox' name='faq_form_is_showable' id='faq_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checekd"' : '')." />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РЅР° СЃР°Р№С‚Рµ
+                </label>
+            </div>
+            
+            <br />
+			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+            
+		</form>
+		";
+    }
+} # /Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ Р’РћРџР РћРЎРђ-РћРўР’Р•РўРђ
+
+# Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ Р’РћРџР РћРЎРђ-РћРўР’Р•РўРђ
+function showAddForm()
+{
+    global $dbh;
+    
+    return "
+	<script type='text/javascript' src='/control/faq/index.js'></script>
+	<form id='faq_form' action='/control/faq/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚</button>
+        
+        &nbsp;&nbsp;&nbsp; <a href='/control/faq/'><button class='btn btn-success' type='button'>
+        <i class='fa fa-share-square' style='margin-right:3px'></i>
+        РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+        </button></a>
+        
+		<br /><br /><b>URL:</b>&nbsp; <a href='/vopros/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/vopros/</a>
+
+        <br /><br />
+        <div class='form-group' style='width:60%'>
+            <label>Р”РёСЂРµРєС‚РѕСЂРёСЏ (РїРѕ-Р°РЅРіР»РёР№СЃРєРё): <span style='color:red'>*</span></label>
+            <input type='text' name='faq_form_url' id='faq_form_url' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ (РЅР°РїСЂРёРјРµСЂ: kak-oplatit-zakaz)' value='".$_POST['url']."' />
+        </div>
+
+        <div class='form-group' style='width:60%'>
+            <label>РќР°Р·РІР°РЅРёРµ (РІРѕРїСЂРѕСЃ): <span style='color:red'>*</span></label>
+            <input type='text' name='faq_form_name' id='faq_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ (РІРѕРїСЂРѕСЃ) РїРѕ-СЂСѓСЃСЃРєРё' value='".$_POST['name']."' />
+        </div>
+
+        <div id='faq_form_name_alert_div' class='alert alert-info hidden width_95'></div>
+
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹:</label>
+            <input type='text' name='faq_form_title' id='faq_form_title' class='form-control' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$_POST['title']."' />
+        </div>
+
+        <div class='form-group' style='width:90%'>
+            <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё:</label>
+            <input type='text' name='faq_form_navigation' id='faq_form_navigation' class='form-control' value='".$_POST['navigation']."' />
+        </div>
+        
+        <div class='form-group' style='width:95%'>
+            <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                   <br />
+                   <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+            </label>
+            <textarea name='faq_form_full_navigation' id='faq_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['faq_form_full_navigation']."</textarea>
+        </div>
+
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє h1:</label>
+            <input type='text' name='faq_form_h1' id='faq_form_h1' class='form-control' value='".$_POST['h1']."' />
+        </div>
+
+        <div class='form-group'>
+            <label>РћС‚РІРµС‚:</label>
+            <textarea name='faq_form_text' id='faq_form_text' class='form-control lined' style='width:90%;height:270px'></textarea>
+        </div>
+        
+        <div class='form-group' style='width:95%'>
+            <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp;
+            <textarea name='faq_form_footeranchor' id='faq_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['faq_form_footeranchor']."</textarea>
+        </div>
+        
+        <div class='form-group' style='margin-bottom:0'>
+            <label>
+                <input type='checkbox' name='faq_form_is_showable' id='faq_form_is_showable' class='form_checkbox' checked='checekd' />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РЅР° СЃР°Р№С‚Рµ
+            </label>
+        </div>
+        
+        <br />
+        
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚</button>
+	</form>
+	";
+} # /Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РќРћР’РћРЎРўР
+
+# Р”РћР‘РђР’Р›РЇР•Рњ Р’РћРџР РћРЎ-РћРўР’Р•Рў Р’ Р‘Р”
+function addItemSubmit()
+{
+	global $dbh, $html;
+	
+	# print_r($_POST);
+	# Р·Р°С‰РёС‚Р° РѕС‚ РїСЂСЏРјРѕРіРѕ Р·Р°РїСЂРѕСЃР° URL'Р°: /control/faq/?action=addItemSubmit
+	if (!empty($_POST))
+	{
+        # РїСЂРѕРІРµСЂРєР° + РЅСѓР¶РЅР°СЏ РєРѕРґРёСЂРѕРІРєР° POST-РїРµСЂРµРјРµРЅРЅС‹С…
+        preparePOSTVariables(); # print_r($_POST); exit;
+
+		# РґРѕР±Р°РІР»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РІ Р‘Р”
+		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
+		# РµСЃР»Рё РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ
+		if (!empty($lastInsertID))
+		{
+			# СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚ РІ С„Р°Р№Р»
+			saveContentToFile($lastInsertID,
+							  $_POST['faq_form_text']);
+            
+			# РґРµР»Р°РµРј РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/faq/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
+			header('Location: '.$fullUrlForEdit);
+		}
+		# РµСЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РЅРµ РґРѕР±Р°РІР»РµРЅ
+		else
+		{
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РЅРµ РґРѕР±Р°РІР»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+		}
+	}
+	# РµСЃР»Рё РЅР°Р±СЂР°РЅ: /control/faq/addItemSubmit/ Рё РїСЂРё СЌС‚РѕРј $_POST РїСѓСЃС‚РѕР№
+	else
+	{
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ
+        $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РЅРµ РґРѕР±Р°РІР»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+        return showAddForm();
+	}
+} # /Р”РћР‘РђР’Р›РЇР•Рњ Р’РћРџР РћРЎ-РћРўР’Р•Рў Р’ Р‘Р”
+
+# РЈР”РђР›РЇР•Рњ Р’РћРџР РћРЎ-РћРўР’Р•Рў
+function deleteItem(){
+	
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID']))
+	{
+		# РІС‹РІРѕРґРёРј РѕС€РёР±РєСѓ
+		$GLOBALS['tpl_failure'] = 'Р’РѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РЅРµ СѓРґР°Р»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ
+        showItems();
+	}
+	else
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+
+		# СѓРґР°Р»СЏРµРј РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РёР· Р‘Р”
+        $sql = '
+        delete from '.DB_PREFIX.'faq
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute())
+		{
+			$GLOBALS['tpl_success'] = 'Р’РѕРїСЂРѕСЃ-РѕС‚РІРµС‚ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ.';
+            
+            # СѓРґР°Р»СЏРµРј С„Р°Р№Р» РІРѕРїСЂРѕСЃР°-РѕС‚РІРµС‚Р°
+            if (!empty($itemInfo['file_name']))
+            {
+                $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_faq/'.basename($itemInfo['file_name']);
+                if (is_file($fullPathToFile)) unlink($fullPathToFile);
+            }
+            
+            # СѓР°РґСЏР»РµРј backup'С‹
+            $sql = '
+            delete from '.DB_PREFIX.'backups
+            where table_name = "faq"
+                  and entry_id = :entry_id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ
+			return showItems();
+		}
+		else
+		{
+            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ РЅРµ СѓРґР°Р»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ
+			return showItems();
+		}
+	}
+} # /РЈР”РђР›РЇР•Рњ Р’РћРџР РћРЎ-РћРўР’Р•Рў
+
+# Р”РћР‘РђР’Р›РЇР•Рњ Р’РћРџР РћРЎ-РћРўР’Р•Рў Р’ Р‘Р”
+function addItemToDB()
+{
+	global $dbh;
+	
+	if (!empty($_POST['faq_form_name']))
+	{ 
+        $sql = '
+        insert into '.DB_PREFIX.'faq
+        (name, 
+         url,
+         title,
+         full_navigation,
+         navigation,
+         h1,
+         footeranchor,
+         is_showable)
+        values
+        (:name,
+         :url,
+         :title,
+         :full_navigation,
+         :navigation,
+         :h1,
+         :footeranchor,
+         :is_showable)
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':name', $_POST['faq_form_name']);
+        $sth->bindParam(':url', $_POST['faq_form_url']);
+        $sth->bindParam(':title', $_POST['faq_form_title']);
+        $sth->bindParam(':navigation', $_POST['faq_form_navigation']);
+        # full_navigation
+        if (empty($_POST['faq_form_full_navigation'])) $_POST['faq_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['faq_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['faq_form_h1']);
+        # footeranchor
+        if ($_POST['faq_form_footeranchor'] == '') $_POST['faq_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['faq_form_footeranchor']);
+        # is_showable
+        $isShowable = !empty($_POST['faq_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+		try { if ($sth->execute()) {
+            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
+			if (!empty($last_insert_id))
+            {
+                # С„РёРєСЃРёСЂСѓРµРј РёРјСЏ С„Р°Р№Р»Р° РІРѕРїСЂРѕСЃР°-РѕС‚РІРµС‚Р°
+                $sql = '
+                update '.DB_PREFIX.'faq
+                set file_name = :file_name
+                where id = :id
+                '; # echo '<pre>'.$sql."</pre><hr />";
+                $sth = $dbh->prepare($sql);
+                # file_name
+                $file_name = $last_insert_id.'.php';
+                $sth->bindParam(':file_name', $file_name);
+                $sth->bindParam(':id', $last_insert_id, PDO::PARAM_INT);
+                $sth->execute();
+                # /С„РёРєСЃРёСЂСѓРµРј РёРјСЏ С„Р°Р№Р»Р° РІРѕРїСЂРѕСЃР°-РѕС‚РІРµС‚Р°
+                
+                return $last_insert_id;
+            }
+			else return;
+        }}
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
+	}
+    else echo 'Р’ РјРµС‚РѕРґ addItemToDB РЅРµ РїРµСЂРµРґР°РЅРѕ faq_form_name.';
+} # /Р”РћР‘РђР’Р›РЇР•Рњ Р’РћРџР РћРЎ-РћРўР’Р•Рў Р’ Р‘Р”
+
+# РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+function getItemInfo()
+{
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID'])) return;
+	
+	$sql = '
+	select *
+	from '.DB_PREFIX.'faq
+	where id = :id
+	'; # echo '<pre>'.$sql."</pre><hr />";
+	$sth = $dbh->prepare($sql);
+    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+    $sth->execute();
+    $itemInfo = $sth->fetch();
+	if (!empty($itemInfo)) return $itemInfo;
+	else return;
+} # /РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+
+# РЎРћРҐР РђРќРЇР•Рњ РљРћРќРўР•РќРў Р’ Р¤РђР™Р›
+function saveContentToFile($itemID,
+						   $text)
+{
+    /*
+    echo 'itemID: '.$itemID.'<br />';
+    echo 'text: '.$text.'<br />';
+    */
+
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($itemID)) return;
+	if (empty($text)) return;
+	
+	$fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_faq/'.basename($itemID.'.php'); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
+    
+    file_put_contents($fullPathToFile, $text, LOCK_EX);
+    if (is_file($fullPathToFile)) chmod($fullPathToFile, 0755);
+} # /РЎРћРҐР РђРќРЇР•Рњ РљРћРќРўР•РќРў Р’ Р¤РђР™Р›
+
+# РЎРўР РћРРњ SELECT РЎ РђРќРљРћР РђРњР Р”Р›РЇ РџР•Р Р•Р›РРќРљРћР’РљР Р’ РџРћР”Р’РђР›Р•
+/* function buildAllFooteranchors($footerAnchorID = NULL)
+{
+    global $dbh;
+    
+    $sql = '
+    select id,
+           anchor
+    from '.DB_PREFIX.'footeranchors
+    order by anchor
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $_ = $sth->fetchAll();
+    $options = array();
+    foreach ($_ as $item)
+    {
+        # selected
+        if (!empty($footerAnchorID) && $footerAnchorID == $item['id']) $selected = ' selected="selected"';
+        else unset($selected);
+        
+        $options[] = '<option value="'.$item['id'].'"'.$selected.'>'.$item['anchor'].'</option>';
+    }
+    if (!empty($options) and is_array($options)) $options = implode(PHP_EOL, $options);
+    $result = '<select id="faq_form_footeranchor_id" name="faq_form_footeranchor_id" class="form-control">'.PHP_EOL.'<option value="null">РЅРµ РІС‹Р±СЂР°РЅ</option>'.PHP_EOL.$options.'</select>';
+    if (!empty($result)) return $result;
+} */ # /РЎРўР РћРРњ SELECT РЎ РђРќРљРћР РђРњР Р”Р›РЇ РџР•Р Р•Р›РРќРљРћР’РљР Р’ РџРћР”Р’РђР›Р•
+
+# /Р¤РЈРќРљР¦РРћРќРђР›

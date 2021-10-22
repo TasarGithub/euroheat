@@ -4,32 +4,37 @@
 session_start();
 
 
-echo '<pre>'.(print_r($_SESSION, true)).'</pre>';
+// echo '<pre>'.(print_r($_SESSION, true)).'</pre>';
 
-echo '<!-- '.$_SERVER['REQUEST_URI'].' -->';
+// echo '<!-- '.$_SERVER['REQUEST_URI'].' -->';
 
 # unset($_SESSION['auth']);
 
 ### отладка
-print_r($_GET);
-print_r($_POST);
-print_r($_FILES);
-echo '<pre>'.(print_r($_COOKIE, true)).'</pre>';
+// print_r($_GET);
+// print_r($_POST);
+// print_r($_FILES);
+// echo '<pre>'.(print_r($_COOKIE, true)).'</pre>';
 
 # конфиг
 include('config.php');
-
+echo "<br>";
+echo "ssfdfsdfs".PHP_EOL;
 # класс "реестр": в нем хранятся экземпляры других классов
 $registry = new registry;
-
+echo "<br>";
+echo "ssfdfsdfs".PHP_EOL;
 # настройки mysql и инициализация соединения: http://ru2.php.net/manual/en/book.pdo.php
 
-echo "include('db.connection.pdo.php');";
+// echo "include('db.connection.pdo.php');";
 
 include('db.connection.pdo.php');
+// echo "dbh: ";
 $registry->set('dbh', $dbh);
 
-echo $dbh;
+// echo "dbh: ";
+
+
 # класс шаблонизатор на базе php
 include(DOCUMENT_ROOT.'/app/library/templates.php');
 $tpl = new templates();
@@ -39,8 +44,8 @@ $registry->set('tpl', $tpl);
 $router = new router($registry);
 $router->setPath(MVC_PATH);
 $registry->set('router', $router);
-# $router->showRouterInfo = 1; # вывести отладочную информацию
-$router->showRouterInfo = 0; # вывести отладочную информацию
+$router->showRouterInfo = 1; # вывести отладочную информацию
+#$router->showRouterInfo = 0; # вывести отладочную информацию
 
 # класс защиты пользовательских данных
 $defence = new defence;

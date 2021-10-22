@@ -2,7 +2,7 @@
  * Croatian translation
  *  @name Croatian
  *  @anchor Croatian
- *  @author Predrag Mušić and _hrvoj3e_
+ *  @author Predrag MuР•РЋiР”вЂЎ and _hrvoj3e_
  */
 
 {
@@ -12,11 +12,11 @@
     "sInfoFiltered":    "(filtrirano iz _MAX_ ukupnih rezultata)",
     "sInfoPostFix":     "",
     "sInfoThousands":   ",",
-    "sLengthMenu":      "Prikaži _MENU_ rezultata po stranici",
-    "sLoadingRecords":  "Dohvaćam...",
-    "sProcessing":      "Obrađujem...",
-    "sSearch":          "Pretraži:",
-    "sZeroRecords":     "Ništa nije pronađeno",
+    "sLengthMenu":      "PrikaР•С•i _MENU_ rezultata po stranici",
+    "sLoadingRecords":  "DohvaР”вЂЎam...",
+    "sProcessing":      "ObraР”вЂ�ujem...",
+    "sSearch":          "PretraР•С•i:",
+    "sZeroRecords":     "NiР•РЋta nije pronaР”вЂ�eno",
     "oPaginate": {
         "sFirst":       "Prva",
         "sPrevious":    "Nazad",
@@ -24,7 +24,7 @@
         "sLast":        "Zadnja"
     },
     "oAria": {
-        "sSortAscending":  ": aktiviraj za rastući poredak",
-        "sSortDescending": ": aktiviraj za padajući poredak"
+        "sSortAscending":  ": aktiviraj za rastuР”вЂЎi poredak",
+        "sSortDescending": ": aktiviraj za padajuР”вЂЎi poredak"
     }
 }

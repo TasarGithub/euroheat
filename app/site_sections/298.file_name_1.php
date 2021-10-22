@@ -1,155 +1,323 @@
 <div class="catalog-page-right-col">
 
-<section class="section">
-<div class ="grey_div_margin-right">
-<div class="h4_padding-left">Виды аналогов </div><br />
-<ul class="ulli">
-<li>Теплообменники для вентиляции</li>
-<li>для приточно-вытяжных установок</li>
-<li>для центральных кондиционеров</li>
-<li>Калориферы</li>
-<li>Фреоновые испарители</li>
-<li>Воздухоохладители</li>
-</ul>
-</div>
 
-<div class ="grey_div">
-   <div id="contacts_form" class="form_analog">
-<div id="contacts_form_label" class="h4">Высылайте маркировку теплообменника для уточнения:</div>
-<div id="contacts_form_body">
-   <input id="contacts_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
-   <input id="contacts_form_phone" type="text" value="" class="form-control" placeholder="Телефон" />
-   <textarea id="contacts_form_text" rows="3" class="form-markirovka" placeholder="Маркировка"></textarea>
-   <button id='contacts_form_submit_button' type="button" class="green_btn">Отправить</button>
-   <span id="contacts_form_ajax_preloader" class="modal_ajax_preloader"></span>
-</div>
 
-</div>
-</div>
+	<section class="section">
 
-<div class="clear"></div>
-</section>
+		<div class="grey_div_margin-right">
 
-<section class="section">
-<div class="h4">Коды теплообменников</div>
-<table class="char_table">
-<tr>
-<td width="328"><b>Бренд</b></td>
-<td><b>Пример кода теплообменника</b></td>
-</tr>
-<tr>
-<td>FACO (Фако)</td>
-<td>FACO P40-16AS2R-4T-270A-2.0Pa <br>FACO P30-12AС-3R-7T-335A-2.0Pa-36NC AL<br>FACO P40-16AR 3R-36T-2150A 3.0Pa Cu/Al<br>FACO P40-16 ED 4R 10T 550A 2,5Pa, Aisi316/Aluver NC4</td>
-</tr>
-<tr>
-<td>ВЕЗА</td>
-<td>ВНВ 243.1-115-085-02-2,0-04-2 <br> ВНВ 243.1-103-065-03-3,0-04-2 <br>ВНВ 243.9-168-145-02-20-02-4-121-1</td>
-</tr>
-<tr>
-<td>WOLF</td>
-<td>WOLF KG 40, WOLF KG 63, WOLF KG 100</td>
-</tr>
-<tr>
-<td>RTV Coils (Roen Est) РТВ Коилс</td>
-<td>6.30.CU.10.AL.12.01.0490.18.W.X.X.002.012.R1/2"L</td>
-</tr>
-<tr>
-<td>Systemair (Систем Эйр)</td>
-<td>DVH-40-W-Z-3-30-750-1425-2/1-CU</td>
-</tr>
-<tr>
-<td>Friterm (Фритерм)</td>
-<td>FRITERM 1-2-0404 0014 VS400 WCL 4</td>
-</tr>
-<tr>
-<td>KORF (Корф)</td>
-<td>кан(r12)30/3 (1225-al-cu-35-04-2200-24-w-5vl-70-ub)</td>
-</tr>
-<tr>
-<td>Dospel (Доспел)</td>
-<td>Калорифер водяной Dospel NW2/EC25</td>
-</tr>
-<tr>
-<td>Lloyd Coils (Лойд коилс)</td>
-<td>W 3S3 G 04 48 1150 231 052 1 A L</td>
-</tr>
-<tr>
-<td>IMP Klima Hidria</td>
-<td>GV 16IV25 34C.3380/2 34PC2/CuAl</td>
-</tr>
-<tr>
-<td>Polar bear</td>
-<td>POLAR BEAR PBAR 500x300-3-2,5</td>
-</tr>
-<tr>
-<td>Wesper (Веспер)</td>
-<td>WESPER CDC-056</td>
-</tr>
-</table><br />
-</section>
+			<div class="h4_padding-left">Р’РёРґС‹ Р°РЅР°Р»РѕРіРѕРІ </div><br />
 
-<section class="section">
-<div class="h2_2">ЗА СЧЕТ ЧЕГО ДОБИВАЕМСЯ КАЧЕСТВА?</div>
+			<ul class="ulli">
 
-<div class="h4_background_pink">Материалы для промышленных теплообменников</div>
+				<li>РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РґР»СЏ РІРµРЅС‚РёР»СЏС†РёРё</li>
 
-<ul class="ul_arial">
-<li>Ламели делаем из алюминия, по спецзаказу - из меди. Трубки - из мельхиора, стали, меди.&nbsp;Используем медь высшего качества - германскую и финскую</li>
-<li>Для пищевых производств предлагаем теплообменники из нержавеющей стали марок INOX AISI 304 и&nbsp; INOX AISI 316. Их выпускают в Италии, на заводе CO.MA. spa. Из стали делаются все части теплообменника: рама, трубки, ламели и проводящие пластины.</li>
-</ul>
+				<li>РґР»СЏ РїСЂРёС‚РѕС‡РЅРѕ-РІС‹С‚СЏР¶РЅС‹С… СѓСЃС‚Р°РЅРѕРІРѕРє</li>
 
-<div class="h4_background_pink">Обязательные испытания теплообменников</div>
+				<li>РґР»СЏ С†РµРЅС‚СЂР°Р»СЊРЅС‹С… РєРѕРЅРґРёС†РёРѕРЅРµСЂРѕРІ</li>
 
-<p><span class="span_arial">Любые теплообменники проверяются на герметичность под давлением:</span></p>
-<ul class="ul_arial">
-<li>водяные (нагреватели, охладитель) - 23 атмосферы;</li>
-<li>паровые - минимум 30 атмосфер;</li>
-<li>фреоновые (испарители, конденсаторы) - минимум 40 атмосфер.</li>
-</ul>
+				<li>РљР°Р»РѕСЂРёС„РµСЂС‹</li>
 
-<div class="h4_background_pink">Гарантия на теплообменники</div>
+				<li>Р¤СЂРµРѕРЅРѕРІС‹Рµ РёСЃРїР°СЂРёС‚РµР»Рё</li>
 
-<p><span class="span_arial">Мы даем гарантию на все наши изделия:</span></p>
-<p>
-<ul class="ul_arial">
-<li>на медно-алюминиевые теплообменники - 2 года;</li>
-<li>на теплообменники из нержавеющей стали - 5 лет.</li>
-</ul>
-</p>
-</section>
+				<li>Р’РѕР·РґСѓС…РѕРѕС…Р»Р°РґРёС‚РµР»Рё</li>
 
-<section class="section">
-<div class="h2_2">КАК МЫ ЭТО ДЕЛАЕМ?</div>
+			</ul>
 
-<div class="h4_background_pink">Сроки</div>
-<p><span class="span_arial">Производство занимает от 20 до 40 рабочих дней, в зависимости от сложности конструкции и материалов теплообменника.</span></p>
+		</div>
 
-<div class="h4_background_pink">Доставка</div>
-<p><span class="span_arial"> По желанию заказчика доставляем изготовленные теплообменники собственным транспортом или транспортной компанией. Работаем с транспортными компаниями ПЭК, Байкал Сервис, КИТ.</span></p>
 
-<div class="h4_background_pink">Монтаж</div>
-<p><span class="span_arial">Устанавливаем и монтируем по предварительной заявке.</span></p>
 
-<div class="h4_background_pink">Дополнительно</div>
-<p><span class="span_arial">Вместе с теплообменником для систем вентиляции можно заказать:</span></p>
-</section>
+		<div class="grey_div">
 
-<section>
-<div calss="row">
-<div class="col-md-6">
-<a class="a_bigtext_center" href="/smesitelnye-uzly/">Смесительные узлы  </a>
+			<div id="analog_form" class="form_analog">
 
-<br>
-<br>
-<br>
-<br>
-<br><img src="/public/images/uzel.png" class="img-responsive" ><br>
+				<div id="analog_form_label" class="h4">Р’С‹СЃС‹Р»Р°Р№С‚Рµ РјР°СЂРєРёСЂРѕРІРєСѓ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР° РґР»СЏ СѓС‚РѕС‡РЅРµРЅРёСЏ:</div>
 
-</div>
-<div class="col-md-6">
-<a class="a_bigtext_center" href="/filtry/">Фильтры для систем вентиляции</a>
-<br><img src="/public/images/filter_v3.jpg" class="img-responsive" ><br>
-</div>
-</div>
-</section>
+				<div id="analog_form_body">
+
+					<input id="analog_form_name" type="text" value="" class="form-control" placeholder="Р’Р°С€Рµ РёРјСЏ" />
+
+					<input id="analog_form_phone" type="text" value="" class="form-control" placeholder="РўРµР»РµС„РѕРЅ" />
+
+					<input id="analog_form_email" type="emai" value="" class="form-control" placeholder="Р’Р°С€ E-mail" />
+
+					<textarea id="analog_form_text" rows="3" class="form-markirovka" placeholder="РњР°СЂРєРёСЂРѕРІРєР°"></textarea>
+
+					<button id='analog_form_submit_button' type="button" class="green_btn">РћС‚РїСЂР°РІРёС‚СЊ</button>
+
+					<span id="analog_form_ajax_preloader" class="modal_ajax_preloader"></span>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+
+
+		<div class="clear"></div>
+
+	</section>
+
+
+
+	<section class="section">
+
+		<div class="h4">РљРѕРґС‹ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ</div>
+
+		<table class="char_table">
+
+			<tr>
+
+				<td width="328"><b>Р‘СЂРµРЅРґ</b></td>
+
+				<td><b>РџСЂРёРјРµСЂ РєРѕРґР° С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</b></td>
+
+			</tr>
+
+			<tr>
+
+				<td>Coiltech (Modine).</td>
+
+				<td>QLKE-250-130-4-1-4-23-6-4-X <br>
+
+					QLNE-172-070-3-1-2-1X-X-2 <br>
+
+					QLSK-215-180-01-20-80-32</td>
+
+			</tr>
+
+			<tr>
+
+				<td>FACO (Р¤Р°РєРѕ)</td>
+
+				<td>FACO P40-16AS2R-4T-270A-2.0Pa <br>FACO P30-12AРЎ-3R-7T-335A-2.0Pa-36NC AL<br>FACO P40-16AR 3R-36T-2150A 3.0Pa Cu/Al<br>FACO P40-16 ED 4R 10T 550A 2,5Pa, Aisi316/Aluver NC4</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Р’Р•Р—Рђ</td>
+
+				<td>Р’РќР’ 243.1-115-085-02-2,0-04-2 <br> Р’РќР’ 243.1-103-065-03-3,0-04-2 <br>Р’РќР’ 243.9-168-145-02-20-02-4-121-1</td>
+
+			</tr>
+
+			<tr>
+
+				<td>WOLF</td>
+
+				<td>WOLF KG 40, WOLF KG 63, WOLF KG 100</td>
+
+			</tr>
+
+			<tr>
+
+				<td>RTV Coils (Roen Est) Р РўР’ РљРѕРёР»СЃ</td>
+
+				<td>6.30.CU.10.AL.12.01.0490.18.W.X.X.002.012.R1/2"L</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Systemair (РЎРёСЃС‚РµРј Р­Р№СЂ)</td>
+
+				<td>DVH-40-W-Z-3-30-750-1425-2/1-CU</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Friterm (Р¤СЂРёС‚РµСЂРј)</td>
+
+				<td>FRITERM 1-2-0404 0014 VS400 WCL 4</td>
+
+			</tr>
+
+			<tr>
+
+				<td>KORF (РљРѕСЂС„)</td>
+
+				<td>РєР°РЅ(r12)30/3 (1225-al-cu-35-04-2200-24-w-5vl-70-ub)</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Dospel (Р”РѕСЃРїРµР»)</td>
+
+				<td>РљР°Р»РѕСЂРёС„РµСЂ РІРѕРґСЏРЅРѕР№ Dospel NW2/EC25</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Lloyd Coils (Р›РѕР№Рґ РєРѕРёР»СЃ)</td>
+
+				<td>W 3S3 G 04 48 1150 231 052 1 A L</td>
+
+			</tr>
+
+			<tr>
+
+				<td>IMP Klima Hidria</td>
+
+				<td>GV 16IV25 34C.3380/2 34PC2/CuAl</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Polar bear</td>
+
+				<td>POLAR BEAR PBAR 500x300-3-2,5</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Wesper (Р’РµСЃРїРµСЂ)</td>
+
+				<td>WESPER CDC-056</td>
+
+			</tr>
+
+		</table><br />
+
+	</section>
+
+
+
+	<section class="section">
+
+		<div class="h2_2">Р—Рђ РЎР§Р•Рў Р§Р•Р“Рћ Р”РћР‘РР’РђР•РњРЎРЇ РљРђР§Р•РЎРўР’Рђ?</div>
+
+
+
+		<div class="h4_background_pink">РњР°С‚РµСЂРёР°Р»С‹ РґР»СЏ РїСЂРѕРјС‹С€Р»РµРЅРЅС‹С… С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ</div>
+
+
+
+		<ul class="ul_arial">
+
+			<li>Р›Р°РјРµР»Рё РґРµР»Р°РµРј РёР· Р°Р»СЋРјРёРЅРёСЏ, РїРѕ СЃРїРµС†Р·Р°РєР°Р·Сѓ - РёР· РјРµРґРё. РўСЂСѓР±РєРё - РёР· РјРµР»СЊС…РёРѕСЂР°, СЃС‚Р°Р»Рё, РјРµРґРё.&nbsp;РСЃРїРѕР»СЊР·СѓРµРј РјРµРґСЊ РІС‹СЃС€РµРіРѕ РєР°С‡РµСЃС‚РІР° - РіРµСЂРјР°РЅСЃРєСѓСЋ Рё С„РёРЅСЃРєСѓСЋ</li>
+
+			<li>Р”Р»СЏ РїРёС‰РµРІС‹С… РїСЂРѕРёР·РІРѕРґСЃС‚РІ РїСЂРµРґР»Р°РіР°РµРј С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё РјР°СЂРѕРє INOX AISI 304 Рё&nbsp; INOX AISI 316. РС… РІС‹РїСѓСЃРєР°СЋС‚ РІ РС‚Р°Р»РёРё, РЅР° Р·Р°РІРѕРґРµ CO.MA. spa. РР· СЃС‚Р°Р»Рё РґРµР»Р°СЋС‚СЃСЏ РІСЃРµ С‡Р°СЃС‚Рё С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°: СЂР°РјР°, С‚СЂСѓР±РєРё, Р»Р°РјРµР»Рё Рё РїСЂРѕРІРѕРґСЏС‰РёРµ РїР»Р°СЃС‚РёРЅС‹.</li>
+
+		</ul>
+
+
+
+		<div class="h4_background_pink">РћР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РёСЃРїС‹С‚Р°РЅРёСЏ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ</div>
+
+
+
+		<p><span class="span_arial">Р›СЋР±С‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РїСЂРѕРІРµСЂСЏСЋС‚СЃСЏ РЅР° РіРµСЂРјРµС‚РёС‡РЅРѕСЃС‚СЊ РїРѕРґ РґР°РІР»РµРЅРёРµРј:</span></p>
+
+		<ul class="ul_arial">
+
+			<li>РІРѕРґСЏРЅС‹Рµ (РЅР°РіСЂРµРІР°С‚РµР»Рё, РѕС…Р»Р°РґРёС‚РµР»СЊ) - 23 Р°С‚РјРѕСЃС„РµСЂС‹;</li>
+
+			<li>РїР°СЂРѕРІС‹Рµ - РјРёРЅРёРјСѓРј 30 Р°С‚РјРѕСЃС„РµСЂ;</li>
+
+			<li>С„СЂРµРѕРЅРѕРІС‹Рµ (РёСЃРїР°СЂРёС‚РµР»Рё, РєРѕРЅРґРµРЅСЃР°С‚РѕСЂС‹) - РјРёРЅРёРјСѓРј 40 Р°С‚РјРѕСЃС„РµСЂ.</li>
+
+		</ul>
+
+
+
+		<div class="h4_background_pink">Р“Р°СЂР°РЅС‚РёСЏ РЅР° С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</div>
+
+
+
+		<p><span class="span_arial">РњС‹ РґР°РµРј РіР°СЂР°РЅС‚РёСЋ РЅР° РІСЃРµ РЅР°С€Рё РёР·РґРµР»РёСЏ:</span></p>
+
+		<p>
+
+		<ul class="ul_arial">
+
+			<li>РЅР° РјРµРґРЅРѕ-Р°Р»СЋРјРёРЅРёРµРІС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё - 2 РіРѕРґР°;</li>
+
+			<li>РЅР° С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё - 5 Р»РµС‚.</li>
+
+		</ul>
+
+		</p>
+
+	</section>
+
+
+
+	<section class="section">
+
+		<div class="h2_2">РљРђРљ РњР« Р­РўРћ Р”Р•Р›РђР•Рњ?</div>
+
+
+
+		<div class="h4_background_pink">РЎСЂРѕРєРё</div>
+
+		<p><span class="span_arial">РџСЂРѕРёР·РІРѕРґСЃС‚РІРѕ Р·Р°РЅРёРјР°РµС‚ РѕС‚ 20 РґРѕ 40 СЂР°Р±РѕС‡РёС… РґРЅРµР№, РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃР»РѕР¶РЅРѕСЃС‚Рё РєРѕРЅСЃС‚СЂСѓРєС†РёРё Рё РјР°С‚РµСЂРёР°Р»РѕРІ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°.</span></p>
+
+
+
+		<div class="h4_background_pink">Р”РѕСЃС‚Р°РІРєР°</div>
+
+		<p><span class="span_arial"> РџРѕ Р¶РµР»Р°РЅРёСЋ Р·Р°РєР°Р·С‡РёРєР° РґРѕСЃС‚Р°РІР»СЏРµРј РёР·РіРѕС‚РѕРІР»РµРЅРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃРѕР±СЃС‚РІРµРЅРЅС‹Рј С‚СЂР°РЅСЃРїРѕСЂС‚РѕРј РёР»Рё С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕР№ РєРѕРјРїР°РЅРёРµР№. Р Р°Р±РѕС‚Р°РµРј СЃ С‚СЂР°РЅСЃРїРѕСЂС‚РЅС‹РјРё РєРѕРјРїР°РЅРёСЏРјРё РџР­Рљ, Р‘Р°Р№РєР°Р» РЎРµСЂРІРёСЃ, РљРРў.</span></p>
+
+
+
+		<div class="h4_background_pink">РњРѕРЅС‚Р°Р¶</div>
+
+		<p><span class="span_arial">РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Рё РјРѕРЅС‚РёСЂСѓРµРј РїРѕ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕР№ Р·Р°СЏРІРєРµ.</span></p>
+
+
+
+		<div class="h4_background_pink">Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ</div>
+
+		<p><span class="span_arial">Р’РјРµСЃС‚Рµ СЃ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРј РґР»СЏ СЃРёСЃС‚РµРј РІРµРЅС‚РёР»СЏС†РёРё РјРѕР¶РЅРѕ Р·Р°РєР°Р·Р°С‚СЊ:</span></p>
+
+	</section>
+
+
+
+	<section>
+
+		<div calss="row">
+
+			<div class="col-md-6">
+
+				<a class="a_bigtext_center" href="/smesitelnye-uzly/">РЎРјРµСЃРёС‚РµР»СЊРЅС‹Рµ СѓР·Р»С‹ </a>
+
+
+
+				<br>
+
+				<br>
+
+				<br>
+
+				<br>
+
+				<br><img src="/public/images/uzel.png" class="img-responsive"><br>
+
+
+
+			</div>
+
+			<div class="col-md-6">
+
+				<a class="a_bigtext_center" href="/filtry/">Р¤РёР»СЊС‚СЂС‹ РґР»СЏ СЃРёСЃС‚РµРј РІРµРЅС‚РёР»СЏС†РёРё</a>
+
+				<br><img src="/public/images/filter_v3.jpg" class="img-responsive"><br>
+
+			</div>
+
+		</div>
+
+	</section>
+
 </div>

@@ -1,1 +1,1 @@
-<?php # общие функции для index.php и ajax.php
+<?php # общие функции для index.php и ajax.php

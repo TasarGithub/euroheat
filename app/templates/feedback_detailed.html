@@ -13,19 +13,19 @@
     </div>
     <div class="clear"></div>
 
-    <a class="page_back" href="../">&laquo; на страницу Отзывы</a>
+    <a class="page_back" href="../">&laquo; РЅР° СЃС‚СЂР°РЅРёС†Сѓ РћС‚Р·С‹РІС‹</a>
     <div class="clear"></div>
 
-    <a class="order_btn_1" href="#review_modal" data-toggle="modal">Написать отзыв</a>
+    <a class="order_btn_1" href="#review_modal" data-toggle="modal">РќР°РїРёСЃР°С‚СЊ РѕС‚Р·С‹РІ</a>
     <div class="clear"></div>
 
-    <?php if (!empty($GLOBALS['tpl_another_feedback'])): # блок "Другие статьи" ?>
-    <div class="h4">Другие отзывы</div>
+    <?php if (!empty($GLOBALS['tpl_another_feedback'])): # Р±Р»РѕРє "Р”СЂСѓРіРёРµ СЃС‚Р°С‚СЊРё" ?>
+    <div class="h4">Р”СЂСѓРіРёРµ РѕС‚Р·С‹РІС‹</div>
 
     <?php foreach($GLOBALS['tpl_another_feedback'] as $item): ?>
     <div class="review_b">
         <div class="cont">
-            <?php echo $item['feedback']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/otzyvy/<?php echo $item['id']; ?>/">Подробнее &raquo;</a>
+            <?php echo $item['feedback']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/otzyvy/<?php echo $item['id']; ?>/">РџРѕРґСЂРѕР±РЅРµРµ &raquo;</a>
         </div>
 
         <div class="est" data-feedback-id="<?php echo $item['id']; ?>">
@@ -36,5 +36,5 @@
         <div class="clear"></div>
     </div>
     <?php endforeach; ?>
-    <?php endif; # /блок "Другие статьи" ?>
+    <?php endif; # /Р±Р»РѕРє "Р”СЂСѓРіРёРµ СЃС‚Р°С‚СЊРё" ?>
 </div> <!-- /.reviews_p -->

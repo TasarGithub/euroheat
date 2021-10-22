@@ -6,18 +6,18 @@
  */
 
 {
-	"sProcessing":   "İşleniyor...",
-	"sLengthMenu":   "Sayfada _MENU_ Kayıt Göster",
-	"sZeroRecords":  "Eşleşen Kayıt Bulunmadı",
-	"sInfo":         "  _TOTAL_ Kayıttan _START_ - _END_ Arası Kayıtlar",
-	"sInfoEmpty":    "Kayıt Yok",
-	"sInfoFiltered": "( _MAX_ Kayıt İçerisinden Bulunan)",
+	"sProcessing":   "Р”В°Р•Сџleniyor...",
+	"sLengthMenu":   "Sayfada _MENU_ KayР”В±t GР“В¶ster",
+	"sZeroRecords":  "EР•СџleР•Сџen KayР”В±t BulunmadР”В±",
+	"sInfo":         "  _TOTAL_ KayР”В±ttan _START_ - _END_ ArasР”В± KayР”В±tlar",
+	"sInfoEmpty":    "KayР”В±t Yok",
+	"sInfoFiltered": "( _MAX_ KayР”В±t Р”В°Р“В§erisinden Bulunan)",
 	"sInfoPostFix":  "",
 	"sSearch":       "Bul:",
 	"sUrl":          "",
 	"oPaginate": {
-		"sFirst":    "İlk",
-		"sPrevious": "Önceki",
+		"sFirst":    "Р”В°lk",
+		"sPrevious": "Р“вЂ“nceki",
 		"sNext":     "Sonraki",
 		"sLast":     "Son"
 	}

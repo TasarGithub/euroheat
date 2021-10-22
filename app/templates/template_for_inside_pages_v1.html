@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-    <title><?php echo $GLOBALS['tpl_title']; ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>
+        <?php echo $GLOBALS['tpl_title']; ?>
+    </title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="<?php echo $GLOBALS['tpl_meta_keywords']; ?>" />
     <meta name="description" content="<?php echo $GLOBALS['tpl_meta_description']; ?>" />
 
-    <!-- стили bootstrap -->
+    <!-- СЃС‚РёР»Рё bootstrap -->
     <link href="/public/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- основные стили -->
+    <!-- РѕСЃРЅРѕРІРЅС‹Рµ СЃС‚РёР»Рё -->
     <link href="/public/css/style.css?v=1.5" rel="stylesheet" type="text/css" />
 
-    <!-- стили для адаптивки -->
+    <!-- СЃС‚РёР»Рё РґР»СЏ Р°РґР°РїС‚РёРІРєРё -->
     <link href="/public/css/resolutions.css?v=2.0" rel="stylesheet" type="text/css" />
 
-    <!-- стили для owlcarousel -->
+    <!-- СЃС‚РёР»Рё РґР»СЏ owlcarousel -->
     <link href="/public/js/owlcarousel/owl.carousel.min.css" rel="stylesheet" />
     <link href="/public/js/owlcarousel/owl.theme.default.min.css" rel="stylesheet" />
 
     <!-- jQuery -->
     <script src="/public/js/jquery.1.11.2.min.js"></script>
 
-    <!-- скрипт для owlcarousel -->
+    <!-- СЃРєСЂРёРїС‚ РґР»СЏ owlcarousel -->
     <script src="/public/js/owlcarousel/owl.carousel.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -43,506 +46,558 @@
     <![endif]-->
 
 </head>
+
 <body>
 
-<!-- шапка -->
-<div class="header" align="center">
-    <div align="center">
+    <!-- С€Р°РїРєР° -->
+    <div class="header" align="center">
+        <div align="center">
+            <div id="wrapper" class="container" align="left">
+
+                <a class="switch_menu" href="#"></a>
+
+                <a class="logo" href="/">
+                    <div>РџСЂРѕРёР·РІРѕРґСЃС‚РІРѕ Рё РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРѕРіРѕ РѕР±РѕСЂСѓРґРѕРІР°РЅРёСЏ</div>
+                </a>
+
+                <div class="header__header-email">
+                    <a class="header-email" href="mailto:info@euroheater.ru">info@euroheater.ru</a>
+                    <div> <span class="header-email__label"> РќР°РїРёС€РёС‚Рµ Р·Р°РїСЂРѕСЃ РЅР° РїРѕС‡С‚Сѓ </span> </div>
+                </div>
+
+                <!-- <div class="slogan">
+Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹:<br />РїРѕРЅРµРґРµР»СЊРЅРёРє-РїСЏС‚РЅРёС†Р° 9:00-18:00<br />
+
+<div class="hover-tip" style="display: none;"><div>
+Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹:<br>
+РџРѕРЅРµРґРµР»СЊРЅРёРє-РџСЏС‚РЅРёС†Р° СЃ 9:00 РґРѕ 18:00<br>
+РЎСѓР±Р±РѕС‚Р°-Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ: РІС‹С…РѕРґРЅРѕР№
+</div></div>
+</div> -->
+                <div class="phone_b">
+                    <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>">
+                        <?php echo $GLOBALS['phone']; ?>
+                    </a>
+                    <!-- <a class="header-email" href="mailto:info@euroheater.ru">info@euroheater.ru</a> -->
+                    <div>
+                        <a class="get_call" href="#callback_modal" data-toggle="modal">Р—Р°РєР°Р·Р°С‚СЊ Р·РІРѕРЅРѕРє</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- РјРµРЅСЋ -->
+        <div align="center" class="top_menu">
+            <div id="wrapper" class="container" align="left">
+                <div class="m_menu">
+                    <ul>
+                        <li>
+                            <a href="/catalog/" <?php echo $GLOBALS['menu_1']; ?>><div>РљР°С‚Р°Р»РѕРі</div></a>
+                        </li>
+                        <li>
+                            <a href="/price/" <?php echo $GLOBALS['menu_2']; ?>><div>Р¦РµРЅС‹</div></a>
+                        </li>
+                        <li>
+                            <a href="/o-nas/" <?php echo $GLOBALS['menu_3']; ?>><div>Рћ РЅР°СЃ</div></a>
+                        </li>
+                        <li>
+                            <a href="/online/" <?php echo $GLOBALS['menu_4']; ?>><div>Р Р°СЃС‡С‘С‚ РѕРЅР»Р°Р№РЅ</div></a>
+                        </li>
+                        <li>
+                            <a href="/proekty/" <?php echo $GLOBALS['menu_5']; ?>><div>РџСЂРѕРµРєС‚С‹</div></a>
+                        </li>
+                        <li>
+                            <a href="/kontakty/" <?php echo $GLOBALS['menu_6']; ?>><div>РљРѕРЅС‚Р°РєС‚С‹</div></a>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /РјРµРЅСЋ -->
+
+    </div>
+    <!-- /С€Р°РїРєР° -->
+
+    <!-- РѕС‚СЃС‚СѓРї РїРѕРґ С€Р°РїРєРѕР№ -->
+    <div class="header_gap">
+    </div>
+    <!-- /РѕС‚СЃС‚СѓРї РїРѕРґ С€Р°РїРєРѕР№ -->
+
+    <!-- РІРёР·СѓР°Р» -->
+    <div class="visual_inside">
+    </div>
+    <!-- /РІРёР·СѓР°Р» -->
+
+    <!-- РѕСЃРЅРѕРІРЅРѕР№ Р±Р»РѕРє -->
+    <div align="center" class="white_bg">
         <div id="wrapper" class="container" align="left">
-
-            <a class="switch_menu" href="#"></a>
-
-            <a class="logo" href="/">
-                <div>Производство и проектирование теплообменного оборудования</div>
-            </a>
-            <div class="slogan">
-                График работы:<br />понедельник-пятница 9:00-18:00<br />
-           
-                <div class="hover-tip" style="display: none;"><div>
-График работы:<br>
-Понедельник-Пятница с 9:00 до 18:00<br>
-Суббота-Воскресенье: выходной
-                </div></div>
-            </div>
-            <div class="phone_b" align="center">
-                <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>"><?php echo $GLOBALS['phone']; ?></a><br>
-                <a class="header-email" href="mailto:info@euroheater.ru">info@euroheater.ru</a>
-                <a class="get_call" href="#callback_modal" data-toggle="modal">Заказать звонок</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- меню -->
-    <div align="center" class="top_menu">
-        <div id="wrapper" class="container" align="left">
-            <div class="m_menu">
-                <ul>
-                    <li>
-                        <a href="/catalog/"<?php echo $GLOBALS['menu_1']; ?>><div>Каталог</div></a>
-                    </li>
-                    <li>
-                        <a href="/price/"<?php echo $GLOBALS['menu_2']; ?>><div>Цены</div></a>
-                    </li>
-                    <li>
-                        <a href="/o-nas/"<?php echo $GLOBALS['menu_3']; ?>><div>О нас</div></a>
-                    </li>
-                    <li>
-                        <a href="/online/"<?php echo $GLOBALS['menu_4']; ?>><div>Расчёт онлайн</div></a>
-                    </li>
-                    <li>
-                        <a href="/proekty/"<?php echo $GLOBALS['menu_5']; ?>><div>Проекты</div></a>
-                    </li>
-                    <li>
-                        <a href="/kontakty/"<?php echo $GLOBALS['menu_6']; ?>><div>Контакты</div></a>
-                    </li>
-                </ul>
-                <div class="clear"></div>
-            </div>
-        </div>
-    </div>
-    <!-- /меню -->
-
-</div>
-<!-- /шапка -->
-
-<!-- отступ под шапкой -->
-<div class="header_gap">
-</div>
-<!-- /отступ под шапкой -->
-
-<!-- визуал -->
-<div class="visual_inside">
-</div>
-<!-- /визуал -->
-
-<!-- основной блок -->
-<div align="center" class="white_bg">
-    <div id="wrapper" class="container" align="left">
-        <div class="row">
-            <div class="col-sm-12 col-md-12" align="center">
-
-                <?php if (!empty($GLOBALS['tpl_navigation']) || !empty($GLOBALS['tpl_full_navigation']) && !empty($GLOBALS['tpl_show_navigation']) == 1): # вывдим строку навигации, если она указана в админке ?>
-                <div class="breadcrumbs">
-                    <?php if (!empty($GLOBALS['tpl_full_navigation'])): # если указана строка навигации в ручном режиме ?>
-                    <?php echo $GLOBALS['tpl_full_navigation']; ?>
-                    <?php elseif (!empty($GLOBALS['tpl_navigation'])): # если строка навигации указана через поле в админке ?>
-                    <?php echo $GLOBALS['tpl_navigation']; ?>
-                    <?php endif; ?>
-                </div>
-                <?php endif; # /вывдим строку навигации ?>
-
-               <?php if (!empty($GLOBALS['tpl_text_before_h1'])): echo $GLOBALS['tpl_text_before_h1']; endif; # вывдим текст до h1 ?>
-
-                <div id="h1" class="h1 h2"><?php echo $GLOBALS['tpl_h1']; ?></div>
-
-                <?php echo $GLOBALS['tpl_content']; # выводим контент ?>
-
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /основной блок -->
-<!-- реализованные проекты -->
-<div align="center" class="grey_bg">
-    <div id="wrapper" class="container" align="left">
-    <div class="row">
-        <div class="col-sm-12 col-md-12" align="center">        
-        <div class="h1"><a href="/proekty/">Реализованные проекты</a></div>
-            <p> На заказ мы изготовили более 2 000 уникальных теплообменников — строго по ТЗ, с честной рядностью и точными характеристиками.<a class="read_more" href="#">Подробнее &raquo;</a></p>
-            <div class="hidden-text">
-                
-<p>У нас есть производство в России и завод в Италии (CO.MA. spa). В Европе выпускается аппаратура из AISI 304 и AISI 316 — коррозионностойких сталей.</p>
-<p>Мы доставляем теплообменники в сборе, по запросу проводим подключение на месте. 
-</p>
-            </div>
-            <div class="owl-carousel owl-carousel_b_photos">
-                <div class="item">
-                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате"><img src="/public/images/cases/case-1.jpg"></a>
-                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox"  data-fancybox-group="gallery2" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате">Здание Правительства Москвы: "Дом-книжка" на Новом Арбате</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Lotte Plaza Hotel Moscow"><img src="/public/images/cases/case-2.jpg"></a>
-                    <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery2"  data-fancybox-title="Lotte Plaza Hotel Moscow">Lotte Plaza Hotel Moscow</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Экспоцентр на Красной Пресне"><img src="/public/images/cases/case-3.jpg"></a>
-                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Экспоцентр на Красной Пресне">Экспоцентр на Красной Пресне</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт"><img src="/public/images/cases/case-4.jpg"></a>
-                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт">Шоколадно-кондитерская фабрика Рот Фронт</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФКП «Щелковский биокомбинат»"><img src="/public/images/cases/case-5.jpg"></a>
-                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФКП «Щелковский биокомбинат»">ФКП «Щелковский биокомбинат»</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»"><img src="/public/images/cases/case-6.jpg"></a>
-                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»">ЗАО «Энергоконтракт-Томилино»</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Управление административными зданиями» корпорации Росатом"><img src="/public/images/cases/case-7.jpg"></a>
-                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Управление административными зданиями» корпорации Росатом">«Управление административными зданиями» корпорации Росатом</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="АТЦ Москва на Каширском шоссе"><img src="/public/images/cases/case-8.jpg"></a>
-                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="АТЦ Москва на Каширском шоссе">АТЦ Москва на Каширском шоссе</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово"><img src="/public/images/cases/case-9.jpg"></a>
-                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово">Волейбольный спортивно-развлекательный комплекс в г. Одинцово</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ТЦ Капитолий Ленинградский"><img src="/public/images/cases/case-10.jpg"></a>
-                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ТЦ Капитолий Ленинградский">ТЦ Капитолий Ленинградский</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России"><img src="/public/images/cases/case-11.jpg"></a>
-                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России">ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="World class - сеть фитнес-клубов"><img src="/public/images/cases/case-12.jpg"></a>
-                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="World class - сеть фитнес-клубов">World class - сеть фитнес-клубов</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Фуяо Стекло Рус»"><img src="/public/images/cases/case-13.jpg"></a>
-                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Фуяо Стекло Рус»">«Фуяо Стекло Рус»</a>
-                </div>
-            </div>
-
-
-            
-            <a class="order_btn" href="#rent_modal" data-toggle="modal" onClick="yaCounter22280926.reachGoal('request-btn'); return true;"><div class="arrow_1"></div>Отправить заявку</a>
-        </div>
-    </div>
-    </div>
-</div>
-<!-- /реализованные проекты -->
-
-<!-- спецпредложение -->
-<?php if (empty($GLOBALS['tpl_hide_special_offer'])): # если спецпредложение не скрыто ?>
-<div align="center" class="grey_bg spec_pr">
-    <div class="spec_pr_bg">
-    <div id="wrapper" class="container" align="left">
-    <div class="row">
-        <div class="col-sm-12 col-md-12" align="center">
-            <div class="action_b">
-                <div class="b">Спецпредложение!</div>Скидка 20% на монтаж<br>при заказе теплообменника
-                <a class="blue_btn_1" href="#calc_modal" data-toggle="modal" onClick="yaCounter22280926.reachGoal('spec-btn'); return true;">узнать больше</a>
-            </div>  
-        </div>
-    </div>
-    </div>
-    </div>
-</div>
-<?php endif; # /если спецпредложение не скрыто ?>
-<!-- /спецпредложение -->
-
-<!-- 3 блока -->
-<div align="center" class="grey_bg">
-    <br />
-    <div id="wrapper" class="container" align="left">
-        <div class="row">
-            <div class="col-sm-12 col-md-12" align="center">
-
             <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
 
-                <!-- блок статьи -->
-                <?php if (!empty($GLOBALS['tpl_articles'])): # вывод новостей ?>
-                <div class="col-sm-4 col-md-4" align="center">
-                    <div class="news_b_1">
-                    <div class="gap_1"><div class="h3"><a href="/sovet/">Статьи</a></div></div>
-                        <?php foreach ($GLOBALS['tpl_articles'] as $item): ?>
-                        <div class="news_b"><div class="date"><?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?></div><a href="/sovet/<?php echo $item['date_add_formatted_2']; ?>/"><?php echo $item['h1']; ?></a></div>
-                        <?php endforeach; ?>
+                    <?php if (!empty($GLOBALS['tpl_navigation']) || !empty($GLOBALS['tpl_full_navigation']) && !empty($GLOBALS['tpl_show_navigation']) == 1): # РІС‹РІРґРёРј СЃС‚СЂРѕРєСѓ РЅР°РІРёРіР°С†РёРё, РµСЃР»Рё РѕРЅР° СѓРєР°Р·Р°РЅР° РІ Р°РґРјРёРЅРєРµ ?>
+                    <div class="breadcrumbs">
+                        <?php if (!empty($GLOBALS['tpl_full_navigation'])): # РµСЃР»Рё СѓРєР°Р·Р°РЅР° СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ ?>
+                        <?php echo $GLOBALS['tpl_full_navigation']; ?>
+                        <?php elseif (!empty($GLOBALS['tpl_navigation'])): # РµСЃР»Рё СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё СѓРєР°Р·Р°РЅР° С‡РµСЂРµР· РїРѕР»Рµ РІ Р°РґРјРёРЅРєРµ ?>
+                        <?php echo $GLOBALS['tpl_navigation']; ?>
+                        <?php endif; ?>
                     </div>
-                </div>
-                <?php endif; # /вывод новостей ?>
-                <!-- /блок статьи -->
+                    <?php endif; # /РІС‹РІРґРёРј СЃС‚СЂРѕРєСѓ РЅР°РІРёРіР°С†РёРё ?>
 
-                <!-- блок новости -->
-                <?php if (!empty($GLOBALS['tpl_news'])): # вывод новостей ?>
-                <div class="col-sm-4 col-md-4" align="center">
-                    <div class="news_b_1">
-                    <div class="gap_1"><div class="h3"><a href="/novosti/">Новости</a></div></div>
-                        <?php foreach ($GLOBALS['tpl_news'] as $item): ?>
-                        <div class="news_b"><div class="date"><?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?></div><a href="/novosti/<?php echo $item['date_add_formatted_2']; ?>/"><?php echo $item['h1']; ?></a></div>
-                        <?php endforeach; ?>
+                    <?php if (!empty($GLOBALS['tpl_text_before_h1'])): echo $GLOBALS['tpl_text_before_h1']; endif; # РІС‹РІРґРёРј С‚РµРєСЃС‚ РґРѕ h1 ?>
+
+                    <div id="h1" class="h1 h2">
+                        <?php echo $GLOBALS['tpl_h1']; ?>
                     </div>
-                </div>
-                <?php endif; # /вывод новостей ?>
-                <!-- /блок новости -->
 
-                <!-- блок вопрос-ответ -->
-                <?php if (!empty($GLOBALS['tpl_faq'])): # вывод вопросов-ответов ?>
-                <div class="col-sm-4 col-md-4" align="center">
-                    <div class="news_b_1">
-                        <div class="gap_1"><div class="h3"><a href="/vopros/">Вопрос-ответ</a><span>(<?php echo $GLOBALS['tpl_faq_count']; ?>)</span></div></div>
-                        <?php foreach ($GLOBALS['tpl_faq'] as $item): ?>
-                        <div class="news_b"><a href="/vopros/<?php echo $item['url']; ?>/"><?php echo $item['h1']; ?></a></div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <?php endif; # /вывод вопросов-ответов ?>
-                <!-- /блок вопрос-ответ -->
-            </div>        
+                    <?php echo $GLOBALS['tpl_content']; # РІС‹РІРѕРґРёРј РєРѕРЅС‚РµРЅС‚ ?>
 
+                </div>
             </div>
         </div>
     </div>
-    <br />
-</div>
-<!-- /3 блока -->
-
-<!-- наши клиенты -->
-<div align="center" class="white_bg">
-    <div id="wrapper" class="container" align="left">
-        <div class="row">
-            <div class="col-sm-12 col-md-12" align="center">
-                <div class="h1"><a href="/o-nas/klienty/">Наши клиенты</a></div>
-
-                <div class="owl-carousel owl-carousel_b_clients">
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-0.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-1.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-2.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-3.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-4.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-5.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-6.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-7.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-8.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-9.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-10.jpg"></a>
-                </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /наши клиенты -->
-
-<!-- подвал -->
-<div class="footer" align="center">
-    <div align="center">
+    <!-- /РѕСЃРЅРѕРІРЅРѕР№ Р±Р»РѕРє -->
+    <!-- СЂРµР°Р»РёР·РѕРІР°РЅРЅС‹Рµ РїСЂРѕРµРєС‚С‹ -->
+    <div align="center" class="grey_bg">
         <div id="wrapper" class="container" align="left">
-            <a class="site_map" href="/karta-sajta/">Карта сайта</a>
-           <a class="logo" href="/">
-            Теплообменники, автоматика, фильтры для систем приточной вентиляции
-           </a>
-            <div class="slogan">121354, г. Москва, Витебская ул. д. 9, стр. 3<br /><a href="mailto:info@euroheater.ru">info@euroheater.ru</a>
-            </div>
-            <div class="phone_b" align="center">
-                <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>"><?php echo $GLOBALS['phone']; ?></a><br>
-                <a class="get_call" href="#callback_modal" data-toggle="modal">Заказать звонок</a>
-                <a class="web_dev" href="http://vashpartner.ru">Создание и продвижение сайта - «Ваш Партнер»</a>
+            <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
+                    <div class="h1"><a href="/proekty/">Р РµР°Р»РёР·РѕРІР°РЅРЅС‹Рµ РїСЂРѕРµРєС‚С‹</a></div>
+                    <p> РќР° Р·Р°РєР°Р· РјС‹ РёР·РіРѕС‚РѕРІРёР»Рё Р±РѕР»РµРµ 2 000 СѓРЅРёРєР°Р»СЊРЅС‹С… С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ вЂ” СЃС‚СЂРѕРіРѕ РїРѕ РўР—, СЃ С‡РµСЃС‚РЅРѕР№ СЂСЏРґРЅРѕСЃС‚СЊСЋ Рё С‚РѕС‡РЅС‹РјРё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°РјРё.<a class="read_more" href="#">РџРѕРґСЂРѕР±РЅРµРµ &raquo;</a></p>
+                    <div class="hidden-text">
+
+                        <p>РЈ РЅР°СЃ РµСЃС‚СЊ РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ РІ Р РѕСЃСЃРёРё Рё Р·Р°РІРѕРґ РІ РС‚Р°Р»РёРё (CO.MA. spa). Р’ Р•РІСЂРѕРїРµ РІС‹РїСѓСЃРєР°РµС‚СЃСЏ Р°РїРїР°СЂР°С‚СѓСЂР° РёР· AISI 304 Рё AISI 316 вЂ” РєРѕСЂСЂРѕР·РёРѕРЅРЅРѕСЃС‚РѕР№РєРёС… СЃС‚Р°Р»РµР№.</p>
+                        <p>РњС‹ РґРѕСЃС‚Р°РІР»СЏРµРј С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РІ СЃР±РѕСЂРµ, РїРѕ Р·Р°РїСЂРѕСЃСѓ РїСЂРѕРІРѕРґРёРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РЅР° РјРµСЃС‚Рµ.
+                        </p>
+                    </div>
+                    <div class="owl-carousel owl-carousel_b_photos">
+                        <div class="item">
+                            <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: Р”РѕРј-РєРЅРёР¶РєР° РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ"><img src="/public/images/cases/case-1.jpg"></a>
+                            <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: Р”РѕРј-РєРЅРёР¶РєР° РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ">Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: "Р”РѕРј-РєРЅРёР¶РєР°" РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Lotte Plaza Hotel Moscow"><img src="/public/images/cases/case-2.jpg"></a>
+                            <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Lotte Plaza Hotel Moscow">Lotte Plaza Hotel Moscow</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ"><img src="/public/images/cases/case-3.jpg"></a>
+                            <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ">Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚"><img src="/public/images/cases/case-4.jpg"></a>
+                            <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚">РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»"><img src="/public/images/cases/case-5.jpg"></a>
+                            <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»">Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»"><img src="/public/images/cases/case-6.jpg"></a>
+                            <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»">Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј"><img src="/public/images/cases/case-7.jpg"></a>
+                            <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј">В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ"><img src="/public/images/cases/case-8.jpg"></a>
+                            <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ">РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ"><img src="/public/images/cases/case-9.jpg"></a>
+                            <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ">Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№"><img src="/public/images/cases/case-10.jpg"></a>
+                            <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№">РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё"><img src="/public/images/cases/case-11.jpg"></a>
+                            <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё">Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ"><img src="/public/images/cases/case-12.jpg"></a>
+                            <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ">World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»"><img src="/public/images/cases/case-13.jpg"></a>
+                            <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»">В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»</a>
+                        </div>
+                    </div>
+
+
+
+                    <a class="order_btn" href="#rent_modal" data-toggle="modal" onClick="yaCounter22280926.reachGoal('request-btn'); return true;">
+                        <div class="arrow_1"></div>РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- /подвал -->
+    <!-- /СЂРµР°Р»РёР·РѕРІР°РЅРЅС‹Рµ РїСЂРѕРµРєС‚С‹ -->
 
-<!-- Yandex.Metrika counter -->
-<!-- /Yandex.Metrika counter -->
-
-<!-- Модальное окно "Рассчитать стоимость" -->
-<div id="calc_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header gradient">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-title" id="myModalLabel">Расчет стоимости</div>
+    <!-- СЃРїРµС†РїСЂРµРґР»РѕР¶РµРЅРёРµ -->
+    <?php if (empty($GLOBALS['tpl_hide_special_offer'])): # РµСЃР»Рё СЃРїРµС†РїСЂРµРґР»РѕР¶РµРЅРёРµ РЅРµ СЃРєСЂС‹С‚Рѕ ?>
+    <div align="center" class="grey_bg spec_pr">
+        <div class="spec_pr_bg">
+            <div id="wrapper" class="container" align="left">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12" align="center">
+                        <div class="action_b">
+                            <div class="b">РЎРїРµС†РїСЂРµРґР»РѕР¶РµРЅРёРµ!</div>РЎРєРёРґРєР° 20% РЅР° РјРѕРЅС‚Р°Р¶<br>РїСЂРё Р·Р°РєР°Р·Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°
+                            <a class="blue_btn_1" href="#calc_modal" data-toggle="modal" onClick="yaCounter22280926.reachGoal('spec-btn'); return true;">СѓР·РЅР°С‚СЊ Р±РѕР»СЊС€Рµ</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>
-                    <input id="calc_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
-                </p>
-                <p>
-                    <input id="calc_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
-                </p>
-
-            </div>
-            <div id="calc_form_submit_button" class="modal-footer">
-                <button type="button" class="btn btn-primary btn-lg">Рассчитать</button>
-                <span id="calc_form_ajax_preloader" class="modal_ajax_preloader"></span>
-            </div>
-        <div class="modal-policy">Нажимая кнопку «Рассчитать», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
         </div>
     </div>
-</div>
-<!-- /Модальное окно "Рассчитать стоимость" -->
+    <?php endif; # /РµСЃР»Рё СЃРїРµС†РїСЂРµРґР»РѕР¶РµРЅРёРµ РЅРµ СЃРєСЂС‹С‚Рѕ ?>
+    <!-- /СЃРїРµС†РїСЂРµРґР»РѕР¶РµРЅРёРµ -->
 
-<!-- Модальное окно "Отправить заявку" -->
-<div id="rent_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header gradient">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-title" id="myModalLabel">Отправить заявку</div>
-        </div>
-        <div class="modal-body">
-            <p>
-            <input id="rent_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
-            </p>
-            <p>
-            <input id="rent_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
-            </p>
+    <!-- 3 Р±Р»РѕРєР° -->
+    <div align="center" class="grey_bg">
+        <br />
+        <div id="wrapper" class="container" align="left">
+            <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
 
+                    <div class="row">
+
+                        <!-- Р±Р»РѕРє СЃС‚Р°С‚СЊРё -->
+                        <?php if (!empty($GLOBALS['tpl_articles'])): # РІС‹РІРѕРґ РЅРѕРІРѕСЃС‚РµР№ ?>
+                        <div class="col-sm-4 col-md-4" align="center">
+                            <div class="news_b_1">
+                                <div class="gap_1">
+                                    <div class="h3"><a href="/sovet/">РЎС‚Р°С‚СЊРё</a></div>
+                                </div>
+                                <?php foreach ($GLOBALS['tpl_articles'] as $item): ?>
+                                <div class="news_b">
+                                    <div class="date">
+                                        <?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
+                                    </div><a href="/sovet/<?php echo $item['date_add_formatted_2']; ?>/">
+                                        <?php echo $item['h1']; ?>
+                                    </a>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; # /РІС‹РІРѕРґ РЅРѕРІРѕСЃС‚РµР№ ?>
+                        <!-- /Р±Р»РѕРє СЃС‚Р°С‚СЊРё -->
+
+                        <!-- Р±Р»РѕРє РЅРѕРІРѕСЃС‚Рё -->
+                        <?php if (!empty($GLOBALS['tpl_news'])): # РІС‹РІРѕРґ РЅРѕРІРѕСЃС‚РµР№ ?>
+                        <div class="col-sm-4 col-md-4" align="center">
+                            <div class="news_b_1">
+                                <div class="gap_1">
+                                    <div class="h3"><a href="/novosti/">РќРѕРІРѕСЃС‚Рё</a></div>
+                                </div>
+                                <?php foreach ($GLOBALS['tpl_news'] as $item): ?>
+                                <div class="news_b">
+                                    <div class="date">
+                                        <?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
+                                    </div><a href="/novosti/<?php echo $item['date_add_formatted_2']; ?>/">
+                                        <?php echo $item['h1']; ?>
+                                    </a>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; # /РІС‹РІРѕРґ РЅРѕРІРѕСЃС‚РµР№ ?>
+                        <!-- /Р±Р»РѕРє РЅРѕРІРѕСЃС‚Рё -->
+
+                        <!-- Р±Р»РѕРє РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ -->
+                        <?php if (!empty($GLOBALS['tpl_faq'])): # РІС‹РІРѕРґ РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ ?>
+                        <div class="col-sm-4 col-md-4" align="center">
+                            <div class="news_b_1">
+                                <div class="gap_1">
+                                    <div class="h3"><a href="/vopros/">Р’РѕРїСЂРѕСЃ-РѕС‚РІРµС‚</a><span>(
+                                            <?php echo $GLOBALS['tpl_faq_count']; ?>)
+                                        </span></div>
+                                </div>
+                                <?php foreach ($GLOBALS['tpl_faq'] as $item): ?>
+                                <div class="news_b"><a href="/vopros/<?php echo $item['url']; ?>/">
+                                        <?php echo $item['h1']; ?>
+                                    </a></div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; # /РІС‹РІРѕРґ РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ ?>
+                        <!-- /Р±Р»РѕРє РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚ -->
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-            <button id="rent_form_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
-            <span id="rent_form_ajax_preloader" class="modal_ajax_preloader"></span>
-        </div>
-        <div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+        <br />
+    </div>
+    <!-- /3 Р±Р»РѕРєР° -->
+
+    <!-- РЅР°С€Рё РєР»РёРµРЅС‚С‹ -->
+    <div align="center" class="white_bg">
+        <div id="wrapper" class="container" align="left">
+            <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
+                    <div class="h1"><a href="/o-nas/klienty/">РќР°С€Рё РєР»РёРµРЅС‚С‹</a></div>
+
+                    <div class="owl-carousel owl-carousel_b_clients">
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-0.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-1.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-2.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-3.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-4.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-5.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-6.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-7.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-8.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-9.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-10.jpg"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<!-- /Модальное окно "Отправить заявку" -->
+    <!-- /РЅР°С€Рё РєР»РёРµРЅС‚С‹ -->
 
-<!-- Модальное окно "Добавить отзыв" -->
-<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header gradient">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-title" id="myModalLabel">Добавить отзыв</div>
-            </div>
-            <div class="modal-body">
-                <p>
-                    <input id="feedback_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
-                </p>
-                <p>
-                    <input id="feedback_form_activity" type="text" value="" class="form-control" placeholder="Род деятельности" />
-                </p>
-                <p>
-                    <textarea id="feedback_form_text" rows="3" class="form-control" placeholder="Текст Отзыва"></textarea>
+    <!-- РїРѕРґРІР°Р» -->
+    <div class="footer" align="center">
+        <div align="center">
+            <div id="wrapper" class="container" align="left">
+                <a class="site_map" href="/karta-sajta/">РљР°СЂС‚Р° СЃР°Р№С‚Р°</a>
+                <a class="logo" href="/">
+                    РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё, Р°РІС‚РѕРјР°С‚РёРєР°, С„РёР»СЊС‚СЂС‹ РґР»СЏ СЃРёСЃС‚РµРј РїСЂРёС‚РѕС‡РЅРѕР№ РІРµРЅС‚РёР»СЏС†РёРё
+                </a>
+                <div class="slogan">121354, Рі. РњРѕСЃРєРІР°, Р’РёС‚РµР±СЃРєР°СЏ СѓР». Рґ. 9, СЃС‚СЂ. 3<br /><a href="mailto:info@euroheater.ru">info@euroheater.ru</a>
+                </div>
+                <div class="phone_b" align="center">
+                    <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>">
+                        <?php echo $GLOBALS['phone']; ?>
+                    </a><br>
+                    <a class="get_call" href="#callback_modal" data-toggle="modal">Р—Р°РєР°Р·Р°С‚СЊ Р·РІРѕРЅРѕРє</a>
 
-                </p>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button id="feedback_form_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
-                <span id="feedback_form_ajax_preloader" class="modal_ajax_preloader"></span>
-            </div>
-        <div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
         </div>
     </div>
-</div>
-<!-- /Модальное окно "Добавить отзыв" -->
+    <!-- /РїРѕРґРІР°Р» -->
 
-<!-- Модальное окно "Заказать звонок" -->
-<div class="modal fade" id="callback_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header gradient">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-title" id="myModalLabel">Заказать звонок</div>
+    <!-- Yandex.Metrika counter -->
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ" -->
+    <div id="calc_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">Р Р°СЃС‡РµС‚ СЃС‚РѕРёРјРѕСЃС‚Рё</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="calc_form_name" type="text" value="" class="form-control" placeholder="Р’Р°С€Рµ РёРјСЏ" />
+                    </p>
+                    <p>
+                        <input id="calc_form_phone" type="text" value="" class="form-control" placeholder="Р’Р°С€ С‚РµР»РµС„РѕРЅ" />
+                    </p>
+
+                </div>
+                <div id="calc_form_submit_button" class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-lg">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ</button>
+                    <span id="calc_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ В«Р Р°СЃСЃС‡РёС‚Р°С‚СЊВ», РІС‹ РїРѕРґС‚РІРµСЂР¶РґР°РµС‚Рµ, С‡С‚Рѕ РѕР·РЅР°РєРѕРјРёР»РёСЃСЊ СЃ <a href="/politika-konfidencialnosti/">РџСЂР°РІРёР»Р°РјРё РѕР±СЂР°Р±РѕС‚РєРё РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С…</a> Рё РїСЂРёРЅРёРјР°РµС‚Рµ РёС….</div>
             </div>
-            <div class="modal-body">
-                <p>
-                    <input id="callback_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
-                </p>
-                <p>
-                    <input id="callback_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button id="callback_form_submit_button" type="button" class="btn btn-primary btn-lg">Перезвоните мне</button>
-                <span id="callback_form_ajax_preloader" class="modal_ajax_preloader"></span>
-            </div>
-        <div class="modal-policy">Нажимая кнопку «Перезвоните мне», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
         </div>
     </div>
-</div>
-<!-- /Модальное окно "Заказать звонок" -->
+    <!-- /РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ" -->
 
-<!-- Модальное окно "Заявка на полный прайс-лист" -->
-<div class="modal fade" id="full_price_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header gradient">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-title" id="full_price_modal_title">Получить полный прайс-лист</div>
-        </div>
-        <div id="full_price_modal_body" class="modal-body">
-            <p>
-            <input id="full_price_modal_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
-            </p>
-            <p>
-            <input id="full_price_modal_email" type="text" value="" class="form-control" placeholder="Ваш E-mail" />
-            </p>
-            <p>
-            <input id="full_price_modal_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
-            </p>
-        </div>
-        <div id="full_price_modal_footer" class="modal-footer">
-            <button id="full_price_modal_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
-            <span id="full_price_modal_ajax_preloader" class="modal_ajax_preloader"></span>
-        </div>
-        <div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+    <!-- РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ" -->
+    <div id="rent_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="rent_form_name" type="text" value="" class="form-control" placeholder="Р’Р°С€Рµ РёРјСЏ" />
+                    </p>
+                    <p>
+                        <input id="rent_form_phone" type="text" value="" class="form-control" placeholder="Р’Р°С€ С‚РµР»РµС„РѕРЅ" />
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="rent_form_submit_button" type="button" class="btn btn-primary btn-lg">РћС‚РїСЂР°РІРёС‚СЊ</button>
+                    <span id="rent_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ В«РћС‚РїСЂР°РІРёС‚СЊВ», РІС‹ РїРѕРґС‚РІРµСЂР¶РґР°РµС‚Рµ, С‡С‚Рѕ РѕР·РЅР°РєРѕРјРёР»РёСЃСЊ СЃ <a href="/politika-konfidencialnosti/">РџСЂР°РІРёР»Р°РјРё РѕР±СЂР°Р±РѕС‚РєРё РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С…</a> Рё РїСЂРёРЅРёРјР°РµС‚Рµ РёС….</div>
+            </div>
         </div>
     </div>
-</div>
-<!-- /Модальное окно "Заявка на полный прайс-лист" -->
+    <!-- /РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ" -->
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <!-- РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р”РѕР±Р°РІРёС‚СЊ РѕС‚Р·С‹РІ" -->
+    <div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">Р”РѕР±Р°РІРёС‚СЊ РѕС‚Р·С‹РІ</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="feedback_form_name" type="text" value="" class="form-control" placeholder="Р’Р°С€Рµ РёРјСЏ" />
+                    </p>
+                    <p>
+                        <input id="feedback_form_activity" type="text" value="" class="form-control" placeholder="Р РѕРґ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё" />
+                    </p>
+                    <p>
+                        <textarea id="feedback_form_text" rows="3" class="form-control" placeholder="РўРµРєСЃС‚ РћС‚Р·С‹РІР°"></textarea>
 
-   ym(22280926, "init", {
-        id:22280926,
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true,
-        trackHash:true
-   });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/22280926" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button id="feedback_form_submit_button" type="button" class="btn btn-primary btn-lg">РћС‚РїСЂР°РІРёС‚СЊ</button>
+                    <span id="feedback_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ В«РћС‚РїСЂР°РІРёС‚СЊВ», РІС‹ РїРѕРґС‚РІРµСЂР¶РґР°РµС‚Рµ, С‡С‚Рѕ РѕР·РЅР°РєРѕРјРёР»РёСЃСЊ СЃ <a href="/politika-konfidencialnosti/">РџСЂР°РІРёР»Р°РјРё РѕР±СЂР°Р±РѕС‚РєРё РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С…</a> Рё РїСЂРёРЅРёРјР°РµС‚Рµ РёС….</div>
+            </div>
+        </div>
+    </div>
+    <!-- /РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р”РѕР±Р°РІРёС‚СЊ РѕС‚Р·С‹РІ" -->
 
-<!-- BEGIN JIVOSITE CODE {literal} -->
-<script type='text/javascript'>
-(function(){ var widget_id = 's6haMKVVnN';
-var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
-<!-- {/literal} END JIVOSITE CODE -->
+    <!-- РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р—Р°РєР°Р·Р°С‚СЊ Р·РІРѕРЅРѕРє" -->
+    <div class="modal fade" id="callback_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">Р—Р°РєР°Р·Р°С‚СЊ Р·РІРѕРЅРѕРє</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="callback_form_name" type="text" value="" class="form-control" placeholder="Р’Р°С€Рµ РёРјСЏ" />
+                    </p>
+                    <p>
+                        <input id="callback_form_phone" type="text" value="" class="form-control" placeholder="Р’Р°С€ С‚РµР»РµС„РѕРЅ" />
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button id="callback_form_submit_button" type="button" class="btn btn-primary btn-lg">РџРµСЂРµР·РІРѕРЅРёС‚Рµ РјРЅРµ</button>
+                    <span id="callback_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ В«РџРµСЂРµР·РІРѕРЅРёС‚Рµ РјРЅРµВ», РІС‹ РїРѕРґС‚РІРµСЂР¶РґР°РµС‚Рµ, С‡С‚Рѕ РѕР·РЅР°РєРѕРјРёР»РёСЃСЊ СЃ <a href="/politika-konfidencialnosti/">РџСЂР°РІРёР»Р°РјРё РѕР±СЂР°Р±РѕС‚РєРё РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С…</a> Рё РїСЂРёРЅРёРјР°РµС‚Рµ РёС….</div>
+            </div>
+        </div>
+    </div>
+    <!-- /РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р—Р°РєР°Р·Р°С‚СЊ Р·РІРѕРЅРѕРє" -->
 
-<!-- jquery plugin fancybox -->
-<script src="/public/js/fancybox-2.1.5/source/jquery.fancybox.pack.js" type="text/javascript"></script>
-<link href="/public/js/fancybox-2.1.5/source/jquery.fancybox.css" rel="stylesheet" type="text/css" media="screen" />
-<!-- скрипт bootstrap -->
-<script src="/public/js/bootstrap.min.js"></script>
-<!-- скрипт для корректной работы placeholder -->
-<script src="/public/js/jquery.placeholder.js"></script>
-<!-- jquery qtip plugin -->
-<link href="/public/js/qtip-2.1.1/jquery.qtip.min.css" rel="stylesheet" />
-<script src="/public/js/qtip-2.1.1/jquery.qtip.min.js" type="text/javascript"></script>
-<!-- скрипты общие -->
-<script src="/public/js/jquery.common.js?v=1.2"></script>
-<!-- скрипты для обработки форм -->
-<script src="/public/js/jquery.common.forms.js?v=1.4"></script>
+    <!-- РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р—Р°СЏРІРєР° РЅР° РїРѕР»РЅС‹Р№ РїСЂР°Р№СЃ-Р»РёСЃС‚" -->
+    <div class="modal fade" id="full_price_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="full_price_modal_title">РџРѕР»СѓС‡РёС‚СЊ РїРѕР»РЅС‹Р№ РїСЂР°Р№СЃ-Р»РёСЃС‚</div>
+                </div>
+                <div id="full_price_modal_body" class="modal-body">
+                    <p>
+                        <input id="full_price_modal_name" type="text" value="" class="form-control" placeholder="Р’Р°С€Рµ РёРјСЏ" />
+                    </p>
+                    <p>
+                        <input id="full_price_modal_email" type="text" value="" class="form-control" placeholder="Р’Р°С€ E-mail" />
+                    </p>
+                    <p>
+                        <input id="full_price_modal_phone" type="text" value="" class="form-control" placeholder="Р’Р°С€ С‚РµР»РµС„РѕРЅ" />
+                    </p>
+                </div>
+                <div id="full_price_modal_footer" class="modal-footer">
+                    <button id="full_price_modal_submit_button" type="button" class="btn btn-primary btn-lg">РћС‚РїСЂР°РІРёС‚СЊ</button>
+                    <span id="full_price_modal_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ В«РћС‚РїСЂР°РІРёС‚СЊВ», РІС‹ РїРѕРґС‚РІРµСЂР¶РґР°РµС‚Рµ, С‡С‚Рѕ РѕР·РЅР°РєРѕРјРёР»РёСЃСЊ СЃ <a href="/politika-konfidencialnosti/">РџСЂР°РІРёР»Р°РјРё РѕР±СЂР°Р±РѕС‚РєРё РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С…</a> Рё РїСЂРёРЅРёРјР°РµС‚Рµ РёС….</div>
+            </div>
+        </div>
+    </div>
+    <!-- /РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р—Р°СЏРІРєР° РЅР° РїРѕР»РЅС‹Р№ РїСЂР°Р№СЃ-Р»РёСЃС‚" -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(22280926, "init", {
+            id: 22280926,
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            trackHash: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/22280926" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
+    <!-- BEGIN JIVOSITE CODE {literal} -->
+    <script type='text/javascript'>
+        (function () {
+            var widget_id = 's6haMKVVnN';
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/' + widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);
+        })();</script>
+    <!-- {/literal} END JIVOSITE CODE -->
+
+
+    <!-- BEGIN AMO-CRM CODE  -->
+    <!-- <script id="chat-24-widget-code" type="text/javascript">!function (e) { var t = {}; function n(c) { if (t[c]) return t[c].exports; var o = t[c] = {i: c, l: !1, exports: {}}; return e[c].call(o.exports, o, o.exports, n), o.l = !0, o.exports } n.m = e, n.c = t, n.d = function (e, t, c) { n.o(e, t) || Object.defineProperty(e, t, {configurable: !1, enumerable: !0, get: c}) }, n.n = function (e) { var t = e && e.__esModule ? function () { return e.default } : function () { return e }; return n.d(t, "a", t), t }, n.o = function (e, t) { return Object.prototype.hasOwnProperty.call(e, t) }, n.p = "/packs/", n(n.s = 0) }([function (e, t) { window.chat24WidgetCanRun = true, window.chat24WidgetCanRun && function () { window.chat24ID = "7751efcad7acaf504f878383cf9f31ae", window.chat24io_lang = "ru"; var e = "https://livechat.chat2desk.com", t = document.createElement("script"); t.type = "text/javascript", t.async = !0, fetch(e + "/packs/manifest.json?nocache=" + (new Date()).getTime()).then(function (e) { return e.json() }).then(function (n) { t.src = e + n["widget.js"]; var c = document.getElementsByTagName("script")[0]; c ? c.parentNode.insertBefore(t, c) : document.documentElement.firstChild.appendChild(t); var o = document.createElement("link"); o.href = e + n["widget.css"], o.rel = "stylesheet", o.id = "chat-24-io-stylesheet", o.type = "text/css", document.getElementById("chat-24-io-stylesheet") || document.getElementsByTagName("head")[0].appendChild(o); }) }() }]);</script> -->
+    <!-- END AMO-CRM CODE  -->
+
+    <!-- jquery plugin fancybox -->
+    <script src="/public/js/fancybox-2.1.5/source/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <link href="/public/js/fancybox-2.1.5/source/jquery.fancybox.css" rel="stylesheet" type="text/css" media="screen" />
+    <!-- СЃРєСЂРёРїС‚ bootstrap -->
+    <script src="/public/js/bootstrap.min.js"></script>
+    <!-- СЃРєСЂРёРїС‚ РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ placeholder -->
+    <script src="/public/js/jquery.placeholder.js"></script>
+    <!-- jquery qtip plugin -->
+    <link href="/public/js/qtip-2.1.1/jquery.qtip.min.css" rel="stylesheet" />
+    <script src="/public/js/qtip-2.1.1/jquery.qtip.min.js" type="text/javascript"></script>
+    <!-- СЃРєСЂРёРїС‚С‹ РѕР±С‰РёРµ -->
+    <script src="/public/js/jquery.common.js?v=1.2"></script>
+    <!-- СЃРєСЂРёРїС‚С‹ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё С„РѕСЂРј -->
+    <script src="/public/js/jquery.common.forms.js?v=1.4"></script>
 
 </body>
+
 </html>

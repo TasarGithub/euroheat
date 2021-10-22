@@ -1,6 +1,6 @@
 /**
  * When search a table with accented characters, it can be frustrating to have
- * an input such as _Zurich_ not match _Zürich_ in the table (`u !== ü`). This
+ * an input such as _Zurich_ not match _ZР“С�rich_ in the table (`u !== Р“С�`). This
  * type based search plug-in replaces the built-in string formatter in
  * DataTables with a function that will remove replace the accented characters
  * with their unaccented counterparts for fast and easy filtering.
@@ -39,26 +39,26 @@ jQuery.fn.DataTable.ext.type.search.string = function ( data ) {
         '' :
         typeof data === 'string' ?
             data
-                .replace( /έ/g, 'ε')
-                .replace( /ύ/g, 'υ')
-                .replace( /ό/g, 'ο')
-                .replace( /ώ/g, 'ω')
-                .replace( /ά/g, 'α')
-                .replace( /ί/g, 'ι')
-                .replace( /ή/g, 'η')
+                .replace( /РћВ­/g, 'РћВµ')
+                .replace( /РџРЊ/g, 'РџвЂ¦')
+                .replace( /РџРЉ/g, 'РћС—')
+                .replace( /РџР‹/g, 'РџвЂ°')
+                .replace( /РћВ¬/g, 'РћВ±')
+                .replace( /РћР‡/g, 'Рћв„–')
+                .replace( /РћВ®/g, 'РћВ·')
                 .replace( /\n/g, ' ' )
-                .replace( /á/g, 'a' )
-                .replace( /é/g, 'e' )
-                .replace( /í/g, 'i' )
-                .replace( /ó/g, 'o' )
-                .replace( /ú/g, 'u' )
-                .replace( /ê/g, 'e' )
-                .replace( /î/g, 'i' )
-                .replace( /ô/g, 'o' )
-                .replace( /è/g, 'e' )
-                .replace( /ï/g, 'i' )
-                .replace( /ü/g, 'u' )
-                .replace( /ç/g, 'c' )
-                .replace( /ì/g, 'i' ) :
+                .replace( /Р“РЋ/g, 'a' )
+                .replace( /Р“В©/g, 'e' )
+                .replace( /Р“В­/g, 'i' )
+                .replace( /Р“С–/g, 'o' )
+                .replace( /Р“С”/g, 'u' )
+                .replace( /Р“Р„/g, 'e' )
+                .replace( /Р“В®/g, 'i' )
+                .replace( /Р“Т‘/g, 'o' )
+                .replace( /Р“РЃ/g, 'e' )
+                .replace( /Р“Р‡/g, 'i' )
+                .replace( /Р“С�/g, 'u' )
+                .replace( /Р“В§/g, 'c' )
+                .replace( /Р“В¬/g, 'i' ) :
             data;
 };

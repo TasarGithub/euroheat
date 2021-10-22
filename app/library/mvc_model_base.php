@@ -1,1 +1,20 @@
-<?php # ýòîò àáñòðàêòíûé êëàññ ÿâëÿåòñÿ ðîäèòåëüñêèì êëàññîì äëÿ âñåõ ìîäåëåé.abstract class model_base{	protected $registry;	protected $db; # äîñòóï ê ÁÄ (PDO)	public $route; # ïîëíûé URL çàïðîñà	public $routeVars; # ìàññèâ ïåðåìåííûõ vars äèíàìè÷íîãî URL'à	public $siteSectionInfo; # çàäàåòñÿ â ìåòîäå $this->getSiteSectionInfo		function __construct($registry)	{		global $db;		$this->registry = $registry;		$this->dbh = $this->registry->get('dbh'); # var_dump($this->db); echo "<hr />";		$this->route = $this->registry->get('router')->getRoute();		$this->routeVars = $this->registry->get('router')->getRouteVars();		$this->siteSectionInfo = $this->registry->get('router')->getSiteSectionInfo(); # print_r($this->siteSectionInfo);	}}
+<?php # ÑÑ‚Ð¾Ñ‚ Ð°Ð±ÑÑ‚Ñ€Ð°ÐºÑ‚Ð½Ñ‹Ð¹ ÐºÐ»Ð°ÑÑ ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¸Ð¼ ÐºÐ»Ð°ÑÑÐ¾Ð¼ Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¼Ð¾Ð´ÐµÐ»ÐµÐ¹.
+
+abstract class model_base
+{
+	protected $registry;
+	protected $db; # Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ðº Ð‘Ð” (PDO)
+	public $route; # Ð¿Ð¾Ð»Ð½Ñ‹Ð¹ URL Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°
+	public $routeVars; # Ð¼Ð°ÑÑÐ¸Ð² Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ… vars Ð´Ð¸Ð½Ð°Ð¼Ð¸Ñ‡Ð½Ð¾Ð³Ð¾ URL'Ð°
+	public $siteSectionInfo; # Ð·Ð°Ð´Ð°ÐµÑ‚ÑÑ Ð² Ð¼ÐµÑ‚Ð¾Ð´Ðµ $this->getSiteSectionInfo
+	
+	function __construct($registry)
+	{
+		global $db;
+		$this->registry = $registry;
+		$this->dbh = $this->registry->get('dbh'); # var_dump($this->db); echo "<hr />";
+		$this->route = $this->registry->get('router')->getRoute();
+		$this->routeVars = $this->registry->get('router')->getRouteVars();
+		$this->siteSectionInfo = $this->registry->get('router')->getSiteSectionInfo(); # print_r($this->siteSectionInfo);
+	}
+}

@@ -8,17 +8,17 @@
     <?php echo $GLOBALS['tpl_item']['text']; ?>
 </div>
 
-<a class="page_back" href="../">&laquo; на страницу Новости</a>
+<a class="page_back" href="../">&laquo; РЅР° СЃС‚СЂР°РЅРёС†Сѓ РќРѕРІРѕСЃС‚Рё</a>
 <div class="clear"></div><br />
 
-<?php if (!empty($GLOBALS['tpl_another_news'])): # выводим блок "Другие новости" ?>
-<div class="h4">Другие новости</div>
+<?php if (!empty($GLOBALS['tpl_another_news'])): # РІС‹РІРѕРґРёРј Р±Р»РѕРє "Р”СЂСѓРіРёРµ РЅРѕРІРѕСЃС‚Рё" ?>
+<div class="h4">Р”СЂСѓРіРёРµ РЅРѕРІРѕСЃС‚Рё</div>
 
 <?php foreach($GLOBALS['tpl_another_news'] as $item): ?>
 <div class="news_item">
-    <div class="date"><?php echo $item['date_add_day'].' '.$item['date_add_month'].' '.$item['date_add_year']; ?> года</div>
-    <a class="news_item_a" href="/novosti/<?php echo $item['date_add_formatted_2']; ?>"><?php echo $item['h1']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/novosti/<?php echo $item['date_add_formatted_2']; ?>/">Подробнее &raquo;</a>
+    <div class="date"><?php echo $item['date_add_day'].' '.$item['date_add_month'].' '.$item['date_add_year']; ?> РіРѕРґР°</div>
+    <a class="news_item_a" href="/novosti/<?php echo $item['date_add_formatted_2']; ?>"><?php echo $item['h1']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/novosti/<?php echo $item['date_add_formatted_2']; ?>/">РџРѕРґСЂРѕР±РЅРµРµ &raquo;</a>
 </div>
 <?php endforeach; ?>
 
-<?php endif; # /выводим блок "Другие новости" ?>
+<?php endif; # /РІС‹РІРѕРґРёРј Р±Р»РѕРє "Р”СЂСѓРіРёРµ РЅРѕРІРѕСЃС‚Рё" ?>

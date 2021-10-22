@@ -1,1 +1,1 @@
-<?php # îáùèå ôóíêöèè äëÿ index.php è ajax.php
+<?php # Ð¾Ð±Ñ‰Ð¸Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð´Ð»Ñ index.php Ð¸ ajax.php

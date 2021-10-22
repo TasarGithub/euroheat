@@ -37,22 +37,22 @@ Within the download you'll find the following directories and files, logically g
 
 ```
 bootstrap/
-├── css/
-│   ├── bootstrap.css
-│   ├── bootstrap.css.map
-│   ├── bootstrap.min.css
-│   ├── bootstrap-theme.css
-│   ├── bootstrap-theme.css.map
-│   └── bootstrap-theme.min.css
-├── js/
-│   ├── bootstrap.js
-│   └── bootstrap.min.js
-└── fonts/
-    ├── glyphicons-halflings-regular.eot
-    ├── glyphicons-halflings-regular.svg
-    ├── glyphicons-halflings-regular.ttf
-    ├── glyphicons-halflings-regular.woff
-    └── glyphicons-halflings-regular.woff2
+РІвЂќСљРІвЂќР‚РІвЂќР‚ css/
+РІвЂќвЂљ   РІвЂќСљРІвЂќР‚РІвЂќР‚ bootstrap.css
+РІвЂќвЂљ   РІвЂќСљРІвЂќР‚РІвЂќР‚ bootstrap.css.map
+РІвЂќвЂљ   РІвЂќСљРІвЂќР‚РІвЂќР‚ bootstrap.min.css
+РІвЂќвЂљ   РІвЂќСљРІвЂќР‚РІвЂќР‚ bootstrap-theme.css
+РІвЂќвЂљ   РІвЂќСљРІвЂќР‚РІвЂќР‚ bootstrap-theme.css.map
+РІвЂќвЂљ   РІвЂќвЂќРІвЂќР‚РІвЂќР‚ bootstrap-theme.min.css
+РІвЂќСљРІвЂќР‚РІвЂќР‚ js/
+РІвЂќвЂљ   РІвЂќСљРІвЂќР‚РІвЂќР‚ bootstrap.js
+РІвЂќвЂљ   РІвЂќвЂќРІвЂќР‚РІвЂќР‚ bootstrap.min.js
+РІвЂќвЂќРІвЂќР‚РІвЂќР‚ fonts/
+    РІвЂќСљРІвЂќР‚РІвЂќР‚ glyphicons-halflings-regular.eot
+    РІвЂќСљРІвЂќР‚РІвЂќР‚ glyphicons-halflings-regular.svg
+    РІвЂќСљРІвЂќР‚РІвЂќР‚ glyphicons-halflings-regular.ttf
+    РІвЂќСљРІвЂќР‚РІвЂќР‚ glyphicons-halflings-regular.woff
+    РІвЂќвЂќРІвЂќР‚РІвЂќР‚ glyphicons-halflings-regular.woff2
 ```
 
 We provide compiled CSS and JS (`bootstrap.*`), as well as compiled and minified CSS and JS (`bootstrap.min.*`). CSS [source maps](https://developers.google.com/chrome-developer-tools/docs/css-preprocessors) (`bootstrap.*.map`) are available for use with certain browsers' developer tools. Fonts from Glyphicons are included, as is the optional Bootstrap theme.
@@ -74,7 +74,7 @@ Bootstrap's documentation, included in this repo in the root directory, is built
   - **Windows users:** Read [this unofficial guide](http://jekyll-windows.juthilo.com/) to get Jekyll up and running without problems.
 2. Install the Ruby-based syntax highlighter, [Rouge](https://github.com/jneen/rouge), with `gem install rouge`.
 3. From the root `/bootstrap` directory, run `jekyll serve` in the command line.
-4. Open <http://localhost:9001> in your browser, and voilà.
+4. Open <http://localhost:9001> in your browser, and voilР“В .
 
 Learn more about using Jekyll by reading its [documentation](http://jekyllrb.com/docs/home/).
 

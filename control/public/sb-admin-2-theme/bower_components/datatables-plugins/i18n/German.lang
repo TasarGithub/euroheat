@@ -7,20 +7,20 @@
 
 {
 	"sEmptyTable":   	"Keine Daten in der Tabelle vorhanden",
-	"sInfo":         	"_START_ bis _END_ von _TOTAL_ Einträgen",
-	"sInfoEmpty":    	"0 bis 0 von 0 Einträgen",
-	"sInfoFiltered": 	"(gefiltert von _MAX_ Einträgen)",
+	"sInfo":         	"_START_ bis _END_ von _TOTAL_ EintrР“В¤gen",
+	"sInfoEmpty":    	"0 bis 0 von 0 EintrР“В¤gen",
+	"sInfoFiltered": 	"(gefiltert von _MAX_ EintrР“В¤gen)",
 	"sInfoPostFix":  	"",
 	"sInfoThousands":  	".",
-	"sLengthMenu":   	"_MENU_ Einträge anzeigen",
+	"sLengthMenu":   	"_MENU_ EintrР“В¤ge anzeigen",
 	"sLoadingRecords": 	"Wird geladen...",
 	"sProcessing":   	"Bitte warten...",
 	"sSearch":       	"Suchen",
-	"sZeroRecords":  	"Keine Einträge vorhanden.",
+	"sZeroRecords":  	"Keine EintrР“В¤ge vorhanden.",
 	"oPaginate": {
 		"sFirst":    	"Erste",
-		"sPrevious": 	"Zurück",
-		"sNext":     	"Nächste",
+		"sPrevious": 	"ZurР“С�ck",
+		"sNext":     	"NР“В¤chste",
 		"sLast":     	"Letzte"
 	},
 	"oAria": {

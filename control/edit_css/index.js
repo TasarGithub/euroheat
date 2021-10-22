@@ -1,392 +1,604 @@
-$(document).ready(function(){
-	// для формы добавления шаблона
-    if (isGetVarExists('action') == 'addItem') {
-		$('#templates_form_name').focus();
-	}
-	// для формы редактирования шаблона
-    if (isGetVarExists('action') == 'editItem') {
-        $('#templates_form_html_code').focus();
-		// выводим список всех backup'ов
-		getAllBackups();
-	}
-    
-    // субмит формы добавления шаблона
-    $('#templates_add_form').on('submit', function() {
-        if (!checkForm('#templates_add_form')) return false;
-    });
-    
-    // изменения в поле "Название шаблона"
-    if (isGetVarExists('action') == 'addItem') {
-        $('#templates_form_name').on('change keyup click', function() {
-            var name = $.trim($('#templates_form_name').val());
-            // получаем старое значение
-            var old_value = $('#templates_form_name').attr('data-old-value');
-            // console.log('name: ' + name + ', old_value:' + old_value);
-            if (name.length && name != old_value) {
-                // фиксируем старое значение
-                $('#templates_form_name').attr('data-old-value', name);
-                // отменяем все предыдущие ajax-запросы
-                $.ajaxQ.abortAll();
-                // провряем, есть ли шаблон в базе с указанным именем
-                $.post('/control/edit_css/ajax.php', { 'action': 'check_template_for_existence_by_name', 'name': name }, function(data) {
-                    if (data) {
-                        try {
-                            var result = JSON.parse(data); // console.log('%o', result);
-                            if (result['result'] == 'exists') {
-                                $('#templates_form_name_alert_div').html('В базе уже существует файл css-стилей с указанным названием: <a href="/control/edit_css/?action=editItem&itemID=' + result['id'] + '" target="_blank">смотреть</a>.<br />Пжл, укажите другое название для файла.').removeClass('hidden');
-                                $('#templates_form_name').focus();
-                            }
-                            else $('#templates_form_name_alert_div').html('').addClass('hidden');
-                        }
-                        catch(err) { console.log(err.message); }
-                    }
-                    else $('#templates_form_name_alert_div').html('').addClass('hidden');
-                });
-            }
-        }); // /изменения в поле "Название шаблона"
-    }
-    
-    // изменения в поле "Имя файла"
-    $('#templates_form_file_name').on('change keyup click', function() {
-        var file_name = $.trim($('#templates_form_file_name').val());
-        // получаем старое значение
-        var old_value = $('#templates_form_file_name').attr('data-old-value');
-        // console.log('file_name: ' + file_name + ', old_value:' + old_value);
-        if (file_name.length && file_name != old_value) {
-            // фиксируем старое значение
-            $('#templates_form_file_name').attr('data-old-value', file_name);
-            // отменяем все предыдущие ajax-запросы
-            $.ajaxQ.abortAll();
-            // провряем, есть ли шаблон в базе с указанным именем
-            $.post('/control/edit_css/ajax.php', { 'action': 'check_template_for_existence_by_file_name', 'file_name': file_name }, function(data) {
-                if (data) {
-                    try {
-                        var result = JSON.parse(data); // console.log('%o', result);
-                        if (result['result'] == 'exists') {
-                            $('#templates_form_file_name_alert_div').html('В базе уже существует файл css-стилей с указанным именем файла: <a href="/control/edit_css/?action=editItem&itemID=' + result['id'] + '" target="_blank">смотреть</a>.<br />Пжл, укажите другое имя файла.').removeClass('hidden');
-                            // $('#templates_form_file_name').focus();
-                        }
-                        else
-                        {
-                            $('#templates_form_file_name_alert_div').html('').addClass('hidden');
-                            // если в базе нет шаблона с указанным именем файла, но в файловой системе указанный файл существует
-                            checkFileExistence();                       
-                        }
-                    }
-                    catch(err) { console.log(err.message); }
-                }
-                else {
-                    $('#templates_form_file_name_alert_div').html('').addClass('hidden');
-                    // если в базе нет шаблона с указанным именем файла, но в файловой системе указанный файл существует
-                    checkFileExistence();                       
-                }
-            });
-        }
-    });
-    function checkFileExistence() {
-        // отменяем все предыдущие ajax-запросы
+$(document).ready(function () {
+  // РґР»СЏ С„РѕСЂРјС‹ РґРѕР±Р°РІР»РµРЅРёСЏ С€Р°Р±Р»РѕРЅР°
+
+  if (isGetVarExists("action") == "addItem") {
+    $("#templates_form_name").focus();
+  }
+
+  // РґР»СЏ С„РѕСЂРјС‹ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ С€Р°Р±Р»РѕРЅР°
+
+  if (isGetVarExists("action") == "editItem") {
+    $("#templates_form_html_code").focus();
+
+    // РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РІСЃРµС… backup'РѕРІ
+
+    getAllBackups();
+  }
+
+  // СЃСѓР±РјРёС‚ С„РѕСЂРјС‹ РґРѕР±Р°РІР»РµРЅРёСЏ С€Р°Р±Р»РѕРЅР°
+
+  $("#templates_add_form").on("submit", function () {
+    if (!checkForm("#templates_add_form")) return false;
+  });
+
+  // РёР·РјРµРЅРµРЅРёСЏ РІ РїРѕР»Рµ "РќР°Р·РІР°РЅРёРµ С€Р°Р±Р»РѕРЅР°"
+
+  if (isGetVarExists("action") == "addItem") {
+    $("#templates_form_name").on("change keyup click", function () {
+      var name = $.trim($("#templates_form_name").val());
+
+      // РїРѕР»СѓС‡Р°РµРј СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ
+
+      var old_value = $("#templates_form_name").attr("data-old-value");
+
+      // console.log('name: ' + name + ', old_value:' + old_value);
+
+      if (name.length && name != old_value) {
+        // С„РёРєСЃРёСЂСѓРµРј СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ
+
+        $("#templates_form_name").attr("data-old-value", name);
+
+        // РѕС‚РјРµРЅСЏРµРј РІСЃРµ РїСЂРµРґС‹РґСѓС‰РёРµ ajax-Р·Р°РїСЂРѕСЃС‹
+
         $.ajaxQ.abortAll();
-        // провряем, нет ли в базе шаблона с таким же названием
-        $.post('/control/edit_css/ajax.php', { 'action': 'checkTemplateForErrorsAddItem', 'file_name': $.trim($('#templates_form_file_name').val()) }, function(data) {
-            try {
+
+        // РїСЂРѕРІСЂСЏРµРј, РµСЃС‚СЊ Р»Рё С€Р°Р±Р»РѕРЅ РІ Р±Р°Р·Рµ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј
+
+        $.post(
+          "/control/edit_css/ajax.php",
+          { action: "check_template_for_existence_by_name", name: name },
+          function (data) {
+            if (data) {
+              try {
                 var result = JSON.parse(data); // console.log('%o', result);
-                if (result['result'] == 'exists') {
-                    $('#templates_form_file_name_alert_div').html(result['message']).removeClass('hidden');
-                    // $('#templates_form_file_name').focus();
-                    return false;
-                }
+
+                if (result["result"] == "exists") {
+                  $("#templates_form_name_alert_div")
+                    .html(
+                      'Р’ Р±Р°Р·Рµ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ С„Р°Р№Р» css-СЃС‚РёР»РµР№ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РЅР°Р·РІР°РЅРёРµРј: <a href="/control/edit_css/?action=editItem&itemID=' +
+                        result["id"] +
+                        '" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>.<br />РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґСЂСѓРіРѕРµ РЅР°Р·РІР°РЅРёРµ РґР»СЏ С„Р°Р№Р»Р°.'
+                    )
+                    .removeClass("hidden");
+
+                  $("#templates_form_name").focus();
+                } else
+                  $("#templates_form_name_alert_div")
+                    .html("")
+                    .addClass("hidden");
+              } catch (err) {
+                console.log(err.message);
+              }
+            } else
+              $("#templates_form_name_alert_div").html("").addClass("hidden");
+          }
+        );
+      }
+    }); // /РёР·РјРµРЅРµРЅРёСЏ РІ РїРѕР»Рµ "РќР°Р·РІР°РЅРёРµ С€Р°Р±Р»РѕРЅР°"
+  }
+
+  // РёР·РјРµРЅРµРЅРёСЏ РІ РїРѕР»Рµ "РРјСЏ С„Р°Р№Р»Р°"
+
+  $("#templates_form_file_name").on("change keyup click", function () {
+    var file_name = $.trim($("#templates_form_file_name").val());
+
+    // РїРѕР»СѓС‡Р°РµРј СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ
+
+    var old_value = $("#templates_form_file_name").attr("data-old-value");
+
+    // console.log('file_name: ' + file_name + ', old_value:' + old_value);
+
+    if (file_name.length && file_name != old_value) {
+      // С„РёРєСЃРёСЂСѓРµРј СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ
+
+      $("#templates_form_file_name").attr("data-old-value", file_name);
+
+      // РѕС‚РјРµРЅСЏРµРј РІСЃРµ РїСЂРµРґС‹РґСѓС‰РёРµ ajax-Р·Р°РїСЂРѕСЃС‹
+
+      $.ajaxQ.abortAll();
+
+      // РїСЂРѕРІСЂСЏРµРј, РµСЃС‚СЊ Р»Рё С€Р°Р±Р»РѕРЅ РІ Р±Р°Р·Рµ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј
+
+      $.post(
+        "/control/edit_css/ajax.php",
+        {
+          action: "check_template_for_existence_by_file_name",
+          file_name: file_name,
+        },
+        function (data) {
+          if (data) {
+            try {
+              var result = JSON.parse(data); // console.log('%o', result);
+
+              if (result["result"] == "exists") {
+                $("#templates_form_file_name_alert_div")
+                  .html(
+                    'Р’ Р±Р°Р·Рµ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ С„Р°Р№Р» css-СЃС‚РёР»РµР№ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј С„Р°Р№Р»Р°: <a href="/control/edit_css/?action=editItem&itemID=' +
+                      result["id"] +
+                      '" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>.<br />РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґСЂСѓРіРѕРµ РёРјСЏ С„Р°Р№Р»Р°.'
+                  )
+                  .removeClass("hidden");
+
+                // $('#templates_form_file_name').focus();
+              } else {
+                $("#templates_form_file_name_alert_div")
+                  .html("")
+                  .addClass("hidden");
+
+                // РµСЃР»Рё РІ Р±Р°Р·Рµ РЅРµС‚ С€Р°Р±Р»РѕРЅР° СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј С„Р°Р№Р»Р°, РЅРѕ РІ С„Р°Р№Р»РѕРІРѕР№ СЃРёСЃС‚РµРјРµ СѓРєР°Р·Р°РЅРЅС‹Р№ С„Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚
+
+                checkFileExistence();
+              }
+            } catch (err) {
+              console.log(err.message);
             }
-            catch(err) { console.log(err.message); }
-        });
-    }
-    // /изменения в поле "Имя файла"
-	
-	// ЛОГИКА
-    
-    // Шаблоны: ссылка "Сохранить изменения"
-    $(document.body).delegate('#templates_edit_save_changes', 'click', function(){
-        // проверяем поля формы на заполненность
-        if (checkForm('#templates_edit_form')) {
-            // сохраняем информацию через ajax
-            $.post('/control/edit_css/ajax.php', { 'action': 'edit_template_submit', 'name': $('#templates_form_name').val(), 'html_code': $('#templates_form_html_code').val(), 'url': $('#templates_form_file_url').val(), 'id': $('#template_id').val() }, function(data) {
-                var d = new Date();
-                var day = d.getDate(); if (day <= 9) day = '0' + day;
-                var month = d.getMonth() + 1; if (month <= 9) month = '0' + month;
-                var minutes = d.getMinutes(); if (minutes <= 9) minutes = '0' + minutes;
-                var seconds = d.getSeconds(); if (seconds <= 9) seconds = '0' + seconds;
-                var lastUpdateDate = day + '.' + month + '.' + d.getFullYear() + ' ' + d.getHours() + ':' + minutes + ':' + seconds;
-                
-                if (data == 'success') var dataResult = '<div class="alert alert-success alert_line">изменения успешно сохранены (' + lastUpdateDate + ')</div>';
-                else var dataResult = '<div class="alert alert-danger alert_line">изменения НЕ сохранены, произошла ошибка (' + lastUpdateDate + ')</div>';
-                
-                $('.ajax_result').html(dataResult).fadeIn();
-                
-                setTimeout(function(){ $('.ajax_result').fadeOut(); }, 5000);
-            });
-            return false;
+          } else {
+            $("#templates_form_file_name_alert_div")
+              .html("")
+              .addClass("hidden");
+
+            // РµСЃР»Рё РІ Р±Р°Р·Рµ РЅРµС‚ С€Р°Р±Р»РѕРЅР° СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РёРјРµРЅРµРј С„Р°Р№Р»Р°, РЅРѕ РІ С„Р°Р№Р»РѕРІРѕР№ СЃРёСЃС‚РµРјРµ СѓРєР°Р·Р°РЅРЅС‹Р№ С„Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚
+
+            checkFileExistence();
+          }
         }
+      );
+    }
+  });
+
+  function checkFileExistence() {
+    // РѕС‚РјРµРЅСЏРµРј РІСЃРµ РїСЂРµРґС‹РґСѓС‰РёРµ ajax-Р·Р°РїСЂРѕСЃС‹
+
+    $.ajaxQ.abortAll();
+
+    // РїСЂРѕРІСЂСЏРµРј, РЅРµС‚ Р»Рё РІ Р±Р°Р·Рµ С€Р°Р±Р»РѕРЅР° СЃ С‚Р°РєРёРј Р¶Рµ РЅР°Р·РІР°РЅРёРµРј
+
+    $.post(
+      "/control/edit_css/ajax.php",
+      {
+        action: "checkTemplateForErrorsAddItem",
+        file_name: $.trim($("#templates_form_file_name").val()),
+      },
+      function (data) {
+        try {
+          var result = JSON.parse(data); // console.log('%o', result);
+
+          if (result["result"] == "exists") {
+            $("#templates_form_file_name_alert_div")
+              .html(result["message"])
+              .removeClass("hidden");
+
+            // $('#templates_form_file_name').focus();
+
+            return false;
+          }
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+    );
+  }
+
+  // /РёР·РјРµРЅРµРЅРёСЏ РІ РїРѕР»Рµ "РРјСЏ С„Р°Р№Р»Р°"
+
+  // Р›РћР“РРљРђ
+
+  // РЁР°Р±Р»РѕРЅС‹: СЃСЃС‹Р»РєР° "РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
+
+  $(document.body).delegate(
+    "#templates_edit_save_changes",
+    "click",
+    function () {
+      // РїСЂРѕРІРµСЂСЏРµРј РїРѕР»СЏ С„РѕСЂРјС‹ РЅР° Р·Р°РїРѕР»РЅРµРЅРЅРѕСЃС‚СЊ
+
+      if (checkForm("#templates_edit_form")) {
+        // СЃРѕС…СЂР°РЅСЏРµРј РёРЅС„РѕСЂРјР°С†РёСЋ С‡РµСЂРµР· ajax
+
+        $.post(
+          "/control/edit_css/ajax.php",
+          {
+            action: "edit_template_submit",
+            name: $("#templates_form_name").val(),
+            html_code: $("#templates_form_html_code").val(),
+            url: $("#templates_form_file_url").val(),
+            id: $("#template_id").val(),
+          },
+          function (data) {
+            var d = new Date();
+
+            var day = d.getDate();
+            if (day <= 9) day = "0" + day;
+
+            var month = d.getMonth() + 1;
+            if (month <= 9) month = "0" + month;
+
+            var minutes = d.getMinutes();
+            if (minutes <= 9) minutes = "0" + minutes;
+
+            var seconds = d.getSeconds();
+            if (seconds <= 9) seconds = "0" + seconds;
+
+            var lastUpdateDate =
+              day +
+              "." +
+              month +
+              "." +
+              d.getFullYear() +
+              " " +
+              d.getHours() +
+              ":" +
+              minutes +
+              ":" +
+              seconds;
+
+            if (data == "success")
+              var dataResult =
+                '<div class="alert alert-success alert_line">РёР·РјРµРЅРµРЅРёСЏ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹ (' +
+                lastUpdateDate +
+                ")</div>";
+            else
+              var dataResult =
+                '<div class="alert alert-danger alert_line">РёР·РјРµРЅРµРЅРёСЏ РќР• СЃРѕС…СЂР°РЅРµРЅС‹, РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° (' +
+                lastUpdateDate +
+                ")</div>";
+
+            $(".ajax_result").html(dataResult).fadeIn();
+
+            setTimeout(function () {
+              $(".ajax_result").fadeOut();
+            }, 5000);
+          }
+        );
+
+        return false;
+      }
+    }
+  );
+
+  // РєР»РёРє РЅР° СЃСЃС‹Р»РєСѓ "РЎРґРµР»Р°С‚СЊ backup"
+
+  $("#makeBackup").click(function () {
+    // РІС‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕРіРѕ backup'Р°
+
+    makeBackup();
+
+    return false;
+  });
+
+  // РїРѕРёСЃРє РїРѕ С€Р°Р±Р»РѕРЅР°Рј
+
+  $("#searchByName").on("keyup", function () {
+    $("#resultSet").load(
+      "/control/edit_css/ajax.php",
+      "action=searchTemplates&q=" + $("#searchByName").val(),
+      function (response) {}
+    );
+  });
+
+  // /РїРѕРёСЃРє РїРѕ С€Р°Р±Р»РѕРЅР°Рј
+
+  // РїРѕРєР°Р·Р°С‚СЊ РІСЃРµ backup'С‹
+
+  $(document.body).delegate(".showAllBackups", "click", function () {
+    $("#allBackups").toggle();
+
+    // $(this).html("СЃРєСЂС‹С‚СЊ РІСЃРµ backup'С‹");
+
+    return false;
+  });
+
+  // РєР»РёРє РЅР° СЃСЃС‹Р»РєСѓ "РЎРјРѕС‚СЂРµС‚СЊ backup"
+
+  $(document.body).delegate(".showBackup", "click", function () {
+    var showBackupID = $(this).attr("backupID"); // alert(showBackupID);
+
+    showBackupID = showBackupID.replace("showBackup", ""); // alert(showBackupID);
+
+    if (showBackupID) $("#html_code" + showBackupID).slideToggle();
+
+    return false;
+  });
+
+  // РєР»РёРє РЅР° СЃСЃС‹Р»РєСѓ "РЈРґР°Р»РёС‚СЊ backup"
+
+  $(document.body).delegate(".removeBackup", "click", function () {
+    var removeBackupID = $(this).attr("backupID"); // alert(removeBackupID);
+
+    removeBackupID = removeBackupID.replace("removeBackup", ""); // alert(removeBackupID);
+
+    var date = $("#date" + removeBackupID).html(); // alert(date);
+
+    if (confirm("РЈРґР°Р»РёС‚СЊ backup РѕС‚ [ " + date + " ] ?")) {
+      // РїРѕР»СѓС‡Р°РµРј ID СЌР»РµРјРµРЅС‚Р° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ
+
+      // РІС‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕРіРѕ backup'Р°
+
+      removeBackup(removeBackupID);
+    }
+
+    return false;
+  });
+
+  // РєР»РёРє РЅР° РєРЅРѕРїРєСѓ "Р”РѕР±Р°РІРёС‚СЊ С€Р°Р±Р»РѕРЅ" - РїСЂРѕРІРµСЂСЏРµРј РЅР° РѕС€РёР±РєРё
+
+  $(".checkForErrors").click(function () {
+    var isError = $(".error").length; // alert(isError);
+
+    if (isError) {
+      alert(
+        "РќРµРѕР±С…РѕРґРёРјРѕ СѓСЃС‚СЂР°РЅРёС‚СЊ РѕС€РёР±РєСѓ. РџРѕСЃР»Рµ С‡РµРіРѕ РјРѕР¶РЅРѕ Р±СѓРґРµС‚ СЃРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р» css-СЃС‚РёР»РµР№."
+      );
+
+      return false;
+    }
+  });
+
+  // РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РІ РїРѕР»Рµ "РРјСЏ С„Р°Р№Р»Р°", РїСЂРѕРІРµСЂСЏРµРј РЅР° РѕС€РёР±РєРё
+
+  $("#file_name").on("keyup click", function () {
+    if (isGetVarExists("action") == "addItem") checkTemplateForErrorsAddItem();
+    else if (isGetVarExists("action") == "editItem")
+      checkTemplateForErrorsEditItem();
+  });
+
+  // Р·Р°РїСѓСЃРєР°РµРј РїСЂРѕРІРµСЂРєСѓ РёРјРµРЅРё С„Р°Р№Р»Р° РЅР° СЃР»СѓС‡Р°Р№ РЅР°Р¶Р°С‚РёСЏ "РћР±РЅРѕРІРёС‚СЊ СЃС‚СЂР°РЅРёС†Сѓ" СЃ СѓР¶Рµ РІР±РёС‚С‹Рј Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ "РРјСЏ С„Р°Р№Р»Р°"
+
+  if (isGetVarExists("action") == "addItem") $("#file_name").keyup();
+
+  // Р¤РЈРќРљР¦РРћРќРђР›
+
+  // РїРѕРєР°Р·Р°С‚СЊ РІСЃРµ backup'С‹
+
+  function getAllBackups() {
+    var template_id = $("#template_id").val(); // alert(template_id);
+
+    $.ajax({
+      url: "/control/edit_css/ajax.php", // РѕР±СЂР°С‰РµРЅРёРµ
+
+      type: "POST",
+
+      data: { action: "getAllBackups", template_id: template_id }, // РїРµСЂРµРґР°РµРј GET РїРµСЂРµРјРµРЅРЅС‹Рµ
+
+      dataType: "html",
+
+      beforeSend: function () {
+        // $('#backupsResult').html('');
+      },
+
+      success: function (data) {
+        $("#backupsResult").html(data); //Р·Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ
+      },
+
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert(
+          "РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё ajax-Р·Р°РїСЂРѕСЃР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ СЃР°Р№С‚Р°."
+        );
+      },
     });
-    
-	// клик на ссылку "Сделать backup"
-	$('#makeBackup').click(function(){
-		// вызываем функция для создания нового backup'а
-		makeBackup();
-		return false;
-	});
-	
-	// поиск по шаблонам
-	$('#searchByName').on('keyup', function(){
-		$('#resultSet').load('/control/edit_css/ajax.php', '\
-		action=searchTemplates\
-		&q=' + $('#searchByName').val()
-		,
-		function(response){});
-	})
-	// /поиск по шаблонам
-	
-	// показать все backup'ы
-	$(document.body).delegate('.showAllBackups', "click", function(){
-		$('#allBackups').toggle();
-		// $(this).html("скрыть все backup'ы");
-		return false;
-	})
-	
-	// клик на ссылку "Смотреть backup"
-	$(document.body).delegate('.showBackup', "click", function(){
-		var showBackupID = $(this).attr('backupID'); // alert(showBackupID);
-		showBackupID = showBackupID.replace('showBackup', ''); // alert(showBackupID);
-		
-		if (showBackupID) $('#html_code' + showBackupID).slideToggle();
-		return false;
-	});
-	
-	// клик на ссылку "Удалить backup"
-	$(document.body).delegate('.removeBackup', "click", function(){
-		var removeBackupID = $(this).attr('backupID'); // alert(removeBackupID);
-		removeBackupID = removeBackupID.replace('removeBackup', ''); // alert(removeBackupID);
-		var date = $('#date' + removeBackupID).html(); // alert(date);
-		if (confirm('Удалить backup от [ ' + date +' ] ?')) {
-			// получаем ID элемента для удаления
-			// вызываем функция для создания нового backup'а
-			removeBackup(removeBackupID);
-		}
-		
-		return false;
-	});
-	
-	// клик на кнопку "Добавить шаблон" - проверяем на ошибки
-	$('.checkForErrors').click(function()
-	{
-		var isError = $('.error').length; // alert(isError);
-		
-		if (isError)
-		{
-			alert('Необходимо устранить ошибку. После чего можно будет сохранить файл css-стилей.');
-			return false;
-		}
-	})
-	
-	// изменение значения в поле "Имя файла", проверяем на ошибки
-	$('#file_name').on('keyup click', function()
-	{
-		if (isGetVarExists('action') == 'addItem') checkTemplateForErrorsAddItem();
-		else if (isGetVarExists('action') == 'editItem') checkTemplateForErrorsEditItem();
-	})
-	// запускаем проверку имени файла на случай нажатия "Обновить страницу" с уже вбитым значение в поле "Имя файла"
-	if (isGetVarExists('action') == 'addItem') $('#file_name').keyup();
-	
-	// ФУНКЦИОНАЛ
-	// показать все backup'ы
-	function getAllBackups(){
-		var template_id = $('#template_id').val(); // alert(template_id);
-		
-		$.ajax({
-				url: "/control/edit_css/ajax.php", // обращение
-				type: 'POST',
-				data: { action: 'getAllBackups', template_id: template_id }, // передаем GET переменные
-				dataType: 'html',
-				beforeSend:
-					function(){
-						// $('#backupsResult').html(''); 
-					},
-				success:
-					function(data){
-						$('#backupsResult').html(data); //загружаем данные
-					},
-				error:
-					function(XMLHttpRequest, textStatus, errorThrown) {
-						alert("Ошибка при выполнении ajax-запроса. Пожалуйста, обратитесь к администратору сайта.");
-					},
-		});
 
-		return false;
-	}
-	
-	// создать новый backup'а
-	function makeBackup(){
-		var template_id = $('#template_id').val(); // alert(template_id);
-		var html_code = $('#templates_form_html_code').val(); // alert(html_code);
-		var url = $('#templates_form_file_url').val(); // alert(html_code);
-		
-		$.ajax({
-				url: '/control/edit_css/ajax.php', // обращение     
-				type: 'POST',
-				data: { 'action': 'makeBackup', 'template_id': template_id, 'html_code': html_code, 'url': url }, // передаем GET переменные
-				dataType: 'html',
-				beforeSend:
-					function(){
-						// $('#backupsResult').html(''); 
-					},
-				success:
-					function(data){
-						$('#backupsResult').html(data); //загружаем данные
-					},
-				error:
-					function(XMLHttpRequest, textStatus, errorThrown) {
-						alert("Ошибка при выполнении ajax-запроса: " + errorThrown + " (" + textStatus + "). Пожалуйста, обратитесь к администратору сайта.");
-					},
-		});
+    return false;
+  }
 
-		return false;
-	}
-	
-	// удалить backup'а
-	function removeBackup(removeBackupID){
-		if (removeBackupID)
-		{
-			$('#' + removeBackupID).html('<b>удален.</b>');
-			// alert(removeBackupID);
-			
-			$.ajax({
-					url: "/control/edit_css/ajax.php", // обращение                     
-					type: 'POST',
-					data: { action: 'removeBackup', id: removeBackupID }, // передаем GET переменные
-					dataType: 'html',
-					beforeSend:
-						function(){
-							// $('#backupsResult').html(''); 
-						},
-					success:
-						function(data){
-							// alert(data);
-							// $('#backupsResult').html(data); //загружаем данные
-						},
-					error:
-						function(XMLHttpRequest, textStatus, errorThrown) {
-							alert("Ошибка при выполнении ajax-запроса. Пожалуйста, обратитесь к администратору сайта.");
-						},
-			});
+  // СЃРѕР·РґР°С‚СЊ РЅРѕРІС‹Р№ backup'Р°
 
-			return false;
-		}
-	}
-	
-	// проверяем шаблон на ошибки
-	function checkTemplateForErrorsAddItem()
-	{
-		var filename = $('#file_name').val(); // alert(filename);
-		var pathToTemplates = $('#pathToTemplates').val(); // alert(pathToTemplates);
-		
-		if (filename.length)
-		{
-			$.ajax({
-					url: "/control/edit_css/ajax.php", // обращение                     
-					type: 'POST',
-					data: { action: 'checkTemplateForErrorsAddItem', filename: filename, pathToTemplates: pathToTemplates }, // передаем GET переменные
-					dataType: 'html',
-					beforeSend:
-						function(){
-							$('#ajax_result').html('');
-							$('#ajax_result').css('display', 'none');
-						},
-					success:
-						function(data){
-							var length = data.length; // alert(length);
-							
-							if (length){
-								$('#ajax_result').html(data); // загружаем данные
-								$('#ajax_result').css('display', 'block');
-							}
-						},
-					error:
-						function(XMLHttpRequest, textStatus, errorThrown) {
-							alert("Ошибка при выполнении ajax-запроса. Пожалуйста, обратитесь к администратору сайта.");
-						},
-			});
+  function makeBackup() {
+    var template_id = $("#template_id").val(); // alert(template_id);
 
-			return false;
-		}
-	}
-	
-	// проверяем шаблон на ошибки
-	function checkTemplateForErrorsEditItem()
-	{
-		var filename = $('#file_name').val(); // alert(filename);
-		var pathToTemplates = $('#pathToTemplates').val(); // alert(pathToTemplates);
-		
-		if (filename.length)
-		{
-			$.ajax({
-					url: "/control/edit_css/ajax.php", // обращение                     
-					type: 'POST',
-					data: { action: 'checkTemplateForErrorsEditItem', filename: filename, pathToTemplates: pathToTemplates }, // передаем GET переменные
-					dataType: 'html',
-					beforeSend:
-						function(){
-							$('#ajax_result').html('');
-							$('#ajax_result').css('display', 'none');
-						},
-					success:
-						function(data){
-							var length = data.length; // alert(length);
-							
-							if (length){
-								$('#ajax_result').html(data); // загружаем данные
-								$('#ajax_result').css('display', 'block');
-							}
-						},
-					error:
-						function(XMLHttpRequest, textStatus, errorThrown) {
-							alert("Ошибка при выполнении ajax-запроса. Пожалуйста, обратитесь к администратору сайта.");
-						},
-			});
+    var html_code = $("#templates_form_html_code").val(); // alert(html_code);
 
-			return false;
-		}
-	}
-	
-	// проверяем, доступна ли директория с шаблонами для записи
-	function checkTemplatesDirForWriting()
-	{
-		var pathToTemplates = $('#pathToTemplates').val(); // alert(pathToTemplates);
-		if (pathToTemplates.length)
-		{
-			$.ajax({
-					url: "/control/edit_css/ajax.php", // обращение                     
-					type: 'POST',
-					data: { action: 'checkTemplatesDirForWriting', pathToTemplates: pathToTemplates }, // передаем GET переменные
-					dataType: 'html',
-					beforeSend:
-						function(){
-							$('#ajax_result').html('');
-							$('#ajax_result').css('display', 'none');
-						},
-					success:
-						function(data){
-							var length = data.length; // alert(length);
-							
-							if (length){
-								$('#ajax_result').html(data); // загружаем данные
-								$('#ajax_result').css('display', 'block');
-							}
-						},
-					error:
-						function(XMLHttpRequest, textStatus, errorThrown) {
-							alert("Ошибка при выполнении ajax-запроса. Пожалуйста, обратитесь к администратору сайта.");
-						},
-			});
+    var url = $("#templates_form_file_url").val(); // alert(html_code);
 
-			return false;
-		}
-	}
+    $.ajax({
+      url: "/control/edit_css/ajax.php", // РѕР±СЂР°С‰РµРЅРёРµ
+
+      type: "POST",
+
+      data: {
+        action: "makeBackup",
+        template_id: template_id,
+        html_code: html_code,
+        url: url,
+      }, // РїРµСЂРµРґР°РµРј GET РїРµСЂРµРјРµРЅРЅС‹Рµ
+
+      dataType: "html",
+
+      beforeSend: function () {
+        // $('#backupsResult').html('');
+      },
+
+      success: function (data) {
+        $("#backupsResult").html(data); //Р·Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ
+      },
+
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert(
+          "РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё ajax-Р·Р°РїСЂРѕСЃР°: " +
+            errorThrown +
+            " (" +
+            textStatus +
+            "). РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ СЃР°Р№С‚Р°."
+        );
+      },
+    });
+
+    return false;
+  }
+
+  // СѓРґР°Р»РёС‚СЊ backup'Р°
+
+  function removeBackup(removeBackupID) {
+    if (removeBackupID) {
+      $("#" + removeBackupID).html("<b>СѓРґР°Р»РµРЅ.</b>");
+
+      // alert(removeBackupID);
+
+      $.ajax({
+        url: "/control/edit_css/ajax.php", // РѕР±СЂР°С‰РµРЅРёРµ
+
+        type: "POST",
+
+        data: { action: "removeBackup", id: removeBackupID }, // РїРµСЂРµРґР°РµРј GET РїРµСЂРµРјРµРЅРЅС‹Рµ
+
+        dataType: "html",
+
+        beforeSend: function () {
+          // $('#backupsResult').html('');
+        },
+
+        success: function (data) {
+          // alert(data);
+          // $('#backupsResult').html(data); //Р·Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          alert(
+            "РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё ajax-Р·Р°РїСЂРѕСЃР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ СЃР°Р№С‚Р°."
+          );
+        },
+      });
+
+      return false;
+    }
+  }
+
+  // РїСЂРѕРІРµСЂСЏРµРј С€Р°Р±Р»РѕРЅ РЅР° РѕС€РёР±РєРё
+
+  function checkTemplateForErrorsAddItem() {
+    var filename = $("#file_name").val(); // alert(filename);
+
+    var pathToTemplates = $("#pathToTemplates").val(); // alert(pathToTemplates);
+
+    if (filename.length) {
+      $.ajax({
+        url: "/control/edit_css/ajax.php", // РѕР±СЂР°С‰РµРЅРёРµ
+
+        type: "POST",
+
+        data: {
+          action: "checkTemplateForErrorsAddItem",
+          filename: filename,
+          pathToTemplates: pathToTemplates,
+        }, // РїРµСЂРµРґР°РµРј GET РїРµСЂРµРјРµРЅРЅС‹Рµ
+
+        dataType: "html",
+
+        beforeSend: function () {
+          $("#ajax_result").html("");
+
+          $("#ajax_result").css("display", "none");
+        },
+
+        success: function (data) {
+          var length = data.length; // alert(length);
+
+          if (length) {
+            $("#ajax_result").html(data); // Р·Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ
+
+            $("#ajax_result").css("display", "block");
+          }
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          alert(
+            "РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё ajax-Р·Р°РїСЂРѕСЃР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ СЃР°Р№С‚Р°."
+          );
+        },
+      });
+
+      return false;
+    }
+  }
+
+  // РїСЂРѕРІРµСЂСЏРµРј С€Р°Р±Р»РѕРЅ РЅР° РѕС€РёР±РєРё
+
+  function checkTemplateForErrorsEditItem() {
+    var filename = $("#file_name").val(); // alert(filename);
+
+    var pathToTemplates = $("#pathToTemplates").val(); // alert(pathToTemplates);
+
+    if (filename.length) {
+      $.ajax({
+        url: "/control/edit_css/ajax.php", // РѕР±СЂР°С‰РµРЅРёРµ
+
+        type: "POST",
+
+        data: {
+          action: "checkTemplateForErrorsEditItem",
+          filename: filename,
+          pathToTemplates: pathToTemplates,
+        }, // РїРµСЂРµРґР°РµРј GET РїРµСЂРµРјРµРЅРЅС‹Рµ
+
+        dataType: "html",
+
+        beforeSend: function () {
+          $("#ajax_result").html("");
+
+          $("#ajax_result").css("display", "none");
+        },
+
+        success: function (data) {
+          var length = data.length; // alert(length);
+
+          if (length) {
+            $("#ajax_result").html(data); // Р·Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ
+
+            $("#ajax_result").css("display", "block");
+          }
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          alert(
+            "РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё ajax-Р·Р°РїСЂРѕСЃР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ СЃР°Р№С‚Р°."
+          );
+        },
+      });
+
+      return false;
+    }
+  }
+
+  // РїСЂРѕРІРµСЂСЏРµРј, РґРѕСЃС‚СѓРїРЅР° Р»Рё РґРёСЂРµРєС‚РѕСЂРёСЏ СЃ С€Р°Р±Р»РѕРЅР°РјРё РґР»СЏ Р·Р°РїРёСЃРё
+
+  function checkTemplatesDirForWriting() {
+    var pathToTemplates = $("#pathToTemplates").val(); // alert(pathToTemplates);
+
+    if (pathToTemplates.length) {
+      $.ajax({
+        url: "/control/edit_css/ajax.php", // РѕР±СЂР°С‰РµРЅРёРµ
+
+        type: "POST",
+
+        data: {
+          action: "checkTemplatesDirForWriting",
+          pathToTemplates: pathToTemplates,
+        }, // РїРµСЂРµРґР°РµРј GET РїРµСЂРµРјРµРЅРЅС‹Рµ
+
+        dataType: "html",
+
+        beforeSend: function () {
+          $("#ajax_result").html("");
+
+          $("#ajax_result").css("display", "none");
+        },
+
+        success: function (data) {
+          var length = data.length; // alert(length);
+
+          if (length) {
+            $("#ajax_result").html(data); // Р·Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ
+
+            $("#ajax_result").css("display", "block");
+          }
+        },
+
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          alert(
+            "РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё ajax-Р·Р°РїСЂРѕСЃР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ СЃР°Р№С‚Р°."
+          );
+        },
+      });
+
+      return false;
+    }
+  }
 });

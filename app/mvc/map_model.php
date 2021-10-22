@@ -1,53 +1,53 @@
-<?php
-class map_model extends model_base
-{
-	# ÏÎËÓ×ÀÅÌ ÑÏÈÑÎÊ ÂÑÅÕ ĞÀÇÄÅËÎÂ ÈÇ ÒÀÁËÈÖÛ ".DB_PREFIX."site_sections ÄËß transpark.ru
-	function getSectionsList()
-	{
-		$sql = "
-		select id,
-			   parent_id,
-			   name,
-			   full_url,
-			   is_showable
-		from ".DB_PREFIX."site_sections
-		where url != 'map'
-			  and is_showable = 1
-		order by parent_id,
-				 name
-		"; # echo '<pre>'.$sql."</pre><hr />";
-		$result = $this->dbh->prepare($sql); # var_dump($result);
-		try	{
-			if ($result->execute())	{
-				$_ = $result->fetchAll(); # print_r($_);
-				return $_;
-			}
-		}
-		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Îøèáêà â SQL-çàïğîñå:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-	} # /ÏÎËÓ×ÀÅÌ ÑÏÈÑÎÊ ÂÑÅÕ ĞÀÇÄÅËÎÂ ÈÇ ÒÀÁËÈÖÛ ".DB_PREFIX."site_sections ÄËß transpark.ru
-    
-	# ÏÎËÓ×ÀÅÌ ÑÏÈÑÎÊ ÂÑÅÕ ĞÀÇÄÅËÎÂ ÈÇ ÒÀÁËÈÖÛ ".DB_PREFIX."site_sections ÄËß korobki.transpark.ru
-	function getSectionsListForKorobki()
-	{
-		$sql = "
-		select id,
-			   parent_id,
-			   name,
-			   full_url,
-			   is_showable
-		from ".DB_PREFIX."site_sections_korobki
-		where url != 'map'
-			  and is_showable = 1
-		order by parent_id,
-				 name
-		"; # echo '<pre>'.$sql."</pre><hr />";
-		$result = $this->dbh->prepare($sql); # var_dump($result);
-		try	{
-			if ($result->execute())	{
-				$_ = $result->fetchAll(); # print_r($_);
-				return $_;
-			}
-		}
-		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Îøèáêà â SQL-çàïğîñå:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-	} # /ÏÎËÓ×ÀÅÌ ÑÏÈÑÎÊ ÂÑÅÕ ĞÀÇÄÅËÎÂ ÈÇ ÒÀÁËÈÖÛ ".DB_PREFIX."site_sections ÄËß korobki.transpark.ru
+<?php
+class map_model extends model_base
+{
+	# ĞŸĞĞ›Ğ£Ğ§ĞĞ•Ğœ Ğ¡ĞŸĞ˜Ğ¡ĞĞš Ğ’Ğ¡Ğ•Ğ¥ Ğ ĞĞ—Ğ”Ğ•Ğ›ĞĞ’ Ğ˜Ğ— Ğ¢ĞĞ‘Ğ›Ğ˜Ğ¦Ğ« ".DB_PREFIX."site_sections Ğ”Ğ›Ğ¯ transpark.ru
+	function getSectionsList()
+	{
+		$sql = "
+		select id,
+			   parent_id,
+			   name,
+			   full_url,
+			   is_showable
+		from ".DB_PREFIX."site_sections
+		where url != 'map'
+			  and is_showable = 1
+		order by parent_id,
+				 name
+		"; # echo '<pre>'.$sql."</pre><hr />";
+		$result = $this->dbh->prepare($sql); # var_dump($result);
+		try	{
+			if ($result->execute())	{
+				$_ = $result->fetchAll(); # print_r($_);
+				return $_;
+			}
+		}
+		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "ĞÑˆĞ¸Ğ±ĞºĞ° Ğ² SQL-Ğ·Ğ°Ğ¿Ñ€Ğ¾ÑĞµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+	} # /ĞŸĞĞ›Ğ£Ğ§ĞĞ•Ğœ Ğ¡ĞŸĞ˜Ğ¡ĞĞš Ğ’Ğ¡Ğ•Ğ¥ Ğ ĞĞ—Ğ”Ğ•Ğ›ĞĞ’ Ğ˜Ğ— Ğ¢ĞĞ‘Ğ›Ğ˜Ğ¦Ğ« ".DB_PREFIX."site_sections Ğ”Ğ›Ğ¯ transpark.ru
+    
+	# ĞŸĞĞ›Ğ£Ğ§ĞĞ•Ğœ Ğ¡ĞŸĞ˜Ğ¡ĞĞš Ğ’Ğ¡Ğ•Ğ¥ Ğ ĞĞ—Ğ”Ğ•Ğ›ĞĞ’ Ğ˜Ğ— Ğ¢ĞĞ‘Ğ›Ğ˜Ğ¦Ğ« ".DB_PREFIX."site_sections Ğ”Ğ›Ğ¯ korobki.transpark.ru
+	function getSectionsListForKorobki()
+	{
+		$sql = "
+		select id,
+			   parent_id,
+			   name,
+			   full_url,
+			   is_showable
+		from ".DB_PREFIX."site_sections_korobki
+		where url != 'map'
+			  and is_showable = 1
+		order by parent_id,
+				 name
+		"; # echo '<pre>'.$sql."</pre><hr />";
+		$result = $this->dbh->prepare($sql); # var_dump($result);
+		try	{
+			if ($result->execute())	{
+				$_ = $result->fetchAll(); # print_r($_);
+				return $_;
+			}
+		}
+		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "ĞÑˆĞ¸Ğ±ĞºĞ° Ğ² SQL-Ğ·Ğ°Ğ¿Ñ€Ğ¾ÑĞµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+	} # /ĞŸĞĞ›Ğ£Ğ§ĞĞ•Ğœ Ğ¡ĞŸĞ˜Ğ¡ĞĞš Ğ’Ğ¡Ğ•Ğ¥ Ğ ĞĞ—Ğ”Ğ•Ğ›ĞĞ’ Ğ˜Ğ— Ğ¢ĞĞ‘Ğ›Ğ˜Ğ¦Ğ« ".DB_PREFIX."site_sections Ğ”Ğ›Ğ¯ korobki.transpark.ru
 }

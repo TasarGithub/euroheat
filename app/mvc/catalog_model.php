@@ -1,135 +1,135 @@
-<?php
-class catalog_model extends model_base
-{
-	# œŒÀ”◊¿≈Ã —œ»—Œ  —“¿“≈… ƒÀﬂ √À¿¬ÕŒ… —“–¿Õ»÷€ —œ»— ¿ ›À≈ “–Œ—“¿Õ÷»…
-	function getItemsForIndex()
-	{
-		$sql = '
-        select id,
-               name,
-               url,
-               cost,
-               image_small,
-               spec_main_power,
-               spec_spare_power,
-               spec_engine,
-               spec_fuel_rate
-        from '.DB_PREFIX.'catalog
-        where is_showable = 1
-        order by isnull(order_listing),
-                 order_listing
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        $sth->bindParam(':id', $currentItemID, PDO::PARAM_INT);
-        try
-        {
-            if ($sth->execute())
-            {
-                $_ = $sth->fetchAll(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-	} # /œŒÀ”◊¿≈Ã —œ»—Œ  —“¿“≈… ƒÀﬂ √À¿¬ÕŒ… —“–¿Õ»÷€ —œ»— ¿ ›À≈ “–Œ—“¿Õ÷»…
-
-    # œŒÀ”◊¿≈Ã »Õ‘Œ–Ã¿÷»ﬁ œŒ ›À≈ “–Œ—“¿Õ÷»»
-    function getItemInfo($url)
-    {
-        # ÔÓ‚ÂÍ‡ ÔÂÂÏÂÌÌ˚ı
-        if (empty($url)) return;
-
-        $sql = '
-        select *
-        from '.DB_PREFIX.'catalog
-        where url = :url
-              and is_showable = 1
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        $sth->bindParam(':url', $url);
-        try
-        {
-            if ($sth->execute())
-            {
-                $_ = $sth->fetch(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /œŒÀ”◊¿≈Ã »Õ‘Œ–Ã¿÷»ﬁ œŒ ›À≈ “–Œ—“¿Õ÷»»
-
-    # œŒÀ”◊¿≈Ã »Õ‘Œ–Ã¿÷»ﬁ ƒÀﬂ ¡ÀŒ ¿ "ƒ–”√»≈ ÃŒƒ≈À» ›À≈ “–Œ—“¿Õ÷»…"
-    function getAnotherItems($currentItemID)
-    {
-        # ÔÓ‚ÂÍ‡ ÔÂÂÏÂÌÌ˚ı
-        if (empty($currentItemID)) return;
-
-        $sql = '
-        select id,
-               name,
-               url,
-               cost,
-               image_small,
-               spec_main_power,
-               spec_spare_power,
-               spec_engine,
-               spec_fuel_rate
-        from '.DB_PREFIX.'catalog
-        where id != :id
-              and is_showable = 1
-        order by rand()
-        limit 3
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        $sth->bindParam(':id', $currentItemID, PDO::PARAM_INT);
-        try {
-            if ($sth->execute()) {
-                $_ = $sth->fetchAll(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /œŒÀ”◊¿≈Ã »Õ‘Œ–Ã¿÷»ﬁ ƒÀﬂ ¡ÀŒ ¿ "ƒ–”√»≈ ÃŒƒ≈À» ›À≈ “–Œ—“¿Õ÷»…"
-
-    # —◊»“¿≈Ã  ŒÀ»◊≈—“¬Œ ›À≈ “–Œ—“¿Õ÷»…
-    function getItemsCount()
-    {
-        $sql = '
-        select count(1)
-        from '.DB_PREFIX.'catalog
-        where is_showable = 1
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        try
-        {
-            if ($sth->execute()) {
-                $_ = $sth->fetchColumn(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /—◊»“¿≈Ã  ŒÀ»◊≈—“¬Œ ›À≈ “–Œ—“¿Õ÷»…
-
-    # œŒÀ”◊¿≈Ã —œ»—Œ  œŒ«»÷»… ƒÀﬂ  ¿–“€ —¿…“¿
-    function getItemsForMap()
-    {
-        $sql = "
-		select id,
-			   name,
-			   url,
-			   cost
-		from ".DB_PREFIX."catalog
-        order by isnull(order_listing),
-                 order_listing
-		"; # echo $sql."<hr />";
-        $result = $this->dbh->prepare($sql);
-        try
-        {
-            if ($result->execute())
-            {
-                $_ = $result->fetchAll(); # print_r($_);
-                return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /œŒÀ”◊¿≈Ã —œ»—Œ  œŒ«»÷»… ƒÀﬂ  ¿–“€ —¿…“¿
+<?php
+class catalog_model extends model_base
+{
+	# –ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –°–¢–ê–¢–ï–ô –î–õ–Ø –ì–õ–ê–í–ù–û–ô –°–¢–†–ê–ù–ò–¶–´ –°–ü–ò–°–ö–ê –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ô
+	function getItemsForIndex()
+	{
+		$sql = '
+        select id,
+               name,
+               url,
+               cost,
+               image_small,
+               spec_main_power,
+               spec_spare_power,
+               spec_engine,
+               spec_fuel_rate
+        from '.DB_PREFIX.'catalog
+        where is_showable = 1
+        order by isnull(order_listing),
+                 order_listing
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindParam(':id', $currentItemID, PDO::PARAM_INT);
+        try
+        {
+            if ($sth->execute())
+            {
+                $_ = $sth->fetchAll(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+	} # /–ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –°–¢–ê–¢–ï–ô –î–õ–Ø –ì–õ–ê–í–ù–û–ô –°–¢–†–ê–ù–ò–¶–´ –°–ü–ò–°–ö–ê –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ô
+
+    # –ü–û–õ–£–ß–ê–ï–ú –ò–ù–§–û–†–ú–ê–¶–ò–Æ –ü–û –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ò
+    function getItemInfo($url)
+    {
+        # –ø—Ä–æ–≤–µ—Ä–∫–∞ –ø–µ—Ä–µ–º–µ–Ω–Ω—ã—Ö
+        if (empty($url)) return;
+
+        $sql = '
+        select *
+        from '.DB_PREFIX.'catalog
+        where url = :url
+              and is_showable = 1
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindParam(':url', $url);
+        try
+        {
+            if ($sth->execute())
+            {
+                $_ = $sth->fetch(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /–ü–û–õ–£–ß–ê–ï–ú –ò–ù–§–û–†–ú–ê–¶–ò–Æ –ü–û –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ò
+
+    # –ü–û–õ–£–ß–ê–ï–ú –ò–ù–§–û–†–ú–ê–¶–ò–Æ –î–õ–Ø –ë–õ–û–ö–ê "–î–†–£–ì–ò–ï –ú–û–î–ï–õ–ò –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ô"
+    function getAnotherItems($currentItemID)
+    {
+        # –ø—Ä–æ–≤–µ—Ä–∫–∞ –ø–µ—Ä–µ–º–µ–Ω–Ω—ã—Ö
+        if (empty($currentItemID)) return;
+
+        $sql = '
+        select id,
+               name,
+               url,
+               cost,
+               image_small,
+               spec_main_power,
+               spec_spare_power,
+               spec_engine,
+               spec_fuel_rate
+        from '.DB_PREFIX.'catalog
+        where id != :id
+              and is_showable = 1
+        order by rand()
+        limit 3
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        $sth->bindParam(':id', $currentItemID, PDO::PARAM_INT);
+        try {
+            if ($sth->execute()) {
+                $_ = $sth->fetchAll(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /–ü–û–õ–£–ß–ê–ï–ú –ò–ù–§–û–†–ú–ê–¶–ò–Æ –î–õ–Ø –ë–õ–û–ö–ê "–î–†–£–ì–ò–ï –ú–û–î–ï–õ–ò –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ô"
+
+    # –°–ß–ò–¢–ê–ï–ú –ö–û–õ–ò–ß–ï–°–¢–í–û –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ô
+    function getItemsCount()
+    {
+        $sql = '
+        select count(1)
+        from '.DB_PREFIX.'catalog
+        where is_showable = 1
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        try
+        {
+            if ($sth->execute()) {
+                $_ = $sth->fetchColumn(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /–°–ß–ò–¢–ê–ï–ú –ö–û–õ–ò–ß–ï–°–¢–í–û –≠–õ–ï–ö–¢–†–û–°–¢–ê–ù–¶–ò–ô
+
+    # –ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –ü–û–ó–ò–¶–ò–ô –î–õ–Ø –ö–ê–†–¢–´ –°–ê–ô–¢–ê
+    function getItemsForMap()
+    {
+        $sql = "
+		select id,
+			   name,
+			   url,
+			   cost
+		from ".DB_PREFIX."catalog
+        order by isnull(order_listing),
+                 order_listing
+		"; # echo $sql."<hr />";
+        $result = $this->dbh->prepare($sql);
+        try
+        {
+            if ($result->execute())
+            {
+                $_ = $result->fetchAll(); # print_r($_);
+                return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /–ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –ü–û–ó–ò–¶–ò–ô –î–õ–Ø –ö–ê–†–¢–´ –°–ê–ô–¢–ê
 }

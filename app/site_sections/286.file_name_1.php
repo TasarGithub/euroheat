@@ -1,68 +1,68 @@
-<p class="evaporator_desc">Обязательные данные — это ваша контактная информация.</p>
-<p class="evaporator_desc">Технические характеристики нужны, чтобы рассчитать рядность, шаг между ламелями, оптимальный диаметр коллектора. Если вы точно знаете, какое оборудование необходимо — заполняйте все поля как можно подробнее.</p>
+<p class="evaporator_desc">РћР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ вЂ” СЌС‚Рѕ РІР°С€Р° РєРѕРЅС‚Р°РєС‚РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ.</p>
+<p class="evaporator_desc">РўРµС…РЅРёС‡РµСЃРєРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РЅСѓР¶РЅС‹, С‡С‚РѕР±С‹ СЂР°СЃСЃС‡РёС‚Р°С‚СЊ СЂСЏРґРЅРѕСЃС‚СЊ, С€Р°Рі РјРµР¶РґСѓ Р»Р°РјРµР»СЏРјРё, РѕРїС‚РёРјР°Р»СЊРЅС‹Р№ РґРёР°РјРµС‚СЂ РєРѕР»Р»РµРєС‚РѕСЂР°. Р•СЃР»Рё РІС‹ С‚РѕС‡РЅРѕ Р·РЅР°РµС‚Рµ, РєР°РєРѕРµ РѕР±РѕСЂСѓРґРѕРІР°РЅРёРµ РЅРµРѕР±С…РѕРґРёРјРѕ вЂ” Р·Р°РїРѕР»РЅСЏР№С‚Рµ РІСЃРµ РїРѕР»СЏ РєР°Рє РјРѕР¶РЅРѕ РїРѕРґСЂРѕР±РЅРµРµ.</p>
 
-<p class="water_heater_desc">В ряде случаев мы предлагаем несколько вариантов, которые отличаются по стоимости. Для этого также нужны детальные характеристики рабочего режима.</p>
-<p class="water_heater_desc">Если у вас есть вопросы, уточнения, сомнения, лучше обсудить все до мелочей с нашим специалистом.</p>
+<p class="water_heater_desc">Р’ СЂСЏРґРµ СЃР»СѓС‡Р°РµРІ РјС‹ РїСЂРµРґР»Р°РіР°РµРј РЅРµСЃРєРѕР»СЊРєРѕ РІР°СЂРёР°РЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ РѕС‚Р»РёС‡Р°СЋС‚СЃСЏ РїРѕ СЃС‚РѕРёРјРѕСЃС‚Рё. Р”Р»СЏ СЌС‚РѕРіРѕ С‚Р°РєР¶Рµ РЅСѓР¶РЅС‹ РґРµС‚Р°Р»СЊРЅС‹Рµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё СЂР°Р±РѕС‡РµРіРѕ СЂРµР¶РёРјР°.</p>
+<p class="water_heater_desc">Р•СЃР»Рё Сѓ РІР°СЃ РµСЃС‚СЊ РІРѕРїСЂРѕСЃС‹, СѓС‚РѕС‡РЅРµРЅРёСЏ, СЃРѕРјРЅРµРЅРёСЏ, Р»СѓС‡С€Рµ РѕР±СЃСѓРґРёС‚СЊ РІСЃРµ РґРѕ РјРµР»РѕС‡РµР№ СЃ РЅР°С€РёРј СЃРїРµС†РёР°Р»РёСЃС‚РѕРј.</p>
 
 <div id="evaporator_form" class="form-calculator">
-<h3>Данные по размерам</h3>
+<h3>Р”Р°РЅРЅС‹Рµ РїРѕ СЂР°Р·РјРµСЂР°Рј</h3>
 <img src="/public/images/isparitel.jpg" class="img-responsive" /><br /><br />
 
 <div class="form-calculator-sizes-data">
-<input id="evaporator_form_fta" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTA, мм" value="" />
-<input id="evaporator_form_ftb" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTB, мм" value="" />
-<input id="evaporator_form_a" type="text" class="form-control form-calculator-sizes-data__input" placeholder="A, мм" value="" />
+<input id="evaporator_form_fta" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTA, РјРј" value="" />
+<input id="evaporator_form_ftb" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTB, РјРј" value="" />
+<input id="evaporator_form_a" type="text" class="form-control form-calculator-sizes-data__input" placeholder="A, РјРј" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="evaporator_form_b" type="text" class="form-control form-calculator-sizes-data__input" placeholder="B, мм" value="" />
-<input id="evaporator_form_s" type="text" class="form-control form-calculator-sizes-data__input" placeholder="S, мм" value="" />
-<input id="evaporator_form_e_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Диаметр E, мм" value="" />
+<input id="evaporator_form_b" type="text" class="form-control form-calculator-sizes-data__input" placeholder="B, РјРј" value="" />
+<input id="evaporator_form_s" type="text" class="form-control form-calculator-sizes-data__input" placeholder="S, РјРј" value="" />
+<input id="evaporator_form_e_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р”РёР°РјРµС‚СЂ E, РјРј" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="evaporator_form_input_u_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Диаметр U, мм" value="" />
-<input id="evaporator_form_lane" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Рядность" value="" />
+<input id="evaporator_form_input_u_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р”РёР°РјРµС‚СЂ U, РјРј" value="" />
+<input id="evaporator_form_lane" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р СЏРґРЅРѕСЃС‚СЊ" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="evaporator_form_lamella_step" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Шаг ламели, мм" value="" />
+<input id="evaporator_form_lamella_step" type="text" class="form-control form-calculator-sizes-data__input" placeholder="РЁР°Рі Р»Р°РјРµР»Рё, РјРј" value="" />
 <select id="water_heater_tray" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Поддон и каплеуловитель</option>
-<option value="Нет">Нет</option>
-<option value="Да">Да</option>
+<option value="" disabled selected>РџРѕРґРґРѕРЅ Рё РєР°РїР»РµСѓР»РѕРІРёС‚РµР»СЊ</option>
+<option value="РќРµС‚">РќРµС‚</option>
+<option value="Р”Р°">Р”Р°</option>
 </select>
 </div>
 
-<h3>Материалы</h3>
+<h3>РњР°С‚РµСЂРёР°Р»С‹</h3>
 <div class="form-calculator-sizes-data">
 <select id="evaporator_form_tube_material" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Материал трубки</option>
-<option value="Медь">Медь</option>
-<option value="Нержавеющая сталь">Нержавеющая сталь</option>
+<option value="" disabled selected>РњР°С‚РµСЂРёР°Р» С‚СЂСѓР±РєРё</option>
+<option value="РњРµРґСЊ">РњРµРґСЊ</option>
+<option value="РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ">РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ</option>
 </select>
 <select id="evaporator_form_lamella_material" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Материал ламелей</option>
-<option value="Алюминий">Алюминий</option>
-<option value="Нержавеющая сталь">Нержавеющая сталь</option>
-<option value="Медь">Медь</option>
+<option value="" disabled selected>РњР°С‚РµСЂРёР°Р» Р»Р°РјРµР»РµР№</option>
+<option value="РђР»СЋРјРёРЅРёР№">РђР»СЋРјРёРЅРёР№</option>
+<option value="РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ">РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ</option>
+<option value="РњРµРґСЊ">РњРµРґСЊ</option>
 </select>
 </div>
 
-<h3>Техническое задание</h3>
+<h3>РўРµС…РЅРёС‡РµСЃРєРѕРµ Р·Р°РґР°РЅРёРµ</h3>
 <div class="form-calculator-sizes-data">
-<input id="evaporator_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Расход воздуха, м3/ч" value="" />
-<input id="evaporator_form_air_humidity" type="text" class="form-control form-calculator-water-data__input" placeholder="Влажность воздуха, %" value="" />
+<input id="evaporator_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Р Р°СЃС…РѕРґ РІРѕР·РґСѓС…Р°, Рј3/С‡" value="" />
+<input id="evaporator_form_air_humidity" type="text" class="form-control form-calculator-water-data__input" placeholder="Р’Р»Р°Р¶РЅРѕСЃС‚СЊ РІРѕР·РґСѓС…Р°, %" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="evaporator_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура воздуха на входе, °C" value="" />
-<input id="evaporator_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура воздуха на выходе, °C" value="" />
+<input id="evaporator_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РІРѕР·РґСѓС…Р° РЅР° РІС…РѕРґРµ, В°C" value="" />
+<input id="evaporator_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РІРѕР·РґСѓС…Р° РЅР° РІС‹С…РѕРґРµ, В°C" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
 <select id="evaporator_form_freon_type" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Тип фреона</option>
+<option value="" disabled selected>РўРёРї С„СЂРµРѕРЅР°</option>
 <option value="R134a">R134a</option>
 <option value="R22">R22</option>
 <option value="R290">R290</option>
@@ -71,28 +71,28 @@
 <option value="R410A">R410A</option>
 <option value="R507A">R507A</option>
 </select>
-<input id="evaporator_form_freon_evaporation_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура испарения фреона, °C" value="" />
-<input id="evaporator_form_power" type="text" class="form-control form-calculator-water-data__input" placeholder="Мощность, кВт" value="" />
+<input id="evaporator_form_freon_evaporation_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РёСЃРїР°СЂРµРЅРёСЏ С„СЂРµРѕРЅР°, В°C" value="" />
+<input id="evaporator_form_power" type="text" class="form-control form-calculator-water-data__input" placeholder="РњРѕС‰РЅРѕСЃС‚СЊ, РєР’С‚" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<textarea id="evaporator_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="Дополнительная информация"></textarea>
+<textarea id="evaporator_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ"></textarea>
 </div>
 
-<h3>Контактные данные</h3>
+<h3>РљРѕРЅС‚Р°РєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ</h3>
 
 <div class="form-calculator-contact-data">
-<input id="evaporator_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="ФИО" value="" />
-<input id="evaporator_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="Компания" value="" />
-<input id="evaporator_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Город" value="" />
+<input id="evaporator_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р¤РРћ" value="" />
+<input id="evaporator_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="РљРѕРјРїР°РЅРёСЏ" value="" />
+<input id="evaporator_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р“РѕСЂРѕРґ" value="" />
 </div>
 
 <div class="form-calculator-contact-data">
 <input id="evaporator_form_email" type="text" class="form-control form-calculator-contact-data__input" placeholder="E-mail" value="" />
-<input id="evaporator_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="Телефон" value="" />
+<input id="evaporator_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="РўРµР»РµС„РѕРЅ" value="" />
 </div>
 
-<button id="evaporator_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">Отправить</button>
+<button id="evaporator_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">РћС‚РїСЂР°РІРёС‚СЊ</button>
 
 <span id="evaporator_form_ajax_preloader" class="ajax_preloader"></span>
     

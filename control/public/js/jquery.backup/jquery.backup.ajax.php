@@ -3,37 +3,37 @@
 # date of creation: 2015.1.20
 # author: romanov.egor@gmail.com
 
-# тестирование
+# С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
 # sleep(1.5); # exit();
 # echo 'result'; exit;
 
 # print_r($_POST);
 
-header('Content-type: text/html; charset=windows-1251');
+header('Content-type: text/html; charset=utf-8');
 
-# подключаем и инициализируем класс для работы с БД через PDO
+# РїРѕРґРєР»СЋС‡Р°РµРј Рё РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р” С‡РµСЂРµР· PDO
 include($_SERVER['DOCUMENT_ROOT'].'/control/db.connection.pdo.php');
 
-# подключаем конфиг
+# РїРѕРґРєР»СЋС‡Р°РµРј РєРѕРЅС„РёРі
 include($_SERVER['DOCUMENT_ROOT'].'/control/config.control.php');
 
-# подключаем функции общего назначения для ajax-скриптов
+# РїРѕРґРєР»СЋС‡Р°РµРј С„СѓРЅРєС†РёРё РѕР±С‰РµРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ ajax-СЃРєСЂРёРїС‚РѕРІ
 include($_SERVER['DOCUMENT_ROOT'].'/control/functions.common.ajax.php');
 
-# защита от запроса c другого сайта
+# Р·Р°С‰РёС‚Р° РѕС‚ Р·Р°РїСЂРѕСЃР° c РґСЂСѓРіРѕРіРѕ СЃР°Р№С‚Р°
 if (!stristr($_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'])) exit('');
 
-# указываем кодировку, которую будет отдавать javascript'у ajax-скрипт
-header('Content-type: text/html; charset=windows-1251');
+# СѓРєР°Р·С‹РІР°РµРј РєРѕРґРёСЂРѕРІРєСѓ, РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ РѕС‚РґР°РІР°С‚СЊ javascript'Сѓ ajax-СЃРєСЂРёРїС‚
+header('Content-type: text/html; charset=UTF-8');
 
-# проверка + нужная кодировка POST-переменных
+# РїСЂРѕРІРµСЂРєР° + РЅСѓР¶РЅР°СЏ РєРѕРґРёСЂРѕРІРєР° POST-РїРµСЂРµРјРµРЅРЅС‹С…
 preparePOSTVariables(); # print_r($_POST); exit;
 
 # echo '<pre>'.(print_r($_POST, true)).'</pre>';
 
-# ФУНКЦИИ
+# Р¤РЈРќРљР¦????
 
-# ДЕЛАЕМ BACKUP ПО УКАЗАННОМУ ПОЛЮ
+# Р”Р•Р›РђР•Рњ BACKUP РџРћ РЈРљРђР—РђРќРќРћРњРЈ РџРћР›Р®
 if ($_POST['action'] == 'makeBackup')
 {
     # print_r($_POST);
@@ -84,9 +84,9 @@ if ($_POST['action'] == 'makeBackup')
     }
     
     
-} # /ДЕЛАЕМ BACKUP ПО УКАЗАННОМУ ПОЛЮ
+} # /Р”Р•Р›РђР•Рњ BACKUP РџРћ РЈРљРђР—РђРќРќРћРњРЈ РџРћР›Р®
 
-# ПОЛУЧАЕМ СПИСОК BACKUP'ОВ ДЛЯ ТЕКУЩЕГО ПОЛЯ
+# РџРћР›РЈР§РђР•Рњ РЎРџ??РЎРћРљ BACKUP'РћР’ Р”Р›РЇ РўР•РљРЈР©Р•Р“Рћ РџРћР›РЇ
 elseif ($_POST['action'] == 'getAllBackupsForSpecificField')
 {
     /*
@@ -107,7 +107,7 @@ elseif ($_POST['action'] == 'getAllBackupsForSpecificField')
     select id,
            field_name,
            date_format(date_add,'%e') as date_add_day,
-           elt(month(date_add), 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря') as date_add_month,
+           elt(month(date_add), 'СЏРЅРІР°СЂСЏ', 'С„РµРІСЂР°Р»СЏ', 'РјР°СЂС‚Р°', 'Р°РїСЂРµР»СЏ', 'РјР°СЏ', 'РёСЋРЅСЏ', 'РёСЋР»СЏ', 'Р°РІРіСѓСЃС‚Р°', 'СЃРµРЅС‚СЏР±СЂСЏ', 'РѕРєС‚СЏР±СЂСЏ', 'РЅРѕСЏР±СЂСЏ', 'РґРµРєР°Р±СЂСЏ') as date_add_month,
            date_format(date_add,'%Y') as date_add_year,
            date_format(date_add,'%H:%i:%s') as date_add_time,
            html_code
@@ -132,10 +132,10 @@ elseif ($_POST['action'] == 'getAllBackupsForSpecificField')
             {
                 for ($i=0;$i<$_c;$i++)
                 {
-                    if (!empty($_[$i]['date_add_month'])) $_[$i]['date_add_month'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['date_add_month']);
+                    // if (!empty($_[$i]['date_add_month'])) $_[$i]['date_add_month'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['date_add_month']);
                     if (!empty($_[$i]['html_code']))
                     {
-                        $_[$i]['html_code'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['html_code']);
+                        // $_[$i]['html_code'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['html_code']);
                         $_[$i]['html_code'] = htmlspecialchars($_[$i]['html_code'], ENT_QUOTES);
                     }
                 }
@@ -152,9 +152,9 @@ elseif ($_POST['action'] == 'getAllBackupsForSpecificField')
             exit;
         }
     }
-} # /ПОЛУЧАЕМ СПИСОК BACKUP'ОВ ДЛЯ ТЕКУЩЕГО ПОЛЯ
+} # /РџРћР›РЈР§РђР•Рњ РЎРџ??РЎРћРљ BACKUP'РћР’ Р”Р›РЇ РўР•РљРЈР©Р•Р“Рћ РџРћР›РЇ
 
-# ПОЛУЧАЕМ ВСЕ BACKUP'Ы ДЛЯ ВСЕХ ПОЛЕЙ
+# РџРћР›РЈР§РђР•Рњ Р’РЎР• BACKUP'Р« Р”Р›РЇ Р’РЎР•РҐ РџРћР›Р•Р™
 elseif ($_POST['action'] == 'getAllBackups')
 {
     /*
@@ -180,7 +180,7 @@ elseif ($_POST['action'] == 'getAllBackups')
     select id,
            field_name,
            date_format(date_add,'%e') as date_add_day,
-           elt(month(date_add), 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря') as date_add_month,
+           elt(month(date_add), 'СЏРЅРІР°СЂСЏ', 'С„РµРІСЂР°Р»СЏ', 'РјР°СЂС‚Р°', 'Р°РїСЂРµР»СЏ', 'РјР°СЏ', 'РёСЋРЅСЏ', 'РёСЋР»СЏ', 'Р°РІРіСѓСЃС‚Р°', 'СЃРµРЅС‚СЏР±СЂСЏ', 'РѕРєС‚СЏР±СЂСЏ', 'РЅРѕСЏР±СЂСЏ', 'РґРµРєР°Р±СЂСЏ') as date_add_month,
            date_format(date_add,'%Y') as date_add_year,
            date_format(date_add,'%H:%i:%s') as date_add_time,
            html_code
@@ -212,10 +212,10 @@ elseif ($_POST['action'] == 'getAllBackups')
             {
                 for ($i=0;$i<$_c;$i++)
                 {
-                    if (!empty($_[$i]['date_add_month'])) $_[$i]['date_add_month'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['date_add_month']);
+                    // if (!empty($_[$i]['date_add_month'])) $_[$i]['date_add_month'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['date_add_month']);
                     if (!empty($_[$i]['html_code']))
                     {
-                        $_[$i]['html_code'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['html_code']);
+                        // $_[$i]['html_code'] = iconv('windows-1251', 'UTF-8//TRANSLIT', $_[$i]['html_code']);
                         $_[$i]['html_code'] = htmlspecialchars($_[$i]['html_code'], ENT_QUOTES);
                     }
                 }
@@ -232,9 +232,9 @@ elseif ($_POST['action'] == 'getAllBackups')
             exit;
         }
     }
-} # /ПОЛУЧАЕМ ВСЕ BACKUP'Ы ДЛЯ ВСЕХ ПОЛЕЙ
+} # /РџРћР›РЈР§РђР•Рњ Р’РЎР• BACKUP'Р« Р”Р›РЇ Р’РЎР•РҐ РџРћР›Р•Р™
 
-# УДАЛЯЕМ BACKUP
+# РЈР”РђР›РЇР•Рњ BACKUP
 elseif ($_POST['action'] == 'removeBackup')
 {
     $sql = "
@@ -259,8 +259,8 @@ elseif ($_POST['action'] == 'removeBackup')
         }
     }
     
-} # /УДАЛЯЕМ BACKUP
+} # /РЈР”РђР›РЇР•Рњ BACKUP
 
-# /ФУНКЦИИ
+# /Р¤РЈРќРљР¦????
 
-# /ФУНКЦИИ
+# /Р¤РЈРќРљР¦????

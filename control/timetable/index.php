@@ -1,239 +1,239 @@
-<?php 
-# ÃÓ‰ÛÎ¸ ‡‰ÏËÌÍË ‰Îˇ ‡·ÓÚ˚ Ò ‡ÒÔËÒ‡ÌËÂÏ (Ú‡·ÎËˆ‡ timetable)
-# romanov.egor@gmail.com; 2015.10.16
-
-# ÔÓ‰ÍÎ˛˜‡ÂÏ Ù‡ÈÎ ÍÓÌÙË„‡
-include('../loader.control.php');
-
-# ÔÓ‰ÍÎ˛˜‡ÂÏ Ó·˘ËÂ ÙÛÌÍˆËË ‰Îˇ index.php Ë ajax.php
-include('common.functions.php');
-
-# Õ¿—“–Œ… »
-$GLOBALS['tpl_title'] = '–‡ÒÔËÒ‡ÌËÂ';
-$GLOBALS['public_url'] = '/raspisanie/';
-
-# «¿Ÿ»“¿
-if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
-
-# ÀŒ√» ¿
-
-$GLOBALS['tpl_title'] .= '';
-$GLOBALS['tpl_h1'] = '–‡ÒÔËÒ‡ÌËÂ ('.$dbh->query('select count(1) from '.DB_PREFIX.'timetable')->fetchColumn().')';
-$GLOBALS['tpl_content'] = showItems();
-
-# /ÀŒ√» ¿
-
-# ‚˚‚Ó‰ËÏ „Î‡‚Ì˚È ¯‡·ÎÓÌ
-$tpl->setMainTemplate('template_for_all_pages.php');
-$tpl->echoMainTemplate();
-
-# ‘”Õ ÷»ŒÕ¿À
-
-# ¬€¬Œƒ»Ã ‘Œ–Ã” ƒÀﬂ –¿—œ»—¿Õ»ﬂ
-function showItems($count = null)
-{
-    global $dbh;
-
-    $lastShowID = getLastShowID();
-    $optionsForShowsSelect = getShowsForSelect($lastShowID);
-    $optionsForPlacesSelect = getPlacesForSelect($lastShowID);
-
-    # Ò˜ËÚ‡ÂÏ ÍÓÎË˜ÂÒÚ‚Ó ÒÓ·˚ÚËÈ ‚ ÀÛÊÌËÍ‡ı
-    $timetable1Count = $dbh->query('select count(1) from '.DB_PREFIX.'timetable where place_id = 1')->fetchColumn();
-    # Ò˜ËÚ‡ÂÏ ÍÓÎË˜ÂÒÚ‚Ó ÒÓ·˚ÚËÈ Ì‡ ¬ÂÌ‡‰ÒÍÓ„Ó
-    $timetable2Count = $dbh->query('select count(1) from '.DB_PREFIX.'timetable where place_id = 2')->fetchColumn();
-
-    # ≈—À» ” ¿«¿Õ¿ —Œ–“»–Œ¬ ¿ œŒ œÀŒŸ¿ƒ ≈ (»/»À» œŒ ÿŒ”)
-    # ÀÛÊÌËÍË
-    if ($_GET['place'] == 1) $active1 = ' class="active"';
-    # ¬ÂÌ‡‰ÒÍÓ„Ó
-    elseif ($_GET['place'] == 2) {
-        $active2 = " class='active'";
-        # ÙÓÏËÛÂÏ Ë ‚˚‚Ó‰ËÏ ÒÓÚËÓ‚ÍÛ ÔÓ ¯ÓÛ
-        $sql = '
-        select distinct t1.show_id as id,
-               t2.name,
-               (select count(1) from '.DB_PREFIX.'timetable where place_id = 2 and show_id = t1.show_id) as items_count
-        from '.DB_PREFIX.'timetable as t1
-        left outer join shows_circus as t2
-        on t2.id = t1.show_id
-        where t1.place_id = 2
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $tmp = $dbh->query($sql)->fetchAll(); # echo '<pre>'.(print_r($tmp, true)).'</pre>'; # exit;
-        if (!empty($tmp)) {
-            $tmpResult = array();
-            foreach ($tmp as $item) {
-                # selected
-                $active = $_GET['show'] == $item['id'] ? ' class="active"' : '';
-
-                $tmpResult[] = '<a href="/control/timetable/?place=2&show='.$item['id'].'"'.$active.'>'.$item['name'].' ('.$item['items_count'].')</a>';
-            }
-            $sortingByShow = '
-            <!-- —ÓÚËÓ‚Í‡ ÔÓ ¯ÓÛ -->
-            <div class="sorting"><b>—ÓÚËÓ‚Í‡ ÔÓ ¯ÓÛ:</b> '.
-            implode(' <span style="color:#ccc">|</span> ', $tmpResult).
-            '</div>
-            <!-- /—ÓÚËÓ‚Í‡ ÔÓ ¯ÓÛ -->';
-        }
-    } # /≈—À» ” ¿«¿Õ¿ —Œ–“»–Œ¬ ¿ œŒ œÀŒŸ¿ƒ ≈ (»/»À» œŒ ÿŒ”)
-
-    $result = '
-	<script type="text/javascript" src="/control/timetable/index.js?v=1.4"></script>
-
-    <div style="width:50%;float:left">
-        <b>URL:</b>&nbsp; <a href="'.$GLOBALS['public_url'].'" target="_blank">http://'.$_SERVER['SERVER_NAME'].$GLOBALS['public_url'].'</a>
-    </div>
-
-    <br style="clear:both" />
-
-    <!-- —ÓÚËÓ‚Í‡ ÔÓ ÔÎÓ˘‡‰ÍÂ -->
-    <div class="sorting"><b>—ÓÚËÓ‚Í‡:</b>
-    <a href="/control/timetable/?place=1"'.$active1.'>ÀÛÊÌËÍË ('.$timetable1Count.')</a> <span style="color:#ccc">|</span>
-    <a href="/control/timetable/?place=2"'.$active2.'>¬ÂÌ‡‰ÒÍÓ„Ó ('.$timetable2Count.')</a>
-    </div>
-    '.$sortingByShow.'
-    <!-- /—ÓÚËÓ‚Í‡ ÔÓ ÔÎÓ˘‡‰ÍÂ -->
-
-    <div class="center" style="margin-top:10px;margin-bottom:15px">
-        <a href="#" class="timetable_add_date_button"><button class="btn btn-success" type="button"><i class="fa fa-plus-square" style="margin-right:3px"></i> ƒÓ·‡‚ËÚ¸ ‰‡ÚÛ</button></a>
-
-        &nbsp;&nbsp;&nbsp;
-
-        <button class="btn btn-primary submit_button timetable_save_changes inline" type="submit">—Óı‡ÌËÚ¸ ËÁÏÂÌÂÌËˇ</button>
-    </div>
-
-    <div id="time_table_list"></div>
-
-    <div id="template_add_date" style="display:none">
-        <div class="well timetable">
-            <div class="form-group timetable" data-item-id="'.$_[$i]['id'].'">
-                <b>ƒ¿“¿</b><!-- (ƒƒ.ÃÃ.√√√√)-->:
-                &nbsp; <input type="text" name="timetable_event_date" class="form-control timetable_event_date" value="'.$_[$i]['date_formatted'].'" />
-                &nbsp;&nbsp;&nbsp;
-                <b>¬–≈Ãﬂ</b>:
-                &nbsp;<input type="text" name="timetable_event_time" class="form-control timetable_event_time" value="'.$_[$i]['time'].'" maxlength="5" />
-                &nbsp;&nbsp;&nbsp;
-                <b>œÀŒŸ¿ƒ ¿</b>: &nbsp;
-                <select name="timetable_event_place_id" class="timetable_place_id form-control">
-                '.$optionsForPlacesSelect.'
-                </select>
-                <span>
-                &nbsp;&nbsp;&nbsp;
-                <b>ÿŒ”:</b> &nbsp;
-                <select name="timetable_event_name" class="timetable_event_id form-control">
-                '.$optionsForShowsSelect.'
-                </select>
-                &nbsp;&nbsp;&nbsp;
-                <a title="”‰‡ÎËÚ¸ ‰‡ÚÛ" href="#" class="time_remove_item">
-                    <i class="fa fa-trash-o size_18"></i>
-                </a>
-                </span>
-            </div>
-        </div>
-    </div>
-    ';
-
-    return $result;
-} # /¬€¬Œƒ»Ã ‘Œ–Ã” ƒÀﬂ –¿—œ»—¿Õ»ﬂ
-
-# œŒÀ”◊¿≈Ã —œ»—Œ  ÿŒ”, ‘Œ–Ã»–”≈Ã OPTIONS ƒÀﬂ SELECT'¿
-function getShowsForSelect($showID)
-{
-    global $dbh;
-
-    $sql = "
-	select id, name
-	from ".DB_PREFIX."shows_circus
-	order by isnull(element_order_listing),
-	         element_order_listing,
-	         name
-	"; # echo $sql."<hr />";
-    $result = $dbh->prepare($sql);
-    try {
-        if ($result->execute()) {
-            $_ = $result->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>'; # exit;
-            $_c = count($_);
-            if (!empty($_)) {
-                $result = '';
-                for ($i=0;$i<$_c;$i++) {
-                    # selected
-                    if ($_[$i]['id'] == $showID) $selected = ' selected="selected"';
-                    else unset($selected);
-
-                    $result .= '<option value="'.$_[$i]['id'].'"'.$selected.'>'.$_[$i]['name'].'</option>';
-                }
-            }
-
-            return $result;
-        }
-    }
-    catch (PDOException $e) {
-        if (DB_SHOW_ERRORS) {
-            echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage();
-            exit;
-        }
-    }
-} # /œŒÀ”◊¿≈Ã —œ»—Œ  ÿŒ”, ‘Œ–Ã»–”≈Ã OPTIONS ƒÀﬂ SELECT'¿
-
-# œŒÀ”◊¿≈Ã ID œŒ—À≈ƒÕ≈√Œ ÿŒ”
-function getLastShowID()
-{
-    global $dbh;
-
-    $sql = "
-	select max(id)
-	from ".DB_PREFIX."shows
-	"; # echo $sql."<hr />";
-    $result = $dbh->prepare($sql);
-    try {
-        if ($result->execute()) {
-            $_ = $result->fetchColumn(); # echo '<pre>'.(print_r($_, true)).'</pre>'; # exit;
-            if (!empty($_)) return $_;
-        }
-    }
-    catch (PDOException $e) {
-        if (DB_SHOW_ERRORS) {
-            echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage();
-            exit;
-        }
-    }
-} # /œŒÀ”◊¿≈Ã ID œŒ—À≈ƒÕ≈√Œ ÿŒ”
-
-# œŒÀ”◊¿≈Ã —œ»—Œ  Ã≈—“ œ–Œ¬≈ƒ≈Õ»ﬂ œ–≈ƒ—“¿¬À≈Õ»…, ‘Œ–Ã»–”≈Ã OPTIONS ƒÀﬂ SELECT'¿
-function getPlacesForSelect($showID)
-{
-    global $dbh;
-
-    $sql = "
-	select id, name
-	from ".DB_PREFIX."places
-	order by name
-	"; # echo $sql."<hr />";
-    $result = $dbh->prepare($sql);
-    try {
-        if ($result->execute()) {
-            $_ = $result->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>'; # exit;
-            $_c = count($_);
-            if (!empty($_)) {
-                $result = '';
-                for ($i=0;$i<$_c;$i++) {
-                    # selected
-                    if ($_[$i]['id'] == $showID) $selected = ' selected="selected"';
-                    else unset($selected);
-
-                    $result .= '<option value="'.$_[$i]['id'].'"'.$selected.'>'.$_[$i]['name'].'</option>';
-                }
-            }
-
-            return $result;
-        }
-    }
-    catch (PDOException $e) {
-        if (DB_SHOW_ERRORS) {
-            echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage();
-            exit;
-        }
-    }
-} # /œŒÀ”◊¿≈Ã —œ»—Œ  Ã≈—“ œ–Œ¬≈ƒ≈Õ»ﬂ œ–≈ƒ—“¿¬À≈Õ»…
-
-# /‘”Õ ÷»ŒÕ¿À
+<?php 
+# –ú–æ–¥—É–ª—å –∞–¥–º–∏–Ω–∫–∏ –¥–ª—è —Ä–∞–±–æ—Ç—ã —Å —Ä–∞—Å–ø–∏—Å–∞–Ω–∏–µ–º (—Ç–∞–±–ª–∏—Ü–∞ timetable)
+# romanov.egor@gmail.com; 2015.10.16
+
+# –ø–æ–¥–∫–ª—é—á–∞–µ–º —Ñ–∞–π–ª –∫–æ–Ω—Ñ–∏–≥–∞
+include('../loader.control.php');
+
+# –ø–æ–¥–∫–ª—é—á–∞–µ–º –æ–±—â–∏–µ —Ñ—É–Ω–∫—Ü–∏–∏ –¥–ª—è index.php –∏ ajax.php
+include('common.functions.php');
+
+# –ù–ê–°–¢–†–û–ô–ö–ò
+$GLOBALS['tpl_title'] = '–†–∞—Å–ø–∏—Å–∞–Ω–∏–µ';
+$GLOBALS['public_url'] = '/raspisanie/';
+
+# –ó–ê–©–ò–¢–ê
+if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
+
+# –õ–û–ì–ò–ö–ê
+
+$GLOBALS['tpl_title'] .= '';
+$GLOBALS['tpl_h1'] = '–†–∞—Å–ø–∏—Å–∞–Ω–∏–µ ('.$dbh->query('select count(1) from '.DB_PREFIX.'timetable')->fetchColumn().')';
+$GLOBALS['tpl_content'] = showItems();
+
+# /–õ–û–ì–ò–ö–ê
+
+# –≤—ã–≤–æ–¥–∏–º –≥–ª–∞–≤–Ω—ã–π —à–∞–±–ª–æ–Ω
+$tpl->setMainTemplate('template_for_all_pages.php');
+$tpl->echoMainTemplate();
+
+# –§–£–ù–ö–¶–ò–û–ù–ê–õ
+
+# –í–´–í–û–î–ò–ú –§–û–†–ú–£ –î–õ–Ø –†–ê–°–ü–ò–°–ê–ù–ò–Ø
+function showItems($count = null)
+{
+    global $dbh;
+
+    $lastShowID = getLastShowID();
+    $optionsForShowsSelect = getShowsForSelect($lastShowID);
+    $optionsForPlacesSelect = getPlacesForSelect($lastShowID);
+
+    # —Å—á–∏—Ç–∞–µ–º –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ —Å–æ–±—ã—Ç–∏–π –≤ –õ—É–∂–Ω–∏–∫–∞—Ö
+    $timetable1Count = $dbh->query('select count(1) from '.DB_PREFIX.'timetable where place_id = 1')->fetchColumn();
+    # —Å—á–∏—Ç–∞–µ–º –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ —Å–æ–±—ã—Ç–∏–π –Ω–∞ –í–µ—Ä–Ω–∞–¥—Å–∫–æ–≥–æ
+    $timetable2Count = $dbh->query('select count(1) from '.DB_PREFIX.'timetable where place_id = 2')->fetchColumn();
+
+    # –ï–°–õ–ò –£–ö–ê–ó–ê–ù–ê –°–û–†–¢–ò–†–û–í–ö–ê –ü–û –ü–õ–û–©–ê–î–ö–ï (–ò/–ò–õ–ò –ü–û –®–û–£)
+    # –õ—É–∂–Ω–∏–∫–∏
+    if ($_GET['place'] == 1) $active1 = ' class="active"';
+    # –í–µ—Ä–Ω–∞–¥—Å–∫–æ–≥–æ
+    elseif ($_GET['place'] == 2) {
+        $active2 = " class='active'";
+        # —Ñ–æ—Ä–º–∏—Ä—É–µ–º –∏ –≤—ã–≤–æ–¥–∏–º —Å–æ—Ä—Ç–∏—Ä–æ–≤–∫—É –ø–æ —à–æ—É
+        $sql = '
+        select distinct t1.show_id as id,
+               t2.name,
+               (select count(1) from '.DB_PREFIX.'timetable where place_id = 2 and show_id = t1.show_id) as items_count
+        from '.DB_PREFIX.'timetable as t1
+        left outer join shows_circus as t2
+        on t2.id = t1.show_id
+        where t1.place_id = 2
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $tmp = $dbh->query($sql)->fetchAll(); # echo '<pre>'.(print_r($tmp, true)).'</pre>'; # exit;
+        if (!empty($tmp)) {
+            $tmpResult = array();
+            foreach ($tmp as $item) {
+                # selected
+                $active = $_GET['show'] == $item['id'] ? ' class="active"' : '';
+
+                $tmpResult[] = '<a href="/control/timetable/?place=2&show='.$item['id'].'"'.$active.'>'.$item['name'].' ('.$item['items_count'].')</a>';
+            }
+            $sortingByShow = '
+            <!-- –°–æ—Ä—Ç–∏—Ä–æ–≤–∫–∞ –ø–æ —à–æ—É -->
+            <div class="sorting"><b>–°–æ—Ä—Ç–∏—Ä–æ–≤–∫–∞ –ø–æ —à–æ—É:</b> '.
+            implode(' <span style="color:#ccc">|</span> ', $tmpResult).
+            '</div>
+            <!-- /–°–æ—Ä—Ç–∏—Ä–æ–≤–∫–∞ –ø–æ —à–æ—É -->';
+        }
+    } # /–ï–°–õ–ò –£–ö–ê–ó–ê–ù–ê –°–û–†–¢–ò–†–û–í–ö–ê –ü–û –ü–õ–û–©–ê–î–ö–ï (–ò/–ò–õ–ò –ü–û –®–û–£)
+
+    $result = '
+	<script type="text/javascript" src="/control/timetable/index.js?v=1.4"></script>
+
+    <div style="width:50%;float:left">
+        <b>URL:</b>&nbsp; <a href="'.$GLOBALS['public_url'].'" target="_blank">http://'.$_SERVER['SERVER_NAME'].$GLOBALS['public_url'].'</a>
+    </div>
+
+    <br style="clear:both" />
+
+    <!-- –°–æ—Ä—Ç–∏—Ä–æ–≤–∫–∞ –ø–æ –ø–ª–æ—â–∞–¥–∫–µ -->
+    <div class="sorting"><b>–°–æ—Ä—Ç–∏—Ä–æ–≤–∫–∞:</b>
+    <a href="/control/timetable/?place=1"'.$active1.'>–õ—É–∂–Ω–∏–∫–∏ ('.$timetable1Count.')</a> <span style="color:#ccc">|</span>
+    <a href="/control/timetable/?place=2"'.$active2.'>–í–µ—Ä–Ω–∞–¥—Å–∫–æ–≥–æ ('.$timetable2Count.')</a>
+    </div>
+    '.$sortingByShow.'
+    <!-- /–°–æ—Ä—Ç–∏—Ä–æ–≤–∫–∞ –ø–æ –ø–ª–æ—â–∞–¥–∫–µ -->
+
+    <div class="center" style="margin-top:10px;margin-bottom:15px">
+        <a href="#" class="timetable_add_date_button"><button class="btn btn-success" type="button"><i class="fa fa-plus-square" style="margin-right:3px"></i> –î–æ–±–∞–≤–∏—Ç—å –¥–∞—Ç—É</button></a>
+
+        &nbsp;&nbsp;&nbsp;
+
+        <button class="btn btn-primary submit_button timetable_save_changes inline" type="submit">–°–æ—Ö—Ä–∞–Ω–∏—Ç—å –∏–∑–º–µ–Ω–µ–Ω–∏—è</button>
+    </div>
+
+    <div id="time_table_list"></div>
+
+    <div id="template_add_date" style="display:none">
+        <div class="well timetable">
+            <div class="form-group timetable" data-item-id="'.$_[$i]['id'].'">
+                <b>–î–ê–¢–ê</b><!-- (–î–î.–ú–ú.–ì–ì–ì–ì)-->:
+                &nbsp; <input type="text" name="timetable_event_date" class="form-control timetable_event_date" value="'.$_[$i]['date_formatted'].'" />
+                &nbsp;&nbsp;&nbsp;
+                <b>–í–†–ï–ú–Ø</b>:
+                &nbsp;<input type="text" name="timetable_event_time" class="form-control timetable_event_time" value="'.$_[$i]['time'].'" maxlength="5" />
+                &nbsp;&nbsp;&nbsp;
+                <b>–ü–õ–û–©–ê–î–ö–ê</b>: &nbsp;
+                <select name="timetable_event_place_id" class="timetable_place_id form-control">
+                '.$optionsForPlacesSelect.'
+                </select>
+                <span>
+                &nbsp;&nbsp;&nbsp;
+                <b>–®–û–£:</b> &nbsp;
+                <select name="timetable_event_name" class="timetable_event_id form-control">
+                '.$optionsForShowsSelect.'
+                </select>
+                &nbsp;&nbsp;&nbsp;
+                <a title="–£–¥–∞–ª–∏—Ç—å –¥–∞—Ç—É" href="#" class="time_remove_item">
+                    <i class="fa fa-trash-o size_18"></i>
+                </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    ';
+
+    return $result;
+} # /–í–´–í–û–î–ò–ú –§–û–†–ú–£ –î–õ–Ø –†–ê–°–ü–ò–°–ê–ù–ò–Ø
+
+# –ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –®–û–£, –§–û–†–ú–ò–†–£–ï–ú OPTIONS –î–õ–Ø SELECT'–ê
+function getShowsForSelect($showID)
+{
+    global $dbh;
+
+    $sql = "
+	select id, name
+	from ".DB_PREFIX."shows_circus
+	order by isnull(element_order_listing),
+	         element_order_listing,
+	         name
+	"; # echo $sql."<hr />";
+    $result = $dbh->prepare($sql);
+    try {
+        if ($result->execute()) {
+            $_ = $result->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>'; # exit;
+            $_c = count($_);
+            if (!empty($_)) {
+                $result = '';
+                for ($i=0;$i<$_c;$i++) {
+                    # selected
+                    if ($_[$i]['id'] == $showID) $selected = ' selected="selected"';
+                    else unset($selected);
+
+                    $result .= '<option value="'.$_[$i]['id'].'"'.$selected.'>'.$_[$i]['name'].'</option>';
+                }
+            }
+
+            return $result;
+        }
+    }
+    catch (PDOException $e) {
+        if (DB_SHOW_ERRORS) {
+            echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage();
+            exit;
+        }
+    }
+} # /–ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –®–û–£, –§–û–†–ú–ò–†–£–ï–ú OPTIONS –î–õ–Ø SELECT'–ê
+
+# –ü–û–õ–£–ß–ê–ï–ú ID –ü–û–°–õ–ï–î–ù–ï–ì–û –®–û–£
+function getLastShowID()
+{
+    global $dbh;
+
+    $sql = "
+	select max(id)
+	from ".DB_PREFIX."shows
+	"; # echo $sql."<hr />";
+    $result = $dbh->prepare($sql);
+    try {
+        if ($result->execute()) {
+            $_ = $result->fetchColumn(); # echo '<pre>'.(print_r($_, true)).'</pre>'; # exit;
+            if (!empty($_)) return $_;
+        }
+    }
+    catch (PDOException $e) {
+        if (DB_SHOW_ERRORS) {
+            echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage();
+            exit;
+        }
+    }
+} # /–ü–û–õ–£–ß–ê–ï–ú ID –ü–û–°–õ–ï–î–ù–ï–ì–û –®–û–£
+
+# –ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –ú–ï–°–¢ –ü–†–û–í–ï–î–ï–ù–ò–Ø –ü–†–ï–î–°–¢–ê–í–õ–ï–ù–ò–ô, –§–û–†–ú–ò–†–£–ï–ú OPTIONS –î–õ–Ø SELECT'–ê
+function getPlacesForSelect($showID)
+{
+    global $dbh;
+
+    $sql = "
+	select id, name
+	from ".DB_PREFIX."places
+	order by name
+	"; # echo $sql."<hr />";
+    $result = $dbh->prepare($sql);
+    try {
+        if ($result->execute()) {
+            $_ = $result->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>'; # exit;
+            $_c = count($_);
+            if (!empty($_)) {
+                $result = '';
+                for ($i=0;$i<$_c;$i++) {
+                    # selected
+                    if ($_[$i]['id'] == $showID) $selected = ' selected="selected"';
+                    else unset($selected);
+
+                    $result .= '<option value="'.$_[$i]['id'].'"'.$selected.'>'.$_[$i]['name'].'</option>';
+                }
+            }
+
+            return $result;
+        }
+    }
+    catch (PDOException $e) {
+        if (DB_SHOW_ERRORS) {
+            echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage();
+            exit;
+        }
+    }
+} # /–ü–û–õ–£–ß–ê–ï–ú –°–ü–ò–°–û–ö –ú–ï–°–¢ –ü–†–û–í–ï–î–ï–ù–ò–Ø –ü–†–ï–î–°–¢–ê–í–õ–ï–ù–ò–ô
+
+# /–§–£–ù–ö–¶–ò–û–ù–ê–õ

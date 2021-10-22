@@ -1,98 +1,195 @@
 <div id="request_form" class="form-calculator">
+
     
-<h3>Тип теплообменника</h3>
+
+<h3>РўРёРї С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</h3>
+
 <div class="form-calculator-type">
-<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Воздухонагреватель водяной" checked="checked" />воздухонагреватель водяной</label>
-<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Воздухоохладитель водяной" />воздухоохладитель водяной</label>
-<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Электрокалорифер" />электрокалорифер</label>
-<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Фреоновый испаритель" />фреоновый испаритель</label>
+
+<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Р’РѕР·РґСѓС…РѕРЅР°РіСЂРµРІР°С‚РµР»СЊ РІРѕРґСЏРЅРѕР№" checked="checked" />РІРѕР·РґСѓС…РѕРЅР°РіСЂРµРІР°С‚РµР»СЊ РІРѕРґСЏРЅРѕР№</label>
+
+<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Р’РѕР·РґСѓС…РѕРѕС…Р»Р°РґРёС‚РµР»СЊ РІРѕРґСЏРЅРѕР№" />РІРѕР·РґСѓС…РѕРѕС…Р»Р°РґРёС‚РµР»СЊ РІРѕРґСЏРЅРѕР№</label>
+
+<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Р­Р»РµРєС‚СЂРѕРєР°Р»РѕСЂРёС„РµСЂ" />СЌР»РµРєС‚СЂРѕРєР°Р»РѕСЂРёС„РµСЂ</label>
+
+<label class="form-calculator-type-label"><input class="form-calculator-type__input" type="radio" name="request_form_heat_exchanger_type" value="Р¤СЂРµРѕРЅРѕРІС‹Р№ РёСЃРїР°СЂРёС‚РµР»СЊ" />С„СЂРµРѕРЅРѕРІС‹Р№ РёСЃРїР°СЂРёС‚РµР»СЊ</label>
+
 </div>
+
     
+
 <br />
 
-<h3>Данные по воде и воздуху</h3>
-<h4>Расход:</h4>
+
+
+<h3>Р”Р°РЅРЅС‹Рµ РїРѕ РІРѕРґРµ Рё РІРѕР·РґСѓС…Сѓ</h3>
+
+<h4>Р Р°СЃС…РѕРґ:</h4>
+
 <div class="form-calculator-water-data">
-<input id="request_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Воздуха, м3/ч" value="" />
-<input id="request_form_coolant_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Теплоносителя, м3/ч" value="" />
+
+<input id="request_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Р’РѕР·РґСѓС…Р°, Рј3/С‡" value="" />
+
+<input id="request_form_coolant_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРїР»РѕРЅРѕСЃРёС‚РµР»СЏ, Рј3/С‡" value="" />
+
 </div>
 
-<h4>Температура воздуха:</h4>
+
+
+<h4>РўРµРјРїРµСЂР°С‚СѓСЂР° РІРѕР·РґСѓС…Р°:</h4>
+
 <div class="form-calculator-water-data">
-<input id="request_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="На входе, °C" value="" />
-<input id="request_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="На выходе, °C" value="" />
+
+<input id="request_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РќР° РІС…РѕРґРµ, В°C" value="" />
+
+<input id="request_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РќР° РІС‹С…РѕРґРµ, В°C" value="" />
+
 </div>
 
-<h4>Температура теплоносителя (необходима только для водяного нагревателя и водяного охладителя):</h4>
+
+
+<h4>РўРµРјРїРµСЂР°С‚СѓСЂР° С‚РµРїР»РѕРЅРѕСЃРёС‚РµР»СЏ (РЅРµРѕР±С…РѕРґРёРјР° С‚РѕР»СЊРєРѕ РґР»СЏ РІРѕРґСЏРЅРѕРіРѕ РЅР°РіСЂРµРІР°С‚РµР»СЏ Рё РІРѕРґСЏРЅРѕРіРѕ РѕС…Р»Р°РґРёС‚РµР»СЏ):</h4>
+
 <div class="form-calculator-water-data">
-<input id="request_form_input_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="На входе, °C" value="" />
-<input id="request_form_output_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="На выходе, °C" value="" />
+
+<input id="request_form_input_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РќР° РІС…РѕРґРµ, В°C" value="" />
+
+<input id="request_form_output_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РќР° РІС‹С…РѕРґРµ, В°C" value="" />
+
 </div>
+
     
-<h4>Требуемая мощность (необязательно, если есть Т<sub>вх возд</sub> и Т<sub>вых возд</sub>):</h4>
-<input id="request_form_power" type="text" class="form-control" placeholder="кВт" value="" />
+
+<h4>РўСЂРµР±СѓРµРјР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ, РµСЃР»Рё РµСЃС‚СЊ Рў<sub>РІС… РІРѕР·Рґ</sub> Рё Рў<sub>РІС‹С… РІРѕР·Рґ</sub>):</h4>
+
+<input id="request_form_power" type="text" class="form-control" placeholder="РєР’С‚" value="" />
+
 <br />
 
-<h3>Данные по размерам</h3>
+
+
+<h3>Р”Р°РЅРЅС‹Рµ РїРѕ СЂР°Р·РјРµСЂР°Рј</h3>
+
 <img src="/public/images/shema.jpg" class="img-responsive" ><br /><br />
+
 <div class="form-calculator-sizes-data">
-<input id="request_form_fta_length" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Длина FTA" value="" />
-<input id="request_form_ftb_height" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Высота FTB" value="" />
-<input id="request_form_s_width" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Ширина S" value="" />
+
+<input id="request_form_fta_length" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р”Р»РёРЅР° FTA" value="" />
+
+<input id="request_form_ftb_height" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р’С‹СЃРѕС‚Р° FTB" value="" />
+
+<input id="request_form_s_width" type="text" class="form-control form-calculator-sizes-data__input" placeholder="РЁРёСЂРёРЅР° S" value="" />
+
 </div>
 
-<h4>Диаметр подводящих патрубков:</h4>
+
+
+<h4>Р”РёР°РјРµС‚СЂ РїРѕРґРІРѕРґСЏС‰РёС… РїР°С‚СЂСѓР±РєРѕРІ:</h4>
+
 <div class="form-calculator-diametr">
+
 <div class="form-calculator-diametr-col">
-<h5 class="form-calculator-diametr-col__h5">На входе C</h5>
+
+<h5 class="form-calculator-diametr-col__h5">РќР° РІС…РѕРґРµ C</h5>
+
 <select id="request_form_input_s_diameter" class="form-control form-calculator-diametr-col__select">
-<option value="DN 15 (1/2 дюйма)">DN 15 &nbsp;&nbsp;(1/2 дюйма)</option>
-<option value="DN 20 (3/4 дюйма)">DN 20 &nbsp;&nbsp;(3/4 дюйма)</option>
-<option value="DN 25 (1 дюйм)">DN 25 &nbsp;&nbsp;(1 дюйм)</option>
-<option value="DN 32 (1 1/4 дюйма)">DN 32 &nbsp;&nbsp;(1 1/4 дюйма)</option>
-<option value="DN 40 (1 1/2 дюйма)">DN 40 &nbsp;&nbsp;(1 1/2 дюйма)</option>
-<option value="DN 50 (2 дюйма)">DN 50 &nbsp;&nbsp;(2 дюйма)</option>
-<option value="DN 65 (2 1/2 дюйма)">DN 65 &nbsp;&nbsp;(2 1/2 дюйма)</option>
-<option value="DN 80 (3 дюйма)">DN 80 &nbsp;&nbsp;(3 дюйма)</option>
-<option value="DN 100 (4 дюйма)">DN 100 (4 дюйма)</option>
+
+<option value="DN 15 (1/2 РґСЋР№РјР°)">DN 15 &nbsp;&nbsp;(1/2 РґСЋР№РјР°)</option>
+
+<option value="DN 20 (3/4 РґСЋР№РјР°)">DN 20 &nbsp;&nbsp;(3/4 РґСЋР№РјР°)</option>
+
+<option value="DN 25 (1 РґСЋР№Рј)">DN 25 &nbsp;&nbsp;(1 РґСЋР№Рј)</option>
+
+<option value="DN 32 (1 1/4 РґСЋР№РјР°)">DN 32 &nbsp;&nbsp;(1 1/4 РґСЋР№РјР°)</option>
+
+<option value="DN 40 (1 1/2 РґСЋР№РјР°)">DN 40 &nbsp;&nbsp;(1 1/2 РґСЋР№РјР°)</option>
+
+<option value="DN 50 (2 РґСЋР№РјР°)">DN 50 &nbsp;&nbsp;(2 РґСЋР№РјР°)</option>
+
+<option value="DN 65 (2 1/2 РґСЋР№РјР°)">DN 65 &nbsp;&nbsp;(2 1/2 РґСЋР№РјР°)</option>
+
+<option value="DN 80 (3 РґСЋР№РјР°)">DN 80 &nbsp;&nbsp;(3 РґСЋР№РјР°)</option>
+
+<option value="DN 100 (4 РґСЋР№РјР°)">DN 100 (4 РґСЋР№РјР°)</option>
+
 </select>
+
 </div>
 
+
+
 <div class="form-calculator-diametr-col">
-<h5 class="form-calculator-diametr-col__h5">На выходе C</h5>
+
+<h5 class="form-calculator-diametr-col__h5">РќР° РІС‹С…РѕРґРµ C</h5>
+
 <select id="request_form_output_s_diameter" class="form-control form-calculator-diametr-col__select">
-<option value="DN 15 (1/2 дюйма)">DN 15 &nbsp;&nbsp;(1/2 дюйма)</option>
-<option value="DN 20 (3/4 дюйма)">DN 20 &nbsp;&nbsp;(3/4 дюйма)</option>
-<option value="DN 25 (1 дюйм)">DN 25 &nbsp;&nbsp;(1 дюйм)</option>
-<option value="DN 32 (1 1/4 дюйма)">DN 32 &nbsp;&nbsp;(1 1/4 дюйма)</option>
-<option value="DN 40 (1 1/2 дюйма)">DN 40 &nbsp;&nbsp;(1 1/2 дюйма)</option>
-<option value="DN 50 (2 дюйма)">DN 50 &nbsp;&nbsp;(2 дюйма)</option>
-<option value="DN 65 (2 1/2 дюйма)">DN 65 &nbsp;&nbsp;(2 1/2 дюйма)</option>
-<option value="DN 80 (3 дюйма)">DN 80 &nbsp;&nbsp;(3 дюйма)</option>
-<option value="DN 100 (4 дюйма)">DN 100 (4 дюйма)</option>
+
+<option value="DN 15 (1/2 РґСЋР№РјР°)">DN 15 &nbsp;&nbsp;(1/2 РґСЋР№РјР°)</option>
+
+<option value="DN 20 (3/4 РґСЋР№РјР°)">DN 20 &nbsp;&nbsp;(3/4 РґСЋР№РјР°)</option>
+
+<option value="DN 25 (1 РґСЋР№Рј)">DN 25 &nbsp;&nbsp;(1 РґСЋР№Рј)</option>
+
+<option value="DN 32 (1 1/4 РґСЋР№РјР°)">DN 32 &nbsp;&nbsp;(1 1/4 РґСЋР№РјР°)</option>
+
+<option value="DN 40 (1 1/2 РґСЋР№РјР°)">DN 40 &nbsp;&nbsp;(1 1/2 РґСЋР№РјР°)</option>
+
+<option value="DN 50 (2 РґСЋР№РјР°)">DN 50 &nbsp;&nbsp;(2 РґСЋР№РјР°)</option>
+
+<option value="DN 65 (2 1/2 РґСЋР№РјР°)">DN 65 &nbsp;&nbsp;(2 1/2 РґСЋР№РјР°)</option>
+
+<option value="DN 80 (3 РґСЋР№РјР°)">DN 80 &nbsp;&nbsp;(3 РґСЋР№РјР°)</option>
+
+<option value="DN 100 (4 РґСЋР№РјР°)">DN 100 (4 РґСЋР№РјР°)</option>
+
 </select>
+
 </div>
+
+
 
 <div class="form-calculator-diametr-col">
-<label class="form-calculator-diametr-col__label pointer"><input class="form-calculator-diametr-col__input pointer" id="request_form_unit" type="checkbox" name="type" checked="checked" /> Узел регулирования (типовой)</label>
-</div>
+
+<label class="form-calculator-diametr-col__label pointer"><input class="form-calculator-diametr-col__input pointer" id="request_form_unit" type="checkbox" name="type" checked="checked" /> РЈР·РµР» СЂРµРіСѓР»РёСЂРѕРІР°РЅРёСЏ (С‚РёРїРѕРІРѕР№)</label>
+
 </div>
 
-<h3>Контактные данные</h3>
-<div class="form-calculator-contact-data">
-<input id="request_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="ФИО" value="" />
-<input id="request_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="Компания" value="" />
-<input id="request_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Город" value="" />
 </div>
+
+
+
+<h3>РљРѕРЅС‚Р°РєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ</h3>
+
 <div class="form-calculator-contact-data">
+
+<input id="request_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р¤РРћ" value="" />
+
+<input id="request_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="РљРѕРјРїР°РЅРёСЏ" value="" />
+
+<input id="request_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р“РѕСЂРѕРґ" value="" />
+
+</div>
+
+<div class="form-calculator-contact-data">
+
 <input id="request_form_email" type="text" class="form-control form-calculator-contact-data__input" placeholder="E-mail" value="" />
-<input id="request_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="Телефон" value="" />
+
+<input id="request_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="РўРµР»РµС„РѕРЅ" value="" />
+
 </div>
 
-<textarea id="request_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="Примечания"></textarea>
+
+
+<textarea id="request_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="РџСЂРёРјРµС‡Р°РЅРёСЏ"></textarea>
+
     
-<button id="request_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">Отправить</button>
+
+<button id="request_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">РћС‚РїСЂР°РІРёС‚СЊ</button>
+
+
 
 <span id="request_form_ajax_preloader" class="ajax_preloader"></span>
+
     
+
 </div>

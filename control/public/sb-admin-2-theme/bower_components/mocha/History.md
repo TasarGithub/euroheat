@@ -352,7 +352,7 @@
   * Added `markdown` reporter (github flavour)
   * Added: scrolling menu to coverage.html. Closes #335
   * Added source line to html report for Safari [Tyson Tate]
-  * Added "min" reporter, useful for `--watch` [Jakub Nešetřil]
+  * Added "min" reporter, useful for `--watch` [Jakub NeР•РЋetР•в„ўil]
   * Added support for arbitrary compilers via . Closes #338 [Ian Young]
   * Added Teamcity export to lib/reporters/index [Michael Riley]
   * Fixed chopping of first char in error reporting. Closes #334 [reported by topfunky]
@@ -443,7 +443,7 @@ Closes #247
 ==================
 
   * Added `XUnit` reporter [FeeFighters/visionmedia]
-  * Added `say(1)` notification support [Maciej Małecki]
+  * Added `say(1)` notification support [Maciej MaР•вЂљecki]
   * Changed: fail when done() is invoked with a non-Error. Closes #171
   * Fixed `err.stack`, defaulting to message. Closes #180
   * Fixed: `make tm` mkdir -p the dest. Closes #137

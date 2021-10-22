@@ -6,19 +6,19 @@
  */
 
 {
-	"sProcessing":   "処理中...",
-	"sLengthMenu":   "_MENU_ 件表示",
-	"sZeroRecords":  "データはありません。",
-	"sInfo":         " _TOTAL_ 件中 _START_ から _END_ まで表示",
-	"sInfoEmpty":    " 0 件中 0 から 0 まで表示",
-	"sInfoFiltered": "（全 _MAX_ 件より抽出）",
+	"sProcessing":   "РµвЂЎВ¦Р·С’вЂ РґС‘В­...",
+	"sLengthMenu":   "_MENU_ РґВ»В¶РёРЋРЃР·В¤С”",
+	"sZeroRecords":  "РіС“вЂЎРіС“С�РівЂљС—РіРѓР‡РіРѓвЂљРівЂљР‰РіРѓС•РіРѓвЂєРівЂљвЂњРіР‚вЂљ",
+	"sInfo":         " _TOTAL_ РґВ»В¶РґС‘В­ _START_ РіРѓвЂ№РівЂљвЂ° _END_ РіРѓС•РіРѓВ§РёРЋРЃР·В¤С”",
+	"sInfoEmpty":    " 0 РґВ»В¶РґС‘В­ 0 РіРѓвЂ№РівЂљвЂ° 0 РіРѓС•РіРѓВ§РёРЋРЃР·В¤С”",
+	"sInfoFiltered": "РїС�в‚¬РµвЂ¦РЃ _MAX_ РґВ»В¶РівЂљв‚¬РівЂљР‰Р¶Р‰Р…РµвЂЎС”РїС�вЂ°",
 	"sInfoPostFix":  "",
-	"sSearch":       "検索:",
+	"sSearch":       "Р¶В¤СљР·Т‘Сћ:",
 	"sUrl":          "",
 	"oPaginate": {
-		"sFirst":    "先頭",
-		"sPrevious": "前",
-		"sNext":     "次",
-		"sLast":     "最終"
+		"sFirst":    "РµвЂ¦в‚¬Р№В В­",
+		"sPrevious": "РµвЂ°РЊ",
+		"sNext":     "Р¶В¬РЋ",
+		"sLast":     "Р¶СљР‚Р·ВµвЂљ"
 	}
 }

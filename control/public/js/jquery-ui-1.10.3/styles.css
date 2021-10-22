@@ -1,18 +1,18 @@
-#tabs, #tabs input, #tabs textarea, #tabs select {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-}
-#tabs .ui-tabs-active {
-	background-image: none;
-	background-color: #fff;
-}
-
-.ui-tabs-active a, 
-.ui-tabs-active a:hover, 
-.ui-tabs-active a:link, 
-.ui-tabs-active a:visited{
-    color: #000000; /*change this*/
-}
-
-#tabs div {
-	font-size: 14px;
+#tabs, #tabs input, #tabs textarea, #tabs select {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+#tabs .ui-tabs-active {
+	background-image: none;
+	background-color: #fff;
+}
+
+.ui-tabs-active a, 
+.ui-tabs-active a:hover, 
+.ui-tabs-active a:link, 
+.ui-tabs-active a:visited{
+    color: #000000; /*change this*/
+}
+
+#tabs div {
+	font-size: 14px;
 }

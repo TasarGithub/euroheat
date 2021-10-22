@@ -1,144 +1,144 @@
-$(document).ready(function() { // jquery ready
-    // Подключаем календарь (инициализация UI datepicker)
-	$("#search_by_date_from, #search_by_date_to").datepicker({
-		numberOfMonths: 2,
-		dateFormat: "dd.mm.yy",
-		showButtonPanel: true
-		// altField: "#date_add_hidden",
-		// altFormat: "yy-mm-dd 00:00:00"
-	});
-
-    // Выводим записи разговоров
-    prepareCallsRecords();
-
-    // Поиск по звонкам по диапазону дат
-    $('#search_by_date_button').bind('click', function() {
-        var search_by_date_from = $.trim($('#search_by_date_from').val());
-        var search_by_date_to = $.trim($('#search_by_date_to').val());
-        if (search_by_date_from.length > 0 || search_by_date_to.length > 0) {
-            $.ajaxQ.abortAll(); // отменяем все ajax-запросы
-            $('.sorting a').removeClass('active'); // убираем выделение сортировки цветом
-            $('#resultSet, #statistics').html('');
-            $('#resultSet').html('');
-            $.post('/control/phone_calls/ajax.php', { 'action': 'search_by_date', 'date_from': search_by_date_from, 'date_to': search_by_date_to }, function(data) {
-                try { // json
-                    var result = JSON.parse(data);
-                    $('#resultSet').html(result['result_set']);
-                    $('#statistics').html(result['statistics']);
-                    // выводим записи разговоров
-                    prepareCallsRecords();
-                } catch(error) { // not json
-                    $('#resultSet').html(data);
-                }
-            });
-        }
-        else if (search_by_date_from.length == 0 && search_by_date_to.length == 0) {
-            showHint('#search_by_date_from', 'Пжл, укажите как минимум "дату с" или "дату по". Формат даты: ДД.ММ.ГГГГ', 'auto bottom');
-        }
-    }); // /Поиск по звонкам по диапазону дат
-
-    // Сортировка: принятые | пропущенные | чейзер
-    $('.sorting a').bind('click', function() {
-        var search_by_date_from = $.trim($('#search_by_date_from').val());
-        var search_by_date_to = $.trim($('#search_by_date_to').val());
-        var typeOfSorting = $(this).data('sorting-type');
-        if (typeOfSorting) {
-            if (search_by_date_from.length > 0 || search_by_date_to.length > 0) {
-                $.ajaxQ.abortAll(); // отменяем все ajax-запросы
-                $('#resultSet, #statistics').html('');
-                $('#resultSet').html('');
-                $.post('/control/phone_calls/ajax.php', { 'action': 'search_by_sorting', 'date_from': search_by_date_from, 'date_to': search_by_date_to, 'type_of_sorting': typeOfSorting }, function(data) {
-                    try { // json
-                        var result = JSON.parse(data);
-                        $('#resultSet').html(result['result_set']);
-                        $('#statistics').html(result['statistics']);
-                        // выводим записи разговоров
-                        prepareCallsRecords();
-                    } catch(error) { // not json
-                        $('#resultSet').html(data);
-                    }
-                });
-            }
-            else if (search_by_date_from.length == 0 && search_by_date_to.length == 0) {
-                showHint('#search_by_date_from', 'Пжл, укажите как минимум "дату с" или "дату по". Формат даты: ДД.ММ.ГГГГ', 'auto bottom');
-            }
-        }
-        else console.log('Error: variable "typeOfSorting" is not defined for "sorting click" event.');
-        // выделяем сортировку цветом
-        $('.sorting a').removeClass('active');
-        $(this).addClass('active');
-    }); // /Сортировка: принятые | пропущенные | чейзер
-
-    // Поиск по звонкам по диапазону дат. Обработчик нажатия клавиши Enter
-    $('#search_by_date_from, #search_by_date_to').keypress(function(e) {
-        if (e.which == 13) { $('#search_by_date_button').click(); return false; }
-    });
-
-    // Обработчик кнопки "Выгрузить в Excel"
-    $('#export_to_excel').bind('click', function() {
-        var search_by_date_from = $.trim($('#search_by_date_from').val());
-        var search_by_date_to = $.trim($('#search_by_date_to').val());
-        // очищаем статистику
-        $('#statistics').html('');
-        if (search_by_date_from.length > 0 || search_by_date_to.length > 0) {
-            $.ajaxQ.abortAll(); // отменяем все ajax-запросы
-            $('#resultSet').html('');
-            $.post('/control/phone_calls/ajax.php', { 'action': 'export_to_excel', 'date_from': search_by_date_from, 'date_to': search_by_date_to }, function(data) {
-                try { // json
-                    var result = JSON.parse(data);
-                    if (result['result'] == 'success') {
-                        window.location.href = result['path_to_file'];
-                        $('#resultSet').html('<div style="font-size:18px">Файл выгрузки готов.</div><div style="margin-top:15px;font-size:18px">Если скачивание не началось, пжл, <a href="' + result['path_to_file'] + '">перейдите по ссылке</a>.</div>');
-                    }
-                } catch(error) { // not json
-                    $('#resultSet').html(data);
-                }
-            });
-        }
-        else if (search_by_date_from.length == 0 && search_by_date_to.length == 0) {
-            showHint('#search_by_date_from', 'Пжл, укажите как минимум "дату с" или "дату по". Формат даты: ДД.ММ.ГГГГ', 'auto bottom');
-        }
-    }); // Обработчик кнопки "Выгрузить в Excel"
-
-}); // /jquery ready
-
-// ФУНКЦИИ
-
-// ВЫВОДИМ ЗАПИСИ РАЗГОВОРОМ
-function prepareCallsRecords() {
-    // Инициализация jquery jplayer + jquery miniaudioplayer
-    $('.audio').mb_miniPlayer({
-        width: 300,
-        inLine: true,
-        id3: true,
-        addShadow: false,
-        pauseOnWindowBlur: false,
-        downloadPage: null,
-        onReady : function (player, $controlsBox) {
-            var id = $controlsBox[0]['id'];
-            // устанавливаем атрибут title
-            $('#' + id).find('.map_download').attr('title', 'Скачать запись разговора');
-            // устанавливаем имя файла для скачивания
-            var call_record = $('#' + id).closest('.for_player').data('call-record');
-            $('#' + id).find('.map_download').attr('download', call_record);
-        }
-    });
-
-    // формируем позиционирование значков для проигрывания jquery miniaudioplayer
-    $('.mbMiniPlayer').each(function() {
-        $(this).addClass('play');
-        var td = $(this).closest('td');
-        var position = td.position();
-        // console.log('left: ' + position.left + ', top: ' + position.top);
-        // $(this).closest('.mbMiniPlayer').css({'left' : position.left + 23, 'top' : position.top + 9 });
-        $(this).closest('.mbMiniPlayer').css({'left' : position.left + 9, 'top' : position.top + 9 });
-    });
-
-    // проходим по всем ссылкам "скачать запись разговора" и убираем лишнее из имени файла
-    $('.map_download').each(function() {
-        var download = $(this).attr('download').replace('get_call_record.php?call_record=', '');
-        $(this).attr('download', download);
-    });
-} // /ВЫВОДИМ ЗАПИСИ РАЗГОВОРОМ
-
-// /ФУНКЦИИ
+$(document).ready(function() { // jquery ready
+    // РџРѕРґРєР»СЋС‡Р°РµРј РєР°Р»РµРЅРґР°СЂСЊ (РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ UI datepicker)
+	$("#search_by_date_from, #search_by_date_to").datepicker({
+		numberOfMonths: 2,
+		dateFormat: "dd.mm.yy",
+		showButtonPanel: true
+		// altField: "#date_add_hidden",
+		// altFormat: "yy-mm-dd 00:00:00"
+	});
+
+    // Р’С‹РІРѕРґРёРј Р·Р°РїРёСЃРё СЂР°Р·РіРѕРІРѕСЂРѕРІ
+    prepareCallsRecords();
+
+    // РџРѕРёСЃРє РїРѕ Р·РІРѕРЅРєР°Рј РїРѕ РґРёР°РїР°Р·РѕРЅСѓ РґР°С‚
+    $('#search_by_date_button').bind('click', function() {
+        var search_by_date_from = $.trim($('#search_by_date_from').val());
+        var search_by_date_to = $.trim($('#search_by_date_to').val());
+        if (search_by_date_from.length > 0 || search_by_date_to.length > 0) {
+            $.ajaxQ.abortAll(); // РѕС‚РјРµРЅСЏРµРј РІСЃРµ ajax-Р·Р°РїСЂРѕСЃС‹
+            $('.sorting a').removeClass('active'); // СѓР±РёСЂР°РµРј РІС‹РґРµР»РµРЅРёРµ СЃРѕСЂС‚РёСЂРѕРІРєРё С†РІРµС‚РѕРј
+            $('#resultSet, #statistics').html('');
+            $('#resultSet').html('');
+            $.post('/control/phone_calls/ajax.php', { 'action': 'search_by_date', 'date_from': search_by_date_from, 'date_to': search_by_date_to }, function(data) {
+                try { // json
+                    var result = JSON.parse(data);
+                    $('#resultSet').html(result['result_set']);
+                    $('#statistics').html(result['statistics']);
+                    // РІС‹РІРѕРґРёРј Р·Р°РїРёСЃРё СЂР°Р·РіРѕРІРѕСЂРѕРІ
+                    prepareCallsRecords();
+                } catch(error) { // not json
+                    $('#resultSet').html(data);
+                }
+            });
+        }
+        else if (search_by_date_from.length == 0 && search_by_date_to.length == 0) {
+            showHint('#search_by_date_from', 'РџР¶Р», СѓРєР°Р¶РёС‚Рµ РєР°Рє РјРёРЅРёРјСѓРј "РґР°С‚Сѓ СЃ" РёР»Рё "РґР°С‚Сѓ РїРѕ". Р¤РѕСЂРјР°С‚ РґР°С‚С‹: Р”Р”.РњРњ.Р“Р“Р“Р“', 'auto bottom');
+        }
+    }); // /РџРѕРёСЃРє РїРѕ Р·РІРѕРЅРєР°Рј РїРѕ РґРёР°РїР°Р·РѕРЅСѓ РґР°С‚
+
+    // РЎРѕСЂС‚РёСЂРѕРІРєР°: РїСЂРёРЅСЏС‚С‹Рµ | РїСЂРѕРїСѓС‰РµРЅРЅС‹Рµ | С‡РµР№Р·РµСЂ
+    $('.sorting a').bind('click', function() {
+        var search_by_date_from = $.trim($('#search_by_date_from').val());
+        var search_by_date_to = $.trim($('#search_by_date_to').val());
+        var typeOfSorting = $(this).data('sorting-type');
+        if (typeOfSorting) {
+            if (search_by_date_from.length > 0 || search_by_date_to.length > 0) {
+                $.ajaxQ.abortAll(); // РѕС‚РјРµРЅСЏРµРј РІСЃРµ ajax-Р·Р°РїСЂРѕСЃС‹
+                $('#resultSet, #statistics').html('');
+                $('#resultSet').html('');
+                $.post('/control/phone_calls/ajax.php', { 'action': 'search_by_sorting', 'date_from': search_by_date_from, 'date_to': search_by_date_to, 'type_of_sorting': typeOfSorting }, function(data) {
+                    try { // json
+                        var result = JSON.parse(data);
+                        $('#resultSet').html(result['result_set']);
+                        $('#statistics').html(result['statistics']);
+                        // РІС‹РІРѕРґРёРј Р·Р°РїРёСЃРё СЂР°Р·РіРѕРІРѕСЂРѕРІ
+                        prepareCallsRecords();
+                    } catch(error) { // not json
+                        $('#resultSet').html(data);
+                    }
+                });
+            }
+            else if (search_by_date_from.length == 0 && search_by_date_to.length == 0) {
+                showHint('#search_by_date_from', 'РџР¶Р», СѓРєР°Р¶РёС‚Рµ РєР°Рє РјРёРЅРёРјСѓРј "РґР°С‚Сѓ СЃ" РёР»Рё "РґР°С‚Сѓ РїРѕ". Р¤РѕСЂРјР°С‚ РґР°С‚С‹: Р”Р”.РњРњ.Р“Р“Р“Р“', 'auto bottom');
+            }
+        }
+        else console.log('Error: variable "typeOfSorting" is not defined for "sorting click" event.');
+        // РІС‹РґРµР»СЏРµРј СЃРѕСЂС‚РёСЂРѕРІРєСѓ С†РІРµС‚РѕРј
+        $('.sorting a').removeClass('active');
+        $(this).addClass('active');
+    }); // /РЎРѕСЂС‚РёСЂРѕРІРєР°: РїСЂРёРЅСЏС‚С‹Рµ | РїСЂРѕРїСѓС‰РµРЅРЅС‹Рµ | С‡РµР№Р·РµСЂ
+
+    // РџРѕРёСЃРє РїРѕ Р·РІРѕРЅРєР°Рј РїРѕ РґРёР°РїР°Р·РѕРЅСѓ РґР°С‚. РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєР»Р°РІРёС€Рё Enter
+    $('#search_by_date_from, #search_by_date_to').keypress(function(e) {
+        if (e.which == 13) { $('#search_by_date_button').click(); return false; }
+    });
+
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё "Р’С‹РіСЂСѓР·РёС‚СЊ РІ Excel"
+    $('#export_to_excel').bind('click', function() {
+        var search_by_date_from = $.trim($('#search_by_date_from').val());
+        var search_by_date_to = $.trim($('#search_by_date_to').val());
+        // РѕС‡РёС‰Р°РµРј СЃС‚Р°С‚РёСЃС‚РёРєСѓ
+        $('#statistics').html('');
+        if (search_by_date_from.length > 0 || search_by_date_to.length > 0) {
+            $.ajaxQ.abortAll(); // РѕС‚РјРµРЅСЏРµРј РІСЃРµ ajax-Р·Р°РїСЂРѕСЃС‹
+            $('#resultSet').html('');
+            $.post('/control/phone_calls/ajax.php', { 'action': 'export_to_excel', 'date_from': search_by_date_from, 'date_to': search_by_date_to }, function(data) {
+                try { // json
+                    var result = JSON.parse(data);
+                    if (result['result'] == 'success') {
+                        window.location.href = result['path_to_file'];
+                        $('#resultSet').html('<div style="font-size:18px">Р¤Р°Р№Р» РІС‹РіСЂСѓР·РєРё РіРѕС‚РѕРІ.</div><div style="margin-top:15px;font-size:18px">Р•СЃР»Рё СЃРєР°С‡РёРІР°РЅРёРµ РЅРµ РЅР°С‡Р°Р»РѕСЃСЊ, РїР¶Р», <a href="' + result['path_to_file'] + '">РїРµСЂРµР№РґРёС‚Рµ РїРѕ СЃСЃС‹Р»РєРµ</a>.</div>');
+                    }
+                } catch(error) { // not json
+                    $('#resultSet').html(data);
+                }
+            });
+        }
+        else if (search_by_date_from.length == 0 && search_by_date_to.length == 0) {
+            showHint('#search_by_date_from', 'РџР¶Р», СѓРєР°Р¶РёС‚Рµ РєР°Рє РјРёРЅРёРјСѓРј "РґР°С‚Сѓ СЃ" РёР»Рё "РґР°С‚Сѓ РїРѕ". Р¤РѕСЂРјР°С‚ РґР°С‚С‹: Р”Р”.РњРњ.Р“Р“Р“Р“', 'auto bottom');
+        }
+    }); // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё "Р’С‹РіСЂСѓР·РёС‚СЊ РІ Excel"
+
+}); // /jquery ready
+
+// Р¤РЈРќРљР¦РР
+
+// Р’Р«Р’РћР”РРњ Р—РђРџРРЎР Р РђР—Р“РћР’РћР РћРњ
+function prepareCallsRecords() {
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ jquery jplayer + jquery miniaudioplayer
+    $('.audio').mb_miniPlayer({
+        width: 300,
+        inLine: true,
+        id3: true,
+        addShadow: false,
+        pauseOnWindowBlur: false,
+        downloadPage: null,
+        onReady : function (player, $controlsBox) {
+            var id = $controlsBox[0]['id'];
+            // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р°С‚СЂРёР±СѓС‚ title
+            $('#' + id).find('.map_download').attr('title', 'РЎРєР°С‡Р°С‚СЊ Р·Р°РїРёСЃСЊ СЂР°Р·РіРѕРІРѕСЂР°');
+            // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ СЃРєР°С‡РёРІР°РЅРёСЏ
+            var call_record = $('#' + id).closest('.for_player').data('call-record');
+            $('#' + id).find('.map_download').attr('download', call_record);
+        }
+    });
+
+    // С„РѕСЂРјРёСЂСѓРµРј РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ Р·РЅР°С‡РєРѕРІ РґР»СЏ РїСЂРѕРёРіСЂС‹РІР°РЅРёСЏ jquery miniaudioplayer
+    $('.mbMiniPlayer').each(function() {
+        $(this).addClass('play');
+        var td = $(this).closest('td');
+        var position = td.position();
+        // console.log('left: ' + position.left + ', top: ' + position.top);
+        // $(this).closest('.mbMiniPlayer').css({'left' : position.left + 23, 'top' : position.top + 9 });
+        $(this).closest('.mbMiniPlayer').css({'left' : position.left + 9, 'top' : position.top + 9 });
+    });
+
+    // РїСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј СЃСЃС‹Р»РєР°Рј "СЃРєР°С‡Р°С‚СЊ Р·Р°РїРёСЃСЊ СЂР°Р·РіРѕРІРѕСЂР°" Рё СѓР±РёСЂР°РµРј Р»РёС€РЅРµРµ РёР· РёРјРµРЅРё С„Р°Р№Р»Р°
+    $('.map_download').each(function() {
+        var download = $(this).attr('download').replace('get_call_record.php?call_record=', '');
+        $(this).attr('download', download);
+    });
+} // /Р’Р«Р’РћР”РРњ Р—РђРџРРЎР Р РђР—Р“РћР’РћР РћРњ
+
+// /Р¤РЈРќРљР¦РР

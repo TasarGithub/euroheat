@@ -7,18 +7,18 @@
 
 {
 	"sProcessing":   "Uzgaidiet...",
-	"sLengthMenu":   "Rādīt _MENU_ ierakstus",
-	"sZeroRecords":  "Nav atrasti vaicājumam atbilstoši ieraksti",
-	"sInfo":         "Parādīti _START_. līdz _END_. no _TOTAL_ ierakstiem",
+	"sLengthMenu":   "RР”РѓdР”В«t _MENU_ ierakstus",
+	"sZeroRecords":  "Nav atrasti vaicР”Рѓjumam atbilstoР•РЋi ieraksti",
+	"sInfo":         "ParР”РѓdР”В«ti _START_. lР”В«dz _END_. no _TOTAL_ ierakstiem",
 	"sInfoEmpty":    "Nav ierakstu",
-	"sInfoFiltered": "(atlasīts no pavisam _MAX_ ierakstiem)",
+	"sInfoFiltered": "(atlasР”В«ts no pavisam _MAX_ ierakstiem)",
 	"sInfoPostFix":  "",
-	"sSearch":       "Meklēt:",
+	"sSearch":       "MeklР”вЂњt:",
 	"sUrl":          "",
 	"oPaginate": {
-		"sFirst":    "Pirmā",
-		"sPrevious": "Iepriekšējā",
-		"sNext":     "Nākošā",
-		"sLast":     "Pēdējā"
+		"sFirst":    "PirmР”Рѓ",
+		"sPrevious": "IepriekР•РЋР”вЂњjР”Рѓ",
+		"sNext":     "NР”РѓkoР•РЋР”Рѓ",
+		"sLast":     "PР”вЂњdР”вЂњjР”Рѓ"
 	}
 }

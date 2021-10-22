@@ -1,69 +1,69 @@
-<?php
-class index_controller extends controller_base
-{
-	# выводим главную страницу
-	function index()
-	{
-        # 404
-        if ($this->route == 'index') {
-            header("HTTP/1.0 404 Not Found");
-            header("Location: http://".$_SERVER['SERVER_NAME']);
-            exit;
-        }
-
-		# подгружаем сторонние контроллеры
-        $feedback_controller = $this->load('feedback');
-        $articles_controller = $this->load('articles');
-        $faq_controller = $this->load('faq');
-        $news_controller = $this->load('news');
-
-        # получаем список отзывов
-        $GLOBALS['tpl_feedback'] = $feedback_controller->model->getItemsForMainPage(); # echo '<pre>'.(print_r($GLOBALS['tpl_feedback'], true)).'</pre>'; # exit;
-        foreach ($GLOBALS['tpl_feedback'] as &$item) {
-            $item['feedback'] = cutText($item['feedback'], 190);
-            # $item['name'] = cutText($item['name'], 13);
-        } unset($item);
-
-        # получаем количество статей
-        $GLOBALS['tpl_articles_count'] = $articles_controller->model->getItemsCount();
-
-        # получаем статьи на рандом
-        $GLOBALS['tpl_articles'] = $articles_controller->model->getRandomItems(5);
-
-        # получаем количество вопросов-ответов
-        $GLOBALS['tpl_faq_count'] = $faq_controller->model->getItemsCount();
-
-        # получаем вопросы-ответы на рандом
-        $GLOBALS['tpl_faq'] = $faq_controller->model->getRandomItems(5);
-        foreach ($GLOBALS['tpl_faq'] as &$item) {
-            $item['h1'] = cutText($item['h1'], 100);
-        } unset($item);
-
-        # получаем статьи на рандом
-        $GLOBALS['tpl_news'] = $news_controller->model->getRandomItems(5);
-
-		# выводим главный шаблон
-		$this->tpl->setMainTemplate('template_for_main_page_v1.html');
-		# $this->tpl->setMainTemplate('template_for_main_page.min.html');
-		$this->tpl->echoMainTemplate();
-	}
-	# /выводим главную страницу
-	
-	# очистить окончание строки от ненужных символов
-	function removeLastChar($string)
-	{
-		# проверка переменных
-		if (empty($string)) return;
-		
-		$lastChar = substr($string, -1); # echo 'last char: '.$lastChar.'<br />';
-		
-		if (strpbrk($lastChar, '.,;\'"0123456789')) {
-			# echo $string.'<br />';
-			$string = substr($string, 0, strlen($string) - 1);
-			# echo $string;
-		}
-		
-		return trim($string);
-	}
-	# /очистить окончание строки от ненужных символов
+<?php
+class index_controller extends controller_base
+{
+	# РІС‹РІРѕРґРёРј РіР»Р°РІРЅСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ
+	function index()
+	{
+        # 404
+        if ($this->route == 'index') {
+            header("HTTP/1.0 404 Not Found");
+            header("Location: http://".$_SERVER['SERVER_NAME']);
+            exit;
+        }
+
+		# РїРѕРґРіСЂСѓР¶Р°РµРј СЃС‚РѕСЂРѕРЅРЅРёРµ РєРѕРЅС‚СЂРѕР»Р»РµСЂС‹
+        $feedback_controller = $this->load('feedback');
+        $articles_controller = $this->load('articles');
+        $faq_controller = $this->load('faq');
+        $news_controller = $this->load('news');
+
+        # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РѕС‚Р·С‹РІРѕРІ
+        $GLOBALS['tpl_feedback'] = $feedback_controller->model->getItemsForMainPage(); # echo '<pre>'.(print_r($GLOBALS['tpl_feedback'], true)).'</pre>'; # exit;
+        foreach ($GLOBALS['tpl_feedback'] as &$item) {
+            $item['feedback'] = cutText($item['feedback'], 190);
+            # $item['name'] = cutText($item['name'], 13);
+        } unset($item);
+
+        # РїРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚Р°С‚РµР№
+        $GLOBALS['tpl_articles_count'] = $articles_controller->model->getItemsCount();
+
+        # РїРѕР»СѓС‡Р°РµРј СЃС‚Р°С‚СЊРё РЅР° СЂР°РЅРґРѕРј
+        $GLOBALS['tpl_articles'] = $articles_controller->model->getRandomItems(5);
+
+        # РїРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ
+        $GLOBALS['tpl_faq_count'] = $faq_controller->model->getItemsCount();
+
+        # РїРѕР»СѓС‡Р°РµРј РІРѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹ РЅР° СЂР°РЅРґРѕРј
+        $GLOBALS['tpl_faq'] = $faq_controller->model->getRandomItems(5);
+        foreach ($GLOBALS['tpl_faq'] as &$item) {
+            $item['h1'] = cutText($item['h1'], 100);
+        } unset($item);
+
+        # РїРѕР»СѓС‡Р°РµРј СЃС‚Р°С‚СЊРё РЅР° СЂР°РЅРґРѕРј
+        $GLOBALS['tpl_news'] = $news_controller->model->getRandomItems(5);
+
+		# РІС‹РІРѕРґРёРј РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
+		$this->tpl->setMainTemplate('template_for_main_page_v1.html');
+		# $this->tpl->setMainTemplate('template_for_main_page.min.html');
+		$this->tpl->echoMainTemplate();
+	}
+	# /РІС‹РІРѕРґРёРј РіР»Р°РІРЅСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ
+	
+	# РѕС‡РёСЃС‚РёС‚СЊ РѕРєРѕРЅС‡Р°РЅРёРµ СЃС‚СЂРѕРєРё РѕС‚ РЅРµРЅСѓР¶РЅС‹С… СЃРёРјРІРѕР»РѕРІ
+	function removeLastChar($string)
+	{
+		# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+		if (empty($string)) return;
+		
+		$lastChar = substr($string, -1); # echo 'last char: '.$lastChar.'<br />';
+		
+		if (strpbrk($lastChar, '.,;\'"0123456789')) {
+			# echo $string.'<br />';
+			$string = substr($string, 0, strlen($string) - 1);
+			# echo $string;
+		}
+		
+		return trim($string);
+	}
+	# /РѕС‡РёСЃС‚РёС‚СЊ РѕРєРѕРЅС‡Р°РЅРёРµ СЃС‚СЂРѕРєРё РѕС‚ РЅРµРЅСѓР¶РЅС‹С… СЃРёРјРІРѕР»РѕРІ
 }

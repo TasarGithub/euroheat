@@ -1,6 +1,6 @@
 /*
 Holder.js - client side image placeholders
-© 2012-2014 Ivan Malopinsky - http://imsky.co
+Р’В© 2012-2014 Ivan Malopinsky - http://imsky.co
 */
 (function(register, global, undefined) {
 
@@ -455,7 +455,7 @@ Holder.js - client side image placeholders
 
 		if (mode == 'image' || mode == 'fluid') {
 			setAttr(el, {
-				'alt': (theme.text ? (theme.text.length > 16 ? theme.text.substring(0, 16) + '…' : theme.text) + ' [' + dimensionsCaption + ']' : dimensionsCaption)
+				'alt': (theme.text ? (theme.text.length > 16 ? theme.text.substring(0, 16) + 'РІР‚В¦' : theme.text) + ' [' + dimensionsCaption + ']' : dimensionsCaption)
 			});
 		}
 

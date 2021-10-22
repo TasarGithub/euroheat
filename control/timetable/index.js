@@ -1,87 +1,87 @@
-$(document).ready(function() { // jquery ready
-    // »«Ã≈Õ≈Õ»≈ ¬ SELECT'≈ "œÀŒŸ¿ƒ ¿"
-    $(document.body).delegate('.timetable_place_id', 'change', function() {
-        var place_id = $(this).val();
-        if (place_id == 1) $(this).parent('.timetable').find('.timetable_event_id').parent('span').addClass('hidden');
-        else $(this).parent('.timetable').find('.timetable_event_id').parent('span').removeClass('hidden');
-    }); // /»«Ã≈Õ≈Õ»≈ ¬ SELECT'≈ "œÀŒŸ¿ƒ ¿"
-
-    // œŒÀ”◊¿≈Ã » ¬€¬Œƒ»Ã –¿—œ»—¿Õ»≈ »« ¡ƒ
-    // ÔÓÎÛ˜‡ÂÏ ÁÌ‡˜ÂÌËÂ GET-ÔÂÂÏÂÌÌÓÈ place
-    var place = isGetVarExists('place'); // console.log('place: ' + place + '\n');
-    var show = isGetVarExists('show'); // console.log('show: ' + show + '\n');
-    $.post('/control/timetable/ajax.php', { 'action': 'getTimetable', 'place': !place ? '' : place, 'show': !show ? '' : show }, function(data) {
-        $('#time_table_list').html('');
-        if (data) {
-            $('#time_table_list').html(data);
-            // »Õ»÷»¿À»«»–”≈Ã  ¿À≈Õƒ¿–‹
-            $('#time_table_list .timetable_event_date').datepicker({
-                numberOfMonths: 2,
-                dateFormat: "dd.mm.yy",
-                showButtonPanel: true
-            });
-        }
-    });
-
-    //  À»  œŒ  ÕŒœ ≈ "ƒŒ¡¿¬»“‹ ƒ¿“”"
-    $('.timetable_add_date_button').on('click', function() {
-        var template_add_date = $('#template_add_date').html();
-        $('#time_table_list').prepend(template_add_date);
-        // »Õ»÷»¿À»«»–”≈Ã  ¿À≈Õƒ¿–‹
-        $('#time_table_list .timetable_event_date').datepicker({
-            numberOfMonths: 2,
-            dateFormat: "dd.mm.yy",
-            showButtonPanel: true
-        });
-        // ÛÒÚ‡Ì‡‚ÎË‚‡ÂÏ ÙÓÍÛÒ ‚ ÔÂ‚ÓÂ ÔÓÎÂ Ò ‰‡ÚÓÈ
-        $('#time_table_list').find('.timetable_event_date').first().focus();
-        return false;
-    });
-
-    //  À»  Õ¿ "—Œ’–¿Õ»“‹ »«Ã≈Õ≈Õ»ﬂ": —Œ’–¿Õﬂ≈Ã –≈«”À‹“¿“ »«Ã≈Õ≈Õ»ﬂ ¬ –¿—œ»—¿Õ»» ◊≈–≈« AJAX
-    $('.timetable_save_changes').click(function(){
-        // ÔÓıÓ‰ËÏ ÔÓ ‚ÒÂÏ ‰‡Ú‡Ï Ë ÒÓ·Ë‡ÂÏ ‚ÒÂ ‰‡ÌÌ˚Â ‚ ÒÚÓÍÛ
-        var result = '';
-        $('#time_table_list div.well.timetable').each(function(index){
-            var date = $(this).find('.timetable_event_date').val();
-            var time = $(this).find('.timetable_event_time').val();
-            var show = $(this).find('.timetable_event_id').val();
-            var place = $(this).find('.timetable_place_id').val();
-            // console.log('index: ' + index + ", show: " + show + ', date: ' + date);
-            if (place && date) {
-                // result += show + '*' + place + '*' + date + '*' + time + ';';
-                result += place + '*' + date + '*' + time + '*' + (!show ? '' : show) + ';';
-            }
-        }); // console.log(result);
-        // ÔÓıÓ‰ËÏ ÔÓ ‚ÒÂÏ ‰‡Ú‡Ï Ë ÒÓ·Ë‡ÂÏ ‚ÒÂ ‰‡ÌÌ˚Â ‚ ÒÚÓÍÛ
-        // return;
-
-        $('#time_table_list')
-        .fadeOut('slow', function() {
-            // —Œ’–¿Õﬂ≈Ã »«Ã≈Õ≈Õ»ﬂ
-            $.post('/control/timetable/ajax.php', { 'action': 'saveChanges', 'eventsAndDates': result, 'place': !place ? '' : place, 'show': !show ? '' : show }, function(data) {
-                $('#time_table_list').html(data);
-                $('#time_table_list').fadeIn('slow');
-                // »Õ»÷»¿À»«»–”≈Ã  ¿À≈Õƒ¿–‹
-                $('#time_table_list .timetable_event_date').datepicker({
-                    numberOfMonths: 2,
-                    dateFormat: "dd.mm.yy",
-                    showButtonPanel: true
-                });
-            });
-        });
-    }); // / À»  Õ¿ "—Œ’–¿Õ»“‹ »«Ã≈Õ≈Õ»ﬂ": —Œ’–¿Õﬂ≈Ã –≈«”À‹“¿“ »«Ã≈Õ≈Õ»ﬂ ¬ –¿—œ»—¿Õ»» ◊≈–≈« AJAX
-
-    //  À»  Õ¿ "”ƒ¿À»“‹ ƒ¿“”" ¬ –¿—œ»—¿Õ»»
-    $(document.body).delegate('.time_remove_item', 'click', function() {
-        var date_id = $(this).closest('.form-group.timetable').data('item-id');
-        // Û‰‡ÎˇÂÏ ÒÓ·˚ÚËÂ
-        $(this).closest('.well.timetable').fadeTo(500, 0.5, function() {
-            $.post('/control/timetable/ajax.php', { 'action': 'remove_date', 'date_id': date_id });
-            // Û‰‡ÎˇÂÏ html-˝ÎÂÏÂÌÚ
-            $(this).addClass('removed');
-            $(this).html('”‰‡ÎÂÌÓ');
-        });
-        return false;
-    }); // / À»  Õ¿ "”ƒ¿À»“‹ ƒ¿“”" ¬ –¿—œ»—¿Õ»»
+$(document).ready(function() { // jquery ready
+    // –ò–ó–ú–ï–ù–ï–ù–ò–ï –í SELECT'–ï "–ü–õ–û–©–ê–î–ö–ê"
+    $(document.body).delegate('.timetable_place_id', 'change', function() {
+        var place_id = $(this).val();
+        if (place_id == 1) $(this).parent('.timetable').find('.timetable_event_id').parent('span').addClass('hidden');
+        else $(this).parent('.timetable').find('.timetable_event_id').parent('span').removeClass('hidden');
+    }); // /–ò–ó–ú–ï–ù–ï–ù–ò–ï –í SELECT'–ï "–ü–õ–û–©–ê–î–ö–ê"
+
+    // –ü–û–õ–£–ß–ê–ï–ú –ò –í–´–í–û–î–ò–ú –†–ê–°–ü–ò–°–ê–ù–ò–ï –ò–ó –ë–î
+    // –ø–æ–ª—É—á–∞–µ–º –∑–Ω–∞—á–µ–Ω–∏–µ GET-–ø–µ—Ä–µ–º–µ–Ω–Ω–æ–π place
+    var place = isGetVarExists('place'); // console.log('place: ' + place + '\n');
+    var show = isGetVarExists('show'); // console.log('show: ' + show + '\n');
+    $.post('/control/timetable/ajax.php', { 'action': 'getTimetable', 'place': !place ? '' : place, 'show': !show ? '' : show }, function(data) {
+        $('#time_table_list').html('');
+        if (data) {
+            $('#time_table_list').html(data);
+            // –ò–ù–ò–¶–ò–ê–õ–ò–ó–ò–†–£–ï–ú –ö–ê–õ–ï–ù–î–ê–†–¨
+            $('#time_table_list .timetable_event_date').datepicker({
+                numberOfMonths: 2,
+                dateFormat: "dd.mm.yy",
+                showButtonPanel: true
+            });
+        }
+    });
+
+    // –ö–õ–ò–ö –ü–û –ö–ù–û–ü–ö–ï "–î–û–ë–ê–í–ò–¢–¨ –î–ê–¢–£"
+    $('.timetable_add_date_button').on('click', function() {
+        var template_add_date = $('#template_add_date').html();
+        $('#time_table_list').prepend(template_add_date);
+        // –ò–ù–ò–¶–ò–ê–õ–ò–ó–ò–†–£–ï–ú –ö–ê–õ–ï–ù–î–ê–†–¨
+        $('#time_table_list .timetable_event_date').datepicker({
+            numberOfMonths: 2,
+            dateFormat: "dd.mm.yy",
+            showButtonPanel: true
+        });
+        // —É—Å—Ç–∞–Ω–∞–≤–ª–∏–≤–∞–µ–º —Ñ–æ–∫—É—Å –≤ –ø–µ—Ä–≤–æ–µ –ø–æ–ª–µ —Å –¥–∞—Ç–æ–π
+        $('#time_table_list').find('.timetable_event_date').first().focus();
+        return false;
+    });
+
+    // –ö–õ–ò–ö –ù–ê "–°–û–•–†–ê–ù–ò–¢–¨ –ò–ó–ú–ï–ù–ï–ù–ò–Ø": –°–û–•–†–ê–ù–Ø–ï–ú –†–ï–ó–£–õ–¨–¢–ê–¢ –ò–ó–ú–ï–ù–ï–ù–ò–Ø –í –†–ê–°–ü–ò–°–ê–ù–ò–ò –ß–ï–†–ï–ó AJAX
+    $('.timetable_save_changes').click(function(){
+        // –ø—Ä–æ—Ö–æ–¥–∏–º –ø–æ –≤—Å–µ–º –¥–∞—Ç–∞–º –∏ —Å–æ–±–∏—Ä–∞–µ–º –≤—Å–µ –¥–∞–Ω–Ω—ã–µ –≤ —Å—Ç—Ä–æ–∫—É
+        var result = '';
+        $('#time_table_list div.well.timetable').each(function(index){
+            var date = $(this).find('.timetable_event_date').val();
+            var time = $(this).find('.timetable_event_time').val();
+            var show = $(this).find('.timetable_event_id').val();
+            var place = $(this).find('.timetable_place_id').val();
+            // console.log('index: ' + index + ", show: " + show + ', date: ' + date);
+            if (place && date) {
+                // result += show + '*' + place + '*' + date + '*' + time + ';';
+                result += place + '*' + date + '*' + time + '*' + (!show ? '' : show) + ';';
+            }
+        }); // console.log(result);
+        // –ø—Ä–æ—Ö–æ–¥–∏–º –ø–æ –≤—Å–µ–º –¥–∞—Ç–∞–º –∏ —Å–æ–±–∏—Ä–∞–µ–º –≤—Å–µ –¥–∞–Ω–Ω—ã–µ –≤ —Å—Ç—Ä–æ–∫—É
+        // return;
+
+        $('#time_table_list')
+        .fadeOut('slow', function() {
+            // –°–û–•–†–ê–ù–Ø–ï–ú –ò–ó–ú–ï–ù–ï–ù–ò–Ø
+            $.post('/control/timetable/ajax.php', { 'action': 'saveChanges', 'eventsAndDates': result, 'place': !place ? '' : place, 'show': !show ? '' : show }, function(data) {
+                $('#time_table_list').html(data);
+                $('#time_table_list').fadeIn('slow');
+                // –ò–ù–ò–¶–ò–ê–õ–ò–ó–ò–†–£–ï–ú –ö–ê–õ–ï–ù–î–ê–†–¨
+                $('#time_table_list .timetable_event_date').datepicker({
+                    numberOfMonths: 2,
+                    dateFormat: "dd.mm.yy",
+                    showButtonPanel: true
+                });
+            });
+        });
+    }); // /–ö–õ–ò–ö –ù–ê "–°–û–•–†–ê–ù–ò–¢–¨ –ò–ó–ú–ï–ù–ï–ù–ò–Ø": –°–û–•–†–ê–ù–Ø–ï–ú –†–ï–ó–£–õ–¨–¢–ê–¢ –ò–ó–ú–ï–ù–ï–ù–ò–Ø –í –†–ê–°–ü–ò–°–ê–ù–ò–ò –ß–ï–†–ï–ó AJAX
+
+    // –ö–õ–ò–ö –ù–ê "–£–î–ê–õ–ò–¢–¨ –î–ê–¢–£" –í –†–ê–°–ü–ò–°–ê–ù–ò–ò
+    $(document.body).delegate('.time_remove_item', 'click', function() {
+        var date_id = $(this).closest('.form-group.timetable').data('item-id');
+        // —É–¥–∞–ª—è–µ–º —Å–æ–±—ã—Ç–∏–µ
+        $(this).closest('.well.timetable').fadeTo(500, 0.5, function() {
+            $.post('/control/timetable/ajax.php', { 'action': 'remove_date', 'date_id': date_id });
+            // —É–¥–∞–ª—è–µ–º html-—ç–ª–µ–º–µ–Ω—Ç
+            $(this).addClass('removed');
+            $(this).html('–£–¥–∞–ª–µ–Ω–æ');
+        });
+        return false;
+    }); // /–ö–õ–ò–ö –ù–ê "–£–î–ê–õ–ò–¢–¨ –î–ê–¢–£" –í –†–ê–°–ü–ò–°–ê–ù–ò–ò
 }); // /jquery ready

@@ -64,37 +64,36 @@ $(document).ready(function() {
     });
       
     // переключатель меню для мобильной версии
-		$('.switch_menu').click(function(){
-						$("body").toggleClass("menu_active");
-		});
+$('.switch_menu').click(function(){
+        $("body").toggleClass("menu_active");
+});
 
-				// раскрытие текста на клик по Подробнее
-		$('.read_more').on('click', function() {
-		$(this).closest('div').find('.hidden-text').fadeIn();
-		$(this).remove();
-		return false;
-		});
+    // раскрытие текста на клик по Подробнее
+$('.read_more').on('click', function() {
+$(this).closest('div').find('.hidden-text').fadeIn();
+$(this).remove();
+return false;
+});
 
-		// показываем подсказку
-		/*
-		$('.slogan').hover(function(){
-		jQuery(this).find('.hover-tip').fadeToggle();
-		});      
-		*/
+// показываем подсказку
+/*
+$('.slogan').hover(function(){
+jQuery(this).find('.hover-tip').fadeToggle();
+});      
+*/
 
     // плавающая шапка
-    // if (!navigator.userAgent.match(/(iPod|iPhone)/)) {
-    //     $('body').removeClass('no_float');
-    //     if($('.header').length > 0) {
-    //         $(window).scroll(function() {
-    //             if ($(this).scrollTop() > 10) $('.header').addClass("active");
-    //             else $('.header').removeClass("active");
-    //         });
-    //     }
-		//  }
-		 
-		// if (typeof enable_floating_hat === "undefined" || enable_floating_hat == 0) $('body').addClass('no_float');
-		// плавающая шапка
+    if (!navigator.userAgent.match(/(iPod|iPhone)/)) {
+        $('body').removeClass('no_float');
+        if($('.header').length > 0) {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 10) $('.header').addClass("active");
+                else $('.header').removeClass("active");
+            });
+        }
+     }
+     if (typeof enable_floating_hat === "undefined" || enable_floating_hat == 0) $('body').addClass('no_float');
+     // /плавающая шапка
 
     // При закрытии модального окна bootstrap, убираем все подсказки
     $('.modal').on('hidden.bs.modal', function () {

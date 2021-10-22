@@ -1,138 +1,138 @@
 <div class="catalog-page-wr">
 <div class="catalog-page-left-col">
 <ul class="catalog-page-left-col-menu-wr">
-<li class="active"><a href="/teploobmenniki/">Теплообменники</a>
+<li class="active"><a href="/teploobmenniki/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a>
 <ul>
-<li><a href="/teploobmenniki/dlya-sushilnyh-kamer/">Теплообменники для сушильных камер</a></li>
-<li><a href="/kalorifery/">Водяные калориферы</a></li>
-<li><a href="/vodyanye-vozduhoohladiteli/">Водяные воздухоохладители</a></li>
-<li><a href="/freonovye-ispariteli/">Фреоновые испарители</a></li>
-<li><a href="/teploobmenniki/parovye/">Паровые теплообменники</a></li>
-<li><a href="/teploobmenniki/nerzhaveyuschie/">Теплообменники из нержавеющей стали</a></li>
-<li><a href="/teploobmenniki/vts_clima/">Водяные калориферы VTS CLIMA (серия WCL)</a></li>
-<li><a href="/teploobmenniki/kalorifery-cva/">Водяные калориферы VTS CLIMA (серия CVA)</a></li>
-<li><a href="/teploobmenniki/vts-nvs/">Теплообменники VTS CLIMA (серия NVS)</a></li>
-<li><a href="/teploobmenniki/kalorifery-kan/">Вентиляционные теплообменники серии КАН / ВАН</a></li>
-<li><a href="/teploobmenniki/tps/">Теплообменники TPS</a></li>
-<li><a href="/teploobmenniki/kanalnye-nagrevateli-i-ohladiteli/">Канальные теплообменники</a></li>
-<li><a href="/teploobmenniki/analogi-teploobmennikov/">Аналоги калориферов</a></li>
-<li>  <a href="/teploobmenniki/voda-vozduh/">Теплообменники «вода-воздух»</a></li>
-<li>  <a href="/teploobmenniki/s-zaschitoi-ot-korrozii/">Теплообменники с антикоррозийным покрытием</a></li>
+<li><a href="/teploobmenniki/dlya-sushilnyh-kamer/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РґР»СЏ СЃСѓС€РёР»СЊРЅС‹С… РєР°РјРµСЂ</a></li>
+<li><a href="/kalorifery/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹</a></li>
+<li><a href="/vodyanye-vozduhoohladiteli/">Р’РѕРґСЏРЅС‹Рµ РІРѕР·РґСѓС…РѕРѕС…Р»Р°РґРёС‚РµР»Рё</a></li>
+<li><a href="/freonovye-ispariteli/">Р¤СЂРµРѕРЅРѕРІС‹Рµ РёСЃРїР°СЂРёС‚РµР»Рё</a></li>
+<li><a href="/teploobmenniki/parovye/">РџР°СЂРѕРІС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a></li>
+<li><a href="/teploobmenniki/nerzhaveyuschie/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё</a></li>
+<li><a href="/teploobmenniki/vts_clima/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹ VTS CLIMA (СЃРµСЂРёСЏ WCL)</a></li>
+<li><a href="/teploobmenniki/kalorifery-cva/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹ VTS CLIMA (СЃРµСЂРёСЏ CVA)</a></li>
+<li><a href="/teploobmenniki/vts-nvs/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё VTS CLIMA (СЃРµСЂРёСЏ NVS)</a></li>
+<li><a href="/teploobmenniki/kalorifery-kan/">Р’РµРЅС‚РёР»СЏС†РёРѕРЅРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃРµСЂРёРё РљРђРќ / Р’РђРќ</a></li>
+<li><a href="/teploobmenniki/tps/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё TPS</a></li>
+<li><a href="/teploobmenniki/kanalnye-nagrevateli-i-ohladiteli/">РљР°РЅР°Р»СЊРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a></li>
+<li><a href="/teploobmenniki/analogi-teploobmennikov/">РђРЅР°Р»РѕРіРё РєР°Р»РѕСЂРёС„РµСЂРѕРІ</a></li>
+<li>  <a href="/teploobmenniki/voda-vozduh/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё В«РІРѕРґР°-РІРѕР·РґСѓС…В»</a></li>
+<li>  <a href="/teploobmenniki/s-zaschitoi-ot-korrozii/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃ Р°РЅС‚РёРєРѕСЂСЂРѕР·РёР№РЅС‹Рј РїРѕРєСЂС‹С‚РёРµРј</a></li>
 </ul>
 </li>
 
-<li class="active"><a href="/filtry/">Фильтры</a>
+<li class="active"><a href="/filtry/">Р¤РёР»СЊС‚СЂС‹</a>
 <ul>
-<li><a href="/filtry/panelnye-dlya-ventilyacii/">Панельные фильтры</a></li>
-<li><a href="/filtry/kassetnye-dlya-ventilyacii/">Кассетные фильтры</a></li>
-<li><a href="/filtry/karmannye-dlya-ventilyacii/">Карманные фильтры</a></li>
-<li><a href="/filtry/vts/">Фильтры для вентиляционных установок VTS CLIMA</a></li>
+<li><a href="/filtry/panelnye-dlya-ventilyacii/">РџР°РЅРµР»СЊРЅС‹Рµ С„РёР»СЊС‚СЂС‹</a></li>
+<li><a href="/filtry/kassetnye-dlya-ventilyacii/">РљР°СЃСЃРµС‚РЅС‹Рµ С„РёР»СЊС‚СЂС‹</a></li>
+<li><a href="/filtry/karmannye-dlya-ventilyacii/">РљР°СЂРјР°РЅРЅС‹Рµ С„РёР»СЊС‚СЂС‹</a></li>
+<li><a href="/filtry/vts/">Р¤РёР»СЊС‚СЂС‹ РґР»СЏ РІРµРЅС‚РёР»СЏС†РёРѕРЅРЅС‹С… СѓСЃС‚Р°РЅРѕРІРѕРє VTS CLIMA</a></li>
 </ul>
 </li>
-<li class="active"><a href="/smesitelnye-uzly/">Смесительные узлы</a>
+<li class="active"><a href="/smesitelnye-uzly/">РЎРјРµСЃРёС‚РµР»СЊРЅС‹Рµ СѓР·Р»С‹</a>
 <ul>
-<li><a href="/smesitelnye-uzly/obvyazka-kalorifera/">Смесительный узел для водяного калорифера</a></li>
-<li><a href="/smesitelnye-uzly/obvyazka-ohladitelya/">Смесительный узел для воздухоохладителя</a></li>
-<li><a href="/smesitelnye-uzly/dlya-teplovoi-zavesy/">Узел регулирования тепловой завесы</a></li>
-<li><a href="/smesitelnye-uzly/vts/">Узлы регулирования для приточных установок VTS</a></li>
+<li><a href="/smesitelnye-uzly/obvyazka-kalorifera/">РЎРјРµСЃРёС‚РµР»СЊРЅС‹Р№ СѓР·РµР» РґР»СЏ РІРѕРґСЏРЅРѕРіРѕ РєР°Р»РѕСЂРёС„РµСЂР°</a></li>
+<li><a href="/smesitelnye-uzly/obvyazka-ohladitelya/">РЎРјРµСЃРёС‚РµР»СЊРЅС‹Р№ СѓР·РµР» РґР»СЏ РІРѕР·РґСѓС…РѕРѕС…Р»Р°РґРёС‚РµР»СЏ</a></li>
+<li><a href="/smesitelnye-uzly/dlya-teplovoi-zavesy/">РЈР·РµР» СЂРµРіСѓР»РёСЂРѕРІР°РЅРёСЏ С‚РµРїР»РѕРІРѕР№ Р·Р°РІРµСЃС‹</a></li>
+<li><a href="/smesitelnye-uzly/vts/">РЈР·Р»С‹ СЂРµРіСѓР»РёСЂРѕРІР°РЅРёСЏ РґР»СЏ РїСЂРёС‚РѕС‡РЅС‹С… СѓСЃС‚Р°РЅРѕРІРѕРє VTS</a></li>
 </ul>
 </li>
 </ul>
 <br>
 <ul class="catalog-page-left-col-menu-wr catalog-page-left-col-menu-wr--2">
-  <li><a href="/calculator/">Заказать теплообменник</a></li>
-  <li><a href="/raschet-nagrevatelya/">Заказать нагреватель</a></li>
-  <li><a href="/raschet-ohladitelya/">Заказать охладитель</a></li>
-  <li><a href="/raschet-isparitelya/">Заказать испаритель</a></li>
-  <li><a href="/raschet-condensatora/">Заказать конденсатор</a></li>
-  <li><a href="/raschet-parovogo-teploobmennika/">Заказать паровой теплообменник</a></li>
+  <li><a href="/calculator/">Р—Р°РєР°Р·Р°С‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРє</a></li>
+  <li><a href="/raschet-nagrevatelya/">Р—Р°РєР°Р·Р°С‚СЊ РЅР°РіСЂРµРІР°С‚РµР»СЊ</a></li>
+  <li><a href="/raschet-ohladitelya/">Р—Р°РєР°Р·Р°С‚СЊ РѕС…Р»Р°РґРёС‚РµР»СЊ</a></li>
+  <li><a href="/raschet-isparitelya/">Р—Р°РєР°Р·Р°С‚СЊ РёСЃРїР°СЂРёС‚РµР»СЊ</a></li>
+  <li><a href="/raschet-condensatora/">Р—Р°РєР°Р·Р°С‚СЊ РєРѕРЅРґРµРЅСЃР°С‚РѕСЂ</a></li>
+  <li><a href="/raschet-parovogo-teploobmennika/">Р—Р°РєР°Р·Р°С‚СЊ РїР°СЂРѕРІРѕР№ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРє</a></li>
 
 </ul>
 </div>
 <div class="catalog-page-right-col">
-<p>Мы делаем теплообменники для вентиляции (для приточных установок), для драйкулеров (в сухие градирни), для кондитерских и других производств, горизонтальные и вертикальные, для нагрева и охлаждения.</p>
-<p>Наша специализация — это теплообменники «вода-воздух», «пар-воздух» и «фреон-воздух».</p> <p>Геометрию расположения трубок спроектируем так, как вам нужно. Подберем нужные диаметры трубок — у нас очень широкий диапазон.</p>
-<p>Работаем строго по ТЗ, без отсебятины и «срезания углов». Даем подробную спецификацию и смету, где видно все расходы. </p>
-<p>Срок изготовления определяем по итогам расчета — от 15 до 40 рабочих дней.</p>
+<p>РњС‹ РґРµР»Р°РµРј С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РґР»СЏ РІРµРЅС‚РёР»СЏС†РёРё (РґР»СЏ РїСЂРёС‚РѕС‡РЅС‹С… СѓСЃС‚Р°РЅРѕРІРѕРє), РґР»СЏ РґСЂР°Р№РєСѓР»РµСЂРѕРІ (РІ СЃСѓС…РёРµ РіСЂР°РґРёСЂРЅРё), РґР»СЏ РєРѕРЅРґРёС‚РµСЂСЃРєРёС… Рё РґСЂСѓРіРёС… РїСЂРѕРёР·РІРѕРґСЃС‚РІ, РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Рµ Рё РІРµСЂС‚РёРєР°Р»СЊРЅС‹Рµ, РґР»СЏ РЅР°РіСЂРµРІР° Рё РѕС…Р»Р°Р¶РґРµРЅРёСЏ.</p>
+<p>РќР°С€Р° СЃРїРµС†РёР°Р»РёР·Р°С†РёСЏ вЂ” СЌС‚Рѕ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё В«РІРѕРґР°-РІРѕР·РґСѓС…В», В«РїР°СЂ-РІРѕР·РґСѓС…В» Рё В«С„СЂРµРѕРЅ-РІРѕР·РґСѓС…В».</p> <p>Р“РµРѕРјРµС‚СЂРёСЋ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ С‚СЂСѓР±РѕРє СЃРїСЂРѕРµРєС‚РёСЂСѓРµРј С‚Р°Рє, РєР°Рє РІР°Рј РЅСѓР¶РЅРѕ. РџРѕРґР±РµСЂРµРј РЅСѓР¶РЅС‹Рµ РґРёР°РјРµС‚СЂС‹ С‚СЂСѓР±РѕРє вЂ” Сѓ РЅР°СЃ РѕС‡РµРЅСЊ С€РёСЂРѕРєРёР№ РґРёР°РїР°Р·РѕРЅ.</p>
+<p>Р Р°Р±РѕС‚Р°РµРј СЃС‚СЂРѕРіРѕ РїРѕ РўР—, Р±РµР· РѕС‚СЃРµР±СЏС‚РёРЅС‹ Рё В«СЃСЂРµР·Р°РЅРёСЏ СѓРіР»РѕРІВ». Р”Р°РµРј РїРѕРґСЂРѕР±РЅСѓСЋ СЃРїРµС†РёС„РёРєР°С†РёСЋ Рё СЃРјРµС‚Сѓ, РіРґРµ РІРёРґРЅРѕ РІСЃРµ СЂР°СЃС…РѕРґС‹. </p>
+<p>РЎСЂРѕРє РёР·РіРѕС‚РѕРІР»РµРЅРёСЏ РѕРїСЂРµРґРµР»СЏРµРј РїРѕ РёС‚РѕРіР°Рј СЂР°СЃС‡РµС‚Р° вЂ” РѕС‚ 15 РґРѕ 40 СЂР°Р±РѕС‡РёС… РґРЅРµР№.</p>
 
 <br><img src="/public/images/2255_cr.jpg" class="img-responsive" ><br>
-<h3>Какие материалы берем для промышленных теплообменников?</h3>
-<p>Ламели делаем из алюминия, по спецзаказу — из меди. Трубки — из мельхиора, стали, меди. Используем медь высшего качества — германскую и финскую.</p>
-<p>Для пищевых производств предлагаем теплообменники из нержавеющей стали марок INOX AISI 304 и INOX AISI 316. Их выпускают в Италии, на заводе  CO.MA. spa. Из стали делаются все части теплообменника: рама, трубки, ламели и проводящие пластины.</p>
-<p>Можем изготовить очень длинный теплообменник — до 12 метров.</p>
-<p>Предлагаем любые варианты патрубков: фланцевые, резьбовые, под приварку.</p>
+<h3>РљР°РєРёРµ РјР°С‚РµСЂРёР°Р»С‹ Р±РµСЂРµРј РґР»СЏ РїСЂРѕРјС‹С€Р»РµРЅРЅС‹С… С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ?</h3>
+<p>Р›Р°РјРµР»Рё РґРµР»Р°РµРј РёР· Р°Р»СЋРјРёРЅРёСЏ, РїРѕ СЃРїРµС†Р·Р°РєР°Р·Сѓ вЂ” РёР· РјРµРґРё. РўСЂСѓР±РєРё вЂ” РёР· РјРµР»СЊС…РёРѕСЂР°, СЃС‚Р°Р»Рё, РјРµРґРё. РСЃРїРѕР»СЊР·СѓРµРј РјРµРґСЊ РІС‹СЃС€РµРіРѕ РєР°С‡РµСЃС‚РІР° вЂ” РіРµСЂРјР°РЅСЃРєСѓСЋ Рё С„РёРЅСЃРєСѓСЋ.</p>
+<p>Р”Р»СЏ РїРёС‰РµРІС‹С… РїСЂРѕРёР·РІРѕРґСЃС‚РІ РїСЂРµРґР»Р°РіР°РµРј С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё РјР°СЂРѕРє INOX AISI 304 Рё INOX AISI 316. РС… РІС‹РїСѓСЃРєР°СЋС‚ РІ РС‚Р°Р»РёРё, РЅР° Р·Р°РІРѕРґРµ  CO.MA. spa. РР· СЃС‚Р°Р»Рё РґРµР»Р°СЋС‚СЃСЏ РІСЃРµ С‡Р°СЃС‚Рё С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°: СЂР°РјР°, С‚СЂСѓР±РєРё, Р»Р°РјРµР»Рё Рё РїСЂРѕРІРѕРґСЏС‰РёРµ РїР»Р°СЃС‚РёРЅС‹.</p>
+<p>РњРѕР¶РµРј РёР·РіРѕС‚РѕРІРёС‚СЊ РѕС‡РµРЅСЊ РґР»РёРЅРЅС‹Р№ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРє вЂ” РґРѕ 12 РјРµС‚СЂРѕРІ.</p>
+<p>РџСЂРµРґР»Р°РіР°РµРј Р»СЋР±С‹Рµ РІР°СЂРёР°РЅС‚С‹ РїР°С‚СЂСѓР±РєРѕРІ: С„Р»Р°РЅС†РµРІС‹Рµ, СЂРµР·СЊР±РѕРІС‹Рµ, РїРѕРґ РїСЂРёРІР°СЂРєСѓ.</p>
 
-<h3>Обязательные испытания теплообменников</h3>
-<p>Любые теплообменники проверяются на герметичность под давлением:<ul>
-<li>водяные (нагреватели, охладитель) – 23 атмосферы;
-<li>паровые — минимум 30 атмосфер;
-<li>фреоновые (испарители, конденсаторы) — минимум 40 атмосфер.</ul></p>
+<h3>РћР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РёСЃРїС‹С‚Р°РЅРёСЏ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ</h3>
+<p>Р›СЋР±С‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РїСЂРѕРІРµСЂСЏСЋС‚СЃСЏ РЅР° РіРµСЂРјРµС‚РёС‡РЅРѕСЃС‚СЊ РїРѕРґ РґР°РІР»РµРЅРёРµРј:<ul>
+<li>РІРѕРґСЏРЅС‹Рµ (РЅР°РіСЂРµРІР°С‚РµР»Рё, РѕС…Р»Р°РґРёС‚РµР»СЊ) вЂ“ 23 Р°С‚РјРѕСЃС„РµСЂС‹;
+<li>РїР°СЂРѕРІС‹Рµ вЂ” РјРёРЅРёРјСѓРј 30 Р°С‚РјРѕСЃС„РµСЂ;
+<li>С„СЂРµРѕРЅРѕРІС‹Рµ (РёСЃРїР°СЂРёС‚РµР»Рё, РєРѕРЅРґРµРЅСЃР°С‚РѕСЂС‹) вЂ” РјРёРЅРёРјСѓРј 40 Р°С‚РјРѕСЃС„РµСЂ.</ul></p>
 
-<h3>Гарантия на теплообменники</h3>
-<p>Мы даем гарантию на все наши изделия:<ul>
-<li>на медно-алюминиевые теплообменники — 2 года;
-<li>на теплообменники из нержавеющей стали — 5 лет.</ul></p>
+<h3>Р“Р°СЂР°РЅС‚РёСЏ РЅР° С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</h3>
+<p>РњС‹ РґР°РµРј РіР°СЂР°РЅС‚РёСЋ РЅР° РІСЃРµ РЅР°С€Рё РёР·РґРµР»РёСЏ:<ul>
+<li>РЅР° РјРµРґРЅРѕ-Р°Р»СЋРјРёРЅРёРµРІС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё вЂ” 2 РіРѕРґР°;
+<li>РЅР° С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё вЂ” 5 Р»РµС‚.</ul></p>
 
 </div>
 </div>
 
   <div align="center">  
-<h2>Выполненные проекты</h2>
+<h2>Р’С‹РїРѕР»РЅРµРЅРЅС‹Рµ РїСЂРѕРµРєС‚С‹</h2>
 </div>
             <div class="owl-carousel owl-carousel_b_photos">
                 <div class="item">
-                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате"><img src="/public/images/cases/case-1.jpg"></a>
-                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox"  data-fancybox-group="gallery2" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате">Здание Правительства Москвы: "Дом-книжка" на Новом Арбате</a>
+                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: Р”РѕРј-РєРЅРёР¶РєР° РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ"><img src="/public/images/cases/case-1.jpg"></a>
+                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox"  data-fancybox-group="gallery2" data-fancybox-title="Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: Р”РѕРј-РєРЅРёР¶РєР° РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ">Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: "Р”РѕРј-РєРЅРёР¶РєР°" РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ</a>
                 </div>
                 <div class="item">
                     <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Lotte Plaza Hotel Moscow"><img src="/public/images/cases/case-2.jpg"></a>
                     <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery2"  data-fancybox-title="Lotte Plaza Hotel Moscow">Lotte Plaza Hotel Moscow</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Экспоцентр на Красной Пресне"><img src="/public/images/cases/case-3.jpg"></a>
-                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Экспоцентр на Красной Пресне">Экспоцентр на Красной Пресне</a>
+                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ"><img src="/public/images/cases/case-3.jpg"></a>
+                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ">Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт"><img src="/public/images/cases/case-4.jpg"></a>
-                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт">Шоколадно-кондитерская фабрика Рот Фронт</a>
+                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚"><img src="/public/images/cases/case-4.jpg"></a>
+                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚">РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФКП «Щелковский биокомбинат»"><img src="/public/images/cases/case-5.jpg"></a>
-                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФКП «Щелковский биокомбинат»">ФКП «Щелковский биокомбинат»</a>
+                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»"><img src="/public/images/cases/case-5.jpg"></a>
+                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»">Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»"><img src="/public/images/cases/case-6.jpg"></a>
-                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»">ЗАО «Энергоконтракт-Томилино»</a>
+                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»"><img src="/public/images/cases/case-6.jpg"></a>
+                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»">Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Управление административными зданиями» корпорации Росатом"><img src="/public/images/cases/case-7.jpg"></a>
-                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Управление административными зданиями» корпорации Росатом">«Управление административными зданиями» корпорации Росатом</a>
+                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј"><img src="/public/images/cases/case-7.jpg"></a>
+                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј">В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="АТЦ Москва на Каширском шоссе"><img src="/public/images/cases/case-8.jpg"></a>
-                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="АТЦ Москва на Каширском шоссе">АТЦ Москва на Каширском шоссе</a>
+                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ"><img src="/public/images/cases/case-8.jpg"></a>
+                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ">РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово"><img src="/public/images/cases/case-9.jpg"></a>
-                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово">Волейбольный спортивно-развлекательный комплекс в г. Одинцово</a>
+                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ"><img src="/public/images/cases/case-9.jpg"></a>
+                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ">Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ТЦ Капитолий Ленинградский"><img src="/public/images/cases/case-10.jpg"></a>
-                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ТЦ Капитолий Ленинградский">ТЦ Капитолий Ленинградский</a>
+                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№"><img src="/public/images/cases/case-10.jpg"></a>
+                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№">РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России"><img src="/public/images/cases/case-11.jpg"></a>
-                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России">ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России</a>
+                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё"><img src="/public/images/cases/case-11.jpg"></a>
+                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё">Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="World class - сеть фитнес-клубов"><img src="/public/images/cases/case-12.jpg"></a>
-                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="World class - сеть фитнес-клубов">World class - сеть фитнес-клубов</a>
+                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ"><img src="/public/images/cases/case-12.jpg"></a>
+                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ">World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ</a>
                 </div>
                 <div class="item">
-                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Фуяо Стекло Рус»"><img src="/public/images/cases/case-13.jpg"></a>
-                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Фуяо Стекло Рус»">«Фуяо Стекло Рус»</a>
+                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»"><img src="/public/images/cases/case-13.jpg"></a>
+                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»">В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»</a>
                 </div>
             </div>
             <div align="center">
-            <a class="order_btn" href="#rent_modal" data-toggle="modal"><div class="arrow_1"></div>Отправить заявку</a>
+            <a class="order_btn" href="#rent_modal" data-toggle="modal"><div class="arrow_1"></div>РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</a>
 </div>

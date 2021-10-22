@@ -1,23 +1,23 @@
 <?php
-# назначение: шаблонизатор на базе php
-# дата создания: 2015.4.15
-# автор: romanov.egor@gmail.com
+# РЅР°Р·РЅР°С‡РµРЅРёРµ: С€Р°Р±Р»РѕРЅРёР·Р°С‚РѕСЂ РЅР° Р±Р°Р·Рµ php
+# РґР°С‚Р° СЃРѕР·РґР°РЅРёСЏ: 2015.4.15
+# Р°РІС‚РѕСЂ: romanov.egor@gmail.com
 
 class templates
 {
-	# ПЕРЕМЕННЫЕ КЛАССА
-	public $template; # главный шаблон
+	# РџР•Р Р•РњР•РќРќР«Р• РљР›РђРЎРЎРђ
+	public $template; # РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
 	
-	# КОНСТРУКТОР
+	# РљРћРќРЎРўР РЈРљРўРћР 
 	function __construct()
 	{
 	}
-	# /КОНСТРУКТОР
+	# /РљРћРќРЎРўР РЈРљРўРћР 
 	
-	# УКАЗАТЬ ГЛАВНЫЙ ШАБЛОН (путь прописывать от DOCUMENT_ROOT)
-	function setMainTemplate($template) # путь к шаблону от DOCUMENT_ROOT
+	# РЈРљРђР—РђРўР¬ Р“Р›РђР’РќР«Р™ РЁРђР‘Р›РћРќ (РїСѓС‚СЊ РїСЂРѕРїРёСЃС‹РІР°С‚СЊ РѕС‚ DOCUMENT_ROOT)
+	function setMainTemplate($template) # РїСѓС‚СЊ Рє С€Р°Р±Р»РѕРЅСѓ РѕС‚ DOCUMENT_ROOT
 	{
-		# проверка переменных
+		# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
 		if (empty($template))
 		{
 			echo "<!-- main template is not defined in setMainTemplate method. -->\n";
@@ -29,12 +29,12 @@ class templates
 		if (file_exists($fullPath)) $this->template = $fullPath;
 		else echo "<!-- main template not found in setMainTemplate method: ".$template." -->\n";
 	}
-	# /УКАЗАТЬ ГЛАВНЫЙ ШАБЛОН
+	# /РЈРљРђР—РђРўР¬ Р“Р›РђР’РќР«Р™ РЁРђР‘Р›РћРќ
 	
-	# ВЫВОДИМ ГЛАВНЫЙ ШАБЛОН
+	# Р’Р«Р’РћР”РРњ Р“Р›РђР’РќР«Р™ РЁРђР‘Р›РћРќ
 	function echoMainTemplate()
 	{
-		# проверка главного шаблона
+		# РїСЂРѕРІРµСЂРєР° РіР»Р°РІРЅРѕРіРѕ С€Р°Р±Р»РѕРЅР°
 		if (empty($this->template))
 		{
 			echo "<!-- main template variable not defined in echoMainTemplate method. -->\n";
@@ -45,17 +45,17 @@ class templates
 			echo "<!-- main template file not found in echoMainTemplate method: ".$this->template." -->\n";
 			return;
 		}
-		# /проверка главного шаблона
+		# /РїСЂРѕРІРµСЂРєР° РіР»Р°РІРЅРѕРіРѕ С€Р°Р±Р»РѕРЅР°
 		
-		# читаем и выводим файл из шаблона
+		# С‡РёС‚Р°РµРј Рё РІС‹РІРѕРґРёРј С„Р°Р№Р» РёР· С€Р°Р±Р»РѕРЅР°
 		include($this->template);
 	}
-	# /ВЫВОДИМ ГЛАВНЫЙ ШАБЛОН
+	# /Р’Р«Р’РћР”РРњ Р“Р›РђР’РќР«Р™ РЁРђР‘Р›РћРќ
 	
-	# ПОДКЛЮЧЯЕМ ВНЕШНИЙ ШАБЛОН: ВЫПОЛЯНЕМ В НЕМ PHP-КОД, РЕЗУЛЬТАТ ПРИСВАИВАЕМ ПЕРЕМЕННОЙ
-	function getTemplate($template) # путь к шаблону от DOCUMENT_ROOT
+	# РџРћР”РљР›Р®Р§РЇР•Рњ Р’РќР•РЁРќРР™ РЁРђР‘Р›РћРќ: Р’Р«РџРћР›РЇРќР•Рњ Р’ РќР•Рњ PHP-РљРћР”, Р Р•Р—РЈР›Р¬РўРђРў РџР РРЎР’РђРР’РђР•Рњ РџР•Р Р•РњР•РќРќРћР™
+	function getTemplate($template) # РїСѓС‚СЊ Рє С€Р°Р±Р»РѕРЅСѓ РѕС‚ DOCUMENT_ROOT
 	{
-		# проверка переменных
+		# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
 		if (empty($template))
 		{
 			echo "<!-- template is not defined in setTemplate method. -->\n";
@@ -74,5 +74,5 @@ class templates
 		}
 		else echo "<!-- full path not found in setTemplate method. -->\n";
 	}
-	# /ПОДКЛЮЧЯЕМ ВНЕШНИЙ ШАБЛОН
+	# /РџРћР”РљР›Р®Р§РЇР•Рњ Р’РќР•РЁРќРР™ РЁРђР‘Р›РћРќ
 }

@@ -6,17 +6,17 @@
  */
 
 {
-	"sProcessing":   "Próiseáil...",
-	"sLengthMenu":   "Taispeáin iontrálacha _MENU_",
-	"sZeroRecords":  "Gan aon taifead meaitseáil aimsithe",
-	"sInfo":         "_START_ Showing a _END_ na n-iontrálacha  _TOTAL_",
-	"sInfoEmpty":    "Showing 0-0 na n-iontrálacha  0",
-	"sInfoFiltered": "(scagtha ó _MAX_ iontrálacha iomlán)",
+	"sProcessing":   "PrР“С–iseР“РЋil...",
+	"sLengthMenu":   "TaispeР“РЋin iontrР“РЋlacha _MENU_",
+	"sZeroRecords":  "Gan aon taifead meaitseР“РЋil aimsithe",
+	"sInfo":         "_START_ Showing a _END_ na n-iontrР“РЋlacha  _TOTAL_",
+	"sInfoEmpty":    "Showing 0-0 na n-iontrР“РЋlacha  0",
+	"sInfoFiltered": "(scagtha Р“С– _MAX_ iontrР“РЋlacha iomlР“РЋn)",
 	"sInfoPostFix":  "",
 	"sSearch":       "Cuardaigh:",
 	"sUrl":          "",
 	"oPaginate": {
-		"sFirst":    "An Chéad",
+		"sFirst":    "An ChР“В©ad",
 		"sPrevious": "Roimhe Seo",
 		"sNext":     "Ar Aghaidh",
 		"sLast":     "Last"

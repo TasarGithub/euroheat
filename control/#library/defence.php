@@ -1,28 +1,28 @@
-<?php # Класс от 2010.12.23, romanov.egor@gmail.com, проверка пользовательских данных
+<?php # РљР»Р°СЃСЃ РѕС‚ 2010.12.23, romanov.egor@gmail.com, РїСЂРѕРІРµСЂРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РґР°РЅРЅС‹С…
 
 class defence
 {
-    # пример использования:
+    # РїСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ:
     # $_POST['name'] = clearUserData($_POST['name'], 50);
     function clearUserData($string, $maxLength = NULL)
 	{
         $string = trim($string);
         $string = strip_tags($string);
         $string = htmlspecialchars($string, ENT_QUOTES);
-        # функция удаления опасных атрибутов для разрешенных тегов в функции strip_tags
-        # взята 30.12.2010 из "php-architect's Guide to PHP Security", стр. 62.
+        # С„СѓРЅРєС†РёСЏ СѓРґР°Р»РµРЅРёСЏ РѕРїР°СЃРЅС‹С… Р°С‚СЂРёР±СѓС‚РѕРІ РґР»СЏ СЂР°Р·СЂРµС€РµРЅРЅС‹С… С‚РµРіРѕРІ РІ С„СѓРЅРєС†РёРё strip_tags
+        # РІР·СЏС‚Р° 30.12.2010 РёР· "php-architect's Guide to PHP Security", СЃС‚СЂ. 62.
         /*
         preg_replace(
         "!<([A-Z]\w*)
-        (?:\s* (?:\w+) \s* = \s* (?(?=[“\’]) ([“\’])(?:.*?\2)+ | (?:[^\s>]*) ) )*
+        (?:\s* (?:\w+) \s* = \s* (?(?=[вЂњ\вЂ™]) ([вЂњ\вЂ™])(?:.*?\2)+ | (?:[^\s>]*) ) )*
         \s* (\s/)? >!ix",
         "<\1\5>", $input);
         */
         
-        # если указана макс длина, обрезаем ее
+        # РµСЃР»Рё СѓРєР°Р·Р°РЅР° РјР°РєСЃ РґР»РёРЅР°, РѕР±СЂРµР·Р°РµРј РµРµ
         if ($maxLength) $string = substr($string, 0, $maxLength);
         
-        # проверка на слишком длинные слова
+        # РїСЂРѕРІРµСЂРєР° РЅР° СЃР»РёС€РєРѕРј РґР»РёРЅРЅС‹Рµ СЃР»РѕРІР°
         $dataArray = explode(" ", $string);
         $dataArrayCount = count($dataArray);
         if ($dataArrayCount > 0)
@@ -34,8 +34,8 @@ class defence
         return $string;
     }
 	
-	# на входе: русский текст
-	# на выходе: текст в транслитерации
+	# РЅР° РІС…РѕРґРµ: СЂСѓСЃСЃРєРёР№ С‚РµРєСЃС‚
+	# РЅР° РІС‹С…РѕРґРµ: С‚РµРєСЃС‚ РІ С‚СЂР°РЅСЃР»РёС‚РµСЂР°С†РёРё
 	function convertTextFromRuToEn($text)
 	{
 		if (!empty($text))
@@ -44,104 +44,104 @@ class defence
 
 			$text = trim($text);
 			
-			$text = str_replace("а", "a", $text);
-			$text = str_replace("А", "A", $text);
+			$text = str_replace("Р°", "a", $text);
+			$text = str_replace("Рђ", "A", $text);
 			
-			$text = str_replace("б", "b", $text);
-			$text = str_replace("Б", "B", $text);
+			$text = str_replace("Р±", "b", $text);
+			$text = str_replace("Р‘", "B", $text);
 			
-			$text = str_replace("в", "v", $text);
-			$text = str_replace("В", "V", $text);
+			$text = str_replace("РІ", "v", $text);
+			$text = str_replace("Р’", "V", $text);
 			
-			$text = str_replace("г", "g", $text);
-			$text = str_replace("Г", "G", $text);
+			$text = str_replace("Рі", "g", $text);
+			$text = str_replace("Р“", "G", $text);
 			
-			$text = str_replace("д", "d", $text);
-			$text = str_replace("Д", "D", $text);
+			$text = str_replace("Рґ", "d", $text);
+			$text = str_replace("Р”", "D", $text);
 			
-			$text = str_replace("е", "e", $text);
-			$text = str_replace("Е", "E", $text);
+			$text = str_replace("Рµ", "e", $text);
+			$text = str_replace("Р•", "E", $text);
 			
-			$text = str_replace("ё", "jo", $text);
-			$text = str_replace("Ё", "Jo", $text);
+			$text = str_replace("С‘", "jo", $text);
+			$text = str_replace("РЃ", "Jo", $text);
 			
-			$text = str_replace("ж", "zh", $text);
-			$text = str_replace("Ж", "Zh", $text);
+			$text = str_replace("Р¶", "zh", $text);
+			$text = str_replace("Р–", "Zh", $text);
 			
-			$text = str_replace("з", "z", $text);
-			$text = str_replace("З", "Z", $text);
+			$text = str_replace("Р·", "z", $text);
+			$text = str_replace("Р—", "Z", $text);
 			
-			$text = str_replace("и", "i", $text);
-			$text = str_replace("И", "I", $text);
+			$text = str_replace("Рё", "i", $text);
+			$text = str_replace("Р", "I", $text);
 			
-			$text = str_replace("й", "j", $text);
-			$text = str_replace("Й", "J", $text);
+			$text = str_replace("Р№", "j", $text);
+			$text = str_replace("Р™", "J", $text);
 			
-			$text = str_replace("к", "k", $text);
-			$text = str_replace("К", "K", $text);
+			$text = str_replace("Рє", "k", $text);
+			$text = str_replace("Рљ", "K", $text);
 			
-			$text = str_replace("л", "l", $text);
-			$text = str_replace("Л", "L", $text);
+			$text = str_replace("Р»", "l", $text);
+			$text = str_replace("Р›", "L", $text);
 			
-			$text = str_replace("м", "m", $text);
-			$text = str_replace("М", "M", $text);
+			$text = str_replace("Рј", "m", $text);
+			$text = str_replace("Рњ", "M", $text);
 			
-			$text = str_replace("н", "n", $text);
-			$text = str_replace("Н", "N", $text);
+			$text = str_replace("РЅ", "n", $text);
+			$text = str_replace("Рќ", "N", $text);
 			
-			$text = str_replace("о", "o", $text);
-			$text = str_replace("О", "O", $text);
+			$text = str_replace("Рѕ", "o", $text);
+			$text = str_replace("Рћ", "O", $text);
 			
-			$text = str_replace("п", "p", $text);
-			$text = str_replace("П", "P", $text);
+			$text = str_replace("Рї", "p", $text);
+			$text = str_replace("Рџ", "P", $text);
 			
-			$text = str_replace("р", "r", $text);
-			$text = str_replace("Р", "R", $text);
+			$text = str_replace("СЂ", "r", $text);
+			$text = str_replace("Р ", "R", $text);
 			
-			$text = str_replace("с", "s", $text);
-			$text = str_replace("С", "S", $text);
+			$text = str_replace("СЃ", "s", $text);
+			$text = str_replace("РЎ", "S", $text);
 			
-			$text = str_replace("т", "t", $text);
-			$text = str_replace("Т", "T", $text);
+			$text = str_replace("С‚", "t", $text);
+			$text = str_replace("Рў", "T", $text);
 			
-			$text = str_replace("у", "u", $text);
-			$text = str_replace("У", "U", $text);
+			$text = str_replace("Сѓ", "u", $text);
+			$text = str_replace("РЈ", "U", $text);
 			
-			$text = str_replace("ф", "f", $text);
-			$text = str_replace("Ф", "F", $text);
+			$text = str_replace("С„", "f", $text);
+			$text = str_replace("Р¤", "F", $text);
 			
-			$text = str_replace("х", "h", $text);
-			$text = str_replace("Х", "H", $text);
+			$text = str_replace("С…", "h", $text);
+			$text = str_replace("РҐ", "H", $text);
 			
-			$text = str_replace("ц", "c", $text);
-			$text = str_replace("Ц", "C", $text);
+			$text = str_replace("С†", "c", $text);
+			$text = str_replace("Р¦", "C", $text);
 			
-			$text = str_replace("ч", "ch", $text);
-			$text = str_replace("Ч", "Ch", $text);
+			$text = str_replace("С‡", "ch", $text);
+			$text = str_replace("Р§", "Ch", $text);
 			
-			$text = str_replace("ш", "sh", $text);
-			$text = str_replace("Ш", "Sh", $text);
+			$text = str_replace("С€", "sh", $text);
+			$text = str_replace("РЁ", "Sh", $text);
 			
-			$text = str_replace("щ", "sch", $text);
-			$text = str_replace("Щ", "Sch", $text);
+			$text = str_replace("С‰", "sch", $text);
+			$text = str_replace("Р©", "Sch", $text);
 			
-			$text = str_replace("ъ", "", $text);
-			$text = str_replace("Ъ", "", $text);
+			$text = str_replace("СЉ", "", $text);
+			$text = str_replace("РЄ", "", $text);
 			
-			$text = str_replace("ы", "y", $text);
-			$text = str_replace("Ы", "Y", $text);
+			$text = str_replace("С‹", "y", $text);
+			$text = str_replace("Р«", "Y", $text);
 			
-			$text = str_replace("ь", "", $text);
-			$text = str_replace("Ь", "", $text);
+			$text = str_replace("СЊ", "", $text);
+			$text = str_replace("Р¬", "", $text);
 			
-			$text = str_replace("э", "e", $text);
-			$text = str_replace("Э", "E", $text);
+			$text = str_replace("СЌ", "e", $text);
+			$text = str_replace("Р­", "E", $text);
 			
-			$text = str_replace("ю", "ju", $text);
-			$text = str_replace("Ю", "Ju", $text);
+			$text = str_replace("СЋ", "ju", $text);
+			$text = str_replace("Р®", "Ju", $text);
 			
-			$text = str_replace("я", "ya", $text);
-			$text = str_replace("Я", "Ya", $text);
+			$text = str_replace("СЏ", "ya", $text);
+			$text = str_replace("РЇ", "Ya", $text);
 			
 			return $text;
 		}

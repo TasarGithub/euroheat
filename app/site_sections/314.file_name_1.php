@@ -1,7 +1,7 @@
-<p>Компания «ЕвроКлима» сертифицирована на соответствие менеджмента качества ISO 9001:2015.</p>
-<p>Наше деловое партнерство с итальянским предприятием Co.Мa. spa также подтверждается сертификатом официального дистрибьютора.</p>
-<div class="cert-wr">
-<a href="/public/docs/eh-cert-1-big.jpg" class="fancybox" data-fancybox-group="gallery11"><img src="/public/docs/eh-cert-1.jpg" /></a>
-<a href="/public/docs/eh-cert-2-big.jpg" class="fancybox" data-fancybox-group="gallery11"><img src="/public/docs/eh-cert-2.jpg" /></a>
-<a href="/public/docs/eh-cert-3-big.jpg" class="fancybox" data-fancybox-group="gallery11"><img src="/public/docs/eh-cert-3.jpg" /></a>
+<p>РљРѕРјРїР°РЅРёСЏ В«Р•РІСЂРѕРљР»РёРјР°В» СЃРµСЂС‚РёС„РёС†РёСЂРѕРІР°РЅР° РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РјРµРЅРµРґР¶РјРµРЅС‚Р° РєР°С‡РµСЃС‚РІР° ISO 9001:2015.</p>
+<p>РќР°С€Рµ РґРµР»РѕРІРѕРµ РїР°СЂС‚РЅРµСЂСЃС‚РІРѕ СЃ РёС‚Р°Р»СЊСЏРЅСЃРєРёРј РїСЂРµРґРїСЂРёСЏС‚РёРµРј Co.Рњa. spa С‚Р°РєР¶Рµ РїРѕРґС‚РІРµСЂР¶РґР°РµС‚СЃСЏ СЃРµСЂС‚РёС„РёРєР°С‚РѕРј РѕС„РёС†РёР°Р»СЊРЅРѕРіРѕ РґРёСЃС‚СЂРёР±СЊСЋС‚РѕСЂР°.</p>
+<div class="cert-wr">
+<a href="/public/docs/eh-cert-1-big.jpg" class="fancybox" data-fancybox-group="gallery11"><img src="/public/docs/eh-cert-1.jpg" /></a>
+<a href="/public/docs/eh-cert-2-big.jpg" class="fancybox" data-fancybox-group="gallery11"><img src="/public/docs/eh-cert-2.jpg" /></a>
+<a href="/public/docs/eh-cert-3-big.jpg" class="fancybox" data-fancybox-group="gallery11"><img src="/public/docs/eh-cert-3.jpg" /></a>
 </div>

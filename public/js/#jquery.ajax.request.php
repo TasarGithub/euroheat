@@ -22,7 +22,7 @@ if (!stristr($_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'])) exit('');
 
 # указываем кодировку, которую будет отдавать javascript'у ajax-скрипт
 
-header('Content-type: text/html; charset=windows-1251');
+header('Content-type: text/html; charset=UTF-8');
 
 
 
@@ -198,8 +198,11 @@ function sendLetterToManager()
 
     if (empty($emailForNotifications)) $emailForNotifications = 'info@'.$_SERVER['SERVER_NAME'];
 
-    
+		# НА  1gb требуется емейл , зарегестрированный в 1gb в настройках обратного адреса
+		# Читаем из базы шаблонов
 
+		$from = getContent('/app/templates/email-from.html'); //'info-eh@1gb.ru'; 
+		
 	if (mail($emailForNotifications,
 
 	# if (mail("romanov.egor@gmail.com",
@@ -208,17 +211,11 @@ function sendLetterToManager()
 
 	$message.$messageEn,
 
-	'From: www@'.str_replace('www.', '', $_SERVER['SERVER_NAME']).PHP_EOL.
-
-	#'Cc: vashpartner3@gmail.com'.PHP_EOL. # письмо куратору проекта
-
-    'MIME-Version: 1.0'.PHP_EOL. 
-
-    'Content-type: text/plain; charset=Windows-1251'.PHP_EOL.
-
-    'Content-Transfer-Encoding: quoted-printable'.PHP_EOL.
-
-    'X-Mailer: PHP'
+		"Mime-Version: 1.0\n".
+	 "From: $from\n". //.DOMAIN_SHORT.PHP_EOL.
+		"Reply-To: $from\n".
+		"Content-Type: text/plain; charset=UTF-8\n".
+		"Content-Transfer-Encoding: 8bit"
 
 	)) {
 
@@ -466,13 +463,29 @@ function getCorrectEnc($var)
 
 		$isUTF8 = detectUTF8($var); # echo $isUTF8.'<hr />';
 
-		# если это UTF-8
+		// # если это UTF-8
 
-		if (!empty($isUTF8))
+		// if (!empty($isUTF8))
+
+		// {
+
+		// 	$var = iconv('UTF-8', 'windows-1251//TRANSLIT', $var); # echo $var."<br />"
+
+		// }
+
+	//меняем перекодирование наоборот - из windows-1251  в UTF-8 4/07/2021
+	// если это  НЕ UTF-8 
+		if (empty($isUTF8))
 
 		{
 
-			$var = iconv('UTF-8', 'windows-1251//TRANSLIT', $var); # echo $var."<br />"
+			$var2 = iconv('windows-1251', 'UTF-8//TRANSLIT', $var); # echo $var."<br />";
+
+            # обход баги, обнаруженной 22.12.2015, когда некоторые данные определяются как UTF-8
+
+            # а при перекодировании дают пустую строку
+	// оставляем, на всякий случай
+            if (!empty($var2)) $var = $var2;
 
 		}
 

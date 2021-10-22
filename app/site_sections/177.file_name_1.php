@@ -1,247 +1,247 @@
-<div class="h1 h2">Оборудование</div>
-        
-        <p>Если вы берете электростанции в аренду по Москве или области, оборудование прибудет на объект на следующее утро после подписания договора. Сам договор и счет на предоплату присылаем на ваш электронный адрес в течение часа после звонка.</p>
-
-        <br />
-        
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_1.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R110</a> / 80 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">3500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item even">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_2.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R135</a> / 96 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">4000 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_2.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R165</a> / 120 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">4500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item even">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_2.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R220</a> / 160 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">5000 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_3.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO V330</a> / 240 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">6700 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item even">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_3.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO D330</a> / 240 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">6700 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_4.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R350</a> / 254 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">7500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item even">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_4.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO V350</a> / 2540 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">7500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_4.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO V440</a> / 320 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">8500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item even">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_4.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R440</a> / 320 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">8500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_4.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R550</a> / 400 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">9500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item even">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_5.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">Манипулятор 7 тонн</a></div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price"><span>от</span> 1400 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_6.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">Манипулятор 15 тонн</a></div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price"><span>от</span> 1700 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>  
-    
-<br>
-<a class="order_btn_2 icon_1" href="/public/docs/1_euroheater.ru_price.doc">Скачать прайс-лист</a>
-<a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">Скачать договор на аренду</a>
-<br>
-    
-        <p>Если вы берете электростанции в аренду по Москве или области, оборудование прибудет на объект на следующее утро после подписания договора. Сам договор и счет на предоплату присылаем на ваш электронный адрес в течение часа после звонка.</p>
+<div class="h1 h2">РћР±РѕСЂСѓРґРѕРІР°РЅРёРµ</div>
+        
+        <p>Р•СЃР»Рё РІС‹ Р±РµСЂРµС‚Рµ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё РІ Р°СЂРµРЅРґСѓ РїРѕ РњРѕСЃРєРІРµ РёР»Рё РѕР±Р»Р°СЃС‚Рё, РѕР±РѕСЂСѓРґРѕРІР°РЅРёРµ РїСЂРёР±СѓРґРµС‚ РЅР° РѕР±СЉРµРєС‚ РЅР° СЃР»РµРґСѓСЋС‰РµРµ СѓС‚СЂРѕ РїРѕСЃР»Рµ РїРѕРґРїРёСЃР°РЅРёСЏ РґРѕРіРѕРІРѕСЂР°. РЎР°Рј РґРѕРіРѕРІРѕСЂ Рё СЃС‡РµС‚ РЅР° РїСЂРµРґРѕРїР»Р°С‚Сѓ РїСЂРёСЃС‹Р»Р°РµРј РЅР° РІР°С€ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РІ С‚РµС‡РµРЅРёРµ С‡Р°СЃР° РїРѕСЃР»Рµ Р·РІРѕРЅРєР°.</p>
+
+        <br />
+        
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_1.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R110</a> / 80 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">3500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item even">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_2.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R135</a> / 96 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">4000 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_2.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R165</a> / 120 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">4500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item even">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_2.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R220</a> / 160 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">5000 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_3.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO V330</a> / 240 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">6700 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item even">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_3.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO D330</a> / 240 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">6700 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_4.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R350</a> / 254 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">7500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item even">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_4.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO V350</a> / 2540 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">7500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_4.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO V440</a> / 320 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">8500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item even">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_4.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R440</a> / 320 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">8500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_4.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R550</a> / 400 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">9500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item even">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_5.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">РњР°РЅРёРїСѓР»СЏС‚РѕСЂ 7 С‚РѕРЅРЅ</a></div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price"><span>РѕС‚</span> 1400 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_6.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">РњР°РЅРёРїСѓР»СЏС‚РѕСЂ 15 С‚РѕРЅРЅ</a></div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price"><span>РѕС‚</span> 1700 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>  
+    
+<br>
+<a class="order_btn_2 icon_1" href="/public/docs/1_euroheater.ru_price.doc">РЎРєР°С‡Р°С‚СЊ РїСЂР°Р№СЃ-Р»РёСЃС‚</a>
+<a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">РЎРєР°С‡Р°С‚СЊ РґРѕРіРѕРІРѕСЂ РЅР° Р°СЂРµРЅРґСѓ</a>
+<br>
+    
+        <p>Р•СЃР»Рё РІС‹ Р±РµСЂРµС‚Рµ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё РІ Р°СЂРµРЅРґСѓ РїРѕ РњРѕСЃРєРІРµ РёР»Рё РѕР±Р»Р°СЃС‚Рё, РѕР±РѕСЂСѓРґРѕРІР°РЅРёРµ РїСЂРёР±СѓРґРµС‚ РЅР° РѕР±СЉРµРєС‚ РЅР° СЃР»РµРґСѓСЋС‰РµРµ СѓС‚СЂРѕ РїРѕСЃР»Рµ РїРѕРґРїРёСЃР°РЅРёСЏ РґРѕРіРѕРІРѕСЂР°. РЎР°Рј РґРѕРіРѕРІРѕСЂ Рё СЃС‡РµС‚ РЅР° РїСЂРµРґРѕРїР»Р°С‚Сѓ РїСЂРёСЃС‹Р»Р°РµРј РЅР° РІР°С€ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РІ С‚РµС‡РµРЅРёРµ С‡Р°СЃР° РїРѕСЃР»Рµ Р·РІРѕРЅРєР°.</p>

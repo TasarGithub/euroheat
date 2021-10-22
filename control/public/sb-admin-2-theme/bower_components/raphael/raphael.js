@@ -1,11 +1,11 @@
-// ┌────────────────────────────────────────────────────────────────────┐ \\
-// │ Raphaël 2.1.1 - JavaScript Vector Library                          │ \\
-// ├────────────────────────────────────────────────────────────────────┤ \\
-// │ Copyright © 2008-2012 Dmitry Baranovskiy (http://raphaeljs.com)    │ \\
-// │ Copyright © 2008-2012 Sencha Labs (http://sencha.com)              │ \\
-// ├────────────────────────────────────────────────────────────────────┤ \\
-// │ Licensed under the MIT (http://raphaeljs.com/license.html) license.│ \\
-// └────────────────────────────────────────────────────────────────────┘ \\
+// РІвЂќРЉРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќС’ \\
+// РІвЂќвЂљ RaphaР“В«l 2.1.1 - JavaScript Vector Library                          РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ Copyright Р’В© 2008-2012 Dmitry Baranovskiy (http://raphaeljs.com)    РІвЂќвЂљ \\
+// РІвЂќвЂљ Copyright Р’В© 2008-2012 Sencha Labs (http://sencha.com)              РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ Licensed under the MIT (http://raphaeljs.com/license.html) license.РІвЂќвЂљ \\
+// РІвЂќвЂќРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќпїЅ \\
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,11 +19,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-// ┌────────────────────────────────────────────────────────────┐ \\
-// │ Eve 0.4.2 - JavaScript Events Library                      │ \\
-// ├────────────────────────────────────────────────────────────┤ \\
-// │ Author Dmitry Baranovskiy (http://dmitry.baranovskiy.com/) │ \\
-// └────────────────────────────────────────────────────────────┘ \\
+// РІвЂќРЉРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќС’ \\
+// РІвЂќвЂљ Eve 0.4.2 - JavaScript Events Library                      РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ Author Dmitry Baranovskiy (http://dmitry.baranovskiy.com/) РІвЂќвЂљ \\
+// РІвЂќвЂќРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќпїЅ \\
 
 (function (glob) {
     var version = "0.4.2",
@@ -162,7 +162,7 @@
      * eve.on
      [ method ]
      **
-     * Binds given event handler with a given name. You can use wildcards “`*`” for the names:
+     * Binds given event handler with a given name. You can use wildcards РІР‚Сљ`*`РІР‚Сњ for the names:
      | eve.on("*.under.*", f);
      | eve("mouse.under.floor"); // triggers f
      * Use @eve to trigger the listener.
@@ -180,7 +180,7 @@
      * This will ensure that `catchIt()` function will be called before `eatIt()`.
 	 *
      * If you want to put your handler before non-indexed handlers, specify a negative value.
-     * Note: I assume most of the time you don’t need to worry about z-index, but it’s nice to have this feature “just in case”.
+     * Note: I assume most of the time you donРІР‚в„ўt need to worry about z-index, but itРІР‚в„ўs nice to have this feature РІР‚Сљjust in caseРІР‚Сњ.
     \*/
     eve.on = function (name, f) {
 		name = String(name);
@@ -217,7 +217,7 @@
  	 | });
      > Arguments
 	 - event (string) event name
-	 - varargs (…) and any other arguments
+	 - varargs (РІР‚В¦) and any other arguments
 	 = (function) possible event handler function
     \*/
 	eve.f = function (event) {
@@ -247,7 +247,7 @@
      **
      = (string) name of the event, if `subname` is not specified
      * or
-     = (boolean) `true`, if current event’s name contains `subname`
+     = (boolean) `true`, if current eventРІР‚в„ўs name contains `subname`
     \*/
     eve.nt = function (subname) {
         if (subname) {
@@ -377,13 +377,13 @@
     };
     (typeof module != "undefined" && module.exports) ? (module.exports = eve) : (typeof define != "undefined" ? (define("eve", [], function() { return eve; })) : (glob.eve = eve));
 })(this);
-// ┌─────────────────────────────────────────────────────────────────────┐ \\
-// │ "Raphaël 2.1.0" - JavaScript Vector Library                         │ \\
-// ├─────────────────────────────────────────────────────────────────────┤ \\
-// │ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   │ \\
-// │ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             │ \\
-// │ Licensed under the MIT (http://raphaeljs.com/license.html) license. │ \\
-// └─────────────────────────────────────────────────────────────────────┘ \\
+// РІвЂќРЉРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќС’ \\
+// РІвЂќвЂљ "RaphaР“В«l 2.1.0" - JavaScript Vector Library                         РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   РІвЂќвЂљ \\
+// РІвЂќвЂљ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             РІвЂќвЂљ \\
+// РІвЂќвЂљ Licensed under the MIT (http://raphaeljs.com/license.html) license. РІвЂќвЂљ \\
+// РІвЂќвЂќРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќпїЅ \\
 
 (function (glob, factory) {
     // AMD support
@@ -421,12 +421,12 @@
      - all (array) (first 3 or 4 elements in the array are equal to [containerID, width, height] or [x, y, width, height]. The rest are element descriptions in format {type: type, <attributes>}). See @Paper.add.
      - callback (function) #optional callback function which is going to be executed in the context of newly created paper
      * or
-     - onReadyCallback (function) function that is going to be called on DOM ready event. You can also subscribe to this event via Eve’s “DOMLoad” event. In this case method returns `undefined`.
+     - onReadyCallback (function) function that is going to be called on DOM ready event. You can also subscribe to this event via EveРІР‚в„ўs РІР‚СљDOMLoadРІР‚Сњ event. In this case method returns `undefined`.
      = (object) @Paper
      > Usage
      | // Each of the following examples create a canvas
      | // that is 320px wide by 200px high.
-     | // Canvas is created at the viewport’s 10,50 coordinate.
+     | // Canvas is created at the viewportРІР‚в„ўs 10,50 coordinate.
      | var paper = Raphael(10, 50, 320, 200);
      | // Canvas is created at the top left corner of the #notepad element
      | // (or its top right corner in dir="rtl" elements)
@@ -499,7 +499,7 @@
              |     num = num % 1;
              |     return {fill: "hsb(" + num + ", 0.75, 1)"};
              | };
-             | // Custom attribute “hue” will change fill
+             | // Custom attribute РІР‚СљhueРІР‚Сњ will change fill
              | // to be given hue with fixed saturation and brightness.
              | // Now you can use it like this:
              | var c = paper.circle(10, 10, 10).attr({hue: .45});
@@ -710,7 +710,7 @@
      * Raphael.type
      [ property (string) ]
      **
-     * Can be “SVG”, “VML” or empty, depending on browser support.
+     * Can be РІР‚СљSVGРІР‚Сњ, РІР‚СљVMLРІР‚Сњ or empty, depending on browser support.
     \*/
     R.type = (g.win.SVGAngle || g.doc.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") ? "SVG" : "VML");
     if (R.type == "VML") {
@@ -743,9 +743,9 @@
      [ property (object) ]
      **
      * You can add your own method to the canvas. For example if you want to draw a pie chart,
-     * you can create your own pie chart function and ship it as a Raphaël plugin. To do this
+     * you can create your own pie chart function and ship it as a RaphaР“В«l plugin. To do this
      * you need to extend the `Raphael.fn` object. You should modify the `fn` object before a
-     * Raphaël instance is created, otherwise it will take no effect. Please note that the
+     * RaphaР“В«l instance is created, otherwise it will take no effect. Please note that the
      * ability for namespaced plugins was removed in Raphael 2.0. It is up to the plugin to
      * ensure any namespacing ensures proper context.
      > Usage
@@ -754,9 +754,9 @@
      | };
      | // or create namespace
      | Raphael.fn.mystuff = {
-     |     arrow: function () {…},
-     |     star: function () {…},
-     |     // etc…
+     |     arrow: function () {РІР‚В¦},
+     |     star: function () {РІР‚В¦},
+     |     // etcРІР‚В¦
      | };
      | var paper = Raphael(10, 10, 630, 480);
      | // then use it
@@ -773,8 +773,8 @@
      **
      * Handfull replacement for `typeof` operator.
      > Parameters
-     - o (…) any object or primitive
-     - type (string) name of the type, i.e. “string”, “function”, “number”, etc.
+     - o (РІР‚В¦) any object or primitive
+     - type (string) name of the type, i.e. РІР‚СљstringРІР‚Сњ, РІР‚СљfunctionРІР‚Сњ, РІР‚СљnumberРІР‚Сњ, etc.
      = (boolean) is given value is of given type
     \*/
     R.is = function (o, type) {
@@ -1008,8 +1008,8 @@
      o     r (number) red,
      o     g (number) green,
      o     b (number) blue,
-     o     hex (string) color in HTML/CSS format: #••••••,
-     o     error (boolean) `true` if string can’t be parsed,
+     o     hex (string) color in HTML/CSS format: #РІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚Сћ,
+     o     error (boolean) `true` if string canРІР‚в„ўt be parsed,
      o     h (number) hue,
      o     s (number) saturation,
      o     v (number) value (brightness),
@@ -1063,7 +1063,7 @@
      o     r (number) red,
      o     g (number) green,
      o     b (number) blue,
-     o     hex (string) color in HTML/CSS format: #••••••
+     o     hex (string) color in HTML/CSS format: #РІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚Сћ
      o }
     \*/
     R.hsb2rgb = function (h, s, v, o) {
@@ -1100,7 +1100,7 @@
      o     r (number) red,
      o     g (number) green,
      o     b (number) blue,
-     o     hex (string) color in HTML/CSS format: #••••••
+     o     hex (string) color in HTML/CSS format: #РІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚Сћ
      o }
     \*/
     R.hsl2rgb = function (h, s, l, o) {
@@ -1251,23 +1251,23 @@
      > Parameters
      - colour (string) colour string in one of formats:
      # <ul>
-     #     <li>Colour name (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
-     #     <li>#••• — shortened HTML colour: (“<code>#000</code>”, “<code>#fc0</code>”, etc)</li>
-     #     <li>#•••••• — full length HTML colour: (“<code>#000000</code>”, “<code>#bd2300</code>”)</li>
-     #     <li>rgb(•••, •••, •••) — red, green and blue channels’ values: (“<code>rgb(200,&nbsp;100,&nbsp;0)</code>”)</li>
-     #     <li>rgb(•••%, •••%, •••%) — same as above, but in %: (“<code>rgb(100%,&nbsp;175%,&nbsp;0%)</code>”)</li>
-     #     <li>hsb(•••, •••, •••) — hue, saturation and brightness values: (“<code>hsb(0.5,&nbsp;0.25,&nbsp;1)</code>”)</li>
-     #     <li>hsb(•••%, •••%, •••%) — same as above, but in %</li>
-     #     <li>hsl(•••, •••, •••) — same as hsb</li>
-     #     <li>hsl(•••%, •••%, •••%) — same as hsb</li>
+     #     <li>Colour name (РІР‚Сљ<code>red</code>РІР‚Сњ, РІР‚Сљ<code>green</code>РІР‚Сњ, РІР‚Сљ<code>cornflowerblue</code>РІР‚Сњ, etc)</li>
+     #     <li>#РІР‚СћРІР‚СћРІР‚Сћ РІР‚вЂќ shortened HTML colour: (РІР‚Сљ<code>#000</code>РІР‚Сњ, РІР‚Сљ<code>#fc0</code>РІР‚Сњ, etc)</li>
+     #     <li>#РІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚Сћ РІР‚вЂќ full length HTML colour: (РІР‚Сљ<code>#000000</code>РІР‚Сњ, РІР‚Сљ<code>#bd2300</code>РІР‚Сњ)</li>
+     #     <li>rgb(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ red, green and blue channelsРІР‚в„ў values: (РІР‚Сљ<code>rgb(200,&nbsp;100,&nbsp;0)</code>РІР‚Сњ)</li>
+     #     <li>rgb(РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%) РІР‚вЂќ same as above, but in %: (РІР‚Сљ<code>rgb(100%,&nbsp;175%,&nbsp;0%)</code>РІР‚Сњ)</li>
+     #     <li>hsb(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ hue, saturation and brightness values: (РІР‚Сљ<code>hsb(0.5,&nbsp;0.25,&nbsp;1)</code>РІР‚Сњ)</li>
+     #     <li>hsb(РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%) РІР‚вЂќ same as above, but in %</li>
+     #     <li>hsl(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ same as hsb</li>
+     #     <li>hsl(РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%) РІР‚вЂќ same as hsb</li>
      # </ul>
      = (object) RGB object in format:
      o {
      o     r (number) red,
      o     g (number) green,
      o     b (number) blue
-     o     hex (string) color in HTML/CSS format: #••••••,
-     o     error (boolean) true if string can’t be parsed
+     o     hex (string) color in HTML/CSS format: #РІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚Сћ,
+     o     error (boolean) true if string canРІР‚в„ўt be parsed
      o }
     \*/
     R.getRGB = cacher(function (colour) {
@@ -1861,8 +1861,8 @@
      o         t2: (number) t value for segment of path2
      o         segment1: (number) order number for segment of path1
      o         segment2: (number) order number for segment of path2
-     o         bez1: (array) eight coordinates representing beziér curve for the segment of path1
-     o         bez2: (array) eight coordinates representing beziér curve for the segment of path2
+     o         bez1: (array) eight coordinates representing beziР“В©r curve for the segment of path1
+     o         bez2: (array) eight coordinates representing beziР“В©r curve for the segment of path2
      o     }
      o ]
     \*/
@@ -3209,7 +3209,7 @@
      **
      * You can add your own method to elements. This is usefull when you want to hack default functionality or
      * want to wrap some common transformation or attributes in one method. In difference to canvas methods,
-     * you can redefine element method at any time. Expending element methods wouldn’t affect set.
+     * you can redefine element method at any time. Expending element methods wouldnРІР‚в„ўt affect set.
      > Usage
      | Raphael.el.red = function () {
      |     this.attr({fill: "#f00"});
@@ -3653,7 +3653,7 @@
      - x (number) x coordinate of the centre
      - y (number) y coordinate of the centre
      - r (number) radius
-     = (object) Raphaël element object with type “circle”
+     = (object) RaphaР“В«l element object with type РІР‚СљcircleРІР‚Сњ
      **
      > Usage
      | var c = paper.circle(50, 50, 40);
@@ -3676,7 +3676,7 @@
      - width (number) width
      - height (number) height
      - r (number) #optional radius for rounded corners, default is 0
-     = (object) Raphaël element object with type “rect”
+     = (object) RaphaР“В«l element object with type РІР‚СљrectРІР‚Сњ
      **
      > Usage
      | // regular rectangle
@@ -3701,7 +3701,7 @@
      - y (number) y coordinate of the centre
      - rx (number) horizontal radius
      - ry (number) vertical radius
-     = (object) Raphaël element object with type “ellipse”
+     = (object) RaphaР“В«l element object with type РІР‚СљellipseРІР‚Сњ
      **
      > Usage
      | var c = paper.ellipse(50, 50, 40, 20);
@@ -3720,7 +3720,7 @@
      - pathString (string) #optional path string in SVG format.
      * Path string consists of one-letter commands, followed by comma seprarated arguments in numercal form. Example:
      | "M10,20L30,40"
-     * Here we can see two commands: “M”, with arguments `(10, 20)` and “L” with arguments `(30, 40)`. Upper case letter mean command is absolute, lower case—relative.
+     * Here we can see two commands: РІР‚СљMРІР‚Сњ, with arguments `(10, 20)` and РІР‚СљLРІР‚Сњ with arguments `(30, 40)`. Upper case letter mean command is absolute, lower caseРІР‚вЂќrelative.
      *
      # <p>Here is short list of commands available, for more details see <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path's data attribute's format are described in the SVG specification.">SVG path string format</a>.</p>
      # <table><thead><tr><th>Command</th><th>Name</th><th>Parameters</th></tr></thead><tbody>
@@ -3731,12 +3731,12 @@
      # <tr><td>V</td><td>vertical lineto</td><td>y+</td></tr>
      # <tr><td>C</td><td>curveto</td><td>(x1 y1 x2 y2 x y)+</td></tr>
      # <tr><td>S</td><td>smooth curveto</td><td>(x2 y2 x y)+</td></tr>
-     # <tr><td>Q</td><td>quadratic Bézier curveto</td><td>(x1 y1 x y)+</td></tr>
-     # <tr><td>T</td><td>smooth quadratic Bézier curveto</td><td>(x y)+</td></tr>
+     # <tr><td>Q</td><td>quadratic BР“В©zier curveto</td><td>(x1 y1 x y)+</td></tr>
+     # <tr><td>T</td><td>smooth quadratic BР“В©zier curveto</td><td>(x y)+</td></tr>
      # <tr><td>A</td><td>elliptical arc</td><td>(rx ry x-axis-rotation large-arc-flag sweep-flag x y)+</td></tr>
-     # <tr><td>R</td><td><a href="http://en.wikipedia.org/wiki/Catmull–Rom_spline#Catmull.E2.80.93Rom_spline">Catmull-Rom curveto</a>*</td><td>x1 y1 (x y)+</td></tr></tbody></table>
-     * * “Catmull-Rom curveto” is a not standard SVG command and added in 2.0 to make life easier.
-     * Note: there is a special case when path consist of just three commands: “M10,10R…z”. In this case path will smoothly connects to its beginning.
+     # <tr><td>R</td><td><a href="http://en.wikipedia.org/wiki/CatmullРІР‚вЂњRom_spline#Catmull.E2.80.93Rom_spline">Catmull-Rom curveto</a>*</td><td>x1 y1 (x y)+</td></tr></tbody></table>
+     * * РІР‚СљCatmull-Rom curvetoРІР‚Сњ is a not standard SVG command and added in 2.0 to make life easier.
+     * Note: there is a special case when path consist of just three commands: РІР‚СљM10,10RРІР‚В¦zРІР‚Сњ. In this case path will smoothly connects to its beginning.
      > Usage
      | var c = paper.path("M10 10L90 90");
      | // draw a diagonal line:
@@ -3762,7 +3762,7 @@
      - y (number) y coordinate position
      - width (number) width of the image
      - height (number) height of the image
-     = (object) Raphaël element object with type “image”
+     = (object) RaphaР“В«l element object with type РІР‚СљimageРІР‚Сњ
      **
      > Usage
      | var c = paper.image("apple.png", 10, 10, 80, 80);
@@ -3776,17 +3776,17 @@
      * Paper.text
      [ method ]
      **
-     * Draws a text string. If you need line breaks, put “\n” in the string.
+     * Draws a text string. If you need line breaks, put РІР‚Сљ\nРІР‚Сњ in the string.
      **
      > Parameters
      **
      - x (number) x coordinate position
      - y (number) y coordinate position
      - text (string) The text string to draw
-     = (object) Raphaël element object with type “text”
+     = (object) RaphaР“В«l element object with type РІР‚СљtextРІР‚Сњ
      **
      > Usage
-     | var t = paper.text(50, 50, "Raphaël\nkicks\nbutt!");
+     | var t = paper.text(50, 50, "RaphaР“В«l\nkicks\nbutt!");
     \*/
     paperproto.text = function (x, y, text) {
         var out = R._engine.text(this, x || 0, y || 0, Str(text));
@@ -3798,8 +3798,8 @@
      [ method ]
      **
      * Creates array-like object to keep and operate several elements at once.
-     * Warning: it doesn’t create any elements for itself in the page, it just groups existing elements.
-     * Sets act as pseudo elements — all methods available to an element can be used on a set.
+     * Warning: it doesnРІР‚в„ўt create any elements for itself in the page, it just groups existing elements.
+     * Sets act as pseudo elements РІР‚вЂќ all methods available to an element can be used on a set.
      = (object) array-like object that represents set of elements
      **
      > Usage
@@ -3919,7 +3919,7 @@
      **
      * Returns you topmost element under given point.
      **
-     = (object) Raphaël element object
+     = (object) RaphaР“В«l element object
      > Parameters
      **
      - x (number) x coordinate from the top left corner of the window
@@ -3983,7 +3983,7 @@
      > Parameters
      **
      - id (number) id
-     = (object) Raphaël element object
+     = (object) RaphaР“В«l element object
     \*/
     paperproto.getById = function (id) {
         var bot = this.bottom;
@@ -4054,7 +4054,7 @@
      * Element.isPointInside
      [ method ]
      **
-     * Determine if given point is inside this element’s shape
+     * Determine if given point is inside this elementРІР‚в„ўs shape
      **
      > Parameters
      **
@@ -4134,7 +4134,7 @@
      **
      * Return set of elements that create glow-like effect around given element. See @Paper.set.
      *
-     * Note: Glow is not connected to the element. If you change element attributes it won’t adjust itself.
+     * Note: Glow is not connected to the element. If you change element attributes it wonРІР‚в„ўt adjust itself.
      **
      > Parameters
      **
@@ -4288,7 +4288,7 @@
      * Element.getTotalLength
      [ method ]
      **
-     * Returns length of the path in pixels. Only works for element of “path” type.
+     * Returns length of the path in pixels. Only works for element of РІР‚СљpathРІР‚Сњ type.
      = (number) length.
     \*/
     elproto.getTotalLength = function () {
@@ -4307,7 +4307,7 @@
      * Element.getPointAtLength
      [ method ]
      **
-     * Return coordinates of the point located at the given length on the given path. Only works for element of “path” type.
+     * Return coordinates of the point located at the given length on the given path. Only works for element of РІР‚СљpathРІР‚Сњ type.
      **
      > Parameters
      **
@@ -4332,7 +4332,7 @@
      * Element.getPath
      [ method ]
      **
-     * Returns path of the element. Only works for elements of “path” type and simple elements like circle.
+     * Returns path of the element. Only works for elements of РІР‚СљpathРІР‚Сњ type and simple elements like circle.
      = (object) path
      **
     \*/
@@ -4354,7 +4354,7 @@
      * Element.getSubpath
      [ method ]
      **
-     * Return subpath of a given element from given length to given length. Only works for element of “path” type.
+     * Return subpath of a given element from given length to given length. Only works for element of РІР‚СљpathРІР‚Сњ type.
      **
      > Parameters
      **
@@ -4377,14 +4377,14 @@
      **
      * Object that contains easing formulas for animation. You could extend it with your own. By default it has following list of easing:
      # <ul>
-     #     <li>“linear”</li>
-     #     <li>“&lt;” or “easeIn” or “ease-in”</li>
-     #     <li>“>” or “easeOut” or “ease-out”</li>
-     #     <li>“&lt;>” or “easeInOut” or “ease-in-out”</li>
-     #     <li>“backIn” or “back-in”</li>
-     #     <li>“backOut” or “back-out”</li>
-     #     <li>“elastic”</li>
-     #     <li>“bounce”</li>
+     #     <li>РІР‚СљlinearРІР‚Сњ</li>
+     #     <li>РІР‚Сљ&lt;РІР‚Сњ or РІР‚СљeaseInРІР‚Сњ or РІР‚Сљease-inРІР‚Сњ</li>
+     #     <li>РІР‚Сљ>РІР‚Сњ or РІР‚СљeaseOutРІР‚Сњ or РІР‚Сљease-outРІР‚Сњ</li>
+     #     <li>РІР‚Сљ&lt;>РІР‚Сњ or РІР‚СљeaseInOutРІР‚Сњ or РІР‚Сљease-in-outРІР‚Сњ</li>
+     #     <li>РІР‚СљbackInРІР‚Сњ or РІР‚Сљback-inРІР‚Сњ</li>
+     #     <li>РІР‚СљbackOutРІР‚Сњ or РІР‚Сљback-outРІР‚Сњ</li>
+     #     <li>РІР‚СљelasticРІР‚Сњ</li>
+     #     <li>РІР‚СљbounceРІР‚Сњ</li>
      # </ul>
      # <p>See also <a href="http://raphaeljs.com/easing.html">Easing demo</a>.</p>
     \*/
@@ -5047,7 +5047,7 @@
      > Parameters
      **
      - anim (object) #optional animation object
-     - value (number) #optional 0 – 1. If specified, method works like a setter and sets the status of a given animation to the value. This will cause animation to jump to the given position.
+     - value (number) #optional 0 РІР‚вЂњ 1. If specified, method works like a setter and sets the status of a given animation to the value. This will cause animation to jump to the given position.
      **
      = (number) status
      * or
@@ -5271,7 +5271,7 @@
      **
      - index (number) position of the deletion
      - count (number) number of element to remove
-     - insertion… (object) #optional elements to insert
+     - insertionРІР‚В¦ (object) #optional elements to insert
      = (object) set elements that were deleted
     \*/
     setproto.splice = function (index, count, insertion) {
@@ -5400,7 +5400,7 @@
      * Set.isPointInside
      [ method ]
      **
-     * Determine if given point is inside this set’s elements
+     * Determine if given point is inside this setРІР‚в„ўs elements
      **
      > Parameters
      **
@@ -5424,16 +5424,16 @@
      * Raphael.registerFont
      [ method ]
      **
-     * Adds given font to the registered set of fonts for Raphaël. Should be used as an internal call from within Cufón’s font file.
+     * Adds given font to the registered set of fonts for RaphaР“В«l. Should be used as an internal call from within CufР“С–nРІР‚в„ўs font file.
      * Returns original parameter, so it could be used with chaining.
-     # <a href="http://wiki.github.com/sorccu/cufon/about">More about Cufón and how to convert your font form TTF, OTF, etc to JavaScript file.</a>
+     # <a href="http://wiki.github.com/sorccu/cufon/about">More about CufР“С–n and how to convert your font form TTF, OTF, etc to JavaScript file.</a>
      **
      > Parameters
      **
      - font (object) the font to register
      = (object) the font you passed in
      > Usage
-     | Cufon.registerFont(Raphael.registerFont({…}));
+     | Cufon.registerFont(Raphael.registerFont({РІР‚В¦}));
     \*/
     R.registerFont = function (font) {
         if (!font.face) {
@@ -5478,7 +5478,7 @@
      * Paper.getFont
      [ method ]
      **
-     * Finds font object in the registered fonts by given parameters. You could specify only one word from the font name, like “Myriad” for “Myriad Pro”.
+     * Finds font object in the registered fonts by given parameters. You could specify only one word from the font name, like РІР‚СљMyriadРІР‚Сњ for РІР‚СљMyriad ProРІР‚Сњ.
      **
      > Parameters
      **
@@ -5625,12 +5625,12 @@
      * Raphael.format
      [ method ]
      **
-     * Simple format function. Replaces construction of type “`{<number>}`” to the corresponding argument.
+     * Simple format function. Replaces construction of type РІР‚Сљ`{<number>}`РІР‚Сњ to the corresponding argument.
      **
      > Parameters
      **
      - token (string) string to format
-     - … (string) rest of arguments will be treated as parameters for replacement
+     - РІР‚В¦ (string) rest of arguments will be treated as parameters for replacement
      = (string) formated string
      > Usage
      | var x = 10,
@@ -5651,7 +5651,7 @@
      * Raphael.fullfill
      [ method ]
      **
-     * A little bit more advanced format function than @Raphael.format. Replaces construction of type “`{<name>}`” to the corresponding argument.
+     * A little bit more advanced format function than @Raphael.format. Replaces construction of type РІР‚Сљ`{<name>}`РІР‚Сњ to the corresponding argument.
      **
      > Parameters
      **
@@ -5697,14 +5697,14 @@
      * Raphael.ninja
      [ method ]
      **
-     * If you want to leave no trace of Raphaël (Well, Raphaël creates only one global variable `Raphael`, but anyway.) You can use `ninja` method.
+     * If you want to leave no trace of RaphaР“В«l (Well, RaphaР“В«l creates only one global variable `Raphael`, but anyway.) You can use `ninja` method.
      * Beware, that in this case plugins could stop working, because they are depending on global variable existance.
      **
      = (object) Raphael object
      > Usage
      | (function (local_raphael) {
      |     var paper = local_raphael(10, 10, 320, 200);
-     |     …
+     |     РІР‚В¦
      | })(Raphael.ninja());
     \*/
     R.ninja = function () {
@@ -5751,15 +5751,15 @@
         loaded = true;
     });
 
-// ┌─────────────────────────────────────────────────────────────────────┐ \\
-// │ Raphaël - JavaScript Vector Library                                 │ \\
-// ├─────────────────────────────────────────────────────────────────────┤ \\
-// │ SVG Module                                                          │ \\
-// ├─────────────────────────────────────────────────────────────────────┤ \\
-// │ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   │ \\
-// │ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             │ \\
-// │ Licensed under the MIT (http://raphaeljs.com/license.html) license. │ \\
-// └─────────────────────────────────────────────────────────────────────┘ \\
+// РІвЂќРЉРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќС’ \\
+// РІвЂќвЂљ RaphaР“В«l - JavaScript Vector Library                                 РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ SVG Module                                                          РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   РІвЂќвЂљ \\
+// РІвЂќвЂљ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             РІвЂќвЂљ \\
+// РІвЂќвЂљ Licensed under the MIT (http://raphaeljs.com/license.html) license. РІвЂќвЂљ \\
+// РІвЂќвЂќРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќпїЅ \\
 
 (function(){
     if (!R.svg) {
@@ -6362,7 +6362,7 @@
          **
          * Gives you a reference to the DOM object, so you can assign event handlers or just mess around.
          **
-         * Note: Don’t mess with it.
+         * Note: DonРІР‚в„ўt mess with it.
          > Usage
          | // draw a circle at coordinate 10,10 with radius of 10
          | var c = paper.circle(10, 10, 10);
@@ -6399,7 +6399,7 @@
          * Element.paper
          [ property (object) ]
          **
-         * Internal reference to “paper” where object drawn. Mainly for use in plugins and element extensions.
+         * Internal reference to РІР‚СљpaperРІР‚Сњ where object drawn. Mainly for use in plugins and element extensions.
          > Usage
          | Raphael.el.cross = function () {
          |     this.attr({fill: "red"});
@@ -6464,7 +6464,7 @@
      - deg (number) angle in degrees
      - cx (number) #optional x coordinate of the centre of rotation
      - cy (number) #optional y coordinate of the centre of rotation
-     * If cx & cy aren’t specified centre of the shape is used as a point of rotation.
+     * If cx & cy arenРІР‚в„ўt specified centre of the shape is used as a point of rotation.
      = (object) @Element
     \*/
     elproto.rotate = function (deg, cx, cy) {
@@ -6498,7 +6498,7 @@
      - sy (number) vertical scale amount
      - cx (number) #optional x coordinate of the centre of scale
      - cy (number) #optional y coordinate of the centre of scale
-     * If cx & cy aren’t specified centre of the shape is used instead.
+     * If cx & cy arenРІР‚в„ўt specified centre of the shape is used instead.
      = (object) @Element
     \*/
     elproto.scale = function (sx, sy, cx, cy) {
@@ -6551,21 +6551,21 @@
      [ method ]
      **
      * Adds transformation to the element which is separate to other attributes,
-     * i.e. translation doesn’t change `x` or `y` of the rectange. The format
+     * i.e. translation doesnРІР‚в„ўt change `x` or `y` of the rectange. The format
      * of transformation string is similar to the path string syntax:
      | "t100,100r30,100,100s2,2,100,100r45s1.5"
      * Each letter is a command. There are four commands: `t` is for translate, `r` is for rotate, `s` is for
      * scale and `m` is for matrix.
      *
-     * There are also alternative “absolute” translation, rotation and scale: `T`, `R` and `S`. They will not take previous transformation into account. For example, `...T100,0` will always move element 100 px horisontally, while `...t100,0` could move it vertically if there is `r90` before. Just compare results of `r90t100,0` and `r90T100,0`.
+     * There are also alternative РІР‚СљabsoluteРІР‚Сњ translation, rotation and scale: `T`, `R` and `S`. They will not take previous transformation into account. For example, `...T100,0` will always move element 100 px horisontally, while `...t100,0` could move it vertically if there is `r90` before. Just compare results of `r90t100,0` and `r90T100,0`.
      *
-     * So, the example line above could be read like “translate by 100, 100; rotate 30° around 100, 100; scale twice around 100, 100;
-     * rotate 45° around centre; scale 1.5 times relative to centre”. As you can see rotate and scale commands have origin
+     * So, the example line above could be read like РІР‚Сљtranslate by 100, 100; rotate 30Р’В° around 100, 100; scale twice around 100, 100;
+     * rotate 45Р’В° around centre; scale 1.5 times relative to centreРІР‚Сњ. As you can see rotate and scale commands have origin
      * coordinates as optional parameters, the default is the centre point of the element.
      * Matrix accepts six parameters.
      > Usage
      | var el = paper.rect(10, 20, 300, 200);
-     | // translate 100, 100, rotate 45°, translate -100, 0
+     | // translate 100, 100, rotate 45Р’В°, translate -100, 0
      | el.transform("t100,100r45t-100,0");
      | // if you want you can append or prepend transformations
      | el.transform("...t50,50");
@@ -6578,7 +6578,7 @@
      | console.log(el.transform());
      > Parameters
      - tstr (string) #optional transformation string
-     * If tstr isn’t specified
+     * If tstr isnРІР‚в„ўt specified
      = (string) current transformation string
      * else
      = (object) @Element
@@ -6672,12 +6672,12 @@
      **
      * Sets the attributes of the element.
      > Parameters
-     - attrName (string) attribute’s name
+     - attrName (string) attributeРІР‚в„ўs name
      - value (string) value
      * or
      - params (object) object of name/value pairs
      * or
-     - attrName (string) attribute’s name
+     - attrName (string) attributeРІР‚в„ўs name
      * or
      - attrNames (array) in this case method returns array of current values for given attribute names
      = (object) @Element if attrsName & value or params are passed in.
@@ -6706,45 +6706,45 @@
      o ry (number) vertical radius of the ellipse
      o src (string) image URL, only works for @Element.image element
      o stroke (string) stroke colour
-     o stroke-dasharray (string) [“”, “`-`”, “`.`”, “`-.`”, “`-..`”, “`. `”, “`- `”, “`--`”, “`- .`”, “`--.`”, “`--..`”]
-     o stroke-linecap (string) [“`butt`”, “`square`”, “`round`”]
-     o stroke-linejoin (string) [“`bevel`”, “`round`”, “`miter`”]
+     o stroke-dasharray (string) [РІР‚СљРІР‚Сњ, РІР‚Сљ`-`РІР‚Сњ, РІР‚Сљ`.`РІР‚Сњ, РІР‚Сљ`-.`РІР‚Сњ, РІР‚Сљ`-..`РІР‚Сњ, РІР‚Сљ`. `РІР‚Сњ, РІР‚Сљ`- `РІР‚Сњ, РІР‚Сљ`--`РІР‚Сњ, РІР‚Сљ`- .`РІР‚Сњ, РІР‚Сљ`--.`РІР‚Сњ, РІР‚Сљ`--..`РІР‚Сњ]
+     o stroke-linecap (string) [РІР‚Сљ`butt`РІР‚Сњ, РІР‚Сљ`square`РІР‚Сњ, РІР‚Сљ`round`РІР‚Сњ]
+     o stroke-linejoin (string) [РІР‚Сљ`bevel`РІР‚Сњ, РІР‚Сљ`round`РІР‚Сњ, РІР‚Сљ`miter`РІР‚Сњ]
      o stroke-miterlimit (number)
      o stroke-opacity (number)
      o stroke-width (number) stroke width in pixels, default is '1'
      o target (string) used with href
      o text (string) contents of the text element. Use `\n` for multiline text
-     o text-anchor (string) [“`start`”, “`middle`”, “`end`”], default is “`middle`”
+     o text-anchor (string) [РІР‚Сљ`start`РІР‚Сњ, РІР‚Сљ`middle`РІР‚Сњ, РІР‚Сљ`end`РІР‚Сњ], default is РІР‚Сљ`middle`РІР‚Сњ
      o title (string) will create tooltip with a given text
      o transform (string) see @Element.transform
      o width (number)
      o x (number)
      o y (number)
      > Gradients
-     * Linear gradient format: “`‹angle›-‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`90-#fff-#000`” – 90°
-     * gradient from white to black or “`0-#fff-#f00:20-#000`” – 0° gradient from white via red (at 20%) to black.
+     * Linear gradient format: РІР‚Сљ`РІР‚в„–angleРІР‚С”-РІР‚в„–colourРІР‚С”[-РІР‚в„–colourРІР‚С”[:РІР‚в„–offsetРІР‚С”]]*-РІР‚в„–colourРІР‚С”`РІР‚Сњ, example: РІР‚Сљ`90-#fff-#000`РІР‚Сњ РІР‚вЂњ 90Р’В°
+     * gradient from white to black or РІР‚Сљ`0-#fff-#f00:20-#000`РІР‚Сњ РІР‚вЂњ 0Р’В° gradient from white via red (at 20%) to black.
      *
-     * radial gradient: “`r[(‹fx›, ‹fy›)]‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`r#fff-#000`” –
-     * gradient from white to black or “`r(0.25, 0.75)#fff-#000`” – gradient from white to black with focus point
+     * radial gradient: РІР‚Сљ`r[(РІР‚в„–fxРІР‚С”, РІР‚в„–fyРІР‚С”)]РІР‚в„–colourРІР‚С”[-РІР‚в„–colourРІР‚С”[:РІР‚в„–offsetРІР‚С”]]*-РІР‚в„–colourРІР‚С”`РІР‚Сњ, example: РІР‚Сљ`r#fff-#000`РІР‚Сњ РІР‚вЂњ
+     * gradient from white to black or РІР‚Сљ`r(0.25, 0.75)#fff-#000`РІР‚Сњ РІР‚вЂњ gradient from white to black with focus point
      * at 0.25, 0.75. Focus point coordinates are in 0..1 range. Radial gradients can only be applied to circles and ellipses.
      > Path String
-     # <p>Please refer to <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path’s data attribute’s format are described in the SVG specification.">SVG documentation regarding path string</a>. Raphaël fully supports it.</p>
+     # <p>Please refer to <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a pathРІР‚в„ўs data attributeРІР‚в„ўs format are described in the SVG specification.">SVG documentation regarding path string</a>. RaphaР“В«l fully supports it.</p>
      > Colour Parsing
      # <ul>
-     #     <li>Colour name (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
-     #     <li>#••• — shortened HTML colour: (“<code>#000</code>”, “<code>#fc0</code>”, etc)</li>
-     #     <li>#•••••• — full length HTML colour: (“<code>#000000</code>”, “<code>#bd2300</code>”)</li>
-     #     <li>rgb(•••, •••, •••) — red, green and blue channels’ values: (“<code>rgb(200,&nbsp;100,&nbsp;0)</code>”)</li>
-     #     <li>rgb(•••%, •••%, •••%) — same as above, but in %: (“<code>rgb(100%,&nbsp;175%,&nbsp;0%)</code>”)</li>
-     #     <li>rgba(•••, •••, •••, •••) — red, green and blue channels’ values: (“<code>rgba(200,&nbsp;100,&nbsp;0, .5)</code>”)</li>
-     #     <li>rgba(•••%, •••%, •••%, •••%) — same as above, but in %: (“<code>rgba(100%,&nbsp;175%,&nbsp;0%, 50%)</code>”)</li>
-     #     <li>hsb(•••, •••, •••) — hue, saturation and brightness values: (“<code>hsb(0.5,&nbsp;0.25,&nbsp;1)</code>”)</li>
-     #     <li>hsb(•••%, •••%, •••%) — same as above, but in %</li>
-     #     <li>hsba(•••, •••, •••, •••) — same as above, but with opacity</li>
-     #     <li>hsl(•••, •••, •••) — almost the same as hsb, see <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" title="HSL and HSV - Wikipedia, the free encyclopedia">Wikipedia page</a></li>
-     #     <li>hsl(•••%, •••%, •••%) — same as above, but in %</li>
-     #     <li>hsla(•••, •••, •••, •••) — same as above, but with opacity</li>
-     #     <li>Optionally for hsb and hsl you could specify hue as a degree: “<code>hsl(240deg,&nbsp;1,&nbsp;.5)</code>” or, if you want to go fancy, “<code>hsl(240°,&nbsp;1,&nbsp;.5)</code>”</li>
+     #     <li>Colour name (РІР‚Сљ<code>red</code>РІР‚Сњ, РІР‚Сљ<code>green</code>РІР‚Сњ, РІР‚Сљ<code>cornflowerblue</code>РІР‚Сњ, etc)</li>
+     #     <li>#РІР‚СћРІР‚СћРІР‚Сћ РІР‚вЂќ shortened HTML colour: (РІР‚Сљ<code>#000</code>РІР‚Сњ, РІР‚Сљ<code>#fc0</code>РІР‚Сњ, etc)</li>
+     #     <li>#РІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚СћРІР‚Сћ РІР‚вЂќ full length HTML colour: (РІР‚Сљ<code>#000000</code>РІР‚Сњ, РІР‚Сљ<code>#bd2300</code>РІР‚Сњ)</li>
+     #     <li>rgb(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ red, green and blue channelsРІР‚в„ў values: (РІР‚Сљ<code>rgb(200,&nbsp;100,&nbsp;0)</code>РІР‚Сњ)</li>
+     #     <li>rgb(РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%) РІР‚вЂќ same as above, but in %: (РІР‚Сљ<code>rgb(100%,&nbsp;175%,&nbsp;0%)</code>РІР‚Сњ)</li>
+     #     <li>rgba(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ red, green and blue channelsРІР‚в„ў values: (РІР‚Сљ<code>rgba(200,&nbsp;100,&nbsp;0, .5)</code>РІР‚Сњ)</li>
+     #     <li>rgba(РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%) РІР‚вЂќ same as above, but in %: (РІР‚Сљ<code>rgba(100%,&nbsp;175%,&nbsp;0%, 50%)</code>РІР‚Сњ)</li>
+     #     <li>hsb(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ hue, saturation and brightness values: (РІР‚Сљ<code>hsb(0.5,&nbsp;0.25,&nbsp;1)</code>РІР‚Сњ)</li>
+     #     <li>hsb(РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%) РІР‚вЂќ same as above, but in %</li>
+     #     <li>hsba(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ same as above, but with opacity</li>
+     #     <li>hsl(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ almost the same as hsb, see <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" title="HSL and HSV - Wikipedia, the free encyclopedia">Wikipedia page</a></li>
+     #     <li>hsl(РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%, РІР‚СћРІР‚СћРІР‚Сћ%) РІР‚вЂќ same as above, but in %</li>
+     #     <li>hsla(РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ, РІР‚СћРІР‚СћРІР‚Сћ) РІР‚вЂќ same as above, but with opacity</li>
+     #     <li>Optionally for hsb and hsl you could specify hue as a degree: РІР‚Сљ<code>hsl(240deg,&nbsp;1,&nbsp;.5)</code>РІР‚Сњ or, if you want to go fancy, РІР‚Сљ<code>hsl(240Р’В°,&nbsp;1,&nbsp;.5)</code>РІР‚Сњ</li>
      # </ul>
     \*/
     elproto.attr = function (name, value) {
@@ -6811,7 +6811,7 @@
      * Element.toFront
      [ method ]
      **
-     * Moves the element so it is the closest to the viewer’s eyes, on top of other elements.
+     * Moves the element so it is the closest to the viewerРІР‚в„ўs eyes, on top of other elements.
      = (object) @Element
     \*/
     elproto.toFront = function () {
@@ -6831,7 +6831,7 @@
      * Element.toBack
      [ method ]
      **
-     * Moves the element so it is the furthest from the viewer’s eyes, behind other elements.
+     * Moves the element so it is the furthest from the viewerРІР‚в„ўs eyes, behind other elements.
      = (object) @Element
     \*/
     elproto.toBack = function () {
@@ -7122,15 +7122,15 @@
     }
 })();
 
-// ┌─────────────────────────────────────────────────────────────────────┐ \\
-// │ Raphaël - JavaScript Vector Library                                 │ \\
-// ├─────────────────────────────────────────────────────────────────────┤ \\
-// │ VML Module                                                          │ \\
-// ├─────────────────────────────────────────────────────────────────────┤ \\
-// │ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   │ \\
-// │ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             │ \\
-// │ Licensed under the MIT (http://raphaeljs.com/license.html) license. │ \\
-// └─────────────────────────────────────────────────────────────────────┘ \\
+// РІвЂќРЉРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќС’ \\
+// РІвЂќвЂљ RaphaР“В«l - JavaScript Vector Library                                 РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ VML Module                                                          РІвЂќвЂљ \\
+// РІвЂќСљРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќВ¤ \\
+// РІвЂќвЂљ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   РІвЂќвЂљ \\
+// РІвЂќвЂљ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             РІвЂќвЂљ \\
+// РІвЂќвЂљ Licensed under the MIT (http://raphaeljs.com/license.html) license. РІвЂќвЂљ \\
+// РІвЂќвЂќРІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќР‚РІвЂќпїЅ \\
 
 (function(){
     if (!R.vml) {

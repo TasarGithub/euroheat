@@ -1,52 +1,52 @@
-$(document).ready(function() { // jquery ready
-	// ‰Îˇ ÙÓÏ˚ ‰Ó·‡‚ÎÂÌËˇ
-    if (isGetVarExists('action') == 'addItem') {
-		$('#feedback_form_name').focus();
-	}
-	// ‰Îˇ ÙÓÏ˚ Â‰‡ÍÚËÓ‚‡ÌËˇ
-    if (isGetVarExists('action') == 'editItem') {
-        // $('#feedback_form_html_code_1').focus();
-      
-        if (isGetVarExists('itemID')) {
-            // ÙÓÏËÛÂÏ ÒÔËÒÓÍ backup'Ó‚ ‰Îˇ ÛÍ‡Á‡ÌÌ˚ı ÔÓÎÂÈ
-            $.backup({ 'table_name' : 'feedbacks', 'entry_id' : isGetVarExists('itemID'), 'fields_name' : [ 'feedback_form_name', 'feedback_form_feedback', 'feedback_form_footeranchor', 'feedback_form_full_navigation', 'feedback_form_right_menu_services' ] });
-        }
-	}
-    // ‰Îˇ ÒÔËÒÍ‡
-    if (!isGetVarExists('action')) {
-        $('#search_by_feedbacks').focus();
-    }
-    
-    // ÔÓ‰ÍÎ˛˜‡ÂÏ Í‡ÎÂÌ‰‡¸ (ËÌËˆË‡ÎËÁ‡ˆËˇ UI datepicker)
-	$("#feedback_form_date_add").datepicker({
-		numberOfMonths: 2,
-		dateFormat: "dd.mm.yy",
-		showButtonPanel: true
-		// altField: "#date_add_hidden",
-		// altFormat: "yy-mm-dd 00:00:00"
-	});
-    
-    // ÒÛ·ÏËÚ ÙÓÏ˚ ‰Ó·‡‚ÎÂÌËˇ ÓÚÁ˚‚‡
-    $('#feedback_form').on('submit', function() {
-        if (!checkForm('#feedback_form')) return false;
-    });
-
-    // ÔË ÛÒÔÂ¯ÌÓÏ ‰Ó·‡‚ÎÂÌËË ÓÚÁ˚‚‡ ÒÍ˚‚‡ÂÏ ÒÓÓ·˘ÂÌËÂ Ó· ÛÒÔÂ¯ÌÓÏ ‰Ó·‡‚ÎÂÌËË ˜ÂÂÁ 5 ÒÂÍ
-    if ($('.col-lg-12 .alert.alert-success').length) {
-        if ($('.col-lg-12 .alert.alert-success').html().length > 0) setTimeout(function() { $('.col-lg-12 .alert.alert-success').slideUp(); }, 5000)
-    }
-    
-    // ÔÓËÒÍ
-    $('#search_by_feedbacks').bind('keyup click', function() {
-        var q = $.trim($('#search_by_feedbacks').val());
-        var old_data = $('#search_by_feedbacks').attr('old-data');
-        if (q.length > 0 && (!old_data || old_data != q)) {
-            $.ajaxQ.abortAll(); // ÓÚÏÂÌˇÂÏ ‚ÒÂ ajax-Á‡ÔÓÒ˚
-            $('#resultSet').html('');
-            $.post('/control/feedbacks/ajax.php', { 'action': 'search', 'q': q }, function(data) {
-                $('#resultSet').html(data);
-                $('#search_by_feedbacks').attr('old-data', q);
-            });
-        }
-    });
+$(document).ready(function() { // jquery ready
+	// –¥–ª—è —Ñ–æ—Ä–º—ã –¥–æ–±–∞–≤–ª–µ–Ω–∏—è
+    if (isGetVarExists('action') == 'addItem') {
+		$('#feedback_form_name').focus();
+	}
+	// –¥–ª—è —Ñ–æ—Ä–º—ã —Ä–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏—è
+    if (isGetVarExists('action') == 'editItem') {
+        // $('#feedback_form_html_code_1').focus();
+      
+        if (isGetVarExists('itemID')) {
+            // —Ñ–æ—Ä–º–∏—Ä—É–µ–º —Å–ø–∏—Å–æ–∫ backup'–æ–≤ –¥–ª—è —É–∫–∞–∑–∞–Ω–Ω—ã—Ö –ø–æ–ª–µ–π
+            $.backup({ 'table_name' : 'feedbacks', 'entry_id' : isGetVarExists('itemID'), 'fields_name' : [ 'feedback_form_name', 'feedback_form_feedback', 'feedback_form_footeranchor', 'feedback_form_full_navigation', 'feedback_form_right_menu_services' ] });
+        }
+	}
+    // –¥–ª—è —Å–ø–∏—Å–∫–∞
+    if (!isGetVarExists('action')) {
+        $('#search_by_feedbacks').focus();
+    }
+    
+    // –ø–æ–¥–∫–ª—é—á–∞–µ–º –∫–∞–ª–µ–Ω–¥–∞—Ä—å (–∏–Ω–∏—Ü–∏–∞–ª–∏–∑–∞—Ü–∏—è UI datepicker)
+	$("#feedback_form_date_add").datepicker({
+		numberOfMonths: 2,
+		dateFormat: "dd.mm.yy",
+		showButtonPanel: true
+		// altField: "#date_add_hidden",
+		// altFormat: "yy-mm-dd 00:00:00"
+	});
+    
+    // —Å—É–±–º–∏—Ç —Ñ–æ—Ä–º—ã –¥–æ–±–∞–≤–ª–µ–Ω–∏—è –æ—Ç–∑—ã–≤–∞
+    $('#feedback_form').on('submit', function() {
+        if (!checkForm('#feedback_form')) return false;
+    });
+
+    // –ø—Ä–∏ —É—Å–ø–µ—à–Ω–æ–º –¥–æ–±–∞–≤–ª–µ–Ω–∏–∏ –æ—Ç–∑—ã–≤–∞ —Å–∫—Ä—ã–≤–∞–µ–º —Å–æ–æ–±—â–µ–Ω–∏–µ –æ–± —É—Å–ø–µ—à–Ω–æ–º –¥–æ–±–∞–≤–ª–µ–Ω–∏–∏ —á–µ—Ä–µ–∑ 5 —Å–µ–∫
+    if ($('.col-lg-12 .alert.alert-success').length) {
+        if ($('.col-lg-12 .alert.alert-success').html().length > 0) setTimeout(function() { $('.col-lg-12 .alert.alert-success').slideUp(); }, 5000)
+    }
+    
+    // –ø–æ–∏—Å–∫
+    $('#search_by_feedbacks').bind('keyup click', function() {
+        var q = $.trim($('#search_by_feedbacks').val());
+        var old_data = $('#search_by_feedbacks').attr('old-data');
+        if (q.length > 0 && (!old_data || old_data != q)) {
+            $.ajaxQ.abortAll(); // –æ—Ç–º–µ–Ω—è–µ–º –≤—Å–µ ajax-–∑–∞–ø—Ä–æ—Å—ã
+            $('#resultSet').html('');
+            $.post('/control/feedbacks/ajax.php', { 'action': 'search', 'q': q }, function(data) {
+                $('#resultSet').html(data);
+                $('#search_by_feedbacks').attr('old-data', q);
+            });
+        }
+    });
 }); // /jquery ready

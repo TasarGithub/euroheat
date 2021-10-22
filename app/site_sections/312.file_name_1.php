@@ -1,8 +1,21 @@
 <div class="calc-btns-wr">
-<a class="calc-btns-item" href="/public/docs/oprosny_list.pdf">Опросный лист</a>
-<a class="calc-btns-item" href="/raschet-nagrevatelya/">Расчет водяного нагревателя</a>
-<a class="calc-btns-item" href="/raschet-ohladitelya/">Расчет водяного охладителя</a>
-<a class="calc-btns-item" href="/raschet-isparitelya/">Расчет испарителя</a>
-<a class="calc-btns-item" href="/raschet-condensatora/">Расчет конденсатора</a>
-<a class="calc-btns-item" href="/raschet-parovogo-teploobmennika/">Расчет парового теплообменника</a>
+
+<div class="calc-btns-item" >
+
+		<a class="calc-btns-item__link"  href="/public/docs/oprosny_list.pdf">РћРїСЂРѕСЃРЅС‹Р№ Р»РёСЃС‚</a>
+
+		<a class="calc-btns-item__link" download href="/public/docs/oprosny_list.pdf">( РЎРєР°С‡Р°С‚СЊ ) </a>
+
+</div>
+
+<a class="calc-btns-item" href="/raschet-nagrevatelya/">Р Р°СЃС‡РµС‚ РІРѕРґСЏРЅРѕРіРѕ РЅР°РіСЂРµРІР°С‚РµР»СЏ</a>
+
+<a class="calc-btns-item" href="/raschet-ohladitelya/">Р Р°СЃС‡РµС‚ РІРѕРґСЏРЅРѕРіРѕ РѕС…Р»Р°РґРёС‚РµР»СЏ</a>
+
+<a class="calc-btns-item" href="/raschet-isparitelya/">Р Р°СЃС‡РµС‚ РёСЃРїР°СЂРёС‚РµР»СЏ</a>
+
+<a class="calc-btns-item" href="/raschet-condensatora/">Р Р°СЃС‡РµС‚ РєРѕРЅРґРµРЅСЃР°С‚РѕСЂР°</a>
+
+<a class="calc-btns-item" href="/raschet-parovogo-teploobmennika/">Р Р°СЃС‡РµС‚ РїР°СЂРѕРІРѕРіРѕ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</a>
+
 </div>

@@ -1,90 +1,90 @@
-<?php
-class feedback_controller extends controller_base {
-	# ПОДРОБНЫЙ ВЫВОД ОТЗЫВА
-	function showItem()
-    {
-		# 301 если URL заканчивается не на "/", делаем 301 редирект на URL со "/"
-		if ($_SERVER['REQUEST_URI'][strlen($_SERVER['REQUEST_URI']) - 1] != "/"
-            && !stristr($_SERVER['REQUEST_URI'], '?')
-            && !stristr($_SERVER['REQUEST_URI'], '#')) {
-			header("HTTP/1.0 301 Moved Permanently");
-			header("Location: http://".DOMAIN.$_SERVER['REQUEST_URI']."/");
-			exit;
-		}
-        
-		# подгружаем сторонние модули
-		$site_section_default_controller = $this->load('site_section_default');
-        
-        # получаем информацию по позиции
-        $itemInfo = $GLOBALS['tpl_item'] = $this->model->getItemInfo($this->routeVars['itemURL']); # print_r($itemInfo);
-        
-		# 404
-		if (empty($itemInfo['id'])) {
-			header("HTTP/1.0 404 Not Found");
-			header("Location: http://".DOMAIN);
-			exit;
-		}
-        
-        # получаем информацию по родительской директории
-        $parentSectionInfo = $site_section_default_controller->model->getSiteSectionInfo('otzyvy'); # print_r($parentSectionInfo);
-        
-        # заголовок страницы
-        $GLOBALS['tpl_title'] = $itemInfo['name'].', '.$itemInfo['date_add_day'].' '.$itemInfo['date_add_month'].' '.$itemInfo['date_add_year'];
-        
-        # строка навигации
-        # строка навигации в ручном режиме
-        if (!empty($itemInfo['full_navigation'])) {
-            $GLOBALS['tpl_full_navigation'] = $itemInfo['full_navigation'];
-            # избыточная переменная, нужна для постепенного вывода строки навигации на сайте,
-            # а не сразу на всем сайте
-            $GLOBALS['tpl_show_navigation'] = 1;
-        }
-        # строка навигации
-        else {
-            if (!empty($itemInfo['navigation'])) $navigation = $itemInfo['navigation'];
-            else $navigation = $itemInfo['name'];
-            if (strlen($navigation) > 60) $navigation = cutText($navigation, 60);
-            $GLOBALS['tpl_navigation'] = '
-            <a href="/otzyvy/">'.$parentSectionInfo['navigation'].'</a> <span>&raquo;</span>
-            '.$navigation;
-
-            # избыточная переменная, нужна для постепенного вывода строки навигации на сайте,
-            # а не сразу на всем сайте
-            $GLOBALS['tpl_show_navigation'] = 1;
-        }
-
-        # заголовок h1
-        $GLOBALS['tpl_h1'] = $itemInfo['name'];
-
-        # получаем список позиций для блока "Другие отзывы"
-        $GLOBALS['tpl_another_feedback'] = $this->model->getFeedbackForBlockAnotherFeedback($itemInfo['id']); # echo '<pre>'.(print_r($GLOBALS['tpl_another_feedback'], true)).'</pre>'; # exit;
-        foreach ($GLOBALS['tpl_another_feedback'] as &$item) {
-            $item['feedback'] = cutText($item['feedback'], 233);
-            # определяем последний элемент
-            if(++$i == $_c) $item['is_last'] = 1;
-            else unset($item['is_last']);
-        } unset($item); # print_r($GLOBALS['tpl_faq']);
-
-		# контент
-		$GLOBALS['tpl_content'] = $this->tpl->getTemplate('feedback_detailed.html');
-        
-        # перелинковка в подвале
-        if (!empty($itemInfo['footeranchor'])) $GLOBALS['tpl_footeranchor'] = $itemInfo['footeranchor'];
-
-        # скрываем отзывы после контента в шаблоне для внутренних
-        $GLOBALS['tpl_hide_feedback'] = 1;
-
-        # скрываем спецпредложение после контента в шаблоне для внутренних
-        $GLOBALS['tpl_hide_special_offer'] = 1;
-
-        # выводим блок "Советы, новости, вопрос-ответ" в подвале
-        showBlockInFooter();
-
-        # выделяем меню вверху страницы
-        $GLOBALS['tpl_top_menu_active_5'] = ' class="active"';
-
-		# выводим шаблон для внутренних
-		$this->tpl->setMainTemplate('template_for_inside_pages_v1.html');
-		$this->tpl->echoMainTemplate();
-	} # /# ПОДРОБНЫЙ ВЫВОД ОТЗЫВА
+<?php
+class feedback_controller extends controller_base {
+	# РџРћР”Р РћР‘РќР«Р™ Р’Р«Р’РћР” РћРўР—Р«Р’Рђ
+	function showItem()
+    {
+		# 301 РµСЃР»Рё URL Р·Р°РєР°РЅС‡РёРІР°РµС‚СЃСЏ РЅРµ РЅР° "/", РґРµР»Р°РµРј 301 СЂРµРґРёСЂРµРєС‚ РЅР° URL СЃРѕ "/"
+		if ($_SERVER['REQUEST_URI'][strlen($_SERVER['REQUEST_URI']) - 1] != "/"
+            && !stristr($_SERVER['REQUEST_URI'], '?')
+            && !stristr($_SERVER['REQUEST_URI'], '#')) {
+			header("HTTP/1.0 301 Moved Permanently");
+			header("Location: http://".DOMAIN.$_SERVER['REQUEST_URI']."/");
+			exit;
+		}
+        
+		# РїРѕРґРіСЂСѓР¶Р°РµРј СЃС‚РѕСЂРѕРЅРЅРёРµ РјРѕРґСѓР»Рё
+		$site_section_default_controller = $this->load('site_section_default');
+        
+        # РїРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ РїРѕР·РёС†РёРё
+        $itemInfo = $GLOBALS['tpl_item'] = $this->model->getItemInfo($this->routeVars['itemURL']); # print_r($itemInfo);
+        
+		# 404
+		if (empty($itemInfo['id'])) {
+			header("HTTP/1.0 404 Not Found");
+			header("Location: http://".DOMAIN);
+			exit;
+		}
+        
+        # РїРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ СЂРѕРґРёС‚РµР»СЊСЃРєРѕР№ РґРёСЂРµРєС‚РѕСЂРёРё
+        $parentSectionInfo = $site_section_default_controller->model->getSiteSectionInfo('otzyvy'); # print_r($parentSectionInfo);
+        
+        # Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹
+        $GLOBALS['tpl_title'] = $itemInfo['name'].', '.$itemInfo['date_add_day'].' '.$itemInfo['date_add_month'].' '.$itemInfo['date_add_year'];
+        
+        # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё
+        # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ
+        if (!empty($itemInfo['full_navigation'])) {
+            $GLOBALS['tpl_full_navigation'] = $itemInfo['full_navigation'];
+            # РёР·Р±С‹С‚РѕС‡РЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ, РЅСѓР¶РЅР° РґР»СЏ РїРѕСЃС‚РµРїРµРЅРЅРѕРіРѕ РІС‹РІРѕРґР° СЃС‚СЂРѕРєРё РЅР°РІРёРіР°С†РёРё РЅР° СЃР°Р№С‚Рµ,
+            # Р° РЅРµ СЃСЂР°Р·Сѓ РЅР° РІСЃРµРј СЃР°Р№С‚Рµ
+            $GLOBALS['tpl_show_navigation'] = 1;
+        }
+        # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё
+        else {
+            if (!empty($itemInfo['navigation'])) $navigation = $itemInfo['navigation'];
+            else $navigation = $itemInfo['name'];
+            if (strlen($navigation) > 60) $navigation = cutText($navigation, 60);
+            $GLOBALS['tpl_navigation'] = '
+            <a href="/otzyvy/">'.$parentSectionInfo['navigation'].'</a> <span>&raquo;</span>
+            '.$navigation;
+
+            # РёР·Р±С‹С‚РѕС‡РЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ, РЅСѓР¶РЅР° РґР»СЏ РїРѕСЃС‚РµРїРµРЅРЅРѕРіРѕ РІС‹РІРѕРґР° СЃС‚СЂРѕРєРё РЅР°РІРёРіР°С†РёРё РЅР° СЃР°Р№С‚Рµ,
+            # Р° РЅРµ СЃСЂР°Р·Сѓ РЅР° РІСЃРµРј СЃР°Р№С‚Рµ
+            $GLOBALS['tpl_show_navigation'] = 1;
+        }
+
+        # Р·Р°РіРѕР»РѕРІРѕРє h1
+        $GLOBALS['tpl_h1'] = $itemInfo['name'];
+
+        # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РїРѕР·РёС†РёР№ РґР»СЏ Р±Р»РѕРєР° "Р”СЂСѓРіРёРµ РѕС‚Р·С‹РІС‹"
+        $GLOBALS['tpl_another_feedback'] = $this->model->getFeedbackForBlockAnotherFeedback($itemInfo['id']); # echo '<pre>'.(print_r($GLOBALS['tpl_another_feedback'], true)).'</pre>'; # exit;
+        foreach ($GLOBALS['tpl_another_feedback'] as &$item) {
+            $item['feedback'] = cutText($item['feedback'], 233);
+            # РѕРїСЂРµРґРµР»СЏРµРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
+            if(++$i == $_c) $item['is_last'] = 1;
+            else unset($item['is_last']);
+        } unset($item); # print_r($GLOBALS['tpl_faq']);
+
+		# РєРѕРЅС‚РµРЅС‚
+		$GLOBALS['tpl_content'] = $this->tpl->getTemplate('feedback_detailed.html');
+        
+        # РїРµСЂРµР»РёРЅРєРѕРІРєР° РІ РїРѕРґРІР°Р»Рµ
+        if (!empty($itemInfo['footeranchor'])) $GLOBALS['tpl_footeranchor'] = $itemInfo['footeranchor'];
+
+        # СЃРєСЂС‹РІР°РµРј РѕС‚Р·С‹РІС‹ РїРѕСЃР»Рµ РєРѕРЅС‚РµРЅС‚Р° РІ С€Р°Р±Р»РѕРЅРµ РґР»СЏ РІРЅСѓС‚СЂРµРЅРЅРёС…
+        $GLOBALS['tpl_hide_feedback'] = 1;
+
+        # СЃРєСЂС‹РІР°РµРј СЃРїРµС†РїСЂРµРґР»РѕР¶РµРЅРёРµ РїРѕСЃР»Рµ РєРѕРЅС‚РµРЅС‚Р° РІ С€Р°Р±Р»РѕРЅРµ РґР»СЏ РІРЅСѓС‚СЂРµРЅРЅРёС…
+        $GLOBALS['tpl_hide_special_offer'] = 1;
+
+        # РІС‹РІРѕРґРёРј Р±Р»РѕРє "РЎРѕРІРµС‚С‹, РЅРѕРІРѕСЃС‚Рё, РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚" РІ РїРѕРґРІР°Р»Рµ
+        showBlockInFooter();
+
+        # РІС‹РґРµР»СЏРµРј РјРµРЅСЋ РІРІРµСЂС…Сѓ СЃС‚СЂР°РЅРёС†С‹
+        $GLOBALS['tpl_top_menu_active_5'] = ' class="active"';
+
+		# РІС‹РІРѕРґРёРј С€Р°Р±Р»РѕРЅ РґР»СЏ РІРЅСѓС‚СЂРµРЅРЅРёС…
+		$this->tpl->setMainTemplate('template_for_inside_pages_v1.html');
+		$this->tpl->echoMainTemplate();
+	} # /# РџРћР”Р РћР‘РќР«Р™ Р’Р«Р’РћР” РћРўР—Р«Р’Рђ
 }

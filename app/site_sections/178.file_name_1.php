@@ -1,186 +1,186 @@
-<div class="breadcrumbs"><a href="">Оборудование</a> <span>»</span> SDMO R110</div>
-    
-        <a class="order_btn_1 btn_md btn_md_2" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-        <div class="h1 h2">Аренда электростанции<br />SDMO R110 от 3500 руб./сутки</div>
-        
-        <p>Дизельная электростанция (генератор) R110 (Франция) номинальной мощностью 80 кВт имеет двигатель Deere 4045HF120 объемом 4.5 л, генератор Leroy Somer LSA442VS45, бак 190 л.</p>
-
-        <br />
-        
-        <div class="item_col_1">
-<img class="img-responsive" src="/public/images/item_big_1.jpg" /><br />
-            <div class="cat_price">3500 <span>руб./сутки</span></div>
-посуточная оплата без топлива
-<a class="order_btn" href="#rent_modal" data-toggle="modal">Отправить заявку</a>
-            <br /><br />
-        </div>
-        <div class="item_col_2">
-            <div class="h4">Технические характеристики</div>
-            <table class="char_table">
-    <tr>
-<td>Производитель</td>
-<td>SDMO (Франция)</td>
-</tr>
-    <tr>
-<td>Резервная мощность</td>
-<td>110 кВА / 88 кВт</td>
-</tr>
-    <tr>
-<td>Основная мощность</td>
-<td>100 кВА / 80 кВт</td>
-</tr>
-    <tr>
-<td>Расход топлива при нагрузке 75%</td>
-<td>18.5 л/ч</td>
-</tr>
-    <tr>
-<td>Обороты двигателя</td>
-<td>1500 об/мин, пониженные</td>
-</tr>
-    <tr>
-<td>Выходное напряжение</td>
-<td>400 / 230 В (3-фазн.)</td>
-</tr>
-    <tr>
-<td>Генератор</td>
-<td>Leroy Somer</td>
-</tr>
-    <tr>
-<td>Двигатель</td>
-<td>John Deere (США)</td>
-</tr>
-    <tr>
-<td>Тип топлива</td>
-<td>дизель</td>
-</tr>
-    <tr>
-<td>Объем топливного бака</td>
-<td>340 л</td>
-</tr>
-    <tr>
-<td>Тип запуска</td>
-<td>электро / автоматический</td>
-</tr>
-    <tr>
-<td>Масса</td>
-<td>1765 кг</td>
-</tr>
-    <tr>
-<td>Габариты</td>
-<td>255 х 117 х 168 см</td>
-</tr>
-    <tr>
-<td>Исполнение</td>
-<td>в кожухе</td>
-</tr>
-    <tr>
-<td>Класс электростанции</td>
-<td>промышленная стационарная</td>
-</tr>
-    <tr>
-<td>Тип охлаждения</td>
-<td>жидкостное</td>
-</tr>
-</table>
-        </div>
-<div class="clear"></div><br />
-
-        <div class="h4 collapse_sm">Тарифы на аренду</div>
-
-            <table class="price_table_1 collapse_sm">
-    <tr>
-<td colspan="2" class="td_1" width="280">
-    <table>
-    <tr>
-    <td colspan="2">Почасовая оплата<br />«все включено»</td>
-</tr>
-    <tr>
-    <td>в режиме работы</td>
-<td>в режиме простоя</td>
-</tr>
-</table>
-</td>
-<td width="140">Посуточная оплата электростанции без топлива</td>
-<td width="140">Посуточная оплата услуг нашего оператора</td>
-<td width="105">Режим простоя с оператором в сутки</td>
-<td width="105">Режим простоя без оператора в сутки</td>
-<td></td>
-</tr>
-    <tr>
-<td>740 руб./час</td>
-<td>210 руб./час</td>
-<td>3500 руб./сутки</td>
-<td>2500 руб./сутки</td>
-<td>5040 руб.</td>
-<td>2540 руб.</td>
-<td><a href="#calc_modal" class="" data-toggle="modal">Рассчитать</a></td>
-</tr>
-</table>
-
-        <p>Дизельная электростанция (генератор) R110 (Франция) номинальной мощностью 80 кВт имеет двигатель Deere 4045HF120 объемом 4.5 л, генератор Leroy Somer LSA442VS45, бак 190 л.</p>
-
-<br />
-
-<a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">Скачать договор на аренду</a>
-
-<a class="page_back" href="">« на страницу Оборудование</a><br />
-
-        <div class="h4">Другие модели электростанций</div>
-        
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_1.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R110</a> / 80 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">3500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item even">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_2.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R135</a> / 96 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">4000 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="cat_item">
-            <div class="cat_col_1">
-                <a href=""><img src="/public/images/item_2.jpg" /></a>
-            </div>
-            <div class="cat_col_2">
-                <div class="cat_t"><a href="">SDMO R165</a> / 120 кВт</div>
-                <div>Ном. мощность: 100 кВА, 80 кВт</div>
-                <div>Резервная мощность: 110 кВА, 88 кВт</div>
-                <div>Модель двигателя: John Deere</div>
-                <div>Расход топлива при 75% загрузки: 16,5 л./час</div>
-            </div> 
-            <div class="cat_col_3">
-                <div class="cat_price">4500 <span>руб./сутки</span></div>
-                <div class="txt_1">посуточная оплата без топлива</div>
-                <a class="order_btn_1 btn_md" href="" data-toggle="modal">Рассчитать стоимость</a>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <br />
-        
+<div class="breadcrumbs"><a href="">РћР±РѕСЂСѓРґРѕРІР°РЅРёРµ</a> <span>В»</span> SDMO R110</div>
+    
+        <a class="order_btn_1 btn_md btn_md_2" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+        <div class="h1 h2">РђСЂРµРЅРґР° СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё<br />SDMO R110 РѕС‚ 3500 СЂСѓР±./СЃСѓС‚РєРё</div>
+        
+        <p>Р”РёР·РµР»СЊРЅР°СЏ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёСЏ (РіРµРЅРµСЂР°С‚РѕСЂ) R110 (Р¤СЂР°РЅС†РёСЏ) РЅРѕРјРёРЅР°Р»СЊРЅРѕР№ РјРѕС‰РЅРѕСЃС‚СЊСЋ 80 РєР’С‚ РёРјРµРµС‚ РґРІРёРіР°С‚РµР»СЊ Deere 4045HF120 РѕР±СЉРµРјРѕРј 4.5 Р», РіРµРЅРµСЂР°С‚РѕСЂ Leroy Somer LSA442VS45, Р±Р°Рє 190 Р».</p>
+
+        <br />
+        
+        <div class="item_col_1">
+<img class="img-responsive" src="/public/images/item_big_1.jpg" /><br />
+            <div class="cat_price">3500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°
+<a class="order_btn" href="#rent_modal" data-toggle="modal">РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</a>
+            <br /><br />
+        </div>
+        <div class="item_col_2">
+            <div class="h4">РўРµС…РЅРёС‡РµСЃРєРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё</div>
+            <table class="char_table">
+    <tr>
+<td>РџСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ</td>
+<td>SDMO (Р¤СЂР°РЅС†РёСЏ)</td>
+</tr>
+    <tr>
+<td>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ</td>
+<td>110 РєР’Рђ / 88 РєР’С‚</td>
+</tr>
+    <tr>
+<td>РћСЃРЅРѕРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ</td>
+<td>100 РєР’Рђ / 80 РєР’С‚</td>
+</tr>
+    <tr>
+<td>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё РЅР°РіСЂСѓР·РєРµ 75%</td>
+<td>18.5 Р»/С‡</td>
+</tr>
+    <tr>
+<td>РћР±РѕСЂРѕС‚С‹ РґРІРёРіР°С‚РµР»СЏ</td>
+<td>1500 РѕР±/РјРёРЅ, РїРѕРЅРёР¶РµРЅРЅС‹Рµ</td>
+</tr>
+    <tr>
+<td>Р’С‹С…РѕРґРЅРѕРµ РЅР°РїСЂСЏР¶РµРЅРёРµ</td>
+<td>400 / 230 Р’ (3-С„Р°Р·РЅ.)</td>
+</tr>
+    <tr>
+<td>Р“РµРЅРµСЂР°С‚РѕСЂ</td>
+<td>Leroy Somer</td>
+</tr>
+    <tr>
+<td>Р”РІРёРіР°С‚РµР»СЊ</td>
+<td>John Deere (РЎРЁРђ)</td>
+</tr>
+    <tr>
+<td>РўРёРї С‚РѕРїР»РёРІР°</td>
+<td>РґРёР·РµР»СЊ</td>
+</tr>
+    <tr>
+<td>РћР±СЉРµРј С‚РѕРїР»РёРІРЅРѕРіРѕ Р±Р°РєР°</td>
+<td>340 Р»</td>
+</tr>
+    <tr>
+<td>РўРёРї Р·Р°РїСѓСЃРєР°</td>
+<td>СЌР»РµРєС‚СЂРѕ / Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№</td>
+</tr>
+    <tr>
+<td>РњР°СЃСЃР°</td>
+<td>1765 РєРі</td>
+</tr>
+    <tr>
+<td>Р“Р°Р±Р°СЂРёС‚С‹</td>
+<td>255 С… 117 С… 168 СЃРј</td>
+</tr>
+    <tr>
+<td>РСЃРїРѕР»РЅРµРЅРёРµ</td>
+<td>РІ РєРѕР¶СѓС…Рµ</td>
+</tr>
+    <tr>
+<td>РљР»Р°СЃСЃ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё</td>
+<td>РїСЂРѕРјС‹С€Р»РµРЅРЅР°СЏ СЃС‚Р°С†РёРѕРЅР°СЂРЅР°СЏ</td>
+</tr>
+    <tr>
+<td>РўРёРї РѕС…Р»Р°Р¶РґРµРЅРёСЏ</td>
+<td>Р¶РёРґРєРѕСЃС‚РЅРѕРµ</td>
+</tr>
+</table>
+        </div>
+<div class="clear"></div><br />
+
+        <div class="h4 collapse_sm">РўР°СЂРёС„С‹ РЅР° Р°СЂРµРЅРґСѓ</div>
+
+            <table class="price_table_1 collapse_sm">
+    <tr>
+<td colspan="2" class="td_1" width="280">
+    <table>
+    <tr>
+    <td colspan="2">РџРѕС‡Р°СЃРѕРІР°СЏ РѕРїР»Р°С‚Р°<br />В«РІСЃРµ РІРєР»СЋС‡РµРЅРѕВ»</td>
+</tr>
+    <tr>
+    <td>РІ СЂРµР¶РёРјРµ СЂР°Р±РѕС‚С‹</td>
+<td>РІ СЂРµР¶РёРјРµ РїСЂРѕСЃС‚РѕСЏ</td>
+</tr>
+</table>
+</td>
+<td width="140">РџРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё Р±РµР· С‚РѕРїР»РёРІР°</td>
+<td width="140">РџРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° СѓСЃР»СѓРі РЅР°С€РµРіРѕ РѕРїРµСЂР°С‚РѕСЂР°</td>
+<td width="105">Р РµР¶РёРј РїСЂРѕСЃС‚РѕСЏ СЃ РѕРїРµСЂР°С‚РѕСЂРѕРј РІ СЃСѓС‚РєРё</td>
+<td width="105">Р РµР¶РёРј РїСЂРѕСЃС‚РѕСЏ Р±РµР· РѕРїРµСЂР°С‚РѕСЂР° РІ СЃСѓС‚РєРё</td>
+<td></td>
+</tr>
+    <tr>
+<td>740 СЂСѓР±./С‡Р°СЃ</td>
+<td>210 СЂСѓР±./С‡Р°СЃ</td>
+<td>3500 СЂСѓР±./СЃСѓС‚РєРё</td>
+<td>2500 СЂСѓР±./СЃСѓС‚РєРё</td>
+<td>5040 СЂСѓР±.</td>
+<td>2540 СЂСѓР±.</td>
+<td><a href="#calc_modal" class="" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ</a></td>
+</tr>
+</table>
+
+        <p>Р”РёР·РµР»СЊРЅР°СЏ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёСЏ (РіРµРЅРµСЂР°С‚РѕСЂ) R110 (Р¤СЂР°РЅС†РёСЏ) РЅРѕРјРёРЅР°Р»СЊРЅРѕР№ РјРѕС‰РЅРѕСЃС‚СЊСЋ 80 РєР’С‚ РёРјРµРµС‚ РґРІРёРіР°С‚РµР»СЊ Deere 4045HF120 РѕР±СЉРµРјРѕРј 4.5 Р», РіРµРЅРµСЂР°С‚РѕСЂ Leroy Somer LSA442VS45, Р±Р°Рє 190 Р».</p>
+
+<br />
+
+<a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">РЎРєР°С‡Р°С‚СЊ РґРѕРіРѕРІРѕСЂ РЅР° Р°СЂРµРЅРґСѓ</a>
+
+<a class="page_back" href="">В« РЅР° СЃС‚СЂР°РЅРёС†Сѓ РћР±РѕСЂСѓРґРѕРІР°РЅРёРµ</a><br />
+
+        <div class="h4">Р”СЂСѓРіРёРµ РјРѕРґРµР»Рё СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёР№</div>
+        
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_1.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R110</a> / 80 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">3500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item even">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_2.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R135</a> / 96 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">4000 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="cat_item">
+            <div class="cat_col_1">
+                <a href=""><img src="/public/images/item_2.jpg" /></a>
+            </div>
+            <div class="cat_col_2">
+                <div class="cat_t"><a href="">SDMO R165</a> / 120 РєР’С‚</div>
+                <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: 100 РєР’Рђ, 80 РєР’С‚</div>
+                <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: 110 РєР’Рђ, 88 РєР’С‚</div>
+                <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: John Deere</div>
+                <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: 16,5 Р»./С‡Р°СЃ</div>
+            </div> 
+            <div class="cat_col_3">
+                <div class="cat_price">4500 <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+                <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+                <a class="order_btn_1 btn_md" href="" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <br />
+        
         </div>

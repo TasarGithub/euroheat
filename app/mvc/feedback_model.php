@@ -1,371 +1,371 @@
-<?php
-class feedback_model extends model_base
-{
-	# ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ ОТЗЫВОВ
-	function getItemsForIndex()
-	{
-		$sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-		order by date_add desc
-		'; # echo '<pre>'.$sql."</pre><hr />";
-		$sql_for_count = "
-		select count(1)
-		from ".DB_PREFIX."feedback
-        where is_published = 1
-		"; # echo '<pre>'.$sql."</pre><hr />";
-		$pages = new pages($this->routeVars['page'], # текущая страница
-						   20, # записей на страницу
-						   $this->dbh, # объект базы данных
-						   $this->routeVars, # переменные динамичного маршрута
-						   $sql, # sql-запрос
-						   $sql_for_count, # sql-запрос для подсчета количества записей
-						   "/otzyvy/", # ссыка на 1ю страницу
-						   "/otzyvy/page%page%/", # ссыка на остальные страницы
-							1500 # максимальное количество записей на страницу
-							);
-		$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>';
-		
-		if (!empty($_result)) return $_result;
-	} # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ ОТЗЫВОВ
-
-    # ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
-    function getItemsForMainPage()
-    {
-        $sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-        order by rand()
-        limit 3
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        try {
-            if ($sth->execute()) {
-                $_ = $sth->fetchAll(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
-
-    # ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ВНУТРЕННИХ СТРАНИЦ
-    # $idSelected - id отзыва, который нужно исключить из вывода
-    function getItemsForInsidePages($idSelected = null)
-    {
-        $sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-        order by rand()
-        limit 3
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        try {
-            if ($sth->execute()) {
-                $_ = $sth->fetchAll(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ВНУТРЕННИХ СТРАНИЦ
-
-    # ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ РАЗДЕЛА "ФОТОГРАФИИ"
-    function getItemsForPhotos()
-    {
-        $sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-        order by rand()
-        limit 9
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        try {
-            if ($sth->execute()) {
-                $_ = $sth->fetchAll(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ РАЗДЕЛА "ФОТОГРАФИИ"
-
-    # ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ЛУЖНИКОВ
-    function getItemsForPlace1()
-    {
-        $sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-		      and is_place_1 = 1
-        order by rand()
-        limit 9
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        try {
-            if ($sth->execute()) {
-                $_ = $sth->fetchAll(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ЛУЖНИКОВ
-
-    # ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ПРОСТЕКТА ВЕРНАДСКОГО
-    function getItemsForPlace2()
-    {
-        $sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-		      and is_place_2 = 1
-        order by rand()
-        limit 9
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $this->dbh->prepare($sql);
-        try {
-            if ($sth->execute()) {
-                $_ = $sth->fetchAll(); # print_r($_);
-                if (!empty($_)) return $_;
-            }
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ ПРОСТЕКТА ВЕРНАДСКОГО
-
-    # ПОЛУЧАЕМ ИНФОРМАЦИЮ ПО ВОПРОСУ-ОТВЕТУ
-    function getItemInfo($id)
-    {
-        # проверка переменных
-        if (empty($id)) return;
-        
-		$sql = '
-		select *,
-               date_format(date_add,"%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-			  and id = :id
-		'; # echo '<pre>'.$sql."</pre><hr />";
-		$sth = $this->dbh->prepare($sql);
-        $sth->bindParam(':id', $id);
-		try
-		{
-			if ($sth->execute())
-			{
-				$_ = $sth->fetch(); # print_r($_);
-				if (!empty($_)) return $_;
-			}
-		}
-		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /ПОЛУЧАЕМ ИНФОРМАЦИЮ ПО ВОПРОСУ-ОТВЕТУ
-    
-    # СЧИТАЕМ ОБЩЕЕ КОЛИЧЕСТВО ВОПРОСОВ-ОТВЕТОВ ДЛЯ МЕНЮ СПРАВА
-    function getFaqItemsCountForRightMenu()
-    {
-        $dbh = $this->dbh;
-        
-		$sql = '
-		select count(1)
-		from '.DB_PREFIX.'faq
-		where is_showable = 1
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        try {
-            $_ = $dbh->query($sql)->fetchColumn();
-            if (!empty($_)) return $_;
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /СЧИТАЕМ ОБЩЕЕ КОЛИЧЕСТВО ВОПРОСОВ-ОТВЕТОВ ДЛЯ МЕНЮ СПРАВА
-    
-    # ПОЛУЧАЕМ ОТЗЫВЫ НА РАНДОМ ДЛЯ БЛОКА "ДРУГИЕ ОТЗЫВЫ"
-    function getFeedbackForBlockAnotherFeedback($currentItemID)
-    {
-        # проверка переменных
-        if (empty($currentItemID)) return;
-        
-		$sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where id != :id
-              and is_published = 1
-        order by rand()
-        limit 3
-		'; # echo '<pre>'.$sql."</pre><hr />";
-		$sth = $this->dbh->prepare($sql);
-        $sth->bindParam(':id', $currentItemID, PDO::PARAM_INT);
-		try
-		{
-			if ($sth->execute())
-			{
-				$_ = $sth->fetchAll(); # print_r($_);
-				if (!empty($_)) return $_;
-			}
-		}
-		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /ПОЛУЧАЕМ ОТЗЫВЫ НА РАНДОМ ДЛЯ БЛОКА "ДРУГИЕ ОТЗЫВЫ"
-    
-    # СЧИТАЕМ ОБЩЕЕ КОЛИЧЕСТВО ОТЗЫВОВ ДЛЯ МЕНЮ СПРАВА
-    function getItemsCountForRightMenu()
-    {
-        $dbh = $this->dbh;
-        
-		$sql = '
-		select count(1)
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        try {
-            $_ = $dbh->query($sql)->fetchColumn();
-            if (!empty($_)) return $_;
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /СЧИТАЕМ ОБЩЕЕ КОЛИЧЕСТВО ОТЗЫВОВ ДЛЯ МЕНЮ СПРАВА
-    
-	# ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ МЕНЮ СЛЕВА ДЛЯ ВНУТРЕННИХ
-	function getItemsForMenu()
-	{
-        $dbh = $this->dbh;
-        
-		$sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-		order by rand()
-		limit 1
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        try {
-            $_ = $dbh->query($sql)->fetch();
-            if (!empty($_)) return $_;
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-	} # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ МЕНЮ СЛЕВА ДЛЯ ВНУТРЕННИХ
-    
-	# ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ МЕНЮ СПРАВА ДЛЯ ГЛАВНОЙ
-	function getItemsForRightMenuForMainPage()
-	{
-        $dbh = $this->dbh;
-        
-		$sql = '
-		select id,
-			   name,
-			   feedback,
-			   votes_plus,
-			   votes_minus,
-			   date_format(date_add, "%e") as date_add_day,
-               elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-			   date_format(date_add,"%Y") as date_add_year
-		from '.DB_PREFIX.'feedback
-		where is_published = 1
-		order by rand()
-		limit 6
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        try {
-            $_ = $dbh->query($sql)->fetchAll();
-            if (!empty($_)) return $_;
-        }
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-	} # /ПОЛУЧАЕМ СПИСОК ОТЗЫВОВ ДЛЯ МЕНЮ СПРАВА ДЛЯ ГЛАВНОЙ
-    
-    # СЧИТАЕМ КОЛИЧЕСТВО ОТЗЫВОВ
-    function getItemsCount()
-    {
-		$sql = '
-        select count(1)
-        from '.DB_PREFIX.'feedback
-        where is_published = 1
-		'; # echo '<pre>'.$sql."</pre><hr />";
-		$sth = $this->dbh->prepare($sql);
-		try
-		{
-			if ($sth->execute())
-			{
-				$_ = $sth->fetchColumn(); # print_r($_);
-				if (!empty($_)) return $_;
-			}
-		}
-		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-    } # /СЧИТАЕМ КОЛИЧЕСТВО ОТЗЫВОВ
-    
-	# ПОЛУЧАЕМ ОТЗЫВЫ ДЛЯ КАРТЫ САЙТА
-	function getItemsForMap()
-	{
-		$sql = "
-		select id,
-			   name,
-			   date_format(date_add,'%e') as date_add_day,
-               elt(month(date_add), 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря') as date_add_month,
-			   date_format(date_add,'%Y') as date_add_year
-		from ".DB_PREFIX."feedback
-        where is_published = 1 
-		order by date_add desc,
-                 name
-        "; # echo '<pre>'.$sql."</pre><hr />";
-		$result = $this->dbh->prepare($sql);
-		try
-		{
-			if ($result->execute())
-			{
-				$_ = $result->fetchAll(); # print_r($_);
-				return $_;
-			}
-		}
-		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Ошибка в SQL-запросе:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-	} # /ПОЛУЧАЕМ ОТЗЫВЫ ДЛЯ КАРТЫ САЙТА
+<?php
+class feedback_model extends model_base
+{
+	# РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р“Р›РђР’РќРћР™ РЎРўР РђРќРР¦Р« РћРўР—Р«Р’РћР’
+	function getItemsForIndex()
+	{
+		$sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+		order by date_add desc
+		'; # echo '<pre>'.$sql."</pre><hr />";
+		$sql_for_count = "
+		select count(1)
+		from ".DB_PREFIX."feedback
+        where is_published = 1
+		"; # echo '<pre>'.$sql."</pre><hr />";
+		$pages = new pages($this->routeVars['page'], # С‚РµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°
+						   20, # Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+						   $this->dbh, # РѕР±СЉРµРєС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+						   $this->routeVars, # РїРµСЂРµРјРµРЅРЅС‹Рµ РґРёРЅР°РјРёС‡РЅРѕРіРѕ РјР°СЂС€СЂСѓС‚Р°
+						   $sql, # sql-Р·Р°РїСЂРѕСЃ
+						   $sql_for_count, # sql-Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
+						   "/otzyvy/", # СЃСЃС‹РєР° РЅР° 1СЋ СЃС‚СЂР°РЅРёС†Сѓ
+						   "/otzyvy/page%page%/", # СЃСЃС‹РєР° РЅР° РѕСЃС‚Р°Р»СЊРЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
+							1500 # РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+							);
+		$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>';
+		
+		if (!empty($_result)) return $_result;
+	} # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р“Р›РђР’РќРћР™ РЎРўР РђРќРР¦Р« РћРўР—Р«Р’РћР’
+
+    # РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р“Р›РђР’РќРћР™ РЎРўР РђРќРР¦Р«
+    function getItemsForMainPage()
+    {
+        $sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+        order by rand()
+        limit 3
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        try {
+            if ($sth->execute()) {
+                $_ = $sth->fetchAll(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р“Р›РђР’РќРћР™ РЎРўР РђРќРР¦Р«
+
+    # РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р’РќРЈРўР Р•РќРќРРҐ РЎРўР РђРќРР¦
+    # $idSelected - id РѕС‚Р·С‹РІР°, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ РёСЃРєР»СЋС‡РёС‚СЊ РёР· РІС‹РІРѕРґР°
+    function getItemsForInsidePages($idSelected = null)
+    {
+        $sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+        order by rand()
+        limit 3
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        try {
+            if ($sth->execute()) {
+                $_ = $sth->fetchAll(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р’РќРЈРўР Р•РќРќРРҐ РЎРўР РђРќРР¦
+
+    # РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р РђР—Р”Р•Р›Рђ "Р¤РћРўРћР“Р РђР¤РР"
+    function getItemsForPhotos()
+    {
+        $sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+        order by rand()
+        limit 9
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        try {
+            if ($sth->execute()) {
+                $_ = $sth->fetchAll(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р РђР—Р”Р•Р›Рђ "Р¤РћРўРћР“Р РђР¤РР"
+
+    # РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р›РЈР–РќРРљРћР’
+    function getItemsForPlace1()
+    {
+        $sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+		      and is_place_1 = 1
+        order by rand()
+        limit 9
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        try {
+            if ($sth->execute()) {
+                $_ = $sth->fetchAll(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ Р›РЈР–РќРРљРћР’
+
+    # РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ РџР РћРЎРўР•РљРўРђ Р’Р•Р РќРђР”РЎРљРћР“Рћ
+    function getItemsForPlace2()
+    {
+        $sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+		      and is_place_2 = 1
+        order by rand()
+        limit 9
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $this->dbh->prepare($sql);
+        try {
+            if ($sth->execute()) {
+                $_ = $sth->fetchAll(); # print_r($_);
+                if (!empty($_)) return $_;
+            }
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ РџР РћРЎРўР•РљРўРђ Р’Р•Р РќРђР”РЎРљРћР“Рћ
+
+    # РџРћР›РЈР§РђР•Рњ РРќР¤РћР РњРђР¦РР® РџРћ Р’РћРџР РћРЎРЈ-РћРўР’Р•РўРЈ
+    function getItemInfo($id)
+    {
+        # РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+        if (empty($id)) return;
+        
+		$sql = '
+		select *,
+               date_format(date_add,"%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+			  and id = :id
+		'; # echo '<pre>'.$sql."</pre><hr />";
+		$sth = $this->dbh->prepare($sql);
+        $sth->bindParam(':id', $id);
+		try
+		{
+			if ($sth->execute())
+			{
+				$_ = $sth->fetch(); # print_r($_);
+				if (!empty($_)) return $_;
+			}
+		}
+		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РџРћР›РЈР§РђР•Рњ РРќР¤РћР РњРђР¦РР® РџРћ Р’РћРџР РћРЎРЈ-РћРўР’Р•РўРЈ
+    
+    # РЎР§РРўРђР•Рњ РћР‘Р©Р•Р• РљРћР›РР§Р•РЎРўР’Рћ Р’РћРџР РћРЎРћР’-РћРўР’Р•РўРћР’ Р”Р›РЇ РњР•РќР® РЎРџР РђР’Рђ
+    function getFaqItemsCountForRightMenu()
+    {
+        $dbh = $this->dbh;
+        
+		$sql = '
+		select count(1)
+		from '.DB_PREFIX.'faq
+		where is_showable = 1
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        try {
+            $_ = $dbh->query($sql)->fetchColumn();
+            if (!empty($_)) return $_;
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РЎР§РРўРђР•Рњ РћР‘Р©Р•Р• РљРћР›РР§Р•РЎРўР’Рћ Р’РћРџР РћРЎРћР’-РћРўР’Р•РўРћР’ Р”Р›РЇ РњР•РќР® РЎРџР РђР’Рђ
+    
+    # РџРћР›РЈР§РђР•Рњ РћРўР—Р«Р’Р« РќРђ Р РђРќР”РћРњ Р”Р›РЇ Р‘Р›РћРљРђ "Р”Р РЈР“РР• РћРўР—Р«Р’Р«"
+    function getFeedbackForBlockAnotherFeedback($currentItemID)
+    {
+        # РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+        if (empty($currentItemID)) return;
+        
+		$sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where id != :id
+              and is_published = 1
+        order by rand()
+        limit 3
+		'; # echo '<pre>'.$sql."</pre><hr />";
+		$sth = $this->dbh->prepare($sql);
+        $sth->bindParam(':id', $currentItemID, PDO::PARAM_INT);
+		try
+		{
+			if ($sth->execute())
+			{
+				$_ = $sth->fetchAll(); # print_r($_);
+				if (!empty($_)) return $_;
+			}
+		}
+		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РџРћР›РЈР§РђР•Рњ РћРўР—Р«Р’Р« РќРђ Р РђРќР”РћРњ Р”Р›РЇ Р‘Р›РћРљРђ "Р”Р РЈР“РР• РћРўР—Р«Р’Р«"
+    
+    # РЎР§РРўРђР•Рњ РћР‘Р©Р•Р• РљРћР›РР§Р•РЎРўР’Рћ РћРўР—Р«Р’РћР’ Р”Р›РЇ РњР•РќР® РЎРџР РђР’Рђ
+    function getItemsCountForRightMenu()
+    {
+        $dbh = $this->dbh;
+        
+		$sql = '
+		select count(1)
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        try {
+            $_ = $dbh->query($sql)->fetchColumn();
+            if (!empty($_)) return $_;
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РЎР§РРўРђР•Рњ РћР‘Р©Р•Р• РљРћР›РР§Р•РЎРўР’Рћ РћРўР—Р«Р’РћР’ Р”Р›РЇ РњР•РќР® РЎРџР РђР’Рђ
+    
+	# РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ РњР•РќР® РЎР›Р•Р’Рђ Р”Р›РЇ Р’РќРЈРўР Р•РќРќРРҐ
+	function getItemsForMenu()
+	{
+        $dbh = $this->dbh;
+        
+		$sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+		order by rand()
+		limit 1
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        try {
+            $_ = $dbh->query($sql)->fetch();
+            if (!empty($_)) return $_;
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+	} # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ РњР•РќР® РЎР›Р•Р’Рђ Р”Р›РЇ Р’РќРЈРўР Р•РќРќРРҐ
+    
+	# РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ РњР•РќР® РЎРџР РђР’Рђ Р”Р›РЇ Р“Р›РђР’РќРћР™
+	function getItemsForRightMenuForMainPage()
+	{
+        $dbh = $this->dbh;
+        
+		$sql = '
+		select id,
+			   name,
+			   feedback,
+			   votes_plus,
+			   votes_minus,
+			   date_format(date_add, "%e") as date_add_day,
+               elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+			   date_format(date_add,"%Y") as date_add_year
+		from '.DB_PREFIX.'feedback
+		where is_published = 1
+		order by rand()
+		limit 6
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        try {
+            $_ = $dbh->query($sql)->fetchAll();
+            if (!empty($_)) return $_;
+        }
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+	} # /РџРћР›РЈР§РђР•Рњ РЎРџРРЎРћРљ РћРўР—Р«Р’РћР’ Р”Р›РЇ РњР•РќР® РЎРџР РђР’Рђ Р”Р›РЇ Р“Р›РђР’РќРћР™
+    
+    # РЎР§РРўРђР•Рњ РљРћР›РР§Р•РЎРўР’Рћ РћРўР—Р«Р’РћР’
+    function getItemsCount()
+    {
+		$sql = '
+        select count(1)
+        from '.DB_PREFIX.'feedback
+        where is_published = 1
+		'; # echo '<pre>'.$sql."</pre><hr />";
+		$sth = $this->dbh->prepare($sql);
+		try
+		{
+			if ($sth->execute())
+			{
+				$_ = $sth->fetchColumn(); # print_r($_);
+				if (!empty($_)) return $_;
+			}
+		}
+		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+    } # /РЎР§РРўРђР•Рњ РљРћР›РР§Р•РЎРўР’Рћ РћРўР—Р«Р’РћР’
+    
+	# РџРћР›РЈР§РђР•Рњ РћРўР—Р«Р’Р« Р”Р›РЇ РљРђР РўР« РЎРђР™РўРђ
+	function getItemsForMap()
+	{
+		$sql = "
+		select id,
+			   name,
+			   date_format(date_add,'%e') as date_add_day,
+               elt(month(date_add), 'СЏРЅРІР°СЂСЏ', 'С„РµРІСЂР°Р»СЏ', 'РјР°СЂС‚Р°', 'Р°РїСЂРµР»СЏ', 'РјР°СЏ', 'РёСЋРЅСЏ', 'РёСЋР»СЏ', 'Р°РІРіСѓСЃС‚Р°', 'СЃРµРЅС‚СЏР±СЂСЏ', 'РѕРєС‚СЏР±СЂСЏ', 'РЅРѕСЏР±СЂСЏ', 'РґРµРєР°Р±СЂСЏ') as date_add_month,
+			   date_format(date_add,'%Y') as date_add_year
+		from ".DB_PREFIX."feedback
+        where is_published = 1 
+		order by date_add desc,
+                 name
+        "; # echo '<pre>'.$sql."</pre><hr />";
+		$result = $this->dbh->prepare($sql);
+		try
+		{
+			if ($result->execute())
+			{
+				$_ = $result->fetchAll(); # print_r($_);
+				return $_;
+			}
+		}
+		catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "РћС€РёР±РєР° РІ SQL-Р·Р°РїСЂРѕСЃРµ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+	} # /РџРћР›РЈР§РђР•Рњ РћРўР—Р«Р’Р« Р”Р›РЇ РљРђР РўР« РЎРђР™РўРђ
 }

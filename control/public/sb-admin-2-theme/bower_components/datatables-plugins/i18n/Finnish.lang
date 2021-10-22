@@ -2,21 +2,21 @@
  * Finnish translation
  *  @name Finnish
  *  @anchor Finnish
- *  @author Seppo Äyräväinen
+ *  @author Seppo Р“вЂћyrР“В¤vР“В¤inen
  */
 
 {
 	"sProcessing":   "Hetkinen...",
-	"sLengthMenu":   "Näytä kerralla _MENU_ riviä",
-	"sZeroRecords":  "Tietoja ei löytynyt",
-	"sInfo":         "Näytetään rivit _START_ - _END_ (yhteensä _TOTAL_ )",
-	"sInfoEmpty":    "Näytetään 0 - 0 (yhteensä 0)",
+	"sLengthMenu":   "NР“В¤ytР“В¤ kerralla _MENU_ riviР“В¤",
+	"sZeroRecords":  "Tietoja ei lР“В¶ytynyt",
+	"sInfo":         "NР“В¤ytetР“В¤Р“В¤n rivit _START_ - _END_ (yhteensР“В¤ _TOTAL_ )",
+	"sInfoEmpty":    "NР“В¤ytetР“В¤Р“В¤n 0 - 0 (yhteensР“В¤ 0)",
 	"sInfoFiltered": "(suodatettu _MAX_ tuloksen joukosta)",
 	"sInfoPostFix":  "",
 	"sSearch":       "Etsi:",
 	"sUrl":          "",
 	"oPaginate": {
-		"sFirst":    "Ensimmäinen",
+		"sFirst":    "EnsimmР“В¤inen",
 		"sPrevious": "Edellinen",
 		"sNext":     "Seuraava",
 		"sLast":     "Viimeinen"

@@ -1,43 +1,43 @@
-/* jquery backups */
-.jquery_backups, .jquery_backups a {
-    color: #bbb !important;
-    position: relative;
-}
-.jquery_backups a {
-    text-decoration: none;
-    border-bottom: 1px dashed #bbb !important;
-}
-.jquery_backups_data {
-    margin-top: 5px;
-    width: 95%;
-    border-left: 1px solid #ccc;
-    padding-left: 7px;
-    padding-bottom: 3px;
-    margin-top: 7px;
-    margin-left: 7px;
-    display: none;
-}
-.backup_item.hidden {
-    display: none;
-}
-.removed_backups {
-    padding: 3px; 
-    white-space: nowrap; 
-    border: 1px dashed #ccc; 
-    margin: 3px; 
-    font-weight: bold;
-    color: red;
-}
-.jquery_backups .backup_ajax_status {
-    position: relative;
-    top: 3px;
-    left: 3px;
-}
-.backup_just_created img {
-    position: relative;
-    top: 0;
-}
-.backup_just_created b {
-    color: green;
-}
+/* jquery backups */
+.jquery_backups, .jquery_backups a {
+    color: #bbb !important;
+    position: relative;
+}
+.jquery_backups a {
+    text-decoration: none;
+    border-bottom: 1px dashed #bbb !important;
+}
+.jquery_backups_data {
+    margin-top: 5px;
+    width: 95%;
+    border-left: 1px solid #ccc;
+    padding-left: 7px;
+    padding-bottom: 3px;
+    margin-top: 7px;
+    margin-left: 7px;
+    display: none;
+}
+.backup_item.hidden {
+    display: none;
+}
+.removed_backups {
+    padding: 3px; 
+    white-space: nowrap; 
+    border: 1px dashed #ccc; 
+    margin: 3px; 
+    font-weight: bold;
+    color: red;
+}
+.jquery_backups .backup_ajax_status {
+    position: relative;
+    top: 3px;
+    left: 3px;
+}
+.backup_just_created img {
+    position: relative;
+    top: 0;
+}
+.backup_just_created b {
+    color: green;
+}
 /* /jquery backups */

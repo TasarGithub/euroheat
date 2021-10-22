@@ -1,220 +1,439 @@
 /* styles for all the same cms's */
+
 h1.page-header {
+
     /* margin-top: 60px; */
+
     margin-top: 30px;
+
     font-size: 20px
+
 }
+
 .center {
+
     text-align: center;
+
 }
+
 .c { /* short for center */
+
     text-align: center;
+
     vertical-align: middle !important;
+
 }
+
 .n { /* short for name */
+
     position: relative;
+
     white-space: nowrap;
+
 }
+
 .position_relative {
+
     position: relative;
+
 }
+
 #main_ajax_preloader {
+
     top: 10px;
+
     left: 5px;
+
     position: relative;
+
     float: left;
+
 }
+
 .fixed1 {
+
     position: fixed;
+
     left: 0;
+
     right: 0;
+
     top: 0;
+
     z-index: 100;
+
 }
+
 .search_results_fixed {
+
     position: fixed;
+
 }
+
 .navbar, .navbar-brand, .navbar-top-links li a {
+
     height: 45px;
+
     min-height: 45px;
+
 }
+
 .navbar-top-links li a {
+
     padding-top: 12px;
+
 }
+
 .navbar-brand {
+
     padding-top: 10px;
+
     padding-bottom: 10px;
+
 }
+
 .show_datepicker {
+
     width: 110px;
+
     margin-left: 5px;
+
 }
+
 #ui-datepicker-div {
+
     z-index: 150 !important;
+
 }
+
 #main_content {
+
     margin-left: -5px;
+
 }
+
 .hidden {
+
     disply: none;
+
 }
+
 .alert.alert-success span, .alert.alert-danger span {
+
     font-size: 20px;
+
 }
+
 .block {
+
     display: block;
+
 }
+
 .size_18 {
+
     font-size: 18px;
+
 }
+
 .size_20 {
+
     font-size: 20px;
+
 }
+
 #ajax_preloader_span {
+
     color: #ccc;
+
 }
+
 .popover {
+
     min-width: 225px;
+
     max-width: 246px;
+
 }
+
 .tr_selected {
+
     background-color: #abd7ff !important;
+
 }
+
 .bold {
+
     font-weight: bold;
+
 }
-/* делаем плавающую шапку непрозрачной */
+
+/* РґРµР»Р°РµРј РїР»Р°РІР°СЋС‰СѓСЋ С€Р°РїРєСѓ РЅРµРїСЂРѕР·СЂР°С‡РЅРѕР№ */
+
 #parsing_results_table thead {
+
     border-top: none;
+
     border-bottom: none;
+
     background-color: #FFF;
+
 }
+
 /* /styles for all the same cms's */
 
+
+
 /* styles only for yaxml */
+
 .child_project {
+
     padding-left: 35px !important;
+
 }
+
 table#stickyHeader thead {
+
     border-top: none;
+
     border-bottom: none;
+
     background-color: #FFF;
+
 }
+
 .image_priority {
+
     position: relative;
+
     width: 18px;
+
     height: 18px;
+
     top: -2px;
+
     left: 7px;
+
 }
+
 #side-menu li a i, .navbar-top-links li a i {
+
     font-size: 16px;
+
 }
+
 .form-control {
+
     padding: 6px 8px;
+
 }
+
 .modal-dialog {
+
     padding-top: 15%;
+
 }
+
 .ajax_result {
+
     display: inline-block; 
+
     position: relative;
+
 }
+
 .ajax_result.top { position: absolute; left: 350px; top: 50px; }
+
 .ajax_result.bottom { top:7px; left:15px }
+
 .alert_line {
+
     position: relative;
+
     height: 25px;
+
     position: absolute;
+
     white-space: nowrap;
+
     top: -20px;
+
     left: -3px;
+
     padding: 1px 10px; 
+
     margin-bottom: 5px;
+
     font-size: 14px !important;
+
 }
+
 .alert.alert-success, .alert.alert-danger {
+
     font-size: 20px;
+
 }
+
 .width_95 {
+
     width: 95%;
+
 }
+
 .alert a {
+
     text-decoration: underline;
+
 }
+
 hr.slim {
+
     border: none;
+
     background-color: #cccccc;
+
     color: #cccccc;
+
     height: 1px;
+
     margin-bottom: 5px; 
+
     margin-top: 5px;
+
 }
+
 #top_menu_nav {
+
     position: absolute;
+
     right: 5px;
+
 }
+
 /* /styles only for yaxml */
 
+
+
 .sitemap_level_1 {
+
     padding-left: 30px;
+
     background-image: url('/control/public/images/sitemap_level_1.gif');
+
     background-position: 12px 2px;
+
     background-repeat: no-repeat;
+
 }
+
     .sitemap_level_1_empty {
+
         padding-left: 30px;
+
     }
+
 .sitemap_level_2 {
+
     padding-left: 60px;
+
     background-image: url('/control/public/images/sitemap_level_2.gif');
+
     background-position: 42px 2px;
+
     background-repeat: no-repeat;
+
 }
+
     .sitemap_level_2_empty {
+
         padding-left: 60px;
+
     }
+
 .sitemap_level_3 {
+
     padding-left: 90px;
+
     background-image: url('/control/public/images/sitemap_level_3.gif');
+
     background-position: 72px 2px;
+
     background-repeat: no-repeat;
+
 }
+
 .sitemap_level_4 {
+
     padding-left: 120px;
+
     background-image: url('/control/public/images/sitemap_level_4.gif');
+
     background-position: 102px 2px;
+
     background-repeat: no-repeat;
+
 }
+
 .sitemap_level_5 {
+
     padding-left: 150px;
+
     background-image: url('/control/public/images/sitemap_level_5.gif');
+
     background-position: 132px 2px;
+
     background-repeat: no-repeat;
+
 }
-.form_checkbox { /* стиль для стандартного чекбокса */
+
+.form_checkbox { /* СЃС‚РёР»СЊ РґР»СЏ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ С‡РµРєР±РѕРєСЃР° */
+
     position: relative;
+
     top: 3px;
+
     width: 17px;
+
     height: 17px;
+
 }
+
 .ui-tabs-panel a { color: #337ab7 !important; }
+
 .relative { position: relative }
+
 .vertical_middle { vertical-align: middle !important }
+
 /* .table-striped th { background-color: #6f91d0; color: #fff } */
+
 .table-striped th { background-color: #73a1f5; color: #fff }
-/* позиция скрыта (is_showable is NULL): выделяем tr цветом */
+
+/* РїРѕР·РёС†РёСЏ СЃРєСЂС‹С‚Р° (is_showable is NULL): РІС‹РґРµР»СЏРµРј tr С†РІРµС‚РѕРј */
+
 .item_hidden { background-color: #ccc !important }
+
 .pages_set, .pages_set a { text-align: center; font-size: 16px }
+
 .nowrap { white-space: nowrap !important }
+
 .hand, .pointer { cursor: pointer !important }
+
 .border { border: 1px solid #ccc; padding: 3px }
+
 .inline { display: inline !important }
+
 .sorting { margin-top: 10px; margin-bottom: 10px }
+
 .sorting a.active { background-color: #73A1F5; color: #fff; padding: 3px 5px }
+
 pre.no_border { background-color: transparent; border: 0; margin: 0; white-space: pre-line }
+
 .red { color: red }
+
 .play { position: absolute }
+
 td.for_player { height: 45px !important }
+
 .chaser { color: #2e79be }
+
 .popover { color: #000 }

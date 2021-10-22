@@ -1,123 +1,123 @@
-<?php
-
-### ОТЛАДКА
-# print_r($_GET);
-# print_r($_POST);
-
-# $a = unserialize($_POST['form']); print_r($a);
-
-# sleep(5);
-
-# защита от запроса c другого сайта
-if (!stristr($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_REFERER'])) exit('');
-
-# указываем кодировку, которую будет отдавать javascript'у ajax-скрипт
-header('Content-type: text/html; charset=windows-1251');
-
-# подключаем и инициализируем класс для работы с БД через PDO
-include($_SERVER['DOCUMENT_ROOT'].'/control/db.connection.pdo.php');
-
-# подключаем конфиг
-include($_SERVER['DOCUMENT_ROOT'].'/control/config.control.php');
-
-# подключаем функции общего назначения для ajax-скриптов
-include($_SERVER['DOCUMENT_ROOT'].'/control/functions.common.ajax.php');
-include($_SERVER['DOCUMENT_ROOT'].'/control/#library/functions.php');
-
-# подключаем общие функции для index.php и ajax.php
-include('common.functions.php');
-
-# проверка + нужная кодировка POST-переменных
-preparePOSTVariables(); # print_r($_POST); exit;
-
-# подготавливаем поля формы
-if (!empty($_POST['params'])) parse_str($_POST['params'], $params); # print_r($params);
-
-# ЛОГИКА
-if ($_POST['action'] == 'search')
-{
-    $sql = '
-    select id,
-           name,
-           feedback,
-           votes_plus,
-           votes_minus,
-           date_format(date_add, "%e") as date_add_day,
-           elt(month(date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
-           date_format(date_add,"%Y") as date_add_year,
-           is_published
-    from '.DB_PREFIX.'feedback
-    where name like :q
-          or feedback like :q
-          or date_format(date_add, "%d.%m.%Y") like :q
-    order by date_add desc
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-	$q = '%'.$_POST['q'].'%';
-	$sth->bindParam(':q', $q);
-    $sth->execute();
-    if ($_ = $sth->fetchAll())
-    {
-        $_c = count($_);
-        $rows = array();
-        for ($i=0;$i<$_c;$i++)
-        {
-            # ссылка
-            if (!empty($_[$i]['id'])) $link = '<a href="/otzyvy/'.$_[$i]['id'].'/" target="_blank">смотреть</a>';
-            else $link = '&nbsp;';
-            
-            # is_published
-            if (empty($_[$i]['is_published'])) $trClass = ' class="item_hidden"';
-            else unset($trClass);
-            
-            $rows[] = '
-            <tr'.$trClass.'>
-                <td class="center vertical_middle">
-                    <a class="block" href="/control/feedbacks/?action=editItem&itemID='.$_[$i]['id'].'">
-                        <i class="fa fa-edit size_18"></i>
-                    </a>
-                </td>
-                <td class="center vertical_middle">'.$link.'</td>
-                <td class="nowrap vertical_middle">'.$_[$i]['date_add_day'].' '.$_[$i]['date_add_month'].' '.$_[$i]['date_add_year'].'</td>
-                <td class="vertical_middle">'.$_[$i]['name'].'</td>
-                <td class="vertical_middle">'.cutText($_[$i]['feedback'], 113).'</td>
-                <td class="center vertical_middle">
-                    <a class="block" title="Удалить отзыв" href="/control/feedbacks/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Отзыв будет удален безвозвратно. Удалить отзыв?\')">
-                        <i class="fa fa-trash-o size_18"></i>
-                    </a>
-                </td>
-            </tr>
-            ';
-        }
-        if (empty($rows)) $result .= 'В системе не задана ни одна новость.';
-        else
-        {
-            if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
-            else unset($rows);
-            
-            $result .= '
-            <div id="resultSet">
-            <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
-                <tr>
-                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">Правка</th>
-                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">Ссылка</th>
-                    <th class="center vertical_middle">Дата</th>
-                    <th class="center vertical_middle">Имя</th>
-                    <th class="center vertical_middle">Отзыв</th>
-                    <th class="center vertical_middle" style="width:100px;white-space:nowrap">Удаление</th>
-                </tr>
-                '.$rows.'
-            </table>
-            </div>
-            ';
-        }
-        echo $result;
-    }
-    else echo 'По запросу &quot;'.$_POST['q'].'&quot; ничего не найдено.';
-}
-
-# /ЛОГИКА
-
-# ФУНКЦИИ
-
-# /ФУНКЦИИ
+<?php
+
+### РћРўР›РђР”РљРђ
+# print_r($_GET);
+# print_r($_POST);
+
+# $a = unserialize($_POST['form']); print_r($a);
+
+# sleep(5);
+
+# Р·Р°С‰РёС‚Р° РѕС‚ Р·Р°РїСЂРѕСЃР° c РґСЂСѓРіРѕРіРѕ СЃР°Р№С‚Р°
+if (!stristr($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_REFERER'])) exit('');
+
+# СѓРєР°Р·С‹РІР°РµРј РєРѕРґРёСЂРѕРІРєСѓ, РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ РѕС‚РґР°РІР°С‚СЊ javascript'Сѓ ajax-СЃРєСЂРёРїС‚
+header('Content-type: text/html; charset=windows-1251');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј Рё РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р” С‡РµСЂРµР· PDO
+include($_SERVER['DOCUMENT_ROOT'].'/control/db.connection.pdo.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РєРѕРЅС„РёРі
+include($_SERVER['DOCUMENT_ROOT'].'/control/config.control.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„СѓРЅРєС†РёРё РѕР±С‰РµРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ ajax-СЃРєСЂРёРїС‚РѕРІ
+include($_SERVER['DOCUMENT_ROOT'].'/control/functions.common.ajax.php');
+include($_SERVER['DOCUMENT_ROOT'].'/control/#library/functions.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+include('common.functions.php');
+
+# РїСЂРѕРІРµСЂРєР° + РЅСѓР¶РЅР°СЏ РєРѕРґРёСЂРѕРІРєР° POST-РїРµСЂРµРјРµРЅРЅС‹С…
+preparePOSTVariables(); # print_r($_POST); exit;
+
+# РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РїРѕР»СЏ С„РѕСЂРјС‹
+if (!empty($_POST['params'])) parse_str($_POST['params'], $params); # print_r($params);
+
+# Р›РћР“РРљРђ
+if ($_POST['action'] == 'search')
+{
+    $sql = '
+    select id,
+           name,
+           feedback,
+           votes_plus,
+           votes_minus,
+           date_format(date_add, "%e") as date_add_day,
+           elt(month(date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+           date_format(date_add,"%Y") as date_add_year,
+           is_published
+    from '.DB_PREFIX.'feedback
+    where name like :q
+          or feedback like :q
+          or date_format(date_add, "%d.%m.%Y") like :q
+    order by date_add desc
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+	$q = '%'.$_POST['q'].'%';
+	$sth->bindParam(':q', $q);
+    $sth->execute();
+    if ($_ = $sth->fetchAll())
+    {
+        $_c = count($_);
+        $rows = array();
+        for ($i=0;$i<$_c;$i++)
+        {
+            # СЃСЃС‹Р»РєР°
+            if (!empty($_[$i]['id'])) $link = '<a href="/otzyvy/'.$_[$i]['id'].'/" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>';
+            else $link = '&nbsp;';
+            
+            # is_published
+            if (empty($_[$i]['is_published'])) $trClass = ' class="item_hidden"';
+            else unset($trClass);
+            
+            $rows[] = '
+            <tr'.$trClass.'>
+                <td class="center vertical_middle">
+                    <a class="block" href="/control/feedbacks/?action=editItem&itemID='.$_[$i]['id'].'">
+                        <i class="fa fa-edit size_18"></i>
+                    </a>
+                </td>
+                <td class="center vertical_middle">'.$link.'</td>
+                <td class="nowrap vertical_middle">'.$_[$i]['date_add_day'].' '.$_[$i]['date_add_month'].' '.$_[$i]['date_add_year'].'</td>
+                <td class="vertical_middle">'.$_[$i]['name'].'</td>
+                <td class="vertical_middle">'.cutText($_[$i]['feedback'], 113).'</td>
+                <td class="center vertical_middle">
+                    <a class="block" title="РЈРґР°Р»РёС‚СЊ РѕС‚Р·С‹РІ" href="/control/feedbacks/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'РћС‚Р·С‹РІ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅ Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ РѕС‚Р·С‹РІ?\')">
+                        <i class="fa fa-trash-o size_18"></i>
+                    </a>
+                </td>
+            </tr>
+            ';
+        }
+        if (empty($rows)) $result .= 'Р’ СЃРёСЃС‚РµРјРµ РЅРµ Р·Р°РґР°РЅР° РЅРё РѕРґРЅР° РЅРѕРІРѕСЃС‚СЊ.';
+        else
+        {
+            if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+            else unset($rows);
+            
+            $result .= '
+            <div id="resultSet">
+            <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+                <tr>
+                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">РџСЂР°РІРєР°</th>
+                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">РЎСЃС‹Р»РєР°</th>
+                    <th class="center vertical_middle">Р”Р°С‚Р°</th>
+                    <th class="center vertical_middle">РРјСЏ</th>
+                    <th class="center vertical_middle">РћС‚Р·С‹РІ</th>
+                    <th class="center vertical_middle" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+                </tr>
+                '.$rows.'
+            </table>
+            </div>
+            ';
+        }
+        echo $result;
+    }
+    else echo 'РџРѕ Р·Р°РїСЂРѕСЃСѓ &quot;'.$_POST['q'].'&quot; РЅРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ.';
+}
+
+# /Р›РћР“РРљРђ
+
+# Р¤РЈРќРљР¦РР
+
+# /Р¤РЈРќРљР¦РР

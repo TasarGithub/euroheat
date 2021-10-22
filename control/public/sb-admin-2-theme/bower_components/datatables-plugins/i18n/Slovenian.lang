@@ -2,7 +2,7 @@
  * Slovenian translation
  *  @name Slovenian
  *  @anchor Slovenian
- *  @author Marko Kroflic, Blaž Brenčič and Andrej Florjančič
+ *  @author Marko Kroflic, BlaР•С• BrenР”РЊiР”РЊ and Andrej FlorjanР”РЊiР”РЊ
  */
 
 {
@@ -12,10 +12,10 @@
 	"sInfoFiltered": "(filtrirano od _MAX_ vseh zapisov)",
 	"sInfoPostFix": "",
 	"sInfoThousands": ",",
-	"sLengthMenu": "Prikaži _MENU_ zapisov",
+	"sLengthMenu": "PrikaР•С•i _MENU_ zapisov",
 	"sLoadingRecords": "Nalagam...",
 	"sProcessing": "Obdelujem...",
-	"sSearch": "Išči:",
+	"sSearch": "IР•РЋР”РЊi:",
 	"sZeroRecords": "Nobeden zapis ne ustreza",
 	"oPaginate": {
 		"sFirst": "Prvi",
@@ -24,7 +24,7 @@
 		"sPrevious": "Pred."
 	},
 	"oAria": {
-		"sSortAscending": ": vključite za naraščujoči sort",
-		"sSortDescending": ": vključite za padajoči sort"
+		"sSortAscending": ": vkljuР”РЊite za naraР•РЋР”РЊujoР”РЊi sort",
+		"sSortDescending": ": vkljuР”РЊite za padajoР”РЊi sort"
 	}
 }

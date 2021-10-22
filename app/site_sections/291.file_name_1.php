@@ -1,25 +1,25 @@
 <div class="catalog-page-wr">
 <div class="catalog-page-left-col">
 <ul class="catalog-page-left-col-menu-wr">
-<li class="active"><a href="/teploobmenniki/">Теплообменники</a>
+<li class="active"><a href="/teploobmenniki/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a>
 <ul>
-<li><a href="/kalorifery/">Водяные калориферы</a></li>
-<li><a href="/vodyanye-vozduhoohladiteli/">Водяные воздухоохладители</a></li>
-<li><a href="/freonovye-ispariteli/">Фреоновые испарители</a></li>
-<li><a href="/teploobmenniki/parovye/">Паровые теплообменники</a></li>
-<li><a href="/teploobmenniki/nerzhaveyuschie/">Теплообменники из нержавеющей стали</a></li>
-<li><a href="/teploobmenniki/vts_clima/">Водяные калориферы VTS CLIMA (серия WCL)</a></li>
-<li><a href="/teploobmenniki/kalorifery-cva/">Водяные калориферы VTS CLIMA (серия CVA)</a></li>
-<li><a href="/teploobmenniki/vts-nvs/">Теплообменники VTS CLIMA (серия NVS)</a></li>
-<li><a href="/teploobmenniki/kalorifery-kan/">Вентиляционные теплообменники серии КАН / ВАН</a></li>
-<li><a href="/teploobmenniki/kanalnye-nagrevateli-i-ohladiteli/">Канальные теплообменники</a></li>
-<li><a href="/teploobmenniki/analogi-teploobmennikov/">Аналоги калориферов</a></li>
-<li>  <a href="/teploobmenniki/voda-vozduh/">Теплообменники «вода-воздух»</a></li>
-<li>  <a href="/teploobmenniki/s-zaschitoi-ot-korrozii/">Теплообменники с антикоррозийным покрытием</a></li>
+<li><a href="/kalorifery/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹</a></li>
+<li><a href="/vodyanye-vozduhoohladiteli/">Р’РѕРґСЏРЅС‹Рµ РІРѕР·РґСѓС…РѕРѕС…Р»Р°РґРёС‚РµР»Рё</a></li>
+<li><a href="/freonovye-ispariteli/">Р¤СЂРµРѕРЅРѕРІС‹Рµ РёСЃРїР°СЂРёС‚РµР»Рё</a></li>
+<li><a href="/teploobmenniki/parovye/">РџР°СЂРѕРІС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a></li>
+<li><a href="/teploobmenniki/nerzhaveyuschie/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё</a></li>
+<li><a href="/teploobmenniki/vts_clima/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹ VTS CLIMA (СЃРµСЂРёСЏ WCL)</a></li>
+<li><a href="/teploobmenniki/kalorifery-cva/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹ VTS CLIMA (СЃРµСЂРёСЏ CVA)</a></li>
+<li><a href="/teploobmenniki/vts-nvs/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё VTS CLIMA (СЃРµСЂРёСЏ NVS)</a></li>
+<li><a href="/teploobmenniki/kalorifery-kan/">Р’РµРЅС‚РёР»СЏС†РёРѕРЅРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃРµСЂРёРё РљРђРќ / Р’РђРќ</a></li>
+<li><a href="/teploobmenniki/kanalnye-nagrevateli-i-ohladiteli/">РљР°РЅР°Р»СЊРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a></li>
+<li><a href="/teploobmenniki/analogi-teploobmennikov/">РђРЅР°Р»РѕРіРё РєР°Р»РѕСЂРёС„РµСЂРѕРІ</a></li>
+<li>  <a href="/teploobmenniki/voda-vozduh/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё В«РІРѕРґР°-РІРѕР·РґСѓС…В»</a></li>
+<li>  <a href="/teploobmenniki/s-zaschitoi-ot-korrozii/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃ Р°РЅС‚РёРєРѕСЂСЂРѕР·РёР№РЅС‹Рј РїРѕРєСЂС‹С‚РёРµРј</a></li>
 </ul>
 </div>
 <div class="catalog-page-right-col">
-<p>Наша компания предлагает полную линейку водяных нагревателей и водяных охладителей для приточных установок ВТС серии CVP и CVA. Данная серия включает в себя большой типоразмерный ряд. Количество рядов теплообменников — от 1 до 12. Дополнительные вопросы по габаритным и присоединительным размерам вы можете уточнить у специалистов нашей компании.</p>
+<p>РќР°С€Р° РєРѕРјРїР°РЅРёСЏ РїСЂРµРґР»Р°РіР°РµС‚ РїРѕР»РЅСѓСЋ Р»РёРЅРµР№РєСѓ РІРѕРґСЏРЅС‹С… РЅР°РіСЂРµРІР°С‚РµР»РµР№ Рё РІРѕРґСЏРЅС‹С… РѕС…Р»Р°РґРёС‚РµР»РµР№ РґР»СЏ РїСЂРёС‚РѕС‡РЅС‹С… СѓСЃС‚Р°РЅРѕРІРѕРє Р’РўРЎ СЃРµСЂРёРё CVP Рё CVA. Р”Р°РЅРЅР°СЏ СЃРµСЂРёСЏ РІРєР»СЋС‡Р°РµС‚ РІ СЃРµР±СЏ Р±РѕР»СЊС€РѕР№ С‚РёРїРѕСЂР°Р·РјРµСЂРЅС‹Р№ СЂСЏРґ. РљРѕР»РёС‡РµСЃС‚РІРѕ СЂСЏРґРѕРІ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ вЂ” РѕС‚ 1 РґРѕ 12. Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РІРѕРїСЂРѕСЃС‹ РїРѕ РіР°Р±Р°СЂРёС‚РЅС‹Рј Рё РїСЂРёСЃРѕРµРґРёРЅРёС‚РµР»СЊРЅС‹Рј СЂР°Р·РјРµСЂР°Рј РІС‹ РјРѕР¶РµС‚Рµ СѓС‚РѕС‡РЅРёС‚СЊ Сѓ СЃРїРµС†РёР°Р»РёСЃС‚РѕРІ РЅР°С€РµР№ РєРѕРјРїР°РЅРёРё.</p>
 
 <style>
 .price_table td {
@@ -34,56 +34,56 @@ font-size: 14px;
 <table class="price_table">
 <tbody>
 <tr>
-<td colspan="2">Модель калорифера</td>
-<td>Габаритные размеры, мм.</td>
-<td>Рядность теплообменника</td>
-<td>Диаметр подключения</td>
+<td colspan="2">РњРѕРґРµР»СЊ РєР°Р»РѕСЂРёС„РµСЂР°</td>
+<td>Р“Р°Р±Р°СЂРёС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>Р”РёР°РјРµС‚СЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ</td>
 </tr>
 <tr>
 
 <td colspan="2">CVP1 HW2</td>
 <td>632x350</td>
 <td>2</td>
-<td>3/4" (Ду 20)</td>
+<td>3/4" (Р”Сѓ 20)</td>
 </tr>  
 <tr>
 <td colspan="2">CVP1 HW/CW4</td>
 <td>632x350</td>
 <td>4</td>
-<td>3/4" (Ду 20)</td>
+<td>3/4" (Р”Сѓ 20)</td>
 
 </tr>  
 <tr>
 <td colspan="2">CVP1 HW/CW 6</td>
 <td>635x350</td>
 <td>6</td>
-<td>1" (Ду 25)</td>
+<td>1" (Р”Сѓ 25)</td>
 
 </tr>  
 <tr>
 <td colspan="2">CVP2 HW2</td>
-<td>932х350</td>
+<td>932С…350</td>
 <td>2</td>
-<td>3/4" (Ду 20)</td>
+<td>3/4" (Р”Сѓ 20)</td>
 </tr>  
 <tr>
 <td colspan="2">CVP2 HW/CW 4</td>
-<td>932х350</td>
+<td>932С…350</td>
 <td>4</td>
-<td>3/4" (Ду 20)</td>
+<td>3/4" (Р”Сѓ 20)</td>
 
 </tr>  
 <tr>
 <td colspan="2">CVP2 HW/CW 6</td>
 <td>935x350</td>
 <td>6</td>
-<td>1" (Ду 25)</td>
+<td>1" (Р”Сѓ 25)</td>
 </tr>
 <tr>
-<td colspan="2">Модель калорифера</td>
-<td>Габаритные размеры, мм.</td>
-<td>Рядность теплообменника</td>
-<td>Диаметр подключения</td>
+<td colspan="2">РњРѕРґРµР»СЊ РєР°Р»РѕСЂРёС„РµСЂР°</td>
+<td>Р“Р°Р±Р°СЂРёС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>Р”РёР°РјРµС‚СЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ</td>
 </tr>
 <tr>
 <td colspan="2">CVA1 HW1<br>
@@ -91,49 +91,49 @@ CVA/D1 HW1</td>
 
 <td>610x606</td>
 <td>1</td>
-<td>3/4" (Ду 20)</td>
+<td>3/4" (Р”Сѓ 20)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA1 HW2<br>
 CVA/D1 HW2</td>
 <td>610x606</td>
 <td>2</td>
-<td>1" (Ду 25)</td>
+<td>1" (Р”Сѓ 25)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA1 HW/CW4<br>
 CVA/D1 HW/CW4</td>
 <td>610x606</td>
 <td>4</td>
-<td>1 1/4" (Ду 32)</td>
+<td>1 1/4" (Р”Сѓ 32)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA1 HW/CW6<br>
 CVA/D1 HW/CW6</td>
 <td>610x606</td>
 <td>6</td>
-<td>1 1/4" (Ду 32)</td>
+<td>1 1/4" (Р”Сѓ 32)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA1 CW8<br>
 CVA/D1 CW8</td>
 <td>610x606</td>
 <td>8</td>
-<td>1 1/4" (Ду 32)</td>
+<td>1 1/4" (Р”Сѓ 32)</td>
 </tr>
 <tr>
 <td colspan="2">CVA1 CW10<br>
 CVA/D1 CW10</td>
 <td>610x606</td>
 <td>10</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA1 CW12<br>
 CVA/D1 CW12</td>
 <td>610x606</td>
 <td>12</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr>  
   
 <tr>
@@ -141,104 +141,104 @@ CVA/D1 CW12</td>
 CVA/D2 HW1</td>
 <td>918x606</td>
 <td>1</td>
-<td>3/4" (Ду 20)</td>
+<td>3/4" (Р”Сѓ 20)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA2 HW2<br>
 CVA/D2 HW2</td>
 <td>918x606</td>
 <td>2</td>
-<td>1" (Ду 25)</td>
+<td>1" (Р”Сѓ 25)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA2 HW/CW4<br>
 CVA/D2 HW/CW4</td>
 <td>918x606</td>
 <td>4</td>
-<td>1 1/4" (Ду 32)</td>
+<td>1 1/4" (Р”Сѓ 32)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA2 HW/CW6<br>
 CVA/D2 HW/CW6</td>
 <td>918x606</td>
 <td>6</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA2 CW8<br>
 CVA/D2 CW8</td>
 <td>918x606</td>
 <td>8</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA2 CW10<br>
 CVA/D2 CW10</td>
 <td>918x606</td>
 <td>10</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA2 CW12<br>
 CVA/D2 CW12</td>
 <td>918x606</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
-<td colspan="2">Модель калорифера</td>
-<td>Габаритные размеры, мм.</td>
-<td>Рядность теплообменника</td>
-<td>Диаметр подключения</td>
+<td colspan="2">РњРѕРґРµР»СЊ РєР°Р»РѕСЂРёС„РµСЂР°</td>
+<td>Р“Р°Р±Р°СЂРёС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>Р”РёР°РјРµС‚СЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ</td>
 </tr>
 <tr>
 <td colspan="2">CVA3 HW1<br>
 CVA/D3 HW1</td>
 <td>912x892</td>
 <td>1</td>
-<td>1" (Ду 25)</td>
+<td>1" (Р”Сѓ 25)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA3 HW2<br>
 CVA/D3 HW2</td>
 <td>912x892</td>
 <td>2</td>
-<td>1 1/4" (Ду 32)</td>
+<td>1 1/4" (Р”Сѓ 32)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA3 HW/CW4<br>
 CVA/D3 HW/CW4</td>
 <td>912x892</td>
 <td>4</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA3 HW/CW6<br>
 CVA/D3 HW/CW6</td>
 <td>912x892</td>
 <td>6</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA3 CW8<br>
 CVA/D3 CW8</td>
 <td>912x892</td>
 <td>8</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA3 CW10<br>
 CVA/D3 CW10</td>
 <td>912x892</td>
 <td>10</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA3 CW12<br>
 CVA/D3 CW12</td>
 <td>912x892</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
  
 <tr>
@@ -246,104 +246,104 @@ CVA/D3 CW12</td>
 CVA/D4 HW1</td>
 <td>1217x892</td>
 <td>1</td>
-<td>1" (Ду 25)</td>
+<td>1" (Р”Сѓ 25)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA4 HW2<br>
 CVA/D4 HW2</td>
 <td>1217x892</td>
 <td>2</td>
-<td>1 1/4" (Ду 32)</td>
+<td>1 1/4" (Р”Сѓ 32)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA4 HW/CW4<br>
 CVA/D4 HW/CW4</td>
 <td>1217x892</td>
 <td>4</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA4 HW/CW6<br>
 CVA/D4 HW/CW6</td>
 <td>1217x892</td>
 <td>6</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA4 CW8<br>
 CVA/D4 CW8</td>
 <td>1217x892</td>
 <td>8</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA4 CW10<br>
 CVA/D4 CW10</td>
 <td>1217x892</td>
 <td>10</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA4 CW12<br>
 CVA/D4 CW12</td>
 <td>1217x892</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>  
 <tr>
-<td colspan="2">Модель калорифера</td>
-<td>Габаритные размеры, мм.</td>
-<td>Рядность теплообменника</td>
-<td>Диаметр подключения</td>
+<td colspan="2">РњРѕРґРµР»СЊ РєР°Р»РѕСЂРёС„РµСЂР°</td>
+<td>Р“Р°Р±Р°СЂРёС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>Р”РёР°РјРµС‚СЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ</td>
 </tr>
 <tr>
 <td colspan="2">CVA5 HW1<br>
 CVA/D5 HW1</td>
 <td>1217x1273</td>
 <td>1</td>
-<td>1 1/4" (Ду 32)</td>
+<td>1 1/4" (Р”Сѓ 32)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA5 HW2<br>
 CVA/D5 HW2</td>
 <td>1217x1273</td>
 <td>2</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>  
 <tr>
 <td colspan="2">CVA5 HW/CW4<br>
 CVA/D5 HW/CW4</td>
 <td>1217x1273</td>
 <td>4</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA5 HW/CW6<br>
 CVA/D5 HW/CW6</td>
 <td>1217x1273</td>
 <td>6</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA5 CW8<br>
 CVA/D5 CW8</td>
 <td>1217x1273</td>
 <td>8</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA5 CW10<br>
 CVA/D5 CW10</td>
 <td>1217x1273</td>
 <td>10</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA5 CW12<br>
 CVA/D5 CW12</td>
 <td>1217x1273</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
  
 <tr>
@@ -351,104 +351,104 @@ CVA/D5 CW12</td>
 CVA/D6 HW1</td>
 <td>1547x1273</td>
 <td>1</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6 HW2<br>
 CVA/D6 HW2</td>
 <td>1547x1273</td>
 <td>2</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6 HW/CW4<br>
 CVA/D6 HW/CW4</td>
 <td>1547x1273</td>
 <td>4</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6 HW/CW6<br>
 CVA/D6 HW/CW6</td>
 <td>1547x1273</td>
 <td>6</td>
-<td>3"  (Ду 80)</td>
+<td>3"  (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6 CW8<br>
 CVA/D6 CW8</td>
 <td>1547x1273</td>
 <td>8</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6 CW10<br>
 CVA/D6 CW10</td>
 <td>1547x1273</td>
 <td>10</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6 CW12<br>
 CVA/D6 CW12</td>
 <td>1547x1273</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
-<td colspan="2">Модель калорифера</td>
-<td>Габаритные размеры, мм.</td>
-<td>Рядность теплообменника</td>
-<td>Диаметр подключения</td>
+<td colspan="2">РњРѕРґРµР»СЊ РєР°Р»РѕСЂРёС„РµСЂР°</td>
+<td>Р“Р°Р±Р°СЂРёС‚РЅС‹Рµ СЂР°Р·РјРµСЂС‹, РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>Р”РёР°РјРµС‚СЂ РїРѕРґРєР»СЋС‡РµРЅРёСЏ</td>
 </tr>
 <tr>
 <td colspan="2">CVA6,5 HW1<br>
 CVA/D6,5 HW1</td>
 <td>1852x1594</td>
 <td>1</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6,5 HW2<br>
 CVA/D6,5 HW2</td>
 <td>1852x1594</td>
 <td>2</td>
-<td>3"  (Ду 80)</td>
+<td>3"  (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6,5 HW/CW4<br>
 CVA/D6,5 HW/CW4</td>
 <td>1852x1594</td>
 <td>4</td>
-<td>3"  (Ду 80)</td>
+<td>3"  (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6,5 HW/CW6<br>
 CVA/D6,5 HW/CW6</td>
 <td>1852x1594</td>
 <td>6</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6,5 CW8<br>
 CVA/D6,5 CW8</td>
 <td>1852x1594</td>
 <td>8</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6,5 CW10<br>
 CVA/D6,5 CW10</td>
 <td>1852x1594</td>
 <td>10</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 <tr>
 <td colspan="2">CVA6,5 CW12<br>
 CVA/D6,5 CW12</td>
 <td>1852x1594</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr> 
 
 <tr>
@@ -456,49 +456,49 @@ CVA/D6,5 CW12</td>
 CVA/D7 HW1</td>
 <td>1852x1911</td>
 <td>1</td>
-<td>2" (Ду 50)</td>
+<td>2" (Р”Сѓ 50)</td>
 </tr>
 <tr>
 <td colspan="2">CVA7 HW2<br>
 CVA/D7 HW2</td>
 <td>1852x1911</td>
 <td>2</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA7 HW/CW4<br>
 CVA/D7 HW/CW4</td>
 <td>1852x1911</td>
 <td>4</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA7 HW/CW6<br>
 CVA/D7 HW/CW6</td>
 <td>1852x1911</td>
 <td>6</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA7 CW8<br>
 CVA7/D CW8</td>
 <td>1852x1911</td>
 <td>8</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA7 CW10<br>
 CVA7/D CW10</td>
 <td>1852x1911</td>
 <td>10</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA7 CW12<br>
 CVA7/D CW12</td>
 <td>1852x1911</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 
 <tr>
@@ -506,53 +506,53 @@ CVA7/D CW12</td>
 CVA8,5/D HW1</td>
 <td>2472x1911</td>
 <td>1</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA8,5 HW2<br>
 CVA8,5/D HW2</td>
 <td>2472x1911</td>
 <td>2</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA8,5 HW/CW4<br>
 CVA8,5/D HW/CW4</td>
 <td>2472x1911</td>
 <td>4</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA8,5 HW/CW6<br>
 CVA8,5/D HW/CW6</td>
 <td>2472x1911</td>
 <td>6</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA8,5 CW8<br>
 CVA8,5/D CW8</td>
 <td>2472x1911</td>
 <td>8</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA8,5 CW10<br>
 CVA8,5/D CW10</td>
 <td>2472x1911</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 <tr>
 <td colspan="2">CVA8,5 CW12<br>
 CVA/D8,5 CW12</td>
 <td>2472x1911</td>
 <td>12</td>
-<td>3" (Ду 80)</td>
+<td>3" (Р”Сѓ 80)</td>
 </tr>
 </tbody></table>
 
 
-<p>Чтобы заказать калорифер VTS CVA и <a href="/smesitelnye-uzly/">смесительные узлы</a> к нему, вы можете <a href="/calculator/">связаться с нашими специалистами</a>.</p>
+<p>Р§С‚РѕР±С‹ Р·Р°РєР°Р·Р°С‚СЊ РєР°Р»РѕСЂРёС„РµСЂ VTS CVA Рё <a href="/smesitelnye-uzly/">СЃРјРµСЃРёС‚РµР»СЊРЅС‹Рµ СѓР·Р»С‹</a> Рє РЅРµРјСѓ, РІС‹ РјРѕР¶РµС‚Рµ <a href="/calculator/">СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ РЅР°С€РёРјРё СЃРїРµС†РёР°Р»РёСЃС‚Р°РјРё</a>.</p>
 
 </div></div>

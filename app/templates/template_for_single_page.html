@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        <?php echo $GLOBALS['tpl_title']; ?>
+    </title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="<?php echo $GLOBALS['tpl_meta_keywords']; ?>" />
+    <meta name="description" content="<?php echo $GLOBALS['tpl_meta_description']; ?>" />
+
+    <!-- стили bootstrap -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- основные стили -->
+    <link href="/public/css/style_for_single page.css?v=1.5" rel="stylesheet" type="text/css" />
+
+    <!-- стили для адаптивки -->
+    <link href="/public/css/resolutions.css?v=2.0" rel="stylesheet" type="text/css" />
+
+    <!-- стили для owlcarousel -->
+    <link href="/public/js/owlcarousel/owl.carousel.min.css" rel="stylesheet" />
+    <link href="/public/js/owlcarousel/owl.theme.default.min.css" rel="stylesheet" />
+
+    <!-- jQuery -->
+    <script src="/public/js/jquery.1.11.2.min.js"></script>
+
+    <!-- скрипт для owlcarousel -->
+    <script src="/public/js/owlcarousel/owl.carousel.js"></script>
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="/public/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/public/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient, .btn { filter: none !important }
+    </style>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- шапка -->
+    <div class="header" align="center">
+        <div align="center">
+            <div id="wrapper" class="container" align="left">
+
+                <a class="switch_menu" href="#"></a>
+
+                <a class="logo" href="/">
+                    <div>Производство и проектирование теплообменного оборудования</div>
+                </a>
+                <div class="slogan">
+                    График работы:<br />понедельник-пятница 9:00-18:00<br />
+
+                    <div class="hover-tip" style="display: none;">
+                        <div>
+                            График работы:<br>
+                            Понедельник-Пятница с 9:00 до 18:00<br>
+                            Суббота-Воскресенье: выходной
+                        </div>
+                    </div>
+                </div>
+                <div class="phone_b" align="center">
+                    <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>">
+                        <?php echo $GLOBALS['phone']; ?>
+                    </a><br>
+                    <a class="header-email" href="mailto:info@euroheater.ru">info@euroheater.ru</a>
+                    <a class="get_call" href="#callback_modal" data-toggle="modal">Заказать звонок</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- меню -->
+        <div align="center" class="top_menu">
+            <div id="wrapper" class="container" align="left">
+                <div class="m_menu">
+                    <ul>
+                        <li>
+                            <a href="/catalog/" <?php echo $GLOBALS['menu_1']; ?>><div>Каталог</div></a>
+                        </li>
+                        <li>
+                            <a href="/price/" <?php echo $GLOBALS['menu_2']; ?>><div>Цены</div></a>
+                        </li>
+                        <li>
+                            <a href="/o-nas/" <?php echo $GLOBALS['menu_3']; ?>><div>О нас</div></a>
+                        </li>
+                        <li>
+                            <a href="/online/" <?php echo $GLOBALS['menu_4']; ?>><div>Расчёт онлайн</div></a>
+                        </li>
+                        <li>
+                            <a href="/proekty/" <?php echo $GLOBALS['menu_5']; ?>><div>Проекты</div></a>
+                        </li>
+                        <li>
+                            <a href="/kontakty/" <?php echo $GLOBALS['menu_6']; ?>><div>Контакты</div></a>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /меню -->
+
+    </div>
+    <!-- /шапка -->
+
+    <!-- отступ под шапкой -->
+    <div class="header_gap">
+    </div>
+    <!-- /отступ под шапкой -->
+
+    <!-- визуал -->
+    <div class="visual_inside">
+    </div>
+    <!-- /визуал -->
+
+    <!-- основной блок -->
+    <div align="center" class="white_bg">
+        <div id="wrapper" class="container" align="left">
+            <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
+
+                    <?php if (!empty($GLOBALS['tpl_navigation']) || !empty($GLOBALS['tpl_full_navigation']) && !empty($GLOBALS['tpl_show_navigation']) == 1): # вывдим строку навигации, если она указана в админке ?>
+                    <div class="breadcrumbs">
+                        <?php if (!empty($GLOBALS['tpl_full_navigation'])): # если указана строка навигации в ручном режиме ?>
+                        <?php echo $GLOBALS['tpl_full_navigation']; ?>
+                        <?php elseif (!empty($GLOBALS['tpl_navigation'])): # если строка навигации указана через поле в админке ?>
+                        <?php echo $GLOBALS['tpl_navigation']; ?>
+                        <?php endif; ?>
+                    </div>
+                    <?php endif; # /вывдим строку навигации ?>
+
+                    <?php if (!empty($GLOBALS['tpl_text_before_h1'])): echo $GLOBALS['tpl_text_before_h1']; endif; # вывдим текст до h1 ?>
+
+                    <div id="h1" class="h1 h2">
+                        <?php echo $GLOBALS['tpl_h1']; ?>
+                    </div>
+
+                    <?php echo $GLOBALS['tpl_content']; # выводим контент ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /основной блок -->
+    <!-- реализованные проекты -->
+    <div align="center" class="grey_bg">
+        <div id="wrapper" class="container" align="left">
+            <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
+                    <div class="h1"><a href="/proekty/">Реализованные проекты</a></div>
+                    <p> На заказ мы изготовили более 2 000 уникальных теплообменников — строго по ТЗ, с честной рядностью и точными характеристиками.<a class="read_more" href="#">Подробнее &raquo;</a></p>
+                    <div class="hidden-text">
+
+                        <p>У нас есть производство в России и завод в Италии (CO.MA. spa). В Европе выпускается аппаратура из AISI 304 и AISI 316 — коррозионностойких сталей.</p>
+                        <p>Мы доставляем теплообменники в сборе, по запросу проводим подключение на месте.
+                        </p>
+                    </div>
+                    <div class="owl-carousel owl-carousel_b_photos">
+                        <div class="item">
+                            <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате"><img src="/public/images/cases/case-1.jpg"></a>
+                            <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате">Здание Правительства Москвы: "Дом-книжка" на Новом Арбате</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Lotte Plaza Hotel Moscow"><img src="/public/images/cases/case-2.jpg"></a>
+                            <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Lotte Plaza Hotel Moscow">Lotte Plaza Hotel Moscow</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Экспоцентр на Красной Пресне"><img src="/public/images/cases/case-3.jpg"></a>
+                            <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Экспоцентр на Красной Пресне">Экспоцентр на Красной Пресне</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт"><img src="/public/images/cases/case-4.jpg"></a>
+                            <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт">Шоколадно-кондитерская фабрика Рот Фронт</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФКП «Щелковский биокомбинат»"><img src="/public/images/cases/case-5.jpg"></a>
+                            <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФКП «Щелковский биокомбинат»">ФКП «Щелковский биокомбинат»</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»"><img src="/public/images/cases/case-6.jpg"></a>
+                            <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»">ЗАО «Энергоконтракт-Томилино»</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Управление административными зданиями» корпорации Росатом"><img src="/public/images/cases/case-7.jpg"></a>
+                            <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Управление административными зданиями» корпорации Росатом">«Управление административными зданиями» корпорации Росатом</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="АТЦ Москва на Каширском шоссе"><img src="/public/images/cases/case-8.jpg"></a>
+                            <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="АТЦ Москва на Каширском шоссе">АТЦ Москва на Каширском шоссе</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово"><img src="/public/images/cases/case-9.jpg"></a>
+                            <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово">Волейбольный спортивно-развлекательный комплекс в г. Одинцово</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ТЦ Капитолий Ленинградский"><img src="/public/images/cases/case-10.jpg"></a>
+                            <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ТЦ Капитолий Ленинградский">ТЦ Капитолий Ленинградский</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России"><img src="/public/images/cases/case-11.jpg"></a>
+                            <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России">ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="World class - сеть фитнес-клубов"><img src="/public/images/cases/case-12.jpg"></a>
+                            <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="World class - сеть фитнес-клубов">World class - сеть фитнес-клубов</a>
+                        </div>
+                        <div class="item">
+                            <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Фуяо Стекло Рус»"><img src="/public/images/cases/case-13.jpg"></a>
+                            <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Фуяо Стекло Рус»">«Фуяо Стекло Рус»</a>
+                        </div>
+                    </div>
+
+
+
+                    <a class="order_btn" href="#rent_modal" data-toggle="modal" onClick="yaCounter22280926.reachGoal('request-btn'); return true;">
+                        <div class="arrow_1"></div>Отправить заявку
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /реализованные проекты -->
+
+    <!-- спецпредложение -->
+    <?php if (empty($GLOBALS['tpl_hide_special_offer'])): # если спецпредложение не скрыто ?>
+    <div align="center" class="grey_bg spec_pr">
+        <div class="spec_pr_bg">
+            <div id="wrapper" class="container" align="left">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12" align="center">
+                        <div class="action_b">
+                            <div class="b">Спецпредложение!</div>Скидка 20% на монтаж<br>при заказе теплообменника
+                            <a class="blue_btn_1" href="#calc_modal" data-toggle="modal" onClick="yaCounter22280926.reachGoal('spec-btn'); return true;">узнать больше</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; # /если спецпредложение не скрыто ?>
+    <!-- /спецпредложение -->
+
+    <!-- 3 блока -->
+    <div align="center" class="grey_bg">
+        <br />
+        <div id="wrapper" class="container" align="left">
+            <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
+
+                    <div class="row">
+
+                        <!-- блок статьи -->
+                        <?php if (!empty($GLOBALS['tpl_articles'])): # вывод новостей ?>
+                        <div class="col-sm-4 col-md-4" align="center">
+                            <div class="news_b_1">
+                                <div class="gap_1">
+                                    <div class="h3"><a href="/sovet/">Статьи</a></div>
+                                </div>
+                                <?php foreach ($GLOBALS['tpl_articles'] as $item): ?>
+                                <div class="news_b">
+                                    <div class="date">
+                                        <?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
+                                    </div><a href="/sovet/<?php echo $item['date_add_formatted_2']; ?>/">
+                                        <?php echo $item['h1']; ?>
+                                    </a>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; # /вывод новостей ?>
+                        <!-- /блок статьи -->
+
+                        <!-- блок новости -->
+                        <?php if (!empty($GLOBALS['tpl_news'])): # вывод новостей ?>
+                        <div class="col-sm-4 col-md-4" align="center">
+                            <div class="news_b_1">
+                                <div class="gap_1">
+                                    <div class="h3"><a href="/novosti/">Новости</a></div>
+                                </div>
+                                <?php foreach ($GLOBALS['tpl_news'] as $item): ?>
+                                <div class="news_b">
+                                    <div class="date">
+                                        <?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
+                                    </div><a href="/novosti/<?php echo $item['date_add_formatted_2']; ?>/">
+                                        <?php echo $item['h1']; ?>
+                                    </a>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; # /вывод новостей ?>
+                        <!-- /блок новости -->
+
+                        <!-- блок вопрос-ответ -->
+                        <?php if (!empty($GLOBALS['tpl_faq'])): # вывод вопросов-ответов ?>
+                        <div class="col-sm-4 col-md-4" align="center">
+                            <div class="news_b_1">
+                                <div class="gap_1">
+                                    <div class="h3"><a href="/vopros/">Вопрос-ответ</a><span>(
+                                            <?php echo $GLOBALS['tpl_faq_count']; ?>)
+                                        </span></div>
+                                </div>
+                                <?php foreach ($GLOBALS['tpl_faq'] as $item): ?>
+                                <div class="news_b"><a href="/vopros/<?php echo $item['url']; ?>/">
+                                        <?php echo $item['h1']; ?>
+                                    </a></div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; # /вывод вопросов-ответов ?>
+                        <!-- /блок вопрос-ответ -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    <!-- /3 блока -->
+
+    <!-- наши клиенты -->
+    <div align="center" class="white_bg">
+        <div id="wrapper" class="container" align="left">
+            <div class="row">
+                <div class="col-sm-12 col-md-12" align="center">
+                    <div class="h1"><a href="/o-nas/klienty/">Наши клиенты</a></div>
+
+                    <div class="owl-carousel owl-carousel_b_clients">
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-0.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-1.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-2.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-3.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-4.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-5.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-6.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-7.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-8.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-9.jpg"></a>
+                        </div>
+                        <div class="item">
+                            <a href="/o-nas/klienty/" class="fancybox" data-fancybox-group="gallery2"><img src="/public/images/clients/client-logo-10.jpg"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /наши клиенты -->
+
+    <!-- подвал -->
+    <div class="footer" align="center">
+        <div align="center">
+            <div id="wrapper" class="container" align="left">
+                <a class="site_map" href="/karta-sajta/">Карта сайта</a>
+                <a class="logo" href="/">
+                    Теплообменники, автоматика, фильтры для систем приточной вентиляции
+                </a>
+                <div class="slogan">121354, г. Москва, Витебская ул. д. 9, стр. 3<br /><a href="mailto:info@euroheater.ru">info@euroheater.ru</a>
+                </div>
+                <div class="phone_b" align="center">
+                    <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>">
+                        <?php echo $GLOBALS['phone']; ?>
+                    </a><br>
+                    <a class="get_call" href="#callback_modal" data-toggle="modal">Заказать звонок</a>
+                    <a class="web_dev" href="http://vashpartner.ru">Создание и продвижение сайта - «Ваш Партнер»</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /подвал -->
+
+    <!-- Yandex.Metrika counter -->
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Модальное окно "Рассчитать стоимость" -->
+    <div id="calc_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">Расчет стоимости</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="calc_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+                    </p>
+                    <p>
+                        <input id="calc_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+                    </p>
+
+                </div>
+                <div id="calc_form_submit_button" class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-lg">Рассчитать</button>
+                    <span id="calc_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">Нажимая кнопку «Рассчитать», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+            </div>
+        </div>
+    </div>
+    <!-- /Модальное окно "Рассчитать стоимость" -->
+
+    <!-- Модальное окно "Отправить заявку" -->
+    <div id="rent_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">Отправить заявку</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="rent_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+                    </p>
+                    <p>
+                        <input id="rent_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="rent_form_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
+                    <span id="rent_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+            </div>
+        </div>
+    </div>
+    <!-- /Модальное окно "Отправить заявку" -->
+
+    <!-- Модальное окно "Добавить отзыв" -->
+    <div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">Добавить отзыв</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="feedback_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+                    </p>
+                    <p>
+                        <input id="feedback_form_activity" type="text" value="" class="form-control" placeholder="Род деятельности" />
+                    </p>
+                    <p>
+                        <textarea id="feedback_form_text" rows="3" class="form-control" placeholder="Текст Отзыва"></textarea>
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button id="feedback_form_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
+                    <span id="feedback_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+            </div>
+        </div>
+    </div>
+    <!-- /Модальное окно "Добавить отзыв" -->
+
+    <!-- Модальное окно "Заказать звонок" -->
+    <div class="modal fade" id="callback_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="myModalLabel">Заказать звонок</div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input id="callback_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+                    </p>
+                    <p>
+                        <input id="callback_form_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button id="callback_form_submit_button" type="button" class="btn btn-primary btn-lg">Перезвоните мне</button>
+                    <span id="callback_form_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">Нажимая кнопку «Перезвоните мне», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+            </div>
+        </div>
+    </div>
+    <!-- /Модальное окно "Заказать звонок" -->
+
+    <!-- Модальное окно "Заявка на полный прайс-лист" -->
+    <div class="modal fade" id="full_price_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header gradient">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-title" id="full_price_modal_title">Получить полный прайс-лист</div>
+                </div>
+                <div id="full_price_modal_body" class="modal-body">
+                    <p>
+                        <input id="full_price_modal_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
+                    </p>
+                    <p>
+                        <input id="full_price_modal_email" type="text" value="" class="form-control" placeholder="Ваш E-mail" />
+                    </p>
+                    <p>
+                        <input id="full_price_modal_phone" type="text" value="" class="form-control" placeholder="Ваш телефон" />
+                    </p>
+                </div>
+                <div id="full_price_modal_footer" class="modal-footer">
+                    <button id="full_price_modal_submit_button" type="button" class="btn btn-primary btn-lg">Отправить</button>
+                    <span id="full_price_modal_ajax_preloader" class="modal_ajax_preloader"></span>
+                </div>
+                <div class="modal-policy">Нажимая кнопку «Отправить», вы подтверждаете, что ознакомились с <a href="/politika-konfidencialnosti/">Правилами обработки персональных данных</a> и принимаете их.</div>
+            </div>
+        </div>
+    </div>
+    <!-- /Модальное окно "Заявка на полный прайс-лист" -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(22280926, "init", {
+            id: 22280926,
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            trackHash: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/22280926" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- BEGIN JIVOSITE CODE {literal} -->
+    <script type='text/javascript'>
+        (function () {
+            var widget_id = 's6haMKVVnN';
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/' + widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);
+        })();</script>
+    <!-- {/literal} END JIVOSITE CODE -->
+
+    <!-- jquery plugin fancybox -->
+    <script src="/public/js/fancybox-2.1.5/source/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <link href="/public/js/fancybox-2.1.5/source/jquery.fancybox.css" rel="stylesheet" type="text/css" media="screen" />
+    <!-- скрипт bootstrap -->
+    <script src="/public/js/bootstrap.min.js"></script>
+    <!-- скрипт для корректной работы placeholder -->
+    <script src="/public/js/jquery.placeholder.js"></script>
+    <!-- jquery qtip plugin -->
+    <link href="/public/js/qtip-2.1.1/jquery.qtip.min.css" rel="stylesheet" />
+    <script src="/public/js/qtip-2.1.1/jquery.qtip.min.js" type="text/javascript"></script>
+    <!-- скрипты общие -->
+    <script src="/public/js/jquery.common.js?v=1.2"></script>
+    <!-- скрипты для обработки форм -->
+    <script src="/public/js/jquery.common.forms.js?v=1.4"></script>
+
+</body>
+
+</html>

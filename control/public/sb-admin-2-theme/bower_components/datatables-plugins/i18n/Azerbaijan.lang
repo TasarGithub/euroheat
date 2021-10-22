@@ -6,25 +6,25 @@
  */
 
 {
-	"sEmptyTable":     "Cədvəldə heç bir məlumat yoxdur",
-	"sInfo":           " _TOTAL_ Nəticədən _START_ - _END_ Arası Nəticələr",
-	"sInfoEmpty":      "Nəticə Yoxdur",
-	"sInfoFiltered":   "( _MAX_ Nəticə İçindən Tapılanlar)",
+	"sEmptyTable":     "CР™в„ўdvР™в„ўldР™в„ў heР“В§ bir mР™в„ўlumat yoxdur",
+	"sInfo":           " _TOTAL_ NР™в„ўticР™в„ўdР™в„ўn _START_ - _END_ ArasР”В± NР™в„ўticР™в„ўlР™в„ўr",
+	"sInfoEmpty":      "NР™в„ўticР™в„ў Yoxdur",
+	"sInfoFiltered":   "( _MAX_ NР™в„ўticР™в„ў Р”В°Р“В§indР™в„ўn TapР”В±lanlar)",
 	"sInfoPostFix":    "",
 	"sInfoThousands":  ",",
-	"sLengthMenu":     "Səhifədə _MENU_ Nəticə Göstər",
-	"sLoadingRecords": "Yüklənir...",
-	"sProcessing":     "Gözləyin...",
-	"sSearch":         "Axtarış:",
-	"sZeroRecords":    "Nəticə Tapılmadı.",
+	"sLengthMenu":     "SР™в„ўhifР™в„ўdР™в„ў _MENU_ NР™в„ўticР™в„ў GР“В¶stР™в„ўr",
+	"sLoadingRecords": "YР“С�klР™в„ўnir...",
+	"sProcessing":     "GР“В¶zlР™в„ўyin...",
+	"sSearch":         "AxtarР”В±Р•Сџ:",
+	"sZeroRecords":    "NР™в„ўticР™в„ў TapР”В±lmadР”В±.",
 	"oPaginate": {
-		"sFirst":    "İlk",
-		"sLast":     "Axırıncı",
+		"sFirst":    "Р”В°lk",
+		"sLast":     "AxР”В±rР”В±ncР”В±",
 		"sNext":     "Sonraki",
-		"sPrevious": "Öncəki"
+		"sPrevious": "Р“вЂ“ncР™в„ўki"
 	},
 	"oAria": {
-		"sSortAscending":  ": sütunu artma sırası üzərə aktiv etmək",
-		"sSortDescending": ": sütunu azalma sırası üzərə aktiv etmək"
+		"sSortAscending":  ": sР“С�tunu artma sР”В±rasР”В± Р“С�zР™в„ўrР™в„ў aktiv etmР™в„ўk",
+		"sSortDescending": ": sР“С�tunu azalma sР”В±rasР”В± Р“С�zР™в„ўrР™в„ў aktiv etmР™в„ўk"
 	}
 }

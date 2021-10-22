@@ -1,74 +1,74 @@
-<?php
-class catalog_controller extends controller_base
-{
-	# ПОДРОБНЫЙ ВЫВОД СТАТЬИ
-	function showItem()
-	{
-		# 301 если URL заканчивается не на "/", делаем 301 редирект на URL со "/"
-		if ($_SERVER['REQUEST_URI'][strlen($_SERVER['REQUEST_URI']) - 1] != "/"
-            && !stristr($_SERVER['REQUEST_URI'], '?')
-            && !stristr($_SERVER['REQUEST_URI'], '#')) {
-			header("HTTP/1.0 301 Moved Permanently");
-			header("Location: http://".DOMAIN.$_SERVER['REQUEST_URI']."/");
-			exit;
-		}
-        
-		# подгружаем сторонние модули
-		$site_section_default_controller = $this->load('site_section_default');
-
-        # print_r($this->routeVars);
-
-        # получаем информацию по позиции
-        $itemInfo = $GLOBALS['tpl_item'] = $this->model->getItemInfo($this->routeVars['itemURL']); # print_r($itemInfo);
-        $GLOBALS['tpl_item']['image_alt'] = htmlspecialchars($GLOBALS['tpl_item']['name'], ENT_QUOTES);
-
-		# 404
-		if (empty($itemInfo['id'])) {
-			header("HTTP/1.0 404 Not Found");
-			header("Location: http://".DOMAIN);
-			exit;
-		}
-        
-        # получаем информацию по родительской директории
-        $parentSectionInfo = $site_section_default_controller->model->getSiteSectionInfo('generatora'); # print_r($parentSectionInfo);
-        
-        # заголовок страницы
-        if (!empty($itemInfo['title'])) $GLOBALS['tpl_title'] = $itemInfo['title'];
-        else $GLOBALS['tpl_title'] = $itemInfo['h1'];
-        
-        # строка навигации в ручном режиме
-        if (!empty($itemInfo['full_navigation'])) $GLOBALS['tpl_navigation'] = $itemInfo['full_navigation'];
-        # строка навигации
-        else {
-            # строка навигации
-            if (!empty($itemInfo['navigation'])) $navigation = $itemInfo['navigation'];
-            else $navigation = $itemInfo['h1'];
-            $GLOBALS['tpl_navigation'] = '
-            <a href="/generatora/">'.$parentSectionInfo['navigation'].'</a> <span>&raquo;</span>
-            '.$navigation;
-        }
-        
-        # заголовок h1
-        if (!empty($itemInfo['h1'])) $GLOBALS['tpl_h1'] = $itemInfo['h1'];
-        
-        # получаем список позиций для блока "Другие статьи"
-        $GLOBALS['tpl_catalog_another_items'] = $this->model->getAnotherItems($itemInfo['id']); # print_r($GLOBALS['tpl_catalog_another_items']);
-        # foreach ($GLOBALS['tpl_another_articles'] as &$item) { $item['text'] = cutText($item['text'], 213); } unset($item);
-
-        # выводим кнопку до h1
-        $GLOBALS['tpl_text_before_h1'] = $this->tpl->getTemplate('catalog_detailed_text_before_h1.html');
-
-		# контент
-		$GLOBALS['tpl_content'] = $this->tpl->getTemplate('catalog_detailed.html');
-        
-        # перелинковка в подвале
-        if (!empty($itemInfo['footeranchor'])) $GLOBALS['tpl_footeranchor'] = $itemInfo['footeranchor'];
-
-        # выводим блок "Советы, новости, вопрос-ответ" в подвале
-        showBlockInFooter();
-        
-		# выводим шаблон для внутренних
-		$this->tpl->setMainTemplate('template_for_inside_pages_v1.html');
-		$this->tpl->echoMainTemplate();
-	} # /ПОДРОБНЫЙ ВЫВОД СТАТЬИ
+<?php
+class catalog_controller extends controller_base
+{
+	# РџРћР”Р РћР‘РќР«Р™ Р’Р«Р’РћР” РЎРўРђРўР¬Р
+	function showItem()
+	{
+		# 301 РµСЃР»Рё URL Р·Р°РєР°РЅС‡РёРІР°РµС‚СЃСЏ РЅРµ РЅР° "/", РґРµР»Р°РµРј 301 СЂРµРґРёСЂРµРєС‚ РЅР° URL СЃРѕ "/"
+		if ($_SERVER['REQUEST_URI'][strlen($_SERVER['REQUEST_URI']) - 1] != "/"
+            && !stristr($_SERVER['REQUEST_URI'], '?')
+            && !stristr($_SERVER['REQUEST_URI'], '#')) {
+			header("HTTP/1.0 301 Moved Permanently");
+			header("Location: http://".DOMAIN.$_SERVER['REQUEST_URI']."/");
+			exit;
+		}
+        
+		# РїРѕРґРіСЂСѓР¶Р°РµРј СЃС‚РѕСЂРѕРЅРЅРёРµ РјРѕРґСѓР»Рё
+		$site_section_default_controller = $this->load('site_section_default');
+
+        # print_r($this->routeVars);
+
+        # РїРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ РїРѕР·РёС†РёРё
+        $itemInfo = $GLOBALS['tpl_item'] = $this->model->getItemInfo($this->routeVars['itemURL']); # print_r($itemInfo);
+        $GLOBALS['tpl_item']['image_alt'] = htmlspecialchars($GLOBALS['tpl_item']['name'], ENT_QUOTES);
+
+		# 404
+		if (empty($itemInfo['id'])) {
+			header("HTTP/1.0 404 Not Found");
+			header("Location: http://".DOMAIN);
+			exit;
+		}
+        
+        # РїРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ СЂРѕРґРёС‚РµР»СЊСЃРєРѕР№ РґРёСЂРµРєС‚РѕСЂРёРё
+        $parentSectionInfo = $site_section_default_controller->model->getSiteSectionInfo('generatora'); # print_r($parentSectionInfo);
+        
+        # Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹
+        if (!empty($itemInfo['title'])) $GLOBALS['tpl_title'] = $itemInfo['title'];
+        else $GLOBALS['tpl_title'] = $itemInfo['h1'];
+        
+        # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ
+        if (!empty($itemInfo['full_navigation'])) $GLOBALS['tpl_navigation'] = $itemInfo['full_navigation'];
+        # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё
+        else {
+            # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё
+            if (!empty($itemInfo['navigation'])) $navigation = $itemInfo['navigation'];
+            else $navigation = $itemInfo['h1'];
+            $GLOBALS['tpl_navigation'] = '
+            <a href="/generatora/">'.$parentSectionInfo['navigation'].'</a> <span>&raquo;</span>
+            '.$navigation;
+        }
+        
+        # Р·Р°РіРѕР»РѕРІРѕРє h1
+        if (!empty($itemInfo['h1'])) $GLOBALS['tpl_h1'] = $itemInfo['h1'];
+        
+        # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РїРѕР·РёС†РёР№ РґР»СЏ Р±Р»РѕРєР° "Р”СЂСѓРіРёРµ СЃС‚Р°С‚СЊРё"
+        $GLOBALS['tpl_catalog_another_items'] = $this->model->getAnotherItems($itemInfo['id']); # print_r($GLOBALS['tpl_catalog_another_items']);
+        # foreach ($GLOBALS['tpl_another_articles'] as &$item) { $item['text'] = cutText($item['text'], 213); } unset($item);
+
+        # РІС‹РІРѕРґРёРј РєРЅРѕРїРєСѓ РґРѕ h1
+        $GLOBALS['tpl_text_before_h1'] = $this->tpl->getTemplate('catalog_detailed_text_before_h1.html');
+
+		# РєРѕРЅС‚РµРЅС‚
+		$GLOBALS['tpl_content'] = $this->tpl->getTemplate('catalog_detailed.html');
+        
+        # РїРµСЂРµР»РёРЅРєРѕРІРєР° РІ РїРѕРґРІР°Р»Рµ
+        if (!empty($itemInfo['footeranchor'])) $GLOBALS['tpl_footeranchor'] = $itemInfo['footeranchor'];
+
+        # РІС‹РІРѕРґРёРј Р±Р»РѕРє "РЎРѕРІРµС‚С‹, РЅРѕРІРѕСЃС‚Рё, РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚" РІ РїРѕРґРІР°Р»Рµ
+        showBlockInFooter();
+        
+		# РІС‹РІРѕРґРёРј С€Р°Р±Р»РѕРЅ РґР»СЏ РІРЅСѓС‚СЂРµРЅРЅРёС…
+		$this->tpl->setMainTemplate('template_for_inside_pages_v1.html');
+		$this->tpl->echoMainTemplate();
+	} # /РџРћР”Р РћР‘РќР«Р™ Р’Р«Р’РћР” РЎРўРђРўР¬Р
 }

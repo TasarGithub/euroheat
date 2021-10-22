@@ -1,169 +1,169 @@
-<?php echo $GLOBALS['tpl_item']['text_1']; # После заголовка h1 и до технических характеристик ?>
-
-<br />
-
-<div class="item_col_1">
-    <img class="img-responsive" src="/public/images/catalog/<?php echo $GLOBALS['tpl_item']['image']; ?>" alt="<?php echo $GLOBALS['tpl_item']['image_alt']; ?>" title="<?php echo $GLOBALS['tpl_item']['image_alt']; ?>" /><br />
-
-    <div class="cat_price"><?php echo $GLOBALS['tpl_item']['cost']; ?> <span>руб./сутки</span></div>
-    посуточная оплата без топлива
-
-    <a class="order_btn" href="#rent_modal" data-toggle="modal">Отправить заявку</a>
-    <br /><br />
-</div>
-
-<div class="item_col_2">
-    <div class="h4">Технические характеристики</div>
-    <table class="char_table">
-        <?php if (!empty($GLOBALS['tpl_item']['spec_manufacturer'])): ?>
-        <tr>
-            <td>Производитель</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_manufacturer']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_main_power'])): ?>
-        <tr>
-            <td>Основная мощность</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_main_power']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_spare_power'])): ?>
-        <tr>
-            <td>Резервная мощность</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_spare_power']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_fuel_rate'])): ?>
-        <tr>
-            <td>Расход топлива при нагрузке 75%</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_fuel_rate']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_engine_speed'])): ?>
-        <tr>
-            <td>Обороты двигателя</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_engine_speed']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_output_voltage'])): ?>
-        <tr>
-            <td>Выходное напряжение</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_output_voltage']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_generator'])): ?>
-        <tr>
-            <td>Генератор</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_generator']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_engine'])): ?>
-        <tr>
-            <td>Двигатель</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_engine']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_engine_type'])): ?>
-        <tr>
-            <td>Тип топлива</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_engine_type']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_fuel_tank_capacity'])): ?>
-        <tr>
-            <td>Объем топливного бака</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_fuel_tank_capacity']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_startup_type'])): ?>
-        <tr>
-            <td>Тип запуска</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_startup_type']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_weight'])): ?>
-        <tr>
-            <td>Масса</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_weight']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_dimensions'])): ?>
-        <tr>
-            <td>Габариты</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_dimensions']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_design'])): ?>
-        <tr>
-            <td>Исполнение</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_design']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_power_plant_class'])): ?>
-        <tr>
-            <td>Класс электростанции</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_power_plant_class']; ?></td>
-        </tr>
-        <?php endif; ?>
-
-        <?php if (!empty($GLOBALS['tpl_item']['spec_cooling_type'])): ?>
-        <tr>
-            <td>Тип охлаждения</td>
-            <td><?php echo $GLOBALS['tpl_item']['spec_cooling_type']; ?></td>
-        </tr>
-        <?php endif; ?>
-    </table>
-</div>
-
-<div class="clear"></div><br />
-
-<?php echo $GLOBALS['tpl_item']['text_2']; # Текст 2. Тарифы на аренду + текст после тарифов ?>
-
-<br />
-
-<a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">Скачать договор на аренду</a>
-
-<a class="page_back" href="/generatora/">&laquo; на страницу "Оборудование"</a><br />
-
-<?php if (!empty($GLOBALS['tpl_catalog_another_items'])): ?>
-<div class="h4">Другие модели электростанций</div>
-
-<?php foreach ($GLOBALS['tpl_catalog_another_items'] as $item): ?>
-<!-- Электростанция -->
-<div class="cat_item even">
-    <div class="cat_col_1">
-        <a href="/generatora/<?php echo $item['url']; ?>/"><img src="/public/images/catalog/<?php echo $item['image_small']; ?>" /></a>
-    </div>
-    <div class="cat_col_2">
-        <div class="cat_t"><a href="/generatora/<?php echo $item['url']; ?>/"><?php echo $item['name']; ?></a></div>
-        <div>Ном. мощность: <?php echo $item['spec_main_power']; ?></div>
-        <div>Резервная мощность: <?php echo $item['spec_spare_power']; ?></div>
-        <div>Модель двигателя: <?php echo $item['spec_engine']; ?></div>
-        <div>Расход топлива при 75% загрузки: <?php echo $item['spec_fuel_rate']; ?></div>
-    </div>
-    <div class="cat_col_3">
-        <div class="cat_price"><?php echo $item['cost']; ?> <span>руб./сутки</span></div>
-        <div class="txt_1">посуточная оплата без топлива</div>
-        <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Рассчитать стоимость</a>
-    </div>
-    <div class="clear"></div>
-</div>
-<!-- Электростанция -->
-<?php endforeach; ?>
-
-<?php endif; ?>
-
+<?php echo $GLOBALS['tpl_item']['text_1']; # РџРѕСЃР»Рµ Р·Р°РіРѕР»РѕРІРєР° h1 Рё РґРѕ С‚РµС…РЅРёС‡РµСЃРєРёС… С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє ?>
+
+<br />
+
+<div class="item_col_1">
+    <img class="img-responsive" src="/public/images/catalog/<?php echo $GLOBALS['tpl_item']['image']; ?>" alt="<?php echo $GLOBALS['tpl_item']['image_alt']; ?>" title="<?php echo $GLOBALS['tpl_item']['image_alt']; ?>" /><br />
+
+    <div class="cat_price"><?php echo $GLOBALS['tpl_item']['cost']; ?> <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+    РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°
+
+    <a class="order_btn" href="#rent_modal" data-toggle="modal">РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</a>
+    <br /><br />
+</div>
+
+<div class="item_col_2">
+    <div class="h4">РўРµС…РЅРёС‡РµСЃРєРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё</div>
+    <table class="char_table">
+        <?php if (!empty($GLOBALS['tpl_item']['spec_manufacturer'])): ?>
+        <tr>
+            <td>РџСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_manufacturer']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_main_power'])): ?>
+        <tr>
+            <td>РћСЃРЅРѕРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_main_power']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_spare_power'])): ?>
+        <tr>
+            <td>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_spare_power']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_fuel_rate'])): ?>
+        <tr>
+            <td>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё РЅР°РіСЂСѓР·РєРµ 75%</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_fuel_rate']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_engine_speed'])): ?>
+        <tr>
+            <td>РћР±РѕСЂРѕС‚С‹ РґРІРёРіР°С‚РµР»СЏ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_engine_speed']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_output_voltage'])): ?>
+        <tr>
+            <td>Р’С‹С…РѕРґРЅРѕРµ РЅР°РїСЂСЏР¶РµРЅРёРµ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_output_voltage']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_generator'])): ?>
+        <tr>
+            <td>Р“РµРЅРµСЂР°С‚РѕСЂ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_generator']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_engine'])): ?>
+        <tr>
+            <td>Р”РІРёРіР°С‚РµР»СЊ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_engine']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_engine_type'])): ?>
+        <tr>
+            <td>РўРёРї С‚РѕРїР»РёРІР°</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_engine_type']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_fuel_tank_capacity'])): ?>
+        <tr>
+            <td>РћР±СЉРµРј С‚РѕРїР»РёРІРЅРѕРіРѕ Р±Р°РєР°</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_fuel_tank_capacity']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_startup_type'])): ?>
+        <tr>
+            <td>РўРёРї Р·Р°РїСѓСЃРєР°</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_startup_type']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_weight'])): ?>
+        <tr>
+            <td>РњР°СЃСЃР°</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_weight']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_dimensions'])): ?>
+        <tr>
+            <td>Р“Р°Р±Р°СЂРёС‚С‹</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_dimensions']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_design'])): ?>
+        <tr>
+            <td>РСЃРїРѕР»РЅРµРЅРёРµ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_design']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_power_plant_class'])): ?>
+        <tr>
+            <td>РљР»Р°СЃСЃ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_power_plant_class']; ?></td>
+        </tr>
+        <?php endif; ?>
+
+        <?php if (!empty($GLOBALS['tpl_item']['spec_cooling_type'])): ?>
+        <tr>
+            <td>РўРёРї РѕС…Р»Р°Р¶РґРµРЅРёСЏ</td>
+            <td><?php echo $GLOBALS['tpl_item']['spec_cooling_type']; ?></td>
+        </tr>
+        <?php endif; ?>
+    </table>
+</div>
+
+<div class="clear"></div><br />
+
+<?php echo $GLOBALS['tpl_item']['text_2']; # РўРµРєСЃС‚ 2. РўР°СЂРёС„С‹ РЅР° Р°СЂРµРЅРґСѓ + С‚РµРєСЃС‚ РїРѕСЃР»Рµ С‚Р°СЂРёС„РѕРІ ?>
+
+<br />
+
+<a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">РЎРєР°С‡Р°С‚СЊ РґРѕРіРѕРІРѕСЂ РЅР° Р°СЂРµРЅРґСѓ</a>
+
+<a class="page_back" href="/generatora/">&laquo; РЅР° СЃС‚СЂР°РЅРёС†Сѓ "РћР±РѕСЂСѓРґРѕРІР°РЅРёРµ"</a><br />
+
+<?php if (!empty($GLOBALS['tpl_catalog_another_items'])): ?>
+<div class="h4">Р”СЂСѓРіРёРµ РјРѕРґРµР»Рё СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёР№</div>
+
+<?php foreach ($GLOBALS['tpl_catalog_another_items'] as $item): ?>
+<!-- Р­Р»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёСЏ -->
+<div class="cat_item even">
+    <div class="cat_col_1">
+        <a href="/generatora/<?php echo $item['url']; ?>/"><img src="/public/images/catalog/<?php echo $item['image_small']; ?>" /></a>
+    </div>
+    <div class="cat_col_2">
+        <div class="cat_t"><a href="/generatora/<?php echo $item['url']; ?>/"><?php echo $item['name']; ?></a></div>
+        <div>РќРѕРј. РјРѕС‰РЅРѕСЃС‚СЊ: <?php echo $item['spec_main_power']; ?></div>
+        <div>Р РµР·РµСЂРІРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: <?php echo $item['spec_spare_power']; ?></div>
+        <div>РњРѕРґРµР»СЊ РґРІРёРіР°С‚РµР»СЏ: <?php echo $item['spec_engine']; ?></div>
+        <div>Р Р°СЃС…РѕРґ С‚РѕРїР»РёРІР° РїСЂРё 75% Р·Р°РіСЂСѓР·РєРё: <?php echo $item['spec_fuel_rate']; ?></div>
+    </div>
+    <div class="cat_col_3">
+        <div class="cat_price"><?php echo $item['cost']; ?> <span>СЂСѓР±./СЃСѓС‚РєРё</span></div>
+        <div class="txt_1">РїРѕСЃСѓС‚РѕС‡РЅР°СЏ РѕРїР»Р°С‚Р° Р±РµР· С‚РѕРїР»РёРІР°</div>
+        <a class="order_btn_1 btn_md" href="#calc_modal" data-toggle="modal">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</a>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- Р­Р»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёСЏ -->
+<?php endforeach; ?>
+
+<?php endif; ?>
+

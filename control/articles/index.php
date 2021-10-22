@@ -1,916 +1,916 @@
-<?php 
-# Модуль админки для работы со статьями (таблица articles)
-# romanov.egor@gmail.com; 2015.6.4
-
-# подключаем файл конфига
-include('../loader.control.php');
-
-# подключаем общие функции для index.php и ajax.php
-include('common.functions.php');
-
-# НАСТРОЙКИ
-$GLOBALS['tpl_title'] = 'Статьи';
-$GLOBALS['imagesPath'] = '/public/images/articles/';
-
-# ЗАЩИТА
-if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
-
-# ЛОГИКА
-if ($_GET['action'] == "addItem")
-{ 
-    $GLOBALS['tpl_title'] .= ' > добавляем статью';
-    $GLOBALS['tpl_h1'] = 'Добавляем статью'; 
-    $GLOBALS['tpl_content'] = showAddForm();
-}
-elseif ($_GET['action'] == "addItemSubmit") {
-    $GLOBALS['tpl_title'] .= ' > добавляем статью';
-    $GLOBALS['tpl_h1'] = 'Добавляем статью'; 
-    $GLOBALS['tpl_content'] = addItemSubmit(); 
-}
-elseif ($_GET['action'] == "editItem") {
-    $GLOBALS['tpl_title'] .= ' > редактируем статью';
-    $GLOBALS['tpl_h1'] = 'Редактируем статью'; 
-    $GLOBALS['tpl_content'] = showEditForm(); 
-}
-elseif ($_GET['action'] == "deleteItem") {
-    $GLOBALS['tpl_title'] .= ' > удаляем статью';
-    $GLOBALS['tpl_h1'] = 'Удаляем статью'; 
-    $GLOBALS['tpl_content'] = deleteItem(); 
-}
-else { 
-    $GLOBALS['tpl_title'] .= ' > все статьи';
-    $GLOBALS['tpl_h1'] = 'Все статьи ('.$dbh->query('select count(1) from '.DB_PREFIX.'articles')->fetchColumn().')'; 
-    $GLOBALS['tpl_content'] = showItems(); 
-}
-# /ЛОГИКА
-
-# выводим главный шаблон
-$tpl->setMainTemplate('template_for_all_pages.php');
-$tpl->echoMainTemplate();
-
-# ФУНКЦИОНАЛ
-
-# ФОРМИРУЕМ СПИСОК ВСЕХ СТАТЕЙ
-function showItems($count = null)
-{
-    global $dbh;
-
-    # сортировки
-    if (!empty($_GET['show'])) {
-        switch ($_GET['show']) {
-            case "sorting_pereezd_v_drugoj_gorod":
-                $sqlModifier = ' and sorting_pereezd_v_drugoj_gorod = 1 ';
-                $pagesCount = 99999;
-                $sortingHeader = '<h4>Переезд в другой город: <a href="/drugoj-gorod/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/drugoj-gorod/sovet/</a></h4>';
-                break;
-            case "sorting_pereezd_kvartiry":
-                $sqlModifier = ' and sorting_pereezd_kvartiry = 1 ';
-                $pagesCount = 99999;
-                $sortingHeader = '<h4>Переезд квартиры: <a href="/kvartirnyj/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/kvartirnyj/sovet/</a></h4>';
-                break;
-            case "sorting_pereezd_na_dachu":
-                $sqlModifier = ' and sorting_pereezd_na_dachu = 1 ';
-                $pagesCount = 99999;
-                $sortingHeader = '<h4>Переезд на дачу: <a href="/na-dachu/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/na-dachu/sovet/</a></h4>';
-                break;
-            case "sorting_pereezd_ofisa":
-                $sqlModifier = ' and sorting_pereezd_ofisa = 1 ';
-                $pagesCount = 99999;
-                $sortingHeader = '<h4>Переезд офиса: <a href="/ofisa/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/ofisa/sovet/</a></h4>';
-                break;
-            default: unset($sqlModifier, $sortingHeader); break;
-        }
-    }
-
-    # записей на страницу
-    if (empty($pagesCount)) $pagesCount = 25;
-
-    # получаем список позиций
-    $sql = '
-    select id,
-           name,
-           url,
-           is_showable
-    from '.DB_PREFIX.'articles
-    where 1
-          '.$sqlModifier.'
-    order by name
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sql_for_count = '
-    select count(id)
-    from '.DB_PREFIX.'articles
-    where 1
-          '.$sqlModifier.'
-    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
-	$pages = new pages($_GET["page"], # текущая страница
-                       $pagesCount, # записей на страницу
-					   $dbh, # объект базы данных
-                       '', # routeVars
-					   $sql, # sql-запрос
-					   $sql_for_count, # sql-запрос для подсчета количества записей
-					   '/control/articles/', # ссыка на 1ю страницу
-					   '/control/articles/?page=%page%', # ссыка на остальные страницы
-						1500 # максимальное количество записей на страницу
-						);
-	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
-    $_ = $_result['resultSet'];
-    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">Страницы: '.$_result['pagesSet'].'</div>';
-    $_c = count($_);
-	$rows = array();
-    for ($i=0;$i<$_c;$i++)
-	{
-        # ссылка
-        $link = '<a href="/sovet/'.$_[$i]['url'].'/" target="_blank">смотреть</a>';
-        
-        # is_showable
-        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
-        else unset($trClass);
-        
-        $rows[] = '
-		<tr'.$trClass.'>
-            <td class="center vertical_middle">
-                <a class="block" href="/control/articles/?action=editItem&itemID='.$_[$i]['id'].'">
-                    <i class="fa fa-edit size_18"></i>
-                </a>
-            </td>
-			<td class="center vertical_middle">'.$link.'</td>
-			<td>'.$_[$i]['name'].'</td>
-			<td class="center vertical_middle">
-                <a class="block" title="Удалить статью" href="/control/articles/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Статья будет удалена безвозвратно. Удалить статью?\')">
-                    <i class="fa fa-trash-o size_18"></i>
-                </a>
-			</td>
-		</tr>
-		';
-    }
-	
-	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
-	else unset($rows);
-    
-    $result = '
-	<script type="text/javascript" src="/control/articles/index.js"></script>
-	
-    <div style="width:50%;float:left">
-        <b>URL:</b>&nbsp; <a href="/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/sovet/</a>
-    </div>
-    <div style="width:50%;float:right;text-align:right;padding-right:15px">
-        Поиск по названию: &nbsp;
-        <input id="search" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
-    </div>
-    <br style="clear:both" />
-
-    <div class="center" style="margin-bottom:15px">
-        <a href="/control/articles/?action=addItem">
-            <button id="parse_all_projects" class="btn btn-success" type="button">
-                <i class="fa fa-plus-square" style="margin-right:3px"></i>
-                    Добавить статью
-            </button>
-        </a>
-    </div>
-    '.$sortingHeader;
-    
-    if (empty($rows)) $result .= 'Не найдена ни одна статья.';
-    else
-    {
-        $result .= '
-        <div id="resultSet">
-        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
-            <tr>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Правка</th>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Ссылка</th>
-                <th class="center vertical_middle">Название</th>
-                <th class="center vertical_middle" style="width:100px;white-space:nowrap">Удаление</th>
-            </tr>
-            '.$rows.'
-        </table>
-        '.$pagesList.'
-        </div>';
-    }
-    
-    return $result;
-} # / ФОРМИРУЕМ СПИСОК ВСЕХ СТАТЕЙ
-
-# ФОРМА РЕДАКТИРОВАНИЯ СТАТЬИ
-function showEditForm()
-{
-    global $dbh;
-    
-    $showEditForm = 1;
-
-    # выводим сообщение
-    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'Статья успешно добавлена.';
-    
-    # сохраняем изменения в бд
-    if ($_GET['subaction'] == 'submit' && !empty($_POST))
-    {
-        $sql = '
-        update '.DB_PREFIX.'articles
-        set name = :name,
-            url = :url,
-            title = :title,
-            navigation = :navigation,
-            full_navigation = :full_navigation,
-            h1 = :h1,
-            footeranchor = :footeranchor,
-            sorting_pereezd_v_drugoj_gorod = :sorting_pereezd_v_drugoj_gorod,
-            sorting_pereezd_kvartiry = :sorting_pereezd_kvartiry,
-            sorting_pereezd_na_dachu = :sorting_pereezd_na_dachu,
-            sorting_pereezd_ofisa = :sorting_pereezd_ofisa,
-            is_showable = :is_showable
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':name', $_POST['articles_form_name']);
-        $sth->bindParam(':url', $_POST['articles_form_url']);
-        $sth->bindParam(':title', $_POST['articles_form_title']);
-        $sth->bindParam(':navigation', $_POST['articles_form_navigation']);
-        # full_navigation
-        if (empty($_POST['articles_form_full_navigation'])) $_POST['articles_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['articles_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['articles_form_h1']);
-
-        # sorting_pereezd_v_drugoj_gorod
-        $sth->bindValue(':sorting_pereezd_v_drugoj_gorod', !empty($_POST['articles_form_sorting_pereezd_v_drugoj_gorod']) ? 1 : null);
-        # sorting_pereezd_kvartiry
-        $sth->bindValue(':sorting_pereezd_kvartiry', !empty($_POST['articles_form_sorting_pereezd_kvartiry']) ? 1 : null);
-        # sorting_pereezd_na_dachu
-        $sth->bindValue(':sorting_pereezd_na_dachu', !empty($_POST['articles_form_sorting_pereezd_na_dachu']) ? 1 : null);
-        # sorting_pereezd_ofisa
-        $sth->bindValue(':sorting_pereezd_ofisa', !empty($_POST['articles_form_sorting_pereezd_ofisa']) ? 1 : null);
-
-        # is_showable
-        $isShowable = !empty($_POST['articles_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-        # footeranchor
-        if ($_POST['articles_form_footeranchor'] == '') $_POST['articles_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['articles_form_footeranchor']);
-        # id
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute())
-        {
-            $GLOBALS['tpl_success'] = 'Информация сохранена.';
-            
-			# сохраняем текст в файл
-			saveContentToFile($_GET['itemID'],
-							  $_POST['articles_form_text']);
-                              
-            # копируем картинку # print_r($_FILES);
-            if (!empty($_FILES['articles_form_image']['tmp_name']))
-            {
-                copyImage(array(
-                'itemID' => $_GET['itemID'],
-                'imageFormName' => 'articles_form_image',
-                'imageDbColumnName' => 'image',
-                'imagePrefix' => ''
-                ));
-            }
-            # /копируем картинку
-        }
-        else
-        {
-            $GLOBALS['tpl_failure'] = 'К сожалению, информация не сохранена. Пжл, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-        }
-    } # /сохраняем изменения в бд
-    # удаляем указанную картинку
-    if ($_GET['subaction'] == 'remove_photo')
-    {
-        # проверка переменных
-        $allowedCoumns = array('image');
-        if (empty($_GET['itemID'])) $GLOBALS['tpl_failure'] = 'Не передан ID записи.';
-        elseif (empty($_GET['db_column_name'])) $GLOBALS['tpl_failure'] = 'Неверно передано название столбца картинки.';
-        elseif (!in_array($_GET['db_column_name'], $allowedCoumns)) $GLOBALS['tpl_failure'] = 'Неверно передано название столбца картинки.';
-        else
-        {
-            # получаем инофрмацию о картинке
-            $sql = '
-            select '.$_GET['db_column_name'].'
-            from '.DB_PREFIX.'articles
-            where id = :id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            $columnName = $sth->fetchColumn(); # echo 'columnName: '.$columnName;
-            # удаляем картинку
-            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$columnName; # echo 'fullPathToImage: '.$fullPathToImage;
-            if (!empty($fullPathToImage) && file_exists($fullPathToImage)) unlink($fullPathToImage);
-            # вносим изменения в бд
-            $sql = '
-            update '.DB_PREFIX.'articles
-            set '.$_GET['db_column_name'].' = NULL
-            where id = :id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-            if ($sth->execute())
-            {
-                $GLOBALS['tpl_success'] = 'Картинка успешно удалена.';
-                $_POST['tabs_state'] = 4;
-            }
-            else $GLOBALS['tpl_failure'] = 'К сожалению, картинка не удалена. Пжл, обратитесь к разработчикам сайта.';
-        }
-    } # /удаляем указанную картинку
-
-    # выводим форму редактирования
-    if ($showEditForm)
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-        
-        # защита
-        if (!$itemInfo['id']) exit('
-		Не существует записи с ID='.$_GET['itemID'].'
-		<br /><a href="/control/articles/">Перейти к списку статей</a>
-		');
-        
-		# читаем текст статьи из файла
-        if (!empty($itemInfo['file_name']))
-        {
-            $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_articles/'.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
-            if (file_exists($fullPathToFile))
-            {
-                $content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
-                # prepare for showing
-                $content = htmlspecialchars($content, ENT_QUOTES);
-                $content = str_replace("\t", "", $content);
-            }
-        }
-
-        # prepare all values for showing
-        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
-        
-        # получаем и выводим инфу по фото
-        $imageInfo = showPhotoInfo(array('imageName' => $itemInfo['image'], 'imageDbColumnName' => 'image'));
-
-        # sorting_pereezd_v_drugoj_gorod_checked
-        if (!empty($itemInfo['sorting_pereezd_v_drugoj_gorod'])) $sorting_pereezd_v_drugoj_gorod_checked = " checked='checked'";
-
-        # sorting_pereezd_kvartiry_checked
-        if (!empty($itemInfo['sorting_pereezd_kvartiry'])) $sorting_pereezd_kvartiry_checked = " checked='checked'";
-
-        # sorting_pereezd_na_dachu_checked
-        if (!empty($itemInfo['sorting_pereezd_na_dachu'])) $sorting_pereezd_na_dachu_checked = " checked='checked'";
-
-        # sorting_pereezd_ofisa_checked
-        if (!empty($itemInfo['sorting_pereezd_ofisa'])) $sorting_pereezd_ofisa_checked = " checked='checked'";
-
-        # prepare all values for showing
-        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
-        
-        return "
-		<script type='text/javascript' src='/control/articles/index.js'></script>
-		<form id='articles_form' action='/control/articles/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='articles_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
-            
-            <button class='btn btn-primary submit_button' type='submit'>Сохранить информацию</button>
-
-            &nbsp;&nbsp;&nbsp; <a href='/control/articles/'><button class='btn btn-success' type='button'>
-            <i class='fa fa-share-square' style='margin-right:3px'></i>
-            Перейти к списку
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/articles/?action=addItem'><button class='btn btn-success' type='button'>
-            <i class='fa fa-plus-square' style='margin-right:3px'></i>
-            Добавить статью
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/articles/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"Статья будет удалена безвозвратно. Удалить статью?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> Удалить статью</button></a>
-
-			<br><br><b>URL:</b>&nbsp; <a href='/sovet/".$itemInfo['url']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/sovet/".$itemInfo['url']."/</a>
-            
-            <br><br><div class='form-group' style='width:60%'>
-                <label>Директория (по-английски): <span style='color:red'>*</span></label>
-                <input type='text' name='articles_form_url' id='articles_form_url' class='form-control form_required' data-required-label='Пжл, укажите директорию (например: kak-vibrat-avto)' value='".$itemInfo['url']."' />
-            </div>
-
-            <div class='form-group' style='width:60%'>
-                <label>Название: <span style='color:red'>*</span></label>
-                <input type='text' name='articles_form_name' id='articles_form_name' class='form-control form_required' data-required-label='Пжл, укажите название по-русски' value='".$itemInfo['name']."' />
-            </div>
-            
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок страницы:</label>
-                <input type='text' name='articles_form_title' id='articles_form_title' class='form-control' data-required-label='Пжл, укажите заголовок страницы' value='".$itemInfo['title']."' />
-            </div>
-            
-            <div class='form-group' style='width:90%'>
-                <label>Строка навигации:</label>
-                <input type='text' name='articles_form_navigation' id='articles_form_navigation' class='form-control' value='".$itemInfo['navigation']."' />
-            </div>
-            
-			<div class='form-group' style='width:95%'>
-                <label>Строка навигации в ручном режиме:
-                       <br />
-                       <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-                </label>
-                <textarea name='articles_form_full_navigation' id='articles_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
-            </div>
-
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок h1:</label>
-                <input type='text' name='articles_form_h1' id='articles_form_h1' class='form-control' value='".$itemInfo['h1']."' />
-            </div>
-
-            <div class='form-group'>
-                <label>Текст:</label>
-                <textarea name='articles_form_text' id='articles_form_text' class='form-control lined' style='width:90%;height:270px'>".$content."</textarea>
-            </div>
-            
-            <div class='form-group'>
-                <label>Картинка (не обязательно):</label>
-                &nbsp; <input id='articles_form_image' name='articles_form_image' type='file' style='display:inline-block' />
-            </div>
-
-            ".$imageInfo."
-
-            <div class='form-group' style='width:95%'>
-                <label>Анкор для перелинковки в подвале:</label> &nbsp; 
-                <textarea name='articles_form_footeranchor' id='articles_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
-            </div>
-            
-            <div class='form-group' style='margin-bottom:0'>
-                <label>
-                    <input type='checkbox' name='articles_form_is_showable' id='articles_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checekd"' : '')." />&nbsp; Отображать статью на сайте
-                </label>
-            </div>
-            
-            <br />
-			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>Сохранить информацию</button>
-            
-		</form>
-		";
-    }
-} # /ФОРМА РЕДАКТИРОВАНИЯ СТАТЬИ
-
-# ФОРМА ДОБАВЛЕНИЯ СТАТЬИ
-function showAddForm()
-{
-    global $dbh;
-    
-    return "
-	<script type='text/javascript' src='/control/articles/index.js'></script>
-	<form id='articles_form' action='/control/articles/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
-        <button class='btn btn-primary submit_button' type='submit'>Добавить статью</button>
-        
-        &nbsp;&nbsp;&nbsp; <a href='/control/articles/'><button class='btn btn-success' type='button'>
-        <i class='fa fa-share-square' style='margin-right:3px'></i>
-        Перейти к списку
-        </button></a>
-        
-		<br /><br /><b>URL:</b>&nbsp; <a href='/sovet/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/sovet/</a>
-
-        <br /><br />
-        <div class='form-group' style='width:60%'>
-            <label>Директория (по-английски): <span style='color:red'>*</span></label>
-            <input type='text' name='articles_form_url' id='articles_form_url' class='form-control form_required' data-required-label='Пжл, укажите директорию (например: kak-oplatit-zakaz)' value='".$_POST['articles_form_url']."' />
-        </div>
-
-        <div class='form-group' style='width:60%'>
-            <label>Название: <span style='color:red'>*</span></label>
-            <input type='text' name='articles_form_name' id='articles_form_name' class='form-control form_required' data-required-label='Пжл, укажите название по-русски' value='".$_POST['articles_form_name']."' />
-        </div>
-
-        <div id='articles_form_name_alert_div' class='alert alert-info hidden width_95'></div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок страницы:</label>
-            <input type='text' name='articles_form_title' id='articles_form_title' class='form-control' data-required-label='Пжл, укажите заголовок страницы' value='".$_POST['articles_form_title']."' />
-        </div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Строка навигации:</label>
-            <input type='text' name='articles_form_navigation' id='articles_form_navigation' class='form-control' value='".$_POST['articles_form_navigation']."' />
-        </div>
-        
-        <div class='form-group' style='width:95%'>
-            <label>Строка навигации в ручном режиме:
-                   <br />
-                   <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-            </label>
-            <textarea name='articles_form_full_navigation' id='articles_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['articles_form_full_navigation']."</textarea>
-        </div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок h1:</label>
-            <input type='text' name='articles_form_h1' id='articles_form_h1' class='form-control' value='".$_POST['articles_form_h1']."' />
-        </div>
-
-        <div class='form-group'>
-            <label>Текст:</label>
-            <textarea name='articles_form_text' id='articles_form_text' class='form-control lined' style='width:90%;height:270px'>".$_POST['articles_form_text']."</textarea>
-        </div>
-        
-       <div class='form-group'>
-            <label>Картинка (не обязательно):</label>
-            &nbsp; <input id='articles_form_image' name='articles_form_image' type='file' style='display:inline-block' />
-        </div>
-
-        <div class='form-group' style='width:95%'>
-            <label>Анкор для перелинковки в подвале:</label> &nbsp;
-            <textarea name='articles_form_footeranchor' id='articles_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['articles_form_footeranchor']."</textarea>
-        </div>
-        
-        <div class='form-group' style='margin-bottom:0'>
-            <label>
-                <input type='checkbox' name='articles_form_is_showable' id='articles_form_is_showable' class='form_checkbox' checked='checekd' />&nbsp; Отображать статью на сайте
-            </label>
-        </div>
-        
-        <br />
-        
-        <button class='btn btn-primary submit_button' type='submit'>Добавить статью</button>
-	</form>
-	";
-} # /ФОРМА ДОБАВЛЕНИЯ НОВОСТИ
-
-# ДОБАВЛЯЕМ СТАТЬЮ В БД
-function addItemSubmit()
-{
-	global $dbh, $html;
-	
-	# print_r($_POST);
-	# защита от прямого запроса URL'а: /control/articles/?action=addItemSubmit
-	if (!empty($_POST))
-	{
-        # проверка + нужная кодировка POST-переменных
-        preparePOSTVariables(); # print_r($_POST); exit;
-
-		# добавляем статью в БД
-		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
-		# если статья успешно добавлена
-		if (!empty($lastInsertID))
-		{
-			# сохраняем текст в файл
-			saveContentToFile($lastInsertID,
-							  $_POST['articles_form_text']);
-                              
-            # копируем картинку # print_r($_FILES);
-            if (!empty($_FILES['articles_form_image']['tmp_name']))
-            {
-                copyImage(array(
-                'itemID' => $lastInsertID,
-                'imageFormName' => 'articles_form_image',
-                'imageDbColumnName' => 'image',
-                'imagePrefix' => ''
-                ));
-            }
-            # /копируем картинку
-            
-			# делаем перенаправление на форму редактирования
-			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/articles/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
-			header('Location: '.$fullUrlForEdit);
-		}
-		# если возникла ошибка и статья не добавлена
-		else
-		{
-            $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и статья не добавлена. Пожалуйста, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-		}
-	}
-	# если набран: /control/articles/addItemSubmit/ и при этом $_POST пустой
-	else
-	{
-		# выводим список позиций
-        $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и статья не добавлена. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-        return showAddForm();
-	}
-} # /ДОБАВЛЯЕМ СТАТЬЮ В БД
-
-# УДАЛЯЕМ СТАТЬЮ
-function deleteItem(){
-	
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID']))
-	{
-		# выводим ошибку
-		$GLOBALS['tpl_failure'] = 'Статья не удалена. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-		# выводим список
-        showItems();
-	}
-	else
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-        
-		# удаляем картинку
-        if (!empty($itemInfo['image']))
-        {
-            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$itemInfo['image'];
-            if (file_exists($fullPathToImage) && is_file($fullPathToImage)) unlink($fullPathToImage);
-        }
-
-		# удаляем статью из БД
-        $sql = '
-        delete from '.DB_PREFIX.'articles
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute())
-		{
-			$GLOBALS['tpl_success'] = 'Статья успешно удалена.';
-            
-            # удаляем файл с текстом
-            if (!empty($itemInfo['file_name']))
-            {
-                $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_articles/'.basename($itemInfo['file_name']);
-                if (is_file($fullPathToFile)) unlink($fullPathToFile);
-            }
-            
-            # уадялем backup'ы
-            $sql = '
-            delete from '.DB_PREFIX.'backups
-            where table_name = "articles"
-                  and entry_id = :entry_id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            
-			# выводим список
-			return showItems();
-		}
-		else
-		{
-            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'К сожалению, статья не удалена. Пожалуйста, обратитесь к разработчикам сайта.';
-			# выводим список позиций
-			return showItems();
-		}
-	}
-} # /УДАЛЯЕМ СТАТЬЮ
-
-# ДОБАВЛЯЕМ СТАТЬЮ В БД
-function addItemToDB()
-{
-	global $dbh;
-	
-	if (!empty($_POST['articles_form_name']))
-	{ 
-        $sql = '
-        insert into '.DB_PREFIX.'articles
-        (name, 
-         url,
-         title,
-         navigation,
-         full_navigation,
-         h1,
-         footeranchor,
-         sorting_pereezd_v_drugoj_gorod,
-         sorting_pereezd_kvartiry,
-         sorting_pereezd_na_dachu,
-         sorting_pereezd_ofisa,
-         is_showable)
-        values
-        (:name,
-         :url,
-         :title,
-         :navigation,
-         :full_navigation,
-         :h1,
-         :footeranchor,
-         :sorting_pereezd_v_drugoj_gorod,
-         :sorting_pereezd_kvartiry,
-         :sorting_pereezd_na_dachu,
-         :sorting_pereezd_ofisa,
-         :is_showable)        
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':name', $_POST['articles_form_name']);
-        $sth->bindParam(':url', $_POST['articles_form_url']);
-        $sth->bindParam(':title', $_POST['articles_form_title']);
-        $sth->bindParam(':navigation', $_POST['articles_form_navigation']);
-        # full_navigation
-        if (empty($_POST['articles_form_full_navigation'])) $_POST['articles_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['articles_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['articles_form_h1']);
-        # footeranchor
-        if ($_POST['articles_form_footeranchor'] == '') $_POST['articles_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['articles_form_footeranchor']);
-
-        # sorting_pereezd_v_drugoj_gorod
-        $sth->bindValue(':sorting_pereezd_v_drugoj_gorod', !empty($_POST['articles_form_sorting_pereezd_v_drugoj_gorod']) ? 1 : null);
-        # sorting_pereezd_kvartiry
-        $sth->bindValue(':sorting_pereezd_kvartiry', !empty($_POST['articles_form_sorting_pereezd_kvartiry']) ? 1 : null);
-        # sorting_pereezd_na_dachu
-        $sth->bindValue(':sorting_pereezd_na_dachu', !empty($_POST['articles_form_sorting_pereezd_na_dachu']) ? 1 : null);
-        # sorting_pereezd_ofisa
-        $sth->bindValue(':sorting_pereezd_ofisa', !empty($_POST['articles_form_sorting_pereezd_ofisa']) ? 1 : null);
-
-
-        # is_showable
-        $isShowable = !empty($_POST['articles_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-		try { if ($sth->execute()) {
-            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
-			if (!empty($last_insert_id))
-            {
-                # фиксируем имя файла в базу данных
-                $sql = '
-                update '.DB_PREFIX.'articles
-                set file_name = :file_name
-                where id = :id
-                '; # echo '<pre>'.$sql."</pre><hr />";
-                $sth = $dbh->prepare($sql);
-                # file_name
-                $file_name = $last_insert_id.'.php';
-                $sth->bindParam(':file_name', $file_name);
-                $sth->bindParam(':id', $last_insert_id, PDO::PARAM_INT);
-                $sth->execute();
-                # /фиксируем имя файла в базу данных
-                
-                return $last_insert_id;
-            }
-			else return;
-        }}
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
-	}
-    else echo 'В метод addItemToDB не передано articles_form_name.';
-} # /ДОБАВЛЯЕМ СТАТЬЮ В БД
-
-# ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-function getItemInfo()
-{
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID'])) return;
-	
-	$sql = '
-	select *
-	from '.DB_PREFIX.'articles
-	where id = :id
-	'; # echo '<pre>'.$sql."</pre><hr />";
-	$sth = $dbh->prepare($sql);
-    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-    $sth->execute();
-    $itemInfo = $sth->fetch();
-	if (!empty($itemInfo)) return $itemInfo;
-	else return;
-} # /ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-
-# СОХРАНЯЕМ КОНТЕНТ В ФАЙЛ
-function saveContentToFile($itemID,
-						   $text)
-{
-    /*
-    echo 'itemID: '.$itemID.'<br />';
-    echo 'text: '.$text.'<br />';
-    */
-
-	# проверка переменных
-	if (empty($itemID)) return;
-	if (empty($text)) return;
-	
-	$fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_articles/'.basename($itemID.'.php'); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
-    
-    file_put_contents($fullPathToFile, $text, LOCK_EX);
-    if (is_file($fullPathToFile)) chmod($fullPathToFile, 0755);
-} # /СОХРАНЯЕМ КОНТЕНТ В ФАЙЛ
-
-# КОПИРУЕМ КАРТИНКУ
-function copyImage($array)
-{
-	global $dbh;
-	
-    # print_r($_FILES);
-    # print_r($array);
-    
-	# проверка переменных
-	if (empty($array['itemID'])) return;
-	if (empty($array['imageFormName'])) return;
-	if (empty($array['imageDbColumnName'])) return;
-	# if (empty($array['imagePrefix'])) return;
-
-	# echo '<pre>'.(print_r($array, true)).'</pre>';
-	# echo $_FILES[$array['imageFormName']]['tmp_name'];
-	if (is_uploaded_file($_FILES[$array['imageFormName']]['tmp_name']))
-	{
-		# УДАЛЯЕМ СТАРУЮ КАРТИНКУ, ЕСЛИ ОНА ЕСТЬ
-		$sql = '
-		select '.$array['imageDbColumnName'].'
-		from '.DB_PREFIX.'articles
-		where id = :id
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
-        $sth->execute();
-        $_ = $sth->fetchColumn();
-		if (!empty($_))
-		{
-			$oldImage = $_;
-			# удаляем из БД
-			$sql = '
-			update '.DB_PREFIX.'articles
-			set '.$array['imageDbColumnName'].' = NULL
-			where id = :id
-			'; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-			# удаляем файл
-			$result = @unlink($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage); 
-			# echo $result.'<hr />';
-			# echo $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage;
-		}
-		# /УДАЛЯЕМ СТАРУЮ КАРТИНКУ, ЕСЛИ ОНА ЕСТЬ
-	
-		# КОПИРУЕМ НОВУЮ КАРТИНКУ
-		$ext = getImageExt($_FILES[$array['imageFormName']]['tmp_name']); # echo $ext.'<hr />';
-		$newImageName = $array['itemID']."".$array['imagePrefix'].".".$ext; # echo $newImageName.'<hr />';
-		$fullPathToUpload = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$newImageName; # echo $fullPathToUpload.'<hr />';
-		# копируем на основную зону
-		if (move_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'], $fullPathToUpload))
-		{
-			# пишем инфу в БД
-			$sql = '
-			update '.DB_PREFIX.'articles
-			set '.$array['imageDbColumnName'].' = :new_image_name
-			where id = :id
-			'; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':new_image_name', $newImageName);
-            $sth->bindParam(':id', $array['itemID']);
-            $sth->execute();
-			
-			return array($newImageName, $newImageLargeName);
-		}
-		else return;
-		# /КОПИРУЕМ НОВУЮ КАРТИНКУ
-	}
-} # /КОПИРУЕМ КАРТИНКУ
-
-# ПОЛУЧАЕМ РАСШИРЕНИЕ КАРТИНКИ
-# $imageName - full path to image
-function getImageExt($fullPathToImage)
-{
-	# print_r($fullPathToImage);
-	
-	if (empty($fullPathToImage)) return;
-
-	$info = getimagesize($fullPathToImage); # print_r($info);
-	$ext = str_replace("image/", "", $info['mime']); # echo $ext.'<hr />';
-	
-	if (!empty($ext)) return $ext;
-	else return;
-} # /ПОЛУЧАЕМ РАСШИРЕНИЕ КАРТИНКИ
-
-# ВЫВОДИМ ИНФУ ПО КАРТИНКЕ
-function showPhotoInfo($array)
-{
-	# проверка переменных
-	if (empty($array['imageName'])) return;
-	if (empty($array['imageDbColumnName'])) return;
-	
-	if (file_exists($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath']).$array['imageName'])
-	{
-		$imageInfo = @getimagesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']); # echo '<pre>'.(print_r($imageInfo, true)).'</pre>';
-		$imageSize = @filesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']);
-		$imageSize = @round($imageSize / 1024, 1);
-		
-		return '
-		Путь: <a href="'.$GLOBALS['imagesPath'].$array['imageName'].'" target="_blank">'.$_SERVER['HTTP_HOST'].$GLOBALS['imagesPath'].$array['imageName'].'</a>
-		<br />Вес: '.$imageSize.' кб.
-		<br />Размер: '.$imageInfo[0].'px x '.$imageInfo[1].'px
-		<br /><br />
-		<a href="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" target="_blank"><img src="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" border="0" /></a>
-        <br /><a href="/control/articles/?action=editItem&itemID='.$_GET['itemID'].'&subaction=remove_photo&db_column_name='.$array['imageDbColumnName'].'" onclick="return confirm(\'Удалить картинку?\');">Удалить картинку</a>
-		<hr style="border:none;background-color:#ccc;color:#ccc;height:1px" />
-		';
-	}
-} # /ВЫВОДИМ ИНФУ ПО КАРТИНКЕ
-
-# СТРОИМ SELECT С АНКОРАМИ ДЛЯ ПЕРЕЛИНКОВКИ В ПОДВАЛЕ
-/* function buildAllFooteranchors($footerAnchorID = NULL)
-{
-    global $dbh;
-    
-    $sql = '
-    select id,
-           anchor
-    from '.DB_PREFIX.'footeranchors
-    order by anchor
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-    $sth->execute();
-    $_ = $sth->fetchAll();
-    $options = array();
-    foreach ($_ as $item)
-    {
-        # selected
-        if (!empty($footerAnchorID) && $footerAnchorID == $item['id']) $selected = ' selected="selected"';
-        else unset($selected);
-        
-        $options[] = '<option value="'.$item['id'].'"'.$selected.'>'.$item['anchor'].'</option>';
-    }
-    if (!empty($options) and is_array($options)) $options = implode(PHP_EOL, $options);
-    $result = '<select id="articles_form_footeranchor_id" name="articles_form_footeranchor_id" class="form-control">'.PHP_EOL.'<option value="null">не выбран</option>'.PHP_EOL.$options.'</select>';
-    if (!empty($result)) return $result;
-} */ # /СТРОИМ SELECT С АНКОРАМИ ДЛЯ ПЕРЕЛИНКОВКИ В ПОДВАЛЕ
-
-# /ФУНКЦИОНАЛ
+<?php 
+# РњРѕРґСѓР»СЊ Р°РґРјРёРЅРєРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚Р°С‚СЊСЏРјРё (С‚Р°Р±Р»РёС†Р° articles)
+# romanov.egor@gmail.com; 2015.6.4
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р» РєРѕРЅС„РёРіР°
+include('../loader.control.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+include('common.functions.php');
+
+# РќРђРЎРўР РћР™РљР
+$GLOBALS['tpl_title'] = 'РЎС‚Р°С‚СЊРё';
+$GLOBALS['imagesPath'] = '/public/images/articles/';
+
+# Р—РђР©РРўРђ
+if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
+
+# Р›РћР“РРљРђ
+if ($_GET['action'] == "addItem")
+{ 
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј СЃС‚Р°С‚СЊСЋ';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј СЃС‚Р°С‚СЊСЋ'; 
+    $GLOBALS['tpl_content'] = showAddForm();
+}
+elseif ($_GET['action'] == "addItemSubmit") {
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј СЃС‚Р°С‚СЊСЋ';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј СЃС‚Р°С‚СЊСЋ'; 
+    $GLOBALS['tpl_content'] = addItemSubmit(); 
+}
+elseif ($_GET['action'] == "editItem") {
+    $GLOBALS['tpl_title'] .= ' > СЂРµРґР°РєС‚РёСЂСѓРµРј СЃС‚Р°С‚СЊСЋ';
+    $GLOBALS['tpl_h1'] = 'Р РµРґР°РєС‚РёСЂСѓРµРј СЃС‚Р°С‚СЊСЋ'; 
+    $GLOBALS['tpl_content'] = showEditForm(); 
+}
+elseif ($_GET['action'] == "deleteItem") {
+    $GLOBALS['tpl_title'] .= ' > СѓРґР°Р»СЏРµРј СЃС‚Р°С‚СЊСЋ';
+    $GLOBALS['tpl_h1'] = 'РЈРґР°Р»СЏРµРј СЃС‚Р°С‚СЊСЋ'; 
+    $GLOBALS['tpl_content'] = deleteItem(); 
+}
+else { 
+    $GLOBALS['tpl_title'] .= ' > РІСЃРµ СЃС‚Р°С‚СЊРё';
+    $GLOBALS['tpl_h1'] = 'Р’СЃРµ СЃС‚Р°С‚СЊРё ('.$dbh->query('select count(1) from '.DB_PREFIX.'articles')->fetchColumn().')'; 
+    $GLOBALS['tpl_content'] = showItems(); 
+}
+# /Р›РћР“РРљРђ
+
+# РІС‹РІРѕРґРёРј РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
+$tpl->setMainTemplate('template_for_all_pages.php');
+$tpl->echoMainTemplate();
+
+# Р¤РЈРќРљР¦РРћРќРђР›
+
+# Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ РЎРўРђРўР•Р™
+function showItems($count = null)
+{
+    global $dbh;
+
+    # СЃРѕСЂС‚РёСЂРѕРІРєРё
+    if (!empty($_GET['show'])) {
+        switch ($_GET['show']) {
+            case "sorting_pereezd_v_drugoj_gorod":
+                $sqlModifier = ' and sorting_pereezd_v_drugoj_gorod = 1 ';
+                $pagesCount = 99999;
+                $sortingHeader = '<h4>РџРµСЂРµРµР·Рґ РІ РґСЂСѓРіРѕР№ РіРѕСЂРѕРґ: <a href="/drugoj-gorod/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/drugoj-gorod/sovet/</a></h4>';
+                break;
+            case "sorting_pereezd_kvartiry":
+                $sqlModifier = ' and sorting_pereezd_kvartiry = 1 ';
+                $pagesCount = 99999;
+                $sortingHeader = '<h4>РџРµСЂРµРµР·Рґ РєРІР°СЂС‚РёСЂС‹: <a href="/kvartirnyj/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/kvartirnyj/sovet/</a></h4>';
+                break;
+            case "sorting_pereezd_na_dachu":
+                $sqlModifier = ' and sorting_pereezd_na_dachu = 1 ';
+                $pagesCount = 99999;
+                $sortingHeader = '<h4>РџРµСЂРµРµР·Рґ РЅР° РґР°С‡Сѓ: <a href="/na-dachu/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/na-dachu/sovet/</a></h4>';
+                break;
+            case "sorting_pereezd_ofisa":
+                $sqlModifier = ' and sorting_pereezd_ofisa = 1 ';
+                $pagesCount = 99999;
+                $sortingHeader = '<h4>РџРµСЂРµРµР·Рґ РѕС„РёСЃР°: <a href="/ofisa/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/ofisa/sovet/</a></h4>';
+                break;
+            default: unset($sqlModifier, $sortingHeader); break;
+        }
+    }
+
+    # Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+    if (empty($pagesCount)) $pagesCount = 25;
+
+    # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РїРѕР·РёС†РёР№
+    $sql = '
+    select id,
+           name,
+           url,
+           is_showable
+    from '.DB_PREFIX.'articles
+    where 1
+          '.$sqlModifier.'
+    order by name
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sql_for_count = '
+    select count(id)
+    from '.DB_PREFIX.'articles
+    where 1
+          '.$sqlModifier.'
+    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
+	$pages = new pages($_GET["page"], # С‚РµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°
+                       $pagesCount, # Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+					   $dbh, # РѕР±СЉРµРєС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+                       '', # routeVars
+					   $sql, # sql-Р·Р°РїСЂРѕСЃ
+					   $sql_for_count, # sql-Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
+					   '/control/articles/', # СЃСЃС‹РєР° РЅР° 1СЋ СЃС‚СЂР°РЅРёС†Сѓ
+					   '/control/articles/?page=%page%', # СЃСЃС‹РєР° РЅР° РѕСЃС‚Р°Р»СЊРЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
+						1500 # РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+						);
+	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
+    $_ = $_result['resultSet'];
+    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">РЎС‚СЂР°РЅРёС†С‹: '.$_result['pagesSet'].'</div>';
+    $_c = count($_);
+	$rows = array();
+    for ($i=0;$i<$_c;$i++)
+	{
+        # СЃСЃС‹Р»РєР°
+        $link = '<a href="/sovet/'.$_[$i]['url'].'/" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>';
+        
+        # is_showable
+        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
+        else unset($trClass);
+        
+        $rows[] = '
+		<tr'.$trClass.'>
+            <td class="center vertical_middle">
+                <a class="block" href="/control/articles/?action=editItem&itemID='.$_[$i]['id'].'">
+                    <i class="fa fa-edit size_18"></i>
+                </a>
+            </td>
+			<td class="center vertical_middle">'.$link.'</td>
+			<td>'.$_[$i]['name'].'</td>
+			<td class="center vertical_middle">
+                <a class="block" title="РЈРґР°Р»РёС‚СЊ СЃС‚Р°С‚СЊСЋ" href="/control/articles/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'РЎС‚Р°С‚СЊСЏ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅР° Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ СЃС‚Р°С‚СЊСЋ?\')">
+                    <i class="fa fa-trash-o size_18"></i>
+                </a>
+			</td>
+		</tr>
+		';
+    }
+	
+	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+	else unset($rows);
+    
+    $result = '
+	<script type="text/javascript" src="/control/articles/index.js"></script>
+	
+    <div style="width:50%;float:left">
+        <b>URL:</b>&nbsp; <a href="/sovet/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/sovet/</a>
+    </div>
+    <div style="width:50%;float:right;text-align:right;padding-right:15px">
+        РџРѕРёСЃРє РїРѕ РЅР°Р·РІР°РЅРёСЋ: &nbsp;
+        <input id="search" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
+    </div>
+    <br style="clear:both" />
+
+    <div class="center" style="margin-bottom:15px">
+        <a href="/control/articles/?action=addItem">
+            <button id="parse_all_projects" class="btn btn-success" type="button">
+                <i class="fa fa-plus-square" style="margin-right:3px"></i>
+                    Р”РѕР±Р°РІРёС‚СЊ СЃС‚Р°С‚СЊСЋ
+            </button>
+        </a>
+    </div>
+    '.$sortingHeader;
+    
+    if (empty($rows)) $result .= 'РќРµ РЅР°Р№РґРµРЅР° РЅРё РѕРґРЅР° СЃС‚Р°С‚СЊСЏ.';
+    else
+    {
+        $result .= '
+        <div id="resultSet">
+        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+            <tr>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РџСЂР°РІРєР°</th>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РЎСЃС‹Р»РєР°</th>
+                <th class="center vertical_middle">РќР°Р·РІР°РЅРёРµ</th>
+                <th class="center vertical_middle" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+            </tr>
+            '.$rows.'
+        </table>
+        '.$pagesList.'
+        </div>';
+    }
+    
+    return $result;
+} # / Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ РЎРўРђРўР•Р™
+
+# Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РЎРўРђРўР¬Р
+function showEditForm()
+{
+    global $dbh;
+    
+    $showEditForm = 1;
+
+    # РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ
+    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'РЎС‚Р°С‚СЊСЏ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°.';
+    
+    # СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+    if ($_GET['subaction'] == 'submit' && !empty($_POST))
+    {
+        $sql = '
+        update '.DB_PREFIX.'articles
+        set name = :name,
+            url = :url,
+            title = :title,
+            navigation = :navigation,
+            full_navigation = :full_navigation,
+            h1 = :h1,
+            footeranchor = :footeranchor,
+            sorting_pereezd_v_drugoj_gorod = :sorting_pereezd_v_drugoj_gorod,
+            sorting_pereezd_kvartiry = :sorting_pereezd_kvartiry,
+            sorting_pereezd_na_dachu = :sorting_pereezd_na_dachu,
+            sorting_pereezd_ofisa = :sorting_pereezd_ofisa,
+            is_showable = :is_showable
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':name', $_POST['articles_form_name']);
+        $sth->bindParam(':url', $_POST['articles_form_url']);
+        $sth->bindParam(':title', $_POST['articles_form_title']);
+        $sth->bindParam(':navigation', $_POST['articles_form_navigation']);
+        # full_navigation
+        if (empty($_POST['articles_form_full_navigation'])) $_POST['articles_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['articles_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['articles_form_h1']);
+
+        # sorting_pereezd_v_drugoj_gorod
+        $sth->bindValue(':sorting_pereezd_v_drugoj_gorod', !empty($_POST['articles_form_sorting_pereezd_v_drugoj_gorod']) ? 1 : null);
+        # sorting_pereezd_kvartiry
+        $sth->bindValue(':sorting_pereezd_kvartiry', !empty($_POST['articles_form_sorting_pereezd_kvartiry']) ? 1 : null);
+        # sorting_pereezd_na_dachu
+        $sth->bindValue(':sorting_pereezd_na_dachu', !empty($_POST['articles_form_sorting_pereezd_na_dachu']) ? 1 : null);
+        # sorting_pereezd_ofisa
+        $sth->bindValue(':sorting_pereezd_ofisa', !empty($_POST['articles_form_sorting_pereezd_ofisa']) ? 1 : null);
+
+        # is_showable
+        $isShowable = !empty($_POST['articles_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+        # footeranchor
+        if ($_POST['articles_form_footeranchor'] == '') $_POST['articles_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['articles_form_footeranchor']);
+        # id
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute())
+        {
+            $GLOBALS['tpl_success'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°.';
+            
+			# СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚ РІ С„Р°Р№Р»
+			saveContentToFile($_GET['itemID'],
+							  $_POST['articles_form_text']);
+                              
+            # РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ # print_r($_FILES);
+            if (!empty($_FILES['articles_form_image']['tmp_name']))
+            {
+                copyImage(array(
+                'itemID' => $_GET['itemID'],
+                'imageFormName' => 'articles_form_image',
+                'imageDbColumnName' => 'image',
+                'imagePrefix' => ''
+                ));
+            }
+            # /РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ
+        }
+        else
+        {
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РёРЅС„РѕСЂРјР°С†РёСЏ РЅРµ СЃРѕС…СЂР°РЅРµРЅР°. РџР¶Р», РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+        }
+    } # /СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+    # СѓРґР°Р»СЏРµРј СѓРєР°Р·Р°РЅРЅСѓСЋ РєР°СЂС‚РёРЅРєСѓ
+    if ($_GET['subaction'] == 'remove_photo')
+    {
+        # РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+        $allowedCoumns = array('image');
+        if (empty($_GET['itemID'])) $GLOBALS['tpl_failure'] = 'РќРµ РїРµСЂРµРґР°РЅ ID Р·Р°РїРёСЃРё.';
+        elseif (empty($_GET['db_column_name'])) $GLOBALS['tpl_failure'] = 'РќРµРІРµСЂРЅРѕ РїРµСЂРµРґР°РЅРѕ РЅР°Р·РІР°РЅРёРµ СЃС‚РѕР»Р±С†Р° РєР°СЂС‚РёРЅРєРё.';
+        elseif (!in_array($_GET['db_column_name'], $allowedCoumns)) $GLOBALS['tpl_failure'] = 'РќРµРІРµСЂРЅРѕ РїРµСЂРµРґР°РЅРѕ РЅР°Р·РІР°РЅРёРµ СЃС‚РѕР»Р±С†Р° РєР°СЂС‚РёРЅРєРё.';
+        else
+        {
+            # РїРѕР»СѓС‡Р°РµРј РёРЅРѕС„СЂРјР°С†РёСЋ Рѕ РєР°СЂС‚РёРЅРєРµ
+            $sql = '
+            select '.$_GET['db_column_name'].'
+            from '.DB_PREFIX.'articles
+            where id = :id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            $columnName = $sth->fetchColumn(); # echo 'columnName: '.$columnName;
+            # СѓРґР°Р»СЏРµРј РєР°СЂС‚РёРЅРєСѓ
+            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$columnName; # echo 'fullPathToImage: '.$fullPathToImage;
+            if (!empty($fullPathToImage) && file_exists($fullPathToImage)) unlink($fullPathToImage);
+            # РІРЅРѕСЃРёРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+            $sql = '
+            update '.DB_PREFIX.'articles
+            set '.$_GET['db_column_name'].' = NULL
+            where id = :id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+            if ($sth->execute())
+            {
+                $GLOBALS['tpl_success'] = 'РљР°СЂС‚РёРЅРєР° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°.';
+                $_POST['tabs_state'] = 4;
+            }
+            else $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РєР°СЂС‚РёРЅРєР° РЅРµ СѓРґР°Р»РµРЅР°. РџР¶Р», РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        }
+    } # /СѓРґР°Р»СЏРµРј СѓРєР°Р·Р°РЅРЅСѓСЋ РєР°СЂС‚РёРЅРєСѓ
+
+    # РІС‹РІРѕРґРёРј С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+    if ($showEditForm)
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+        
+        # Р·Р°С‰РёС‚Р°
+        if (!$itemInfo['id']) exit('
+		РќРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р·Р°РїРёСЃРё СЃ ID='.$_GET['itemID'].'
+		<br /><a href="/control/articles/">РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ СЃС‚Р°С‚РµР№</a>
+		');
+        
+		# С‡РёС‚Р°РµРј С‚РµРєСЃС‚ СЃС‚Р°С‚СЊРё РёР· С„Р°Р№Р»Р°
+        if (!empty($itemInfo['file_name']))
+        {
+            $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_articles/'.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
+            if (file_exists($fullPathToFile))
+            {
+                $content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
+                # prepare for showing
+                $content = htmlspecialchars($content, ENT_QUOTES);
+                $content = str_replace("\t", "", $content);
+            }
+        }
+
+        # prepare all values for showing
+        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
+        
+        # РїРѕР»СѓС‡Р°РµРј Рё РІС‹РІРѕРґРёРј РёРЅС„Сѓ РїРѕ С„РѕС‚Рѕ
+        $imageInfo = showPhotoInfo(array('imageName' => $itemInfo['image'], 'imageDbColumnName' => 'image'));
+
+        # sorting_pereezd_v_drugoj_gorod_checked
+        if (!empty($itemInfo['sorting_pereezd_v_drugoj_gorod'])) $sorting_pereezd_v_drugoj_gorod_checked = " checked='checked'";
+
+        # sorting_pereezd_kvartiry_checked
+        if (!empty($itemInfo['sorting_pereezd_kvartiry'])) $sorting_pereezd_kvartiry_checked = " checked='checked'";
+
+        # sorting_pereezd_na_dachu_checked
+        if (!empty($itemInfo['sorting_pereezd_na_dachu'])) $sorting_pereezd_na_dachu_checked = " checked='checked'";
+
+        # sorting_pereezd_ofisa_checked
+        if (!empty($itemInfo['sorting_pereezd_ofisa'])) $sorting_pereezd_ofisa_checked = " checked='checked'";
+
+        # prepare all values for showing
+        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
+        
+        return "
+		<script type='text/javascript' src='/control/articles/index.js'></script>
+		<form id='articles_form' action='/control/articles/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='articles_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
+            
+            <button class='btn btn-primary submit_button' type='submit'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+
+            &nbsp;&nbsp;&nbsp; <a href='/control/articles/'><button class='btn btn-success' type='button'>
+            <i class='fa fa-share-square' style='margin-right:3px'></i>
+            РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/articles/?action=addItem'><button class='btn btn-success' type='button'>
+            <i class='fa fa-plus-square' style='margin-right:3px'></i>
+            Р”РѕР±Р°РІРёС‚СЊ СЃС‚Р°С‚СЊСЋ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/articles/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"РЎС‚Р°С‚СЊСЏ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅР° Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ СЃС‚Р°С‚СЊСЋ?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> РЈРґР°Р»РёС‚СЊ СЃС‚Р°С‚СЊСЋ</button></a>
+
+			<br><br><b>URL:</b>&nbsp; <a href='/sovet/".$itemInfo['url']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/sovet/".$itemInfo['url']."/</a>
+            
+            <br><br><div class='form-group' style='width:60%'>
+                <label>Р”РёСЂРµРєС‚РѕСЂРёСЏ (РїРѕ-Р°РЅРіР»РёР№СЃРєРё): <span style='color:red'>*</span></label>
+                <input type='text' name='articles_form_url' id='articles_form_url' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ (РЅР°РїСЂРёРјРµСЂ: kak-vibrat-avto)' value='".$itemInfo['url']."' />
+            </div>
+
+            <div class='form-group' style='width:60%'>
+                <label>РќР°Р·РІР°РЅРёРµ: <span style='color:red'>*</span></label>
+                <input type='text' name='articles_form_name' id='articles_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїРѕ-СЂСѓСЃСЃРєРё' value='".$itemInfo['name']."' />
+            </div>
+            
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹:</label>
+                <input type='text' name='articles_form_title' id='articles_form_title' class='form-control' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$itemInfo['title']."' />
+            </div>
+            
+            <div class='form-group' style='width:90%'>
+                <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё:</label>
+                <input type='text' name='articles_form_navigation' id='articles_form_navigation' class='form-control' value='".$itemInfo['navigation']."' />
+            </div>
+            
+			<div class='form-group' style='width:95%'>
+                <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                       <br />
+                       <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+                </label>
+                <textarea name='articles_form_full_navigation' id='articles_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
+            </div>
+
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє h1:</label>
+                <input type='text' name='articles_form_h1' id='articles_form_h1' class='form-control' value='".$itemInfo['h1']."' />
+            </div>
+
+            <div class='form-group'>
+                <label>РўРµРєСЃС‚:</label>
+                <textarea name='articles_form_text' id='articles_form_text' class='form-control lined' style='width:90%;height:270px'>".$content."</textarea>
+            </div>
+            
+            <div class='form-group'>
+                <label>РљР°СЂС‚РёРЅРєР° (РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ):</label>
+                &nbsp; <input id='articles_form_image' name='articles_form_image' type='file' style='display:inline-block' />
+            </div>
+
+            ".$imageInfo."
+
+            <div class='form-group' style='width:95%'>
+                <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp; 
+                <textarea name='articles_form_footeranchor' id='articles_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
+            </div>
+            
+            <div class='form-group' style='margin-bottom:0'>
+                <label>
+                    <input type='checkbox' name='articles_form_is_showable' id='articles_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checekd"' : '')." />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ СЃС‚Р°С‚СЊСЋ РЅР° СЃР°Р№С‚Рµ
+                </label>
+            </div>
+            
+            <br />
+			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+            
+		</form>
+		";
+    }
+} # /Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РЎРўРђРўР¬Р
+
+# Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РЎРўРђРўР¬Р
+function showAddForm()
+{
+    global $dbh;
+    
+    return "
+	<script type='text/javascript' src='/control/articles/index.js'></script>
+	<form id='articles_form' action='/control/articles/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ СЃС‚Р°С‚СЊСЋ</button>
+        
+        &nbsp;&nbsp;&nbsp; <a href='/control/articles/'><button class='btn btn-success' type='button'>
+        <i class='fa fa-share-square' style='margin-right:3px'></i>
+        РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+        </button></a>
+        
+		<br /><br /><b>URL:</b>&nbsp; <a href='/sovet/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/sovet/</a>
+
+        <br /><br />
+        <div class='form-group' style='width:60%'>
+            <label>Р”РёСЂРµРєС‚РѕСЂРёСЏ (РїРѕ-Р°РЅРіР»РёР№СЃРєРё): <span style='color:red'>*</span></label>
+            <input type='text' name='articles_form_url' id='articles_form_url' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ (РЅР°РїСЂРёРјРµСЂ: kak-oplatit-zakaz)' value='".$_POST['articles_form_url']."' />
+        </div>
+
+        <div class='form-group' style='width:60%'>
+            <label>РќР°Р·РІР°РЅРёРµ: <span style='color:red'>*</span></label>
+            <input type='text' name='articles_form_name' id='articles_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїРѕ-СЂСѓСЃСЃРєРё' value='".$_POST['articles_form_name']."' />
+        </div>
+
+        <div id='articles_form_name_alert_div' class='alert alert-info hidden width_95'></div>
+
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹:</label>
+            <input type='text' name='articles_form_title' id='articles_form_title' class='form-control' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$_POST['articles_form_title']."' />
+        </div>
+
+        <div class='form-group' style='width:90%'>
+            <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё:</label>
+            <input type='text' name='articles_form_navigation' id='articles_form_navigation' class='form-control' value='".$_POST['articles_form_navigation']."' />
+        </div>
+        
+        <div class='form-group' style='width:95%'>
+            <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                   <br />
+                   <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+            </label>
+            <textarea name='articles_form_full_navigation' id='articles_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['articles_form_full_navigation']."</textarea>
+        </div>
+
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє h1:</label>
+            <input type='text' name='articles_form_h1' id='articles_form_h1' class='form-control' value='".$_POST['articles_form_h1']."' />
+        </div>
+
+        <div class='form-group'>
+            <label>РўРµРєСЃС‚:</label>
+            <textarea name='articles_form_text' id='articles_form_text' class='form-control lined' style='width:90%;height:270px'>".$_POST['articles_form_text']."</textarea>
+        </div>
+        
+       <div class='form-group'>
+            <label>РљР°СЂС‚РёРЅРєР° (РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ):</label>
+            &nbsp; <input id='articles_form_image' name='articles_form_image' type='file' style='display:inline-block' />
+        </div>
+
+        <div class='form-group' style='width:95%'>
+            <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp;
+            <textarea name='articles_form_footeranchor' id='articles_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['articles_form_footeranchor']."</textarea>
+        </div>
+        
+        <div class='form-group' style='margin-bottom:0'>
+            <label>
+                <input type='checkbox' name='articles_form_is_showable' id='articles_form_is_showable' class='form_checkbox' checked='checekd' />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ СЃС‚Р°С‚СЊСЋ РЅР° СЃР°Р№С‚Рµ
+            </label>
+        </div>
+        
+        <br />
+        
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ СЃС‚Р°С‚СЊСЋ</button>
+	</form>
+	";
+} # /Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РќРћР’РћРЎРўР
+
+# Р”РћР‘РђР’Р›РЇР•Рњ РЎРўРђРўР¬Р® Р’ Р‘Р”
+function addItemSubmit()
+{
+	global $dbh, $html;
+	
+	# print_r($_POST);
+	# Р·Р°С‰РёС‚Р° РѕС‚ РїСЂСЏРјРѕРіРѕ Р·Р°РїСЂРѕСЃР° URL'Р°: /control/articles/?action=addItemSubmit
+	if (!empty($_POST))
+	{
+        # РїСЂРѕРІРµСЂРєР° + РЅСѓР¶РЅР°СЏ РєРѕРґРёСЂРѕРІРєР° POST-РїРµСЂРµРјРµРЅРЅС‹С…
+        preparePOSTVariables(); # print_r($_POST); exit;
+
+		# РґРѕР±Р°РІР»СЏРµРј СЃС‚Р°С‚СЊСЋ РІ Р‘Р”
+		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
+		# РµСЃР»Рё СЃС‚Р°С‚СЊСЏ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°
+		if (!empty($lastInsertID))
+		{
+			# СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚ РІ С„Р°Р№Р»
+			saveContentToFile($lastInsertID,
+							  $_POST['articles_form_text']);
+                              
+            # РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ # print_r($_FILES);
+            if (!empty($_FILES['articles_form_image']['tmp_name']))
+            {
+                copyImage(array(
+                'itemID' => $lastInsertID,
+                'imageFormName' => 'articles_form_image',
+                'imageDbColumnName' => 'image',
+                'imagePrefix' => ''
+                ));
+            }
+            # /РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ
+            
+			# РґРµР»Р°РµРј РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/articles/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
+			header('Location: '.$fullUrlForEdit);
+		}
+		# РµСЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё СЃС‚Р°С‚СЊСЏ РЅРµ РґРѕР±Р°РІР»РµРЅР°
+		else
+		{
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё СЃС‚Р°С‚СЊСЏ РЅРµ РґРѕР±Р°РІР»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+		}
+	}
+	# РµСЃР»Рё РЅР°Р±СЂР°РЅ: /control/articles/addItemSubmit/ Рё РїСЂРё СЌС‚РѕРј $_POST РїСѓСЃС‚РѕР№
+	else
+	{
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РїРѕР·РёС†РёР№
+        $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё СЃС‚Р°С‚СЊСЏ РЅРµ РґРѕР±Р°РІР»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+        return showAddForm();
+	}
+} # /Р”РћР‘РђР’Р›РЇР•Рњ РЎРўРђРўР¬Р® Р’ Р‘Р”
+
+# РЈР”РђР›РЇР•Рњ РЎРўРђРўР¬Р®
+function deleteItem(){
+	
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID']))
+	{
+		# РІС‹РІРѕРґРёРј РѕС€РёР±РєСѓ
+		$GLOBALS['tpl_failure'] = 'РЎС‚Р°С‚СЊСЏ РЅРµ СѓРґР°Р»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє
+        showItems();
+	}
+	else
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+        
+		# СѓРґР°Р»СЏРµРј РєР°СЂС‚РёРЅРєСѓ
+        if (!empty($itemInfo['image']))
+        {
+            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$itemInfo['image'];
+            if (file_exists($fullPathToImage) && is_file($fullPathToImage)) unlink($fullPathToImage);
+        }
+
+		# СѓРґР°Р»СЏРµРј СЃС‚Р°С‚СЊСЋ РёР· Р‘Р”
+        $sql = '
+        delete from '.DB_PREFIX.'articles
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute())
+		{
+			$GLOBALS['tpl_success'] = 'РЎС‚Р°С‚СЊСЏ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°.';
+            
+            # СѓРґР°Р»СЏРµРј С„Р°Р№Р» СЃ С‚РµРєСЃС‚РѕРј
+            if (!empty($itemInfo['file_name']))
+            {
+                $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_articles/'.basename($itemInfo['file_name']);
+                if (is_file($fullPathToFile)) unlink($fullPathToFile);
+            }
+            
+            # СѓР°РґСЏР»РµРј backup'С‹
+            $sql = '
+            delete from '.DB_PREFIX.'backups
+            where table_name = "articles"
+                  and entry_id = :entry_id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє
+			return showItems();
+		}
+		else
+		{
+            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, СЃС‚Р°С‚СЊСЏ РЅРµ СѓРґР°Р»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РїРѕР·РёС†РёР№
+			return showItems();
+		}
+	}
+} # /РЈР”РђР›РЇР•Рњ РЎРўРђРўР¬Р®
+
+# Р”РћР‘РђР’Р›РЇР•Рњ РЎРўРђРўР¬Р® Р’ Р‘Р”
+function addItemToDB()
+{
+	global $dbh;
+	
+	if (!empty($_POST['articles_form_name']))
+	{ 
+        $sql = '
+        insert into '.DB_PREFIX.'articles
+        (name, 
+         url,
+         title,
+         navigation,
+         full_navigation,
+         h1,
+         footeranchor,
+         sorting_pereezd_v_drugoj_gorod,
+         sorting_pereezd_kvartiry,
+         sorting_pereezd_na_dachu,
+         sorting_pereezd_ofisa,
+         is_showable)
+        values
+        (:name,
+         :url,
+         :title,
+         :navigation,
+         :full_navigation,
+         :h1,
+         :footeranchor,
+         :sorting_pereezd_v_drugoj_gorod,
+         :sorting_pereezd_kvartiry,
+         :sorting_pereezd_na_dachu,
+         :sorting_pereezd_ofisa,
+         :is_showable)        
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':name', $_POST['articles_form_name']);
+        $sth->bindParam(':url', $_POST['articles_form_url']);
+        $sth->bindParam(':title', $_POST['articles_form_title']);
+        $sth->bindParam(':navigation', $_POST['articles_form_navigation']);
+        # full_navigation
+        if (empty($_POST['articles_form_full_navigation'])) $_POST['articles_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['articles_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['articles_form_h1']);
+        # footeranchor
+        if ($_POST['articles_form_footeranchor'] == '') $_POST['articles_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['articles_form_footeranchor']);
+
+        # sorting_pereezd_v_drugoj_gorod
+        $sth->bindValue(':sorting_pereezd_v_drugoj_gorod', !empty($_POST['articles_form_sorting_pereezd_v_drugoj_gorod']) ? 1 : null);
+        # sorting_pereezd_kvartiry
+        $sth->bindValue(':sorting_pereezd_kvartiry', !empty($_POST['articles_form_sorting_pereezd_kvartiry']) ? 1 : null);
+        # sorting_pereezd_na_dachu
+        $sth->bindValue(':sorting_pereezd_na_dachu', !empty($_POST['articles_form_sorting_pereezd_na_dachu']) ? 1 : null);
+        # sorting_pereezd_ofisa
+        $sth->bindValue(':sorting_pereezd_ofisa', !empty($_POST['articles_form_sorting_pereezd_ofisa']) ? 1 : null);
+
+
+        # is_showable
+        $isShowable = !empty($_POST['articles_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+		try { if ($sth->execute()) {
+            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
+			if (!empty($last_insert_id))
+            {
+                # С„РёРєСЃРёСЂСѓРµРј РёРјСЏ С„Р°Р№Р»Р° РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
+                $sql = '
+                update '.DB_PREFIX.'articles
+                set file_name = :file_name
+                where id = :id
+                '; # echo '<pre>'.$sql."</pre><hr />";
+                $sth = $dbh->prepare($sql);
+                # file_name
+                $file_name = $last_insert_id.'.php';
+                $sth->bindParam(':file_name', $file_name);
+                $sth->bindParam(':id', $last_insert_id, PDO::PARAM_INT);
+                $sth->execute();
+                # /С„РёРєСЃРёСЂСѓРµРј РёРјСЏ С„Р°Р№Р»Р° РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
+                
+                return $last_insert_id;
+            }
+			else return;
+        }}
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
+	}
+    else echo 'Р’ РјРµС‚РѕРґ addItemToDB РЅРµ РїРµСЂРµРґР°РЅРѕ articles_form_name.';
+} # /Р”РћР‘РђР’Р›РЇР•Рњ РЎРўРђРўР¬Р® Р’ Р‘Р”
+
+# РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+function getItemInfo()
+{
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID'])) return;
+	
+	$sql = '
+	select *
+	from '.DB_PREFIX.'articles
+	where id = :id
+	'; # echo '<pre>'.$sql."</pre><hr />";
+	$sth = $dbh->prepare($sql);
+    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+    $sth->execute();
+    $itemInfo = $sth->fetch();
+	if (!empty($itemInfo)) return $itemInfo;
+	else return;
+} # /РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+
+# РЎРћРҐР РђРќРЇР•Рњ РљРћРќРўР•РќРў Р’ Р¤РђР™Р›
+function saveContentToFile($itemID,
+						   $text)
+{
+    /*
+    echo 'itemID: '.$itemID.'<br />';
+    echo 'text: '.$text.'<br />';
+    */
+
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($itemID)) return;
+	if (empty($text)) return;
+	
+	$fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_articles/'.basename($itemID.'.php'); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
+    
+    file_put_contents($fullPathToFile, $text, LOCK_EX);
+    if (is_file($fullPathToFile)) chmod($fullPathToFile, 0755);
+} # /РЎРћРҐР РђРќРЇР•Рњ РљРћРќРўР•РќРў Р’ Р¤РђР™Р›
+
+# РљРћРџРР РЈР•Рњ РљРђР РўРРќРљРЈ
+function copyImage($array)
+{
+	global $dbh;
+	
+    # print_r($_FILES);
+    # print_r($array);
+    
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($array['itemID'])) return;
+	if (empty($array['imageFormName'])) return;
+	if (empty($array['imageDbColumnName'])) return;
+	# if (empty($array['imagePrefix'])) return;
+
+	# echo '<pre>'.(print_r($array, true)).'</pre>';
+	# echo $_FILES[$array['imageFormName']]['tmp_name'];
+	if (is_uploaded_file($_FILES[$array['imageFormName']]['tmp_name']))
+	{
+		# РЈР”РђР›РЇР•Рњ РЎРўРђР РЈР® РљРђР РўРРќРљРЈ, Р•РЎР›Р РћРќРђ Р•РЎРўР¬
+		$sql = '
+		select '.$array['imageDbColumnName'].'
+		from '.DB_PREFIX.'articles
+		where id = :id
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
+        $sth->execute();
+        $_ = $sth->fetchColumn();
+		if (!empty($_))
+		{
+			$oldImage = $_;
+			# СѓРґР°Р»СЏРµРј РёР· Р‘Р”
+			$sql = '
+			update '.DB_PREFIX.'articles
+			set '.$array['imageDbColumnName'].' = NULL
+			where id = :id
+			'; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+			# СѓРґР°Р»СЏРµРј С„Р°Р№Р»
+			$result = @unlink($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage); 
+			# echo $result.'<hr />';
+			# echo $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage;
+		}
+		# /РЈР”РђР›РЇР•Рњ РЎРўРђР РЈР® РљРђР РўРРќРљРЈ, Р•РЎР›Р РћРќРђ Р•РЎРўР¬
+	
+		# РљРћРџРР РЈР•Рњ РќРћР’РЈР® РљРђР РўРРќРљРЈ
+		$ext = getImageExt($_FILES[$array['imageFormName']]['tmp_name']); # echo $ext.'<hr />';
+		$newImageName = $array['itemID']."".$array['imagePrefix'].".".$ext; # echo $newImageName.'<hr />';
+		$fullPathToUpload = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$newImageName; # echo $fullPathToUpload.'<hr />';
+		# РєРѕРїРёСЂСѓРµРј РЅР° РѕСЃРЅРѕРІРЅСѓСЋ Р·РѕРЅСѓ
+		if (move_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'], $fullPathToUpload))
+		{
+			# РїРёС€РµРј РёРЅС„Сѓ РІ Р‘Р”
+			$sql = '
+			update '.DB_PREFIX.'articles
+			set '.$array['imageDbColumnName'].' = :new_image_name
+			where id = :id
+			'; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':new_image_name', $newImageName);
+            $sth->bindParam(':id', $array['itemID']);
+            $sth->execute();
+			
+			return array($newImageName, $newImageLargeName);
+		}
+		else return;
+		# /РљРћРџРР РЈР•Рњ РќРћР’РЈР® РљРђР РўРРќРљРЈ
+	}
+} # /РљРћРџРР РЈР•Рњ РљРђР РўРРќРљРЈ
+
+# РџРћР›РЈР§РђР•Рњ Р РђРЎРЁРР Р•РќРР• РљРђР РўРРќРљР
+# $imageName - full path to image
+function getImageExt($fullPathToImage)
+{
+	# print_r($fullPathToImage);
+	
+	if (empty($fullPathToImage)) return;
+
+	$info = getimagesize($fullPathToImage); # print_r($info);
+	$ext = str_replace("image/", "", $info['mime']); # echo $ext.'<hr />';
+	
+	if (!empty($ext)) return $ext;
+	else return;
+} # /РџРћР›РЈР§РђР•Рњ Р РђРЎРЁРР Р•РќРР• РљРђР РўРРќРљР
+
+# Р’Р«Р’РћР”РРњ РРќР¤РЈ РџРћ РљРђР РўРРќРљР•
+function showPhotoInfo($array)
+{
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($array['imageName'])) return;
+	if (empty($array['imageDbColumnName'])) return;
+	
+	if (file_exists($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath']).$array['imageName'])
+	{
+		$imageInfo = @getimagesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']); # echo '<pre>'.(print_r($imageInfo, true)).'</pre>';
+		$imageSize = @filesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']);
+		$imageSize = @round($imageSize / 1024, 1);
+		
+		return '
+		РџСѓС‚СЊ: <a href="'.$GLOBALS['imagesPath'].$array['imageName'].'" target="_blank">'.$_SERVER['HTTP_HOST'].$GLOBALS['imagesPath'].$array['imageName'].'</a>
+		<br />Р’РµСЃ: '.$imageSize.' РєР±.
+		<br />Р Р°Р·РјРµСЂ: '.$imageInfo[0].'px x '.$imageInfo[1].'px
+		<br /><br />
+		<a href="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" target="_blank"><img src="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" border="0" /></a>
+        <br /><a href="/control/articles/?action=editItem&itemID='.$_GET['itemID'].'&subaction=remove_photo&db_column_name='.$array['imageDbColumnName'].'" onclick="return confirm(\'РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ?\');">РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ</a>
+		<hr style="border:none;background-color:#ccc;color:#ccc;height:1px" />
+		';
+	}
+} # /Р’Р«Р’РћР”РРњ РРќР¤РЈ РџРћ РљРђР РўРРќРљР•
+
+# РЎРўР РћРРњ SELECT РЎ РђРќРљРћР РђРњР Р”Р›РЇ РџР•Р Р•Р›РРќРљРћР’РљР Р’ РџРћР”Р’РђР›Р•
+/* function buildAllFooteranchors($footerAnchorID = NULL)
+{
+    global $dbh;
+    
+    $sql = '
+    select id,
+           anchor
+    from '.DB_PREFIX.'footeranchors
+    order by anchor
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $_ = $sth->fetchAll();
+    $options = array();
+    foreach ($_ as $item)
+    {
+        # selected
+        if (!empty($footerAnchorID) && $footerAnchorID == $item['id']) $selected = ' selected="selected"';
+        else unset($selected);
+        
+        $options[] = '<option value="'.$item['id'].'"'.$selected.'>'.$item['anchor'].'</option>';
+    }
+    if (!empty($options) and is_array($options)) $options = implode(PHP_EOL, $options);
+    $result = '<select id="articles_form_footeranchor_id" name="articles_form_footeranchor_id" class="form-control">'.PHP_EOL.'<option value="null">РЅРµ РІС‹Р±СЂР°РЅ</option>'.PHP_EOL.$options.'</select>';
+    if (!empty($result)) return $result;
+} */ # /РЎРўР РћРРњ SELECT РЎ РђРќРљРћР РђРњР Р”Р›РЇ РџР•Р Р•Р›РРќРљРћР’РљР Р’ РџРћР”Р’РђР›Р•
+
+# /Р¤РЈРќРљР¦РРћРќРђР›

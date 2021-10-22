@@ -1,494 +1,494 @@
-<?php 
-# Модуль админки для работы с js-скриптами (таблица templates)
-# romanov.egor@gmail.com; 2015.4.19
-
-# подключаем файл конфига
-include('../loader.control.php');
-
-# НАСТРОЙКИ
-$GLOBALS['tpl_title'] = 'js-код';
-
-# ЗАЩИТА
-if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
-
-# ЛОГИКА
-if ($_GET['action'] == "addItem")
-{ 
-    $GLOBALS['tpl_title'] .= ' > создаем файл js-кода';
-    $GLOBALS['tpl_h1'] = 'Создаем файл js-кода'; 
-    $GLOBALS['tpl_content'] = showAddForm();
-}
-elseif ($_GET['action'] == "addItemSubmit") {
-    $GLOBALS['tpl_title'] .= ' > создаем файл js-кода';
-    $GLOBALS['tpl_h1'] = 'Создаем файл js-кода'; 
-    $GLOBALS['tpl_content'] = addItemSubmit(); 
-}
-elseif ($_GET['action'] == "editItem") {
-    $GLOBALS['tpl_title'] .= ' > редактируем файл js-кода';
-    $GLOBALS['tpl_h1'] = 'Редактируем файл js-кода'; 
-    $GLOBALS['tpl_content'] = showEditForm(); 
-}
-elseif ($_GET['action'] == "deleteItem") {
-    $GLOBALS['tpl_title'] .= ' > удаляем файл js-кода';
-    $GLOBALS['tpl_h1'] = 'Удаляем файл js-кода'; 
-    $GLOBALS['tpl_content'] = deleteItem(); 
-}
-else { 
-    $GLOBALS['tpl_title'] .= ' > все файлы js-кода';
-    $GLOBALS['tpl_h1'] = 'Все файлы js-кода'; 
-    $GLOBALS['tpl_content'] = showItems(); 
-}
-# /ЛОГИКА
-
-# выводим главный шаблон
-$tpl->setMainTemplate('template_for_all_pages.php');
-$tpl->echoMainTemplate();
-
-# ФУНКЦИОНАЛ
-
-# ФОРМИРУЕМ СПИСОК ШАБЛОНОВ
-function showItems($count = null)
-{
-    global $dbh;
-	
-	$GLOBALS['tpl_title'] = 'js-код > все файлы';
-    
-	# формируем список шаблонов
-    $sql = '
-	select id,
-		   name,
-		   file_name,
-		   (select count(1) from '.DB_PREFIX.'js_backups where template_id = i.id) as backups_count
-	from '.DB_PREFIX.'js as i
-	order by name
-	'; # echo '<pre>'.$sql."</pre><hr />";
-    $_ = $dbh->query($sql)->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>';
-    $_c = count($_);
-	$rows = array();
-    for ($i=0;$i<$_c;$i++)
-	{
-        $rows[] = '
-		<tr>
-            <td class="center">
-                <a class="block" href="/control/edit_js/?action=editItem&itemID='.$_[$i]['id'].'">
-                    <i class="fa fa-edit size_18"></i>
-                </a>
-            </td>
-			<td class="center">'.$_[$i]['name'].'</td>
-			<td class="center">'.$_[$i]['file_name'].'</td>
-			<td class="center">'.$_[$i]['backups_count'].'</td>
-			<td class="center">
-                <a class="block" title="Удалить файл js-кода" href="/control/edit_js/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Файл js-кода будет удален безвозвратно. Удалить файл?\')">
-                    <i class="fa fa-trash-o size_18"></i>
-                </a>
-			</td>
-		</tr>
-		';
-    }
-	# /формируем список шаблонов
-	
-	# считаем общее количество шаблонов
-	$sql = '
-	select count(1) as items_count
-	from '.DB_PREFIX.'js
-	';
-	$allItemsCount = $dbh->query($sql)->fetch();
-	$allItemsCount = $allItemsCount[0]['items_count'];
-	
-	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
-	else unset($rows);
-    
-    $result = '
-	<script type="text/javascript" src="/control/edit_js/index.js"></script>
-	
-    <div class="center" style="margin-bottom:15px">
-        <a href="/control/edit_js/?action=addItem">
-            <button id="parse_all_projects" class="btn btn-success" type="button">
-                <i class="fa fa-plus-square" style="margin-right:3px"></i>
-                    Создать файл js-кода
-            </button>
-        </a>
-    </div>
-    ';
-    
-    if (empty($rows)) $result .= 'В системе не задан ни один файл js-кода.';
-    else
-    {
-        $result .= '
-        <div id="resultSet">
-        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
-            <tr>
-                <th class="center" style="width:50px;white-space:nowrap">Правка</th>
-                <th class="center" style="width:35%">Название</th>
-                <th class="center">Имя файла</th>
-                <th class="center" style="width:100px;white-space:nowrap">backup\'ов</th>
-                <th class="center" style="width:100px;white-space:nowrap">Удаление</th>
-            </tr>
-            '.$rows.'
-        </table>
-        </div>
-        ';
-    }
-    
-    return $result;
-} # /ФОРМИРУЕМ СПИСОК ШАБЛОНОВ
-
-# ФОРМА РЕДАКТИРОВАНИЯ ШАБЛОНА
-function showEditForm(){
-    global $dbh;
-    
-    $showEditForm = 1;
-
-    # выводим сообщение
-    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'Файл js-кода успешно добавлен.';
-
-    if ($showEditForm)
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-        
-        # защита
-        if (!$itemInfo['id']) exit('
-		Не сущесвтует записи с ID='.$_GET['itemID'].'
-		<br /><a href="/control/edit_js/">Перейти к списку файлов с js-кодом</a>
-		');
-
-        # prepare all values for showing
-        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
-		
-		# получаем html-код шаблона
-		$fullPathToFile = PATH_TO_PUBLIC_JS.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
-		if (file_exists($fullPathToFile))
-		{
-			$content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
-			# prepare for showing
-			$content = htmlspecialchars($content, ENT_QUOTES);
-			$content = str_replace("\t", "", $content);
-		}
-        
-        return "
-		<script type='text/javascript' src='/control/edit_js/index.js'></script>
-		<form id='templates_edit_form' action='/control/edit_js/?action=editItem&itemID=".$itemInfo['id']."&subaction=editSubmit' name='form1' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
-			
-            <button id='templates_edit_save_changes' class='btn btn-primary submit_button' type='button'>Сохранить информацию</button>
-
-            &nbsp;&nbsp;&nbsp; <a href='/control/edit_js/'><button class='btn btn-success' type='button'>
-            <i class='fa fa-share-square' style='margin-right:3px'></i>
-            Перейти к списку
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/edit_js/?action=addItem'><button class='btn btn-success' type='button'>
-            <i class='fa fa-plus-square' style='margin-right:3px'></i>
-            Создать js-файл
-            </button></a>
-
-			<br><br><b>URL:</b>&nbsp; <a href='".PATH_TO_PUBLIC_JS_SHORT.$itemInfo['file_name']."' target='_blank'>".'http://www.'.$_SERVER['SERVER_NAME'].PATH_TO_PUBLIC_JS_SHORT.$itemInfo['file_name']."</a> 
-
-            <br><br>
-			<div class='form-group' style='width:50%'>
-                <label>Название файла js-кода: <span style='color:red'>*</span></label>
-                <input type='text' name='templates_form_name' id='templates_form_name' class='form-control form_required' data-required-label='Пжл, укажите название файла js-кода' value='".$itemInfo['name']."' />
-            </div>
-            
-			<div class='form-group'>
-                <label>js-код: <span style='color:red'>*</span></label>
-                <textarea name='templates_form_html_code' id='templates_form_html_code' class='form-control lined form_required' style='width:95%;height:375px' data-required-label='Пжл, укажите js-код'>".$content."</textarea>
-            </div>
-            
-			<button id='templates_edit_save_changes' class='btn btn-primary submit_button' type='button' style='margin-top:5px'>Сохранить информацию</button>
-            
-            &nbsp; <div class='ajax_result bottom'></div>
-            
-            <br /><br />
-            
-            <div class='form-group' style='border:1px dashed #ccc;padding:7px 10px'>
-				<label>backup'ы (резервные копии)</label>
-				<div><a href='#' id='makeBackup'>Сделать backup js-кода</a></div>
-                <br />
-				<div id='backupsResult' style='color:#aaaaaa'>backup'ов нет.</div>
-			</div>
-            
-            <div class='form-group'>
-                <b>Полный путь к файлу js-кода:</b> &nbsp; <span style='color:#aaaaaa;font-size:14px'>".PATH_TO_PUBLIC_JS.$itemInfo['file_name']."</span>
-            </div>
-            
-			<input type='hidden' id='template_id' value='".$_GET['itemID']."' />
-		</form>
-		";
-    }
-} # /ФОРМА РЕДАКТИРОВАНИЯ ШАБЛОНА
-
-# ФОРМА ДОБАВЛЕНИЯ ШАБЛОНА
-function showAddForm()
-{
-    global $dbh;
-    
-    return "
-	<script type='text/javascript' src='/control/edit_js/index.js'></script>
-	<form id='templates_add_form' action='/control/edit_js/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
-        <button class='btn btn-primary submit_button' type='submit'>Добавить файл js-кода</button>
-        
-		&nbsp;&nbsp;&nbsp;<b>URL:</b>&nbsp; <a href='/' target='_blank'>http://www.".$_SERVER['SERVER_NAME']."</a> 
-		<span id='ajax_status' style='position:absolute;left:355px;top:5px'></span>
-
-        <br><br>
-        <div class='form-group' style='width:60%'>
-            <label>Название файла js-кода (по-русски, например: js-скрипты для главной): <span style='color:red'>*</span></label>
-            <input type='text' name='templates_form_name' id='templates_form_name' class='form-control form_required' data-required-label='Пжл, укажите название файла js-кода' value='".$_POST['templates_form_name']."' />
-        </div>
-        
-        <!-- ajax-уведомления для поля 'название' -->
-        <div id='templates_form_name_alert_div' class='alert alert-info hidden width_95'></div>
-        
-        <div class='form-group' style='width:60%'>
-            <label>Имя файла (по-английски, например: jquery.main.page.js): <span style='color:red'>*</span></label>
-            <input type='text' name='templates_form_file_name' id='templates_form_file_name' data-required-label='Пжл, укажите имя файла js-кода' class='form-control form_required' value='".$_POST['templates_form_file_name']."' />
-        </div>
-        
-        <!-- ajax-уведомления для поля 'имя файла' -->
-        <div id='templates_form_file_name_alert_div' class='alert alert-info hidden width_95'></div>
-        
-        <div class='form-group'>
-            <label>js-код:</label> &nbsp; <div class='ajax_result'></div>
-            <textarea name='templates_form_html_code' id='templates_form_html_code' class='form-control lined' style='width:95%;height:375px'>".$_POST['templates_form_html_code']."</textarea>
-        </div>
-        
-        <button class='btn btn-primary submit_button' type='submit'>Добавить файл js-кода</button>
-        
-        <!-- скрытые поля -->
-        <input type='hidden' id='form_submit_allowed' value='0' />
-	</form>
-	";
-} # /ФОРМА ДОБАВЛЕНИЯ ШАБЛОНА
-
-# СОЗДАЕМ НОВЫЙ ШАБЛОН
-function addItemSubmit()
-{
-	global $dbh, $html;
-	
-	# print_r($_POST);
-	# защита от прямого запроса URL'а: http://www.kupi-krovat.ru/control/edit_js/?action=addItemSubmit
-	if (!empty($_POST))
-	{
-		# ПОДГОТАВЛИВАЕМ ДАННЫЕ ДЛЯ POST ЗАПРОСА
-		preparePostValues();
-
-		# добавляем шаблон в БД
-		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
-		# если шаблон успешно добавлен
-		if (!empty($lastInsertID))
-		{
-			# сохраняем шаблон в файл
-			saveContentToFile(PATH_TO_PUBLIC_JS,
-							  $_POST['templates_form_file_name'], # new file name
-							  NULL, # old file name
-							  $_POST['templates_form_html_code']);
-
-			# выводим форму редактирования
-			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/edit_js/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
-			header('Location: '.$fullUrlForEdit);
-		}
-		# если возникла ошибка и шаблон не добавлен
-		else
-		{
-            $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и файл js-кода не добавлен. Пожалуйста, обратитесь к разработчику.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-		}
-	}
-	# если набран: http://news.youroute.ru/control/news/addItemSubmit/ и при этом $_POST пустой
-	else
-	{
-		# выводим список шаблонов
-        $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и файл js-кода не добавлен. Пожалуйста, обратитесь к разработчику.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-        return showAddForm();
-	}
-} # /СОЗДАЕМ НОВЫЙ ШАБЛОН
-
-# УДАЛЯЕМ ШАБЛОН
-function deleteItem(){
-	
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID']))
-	{
-		# выводим ошибку
-		$GLOBALS['tpl_failure'] = 'Файл js-кода не удален. Пожалуйста, обратитесь к разработчику.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-		# выводим список шаблонов
-        showItems();
-	}
-	else
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-
-		# получаем имя файла шаблона
-		$fileName = $itemInfo['file_name']; # echo $fileName.'<hr />';
-
-		# удаляем файл шаблона
-		$fullPathToTemplate = PATH_TO_PUBLIC_JS.$fileName; # echo $fullPathToTemplate.'<hr />';
-		if (!empty($fullPathToTemplate) && file_exists($fullPathToTemplate)) unlink($fullPathToTemplate);
-		
-		# удаляем шаблон из БД
-		$result = deleteItemFromDB(); # echo $result.'<hr />';
-		if (!empty($result))
-		{
-			$GLOBALS['tpl_success'] = 'Файл js-кода успешно удален.';
-			# выводим список шаблонов
-			return showItems();
-		}
-		else
-		{
-            $GLOBALS['tpl_failure'] = 'К сожалению, файл js-кода не удален. Пожалуйста, обратитесь к разработчику.';
-			# выводим список шаблонов
-			return showItems();
-		}
-	}
-} # /УДАЛЯЕМ ШАБЛОН
-
-# УДАЛЕНИЕ ПОЗИЦИИ
-function deleteItemFromDB()
-{
-	# проверка переменных
-	if (empty($_GET['itemID'])) return;
-	
-	global $dbh;
-
-	# удаляем записи из таблицы backup'ов
-	$sql = '
-	delete from '.DB_PREFIX.'js_backups
-	where template_id = :id
-	'; # echo '<pre>'.$sql."</pre><hr />";
-	$sth = $dbh->prepare($sql);
-    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-    $sth->execute();
-	
-	# удаляем шаблон
-	$sql = '
-	delete from '.DB_PREFIX.'js
-	where id = :id
-	'; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-	if ($sth->execute()) return 1;
-} # /УДАЛЕНИЕ ПОЗИЦИИ
-
-# ДОБАВЛЯЕМ ШАБЛОН В БД
-function addItemToDB()
-{
-	global $dbh;
-	
-	if (!empty($_POST['templates_form_name'])
-		and !empty($_POST['templates_form_file_name']))
-	{
-		$sql = '
-        insert into '.DB_PREFIX.'js
-        (name, file_name)
-        values
-        (:name, :file_name)
-        '; # echo $sql.'<hr />';
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':name', $_POST['templates_form_name']);
-        $sth->bindParam(':file_name', $_POST['templates_form_file_name']);
-		try { if ($sth->execute()) {
-            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
-			if (!empty($last_insert_id)) return $last_insert_id;
-			else return;
-        }}
-        catch (PDOException $e) 
-        { 
-            if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; } 
-        }
-	}
-} # /ДОБАВЛЯЕМ ШАБЛОН В БД
-
-# ПОДГОТАВЛИВАЕМ ДАННЫЕ ДЛЯ POST ЗАПРОСА
-function preparePostValues()
-{
-	# ПОДГОТАВЛИВАЕМ ДАННЫЕ ДЛЯ POST ЗАПРОСА
-	# trim and stripslashes all elements
-	foreach ($_POST as $key => &$val)
-	{
-		if (!empty($val))
-		{
-			if (!is_array($key) and !is_array($val))
-			{
-				$_POST[$key] = trim($val);
-				# http://stackoverflow.com/questions/2128871/slashes-in-mysql-tables-but-using-pdo-and-parameterized-queries-whats-up
-				# if (get_magic_quotes_gpc()) $_POST[$key] = stripslashes($val);
-			}
-		}
-		else
-		{
-			# для PDO - чтобы он вставлял NULL для пустых значений
-			if (empty($val)) $_POST[$key] = NULL;
-		}
-	} # print_r($_POST);
-} # /ПОДГОТАВЛИВАЕМ ДАННЫЕ ДЛЯ POST ЗАПРОСА
-
-# ЗАПИСЫВАЕМ ШАБЛОН В ФАЙЛ
-function saveContentToFile($pathToTeplates,
-						   $newFileName,
-						   $oldFileName = NULL,
-						   $htmlCode)
-{
-    /*
-    echo 'pathToTeplates: '.$pathToTeplates.'<br />';
-    echo 'newFileName: '.$newFileName.'<br />';
-    echo 'oldFileName: '.$oldFileName.'<br />';
-    echo 'htmlCode: '.$htmlCode.'<br />';
-    */
-
-	# проверка переменных
-	if (empty($pathToTeplates)) return;
-	if (empty($newFileName)) return;
-	if (empty($htmlCode)) return;
-	
-	# если указано старое имя файла и оно не равно новому имени,
-	# удаляем старый файл
-	if (!empty($oldFileName) and $newFileName != $oldFileName)
-	{
-		$fullPathToOldFile = $pathToTeplates.basename($oldFileName);
-		if (file_exists($fullPathToOldFile))
-		{
-			if (is_writable($fullPathToOldFile))
-			{
-				unlink($fullPathToOldFile);
-			}
-		}
-	}
-	
-	$fullPathToNewFile = $pathToTeplates.basename($newFileName); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
-    
-    # если файл уже существует и поле "html-код" оставлено пустым, ничего не делаем
-    # иначе создаем файл и пишем в него код из поля "html-код"
-    if (file_exists($fullPathToNewFile) && empty($_POST['templates_form_html_code'])) {}
-    else {
-        file_put_contents($fullPathToNewFile, $htmlCode, LOCK_EX);
-        if (is_file($fullPathToNewFile)) chmod($fullPathToNewFile, 0755);
-    }
-} # /ЗАПИСЫВАЕМ ШАБЛОН В ФАЙЛ
-
-# ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-function getItemInfo()
-{
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID'])) return;
-	
-	$sql = '
-	select *
-	from '.DB_PREFIX.'js
-	where id = "'.$_GET['itemID'].'"
-	'; # echo '<pre>'.$sql."</pre><hr />";
-	$itemInfo = $dbh->query($sql)->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>';
-	$itemInfo = $itemInfo[0];
-	if (!empty($itemInfo)) return $itemInfo;
-	else return;
-} # /ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-
-# /ФУНКЦИОНАЛ
+<?php 
+# РњРѕРґСѓР»СЊ Р°РґРјРёРЅРєРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ js-СЃРєСЂРёРїС‚Р°РјРё (С‚Р°Р±Р»РёС†Р° templates)
+# romanov.egor@gmail.com; 2015.4.19
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р» РєРѕРЅС„РёРіР°
+include('../loader.control.php');
+
+# РќРђРЎРўР РћР™РљР
+$GLOBALS['tpl_title'] = 'js-РєРѕРґ';
+
+# Р—РђР©РРўРђ
+if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
+
+# Р›РћР“РРљРђ
+if ($_GET['action'] == "addItem")
+{ 
+    $GLOBALS['tpl_title'] .= ' > СЃРѕР·РґР°РµРј С„Р°Р№Р» js-РєРѕРґР°';
+    $GLOBALS['tpl_h1'] = 'РЎРѕР·РґР°РµРј С„Р°Р№Р» js-РєРѕРґР°'; 
+    $GLOBALS['tpl_content'] = showAddForm();
+}
+elseif ($_GET['action'] == "addItemSubmit") {
+    $GLOBALS['tpl_title'] .= ' > СЃРѕР·РґР°РµРј С„Р°Р№Р» js-РєРѕРґР°';
+    $GLOBALS['tpl_h1'] = 'РЎРѕР·РґР°РµРј С„Р°Р№Р» js-РєРѕРґР°'; 
+    $GLOBALS['tpl_content'] = addItemSubmit(); 
+}
+elseif ($_GET['action'] == "editItem") {
+    $GLOBALS['tpl_title'] .= ' > СЂРµРґР°РєС‚РёСЂСѓРµРј С„Р°Р№Р» js-РєРѕРґР°';
+    $GLOBALS['tpl_h1'] = 'Р РµРґР°РєС‚РёСЂСѓРµРј С„Р°Р№Р» js-РєРѕРґР°'; 
+    $GLOBALS['tpl_content'] = showEditForm(); 
+}
+elseif ($_GET['action'] == "deleteItem") {
+    $GLOBALS['tpl_title'] .= ' > СѓРґР°Р»СЏРµРј С„Р°Р№Р» js-РєРѕРґР°';
+    $GLOBALS['tpl_h1'] = 'РЈРґР°Р»СЏРµРј С„Р°Р№Р» js-РєРѕРґР°'; 
+    $GLOBALS['tpl_content'] = deleteItem(); 
+}
+else { 
+    $GLOBALS['tpl_title'] .= ' > РІСЃРµ С„Р°Р№Р»С‹ js-РєРѕРґР°';
+    $GLOBALS['tpl_h1'] = 'Р’СЃРµ С„Р°Р№Р»С‹ js-РєРѕРґР°'; 
+    $GLOBALS['tpl_content'] = showItems(); 
+}
+# /Р›РћР“РРљРђ
+
+# РІС‹РІРѕРґРёРј РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
+$tpl->setMainTemplate('template_for_all_pages.php');
+$tpl->echoMainTemplate();
+
+# Р¤РЈРќРљР¦РРћРќРђР›
+
+# Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ РЁРђР‘Р›РћРќРћР’
+function showItems($count = null)
+{
+    global $dbh;
+	
+	$GLOBALS['tpl_title'] = 'js-РєРѕРґ > РІСЃРµ С„Р°Р№Р»С‹';
+    
+	# С„РѕСЂРјРёСЂСѓРµРј СЃРїРёСЃРѕРє С€Р°Р±Р»РѕРЅРѕРІ
+    $sql = '
+	select id,
+		   name,
+		   file_name,
+		   (select count(1) from '.DB_PREFIX.'js_backups where template_id = i.id) as backups_count
+	from '.DB_PREFIX.'js as i
+	order by name
+	'; # echo '<pre>'.$sql."</pre><hr />";
+    $_ = $dbh->query($sql)->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>';
+    $_c = count($_);
+	$rows = array();
+    for ($i=0;$i<$_c;$i++)
+	{
+        $rows[] = '
+		<tr>
+            <td class="center">
+                <a class="block" href="/control/edit_js/?action=editItem&itemID='.$_[$i]['id'].'">
+                    <i class="fa fa-edit size_18"></i>
+                </a>
+            </td>
+			<td class="center">'.$_[$i]['name'].'</td>
+			<td class="center">'.$_[$i]['file_name'].'</td>
+			<td class="center">'.$_[$i]['backups_count'].'</td>
+			<td class="center">
+                <a class="block" title="РЈРґР°Р»РёС‚СЊ С„Р°Р№Р» js-РєРѕРґР°" href="/control/edit_js/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Р¤Р°Р№Р» js-РєРѕРґР° Р±СѓРґРµС‚ СѓРґР°Р»РµРЅ Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ С„Р°Р№Р»?\')">
+                    <i class="fa fa-trash-o size_18"></i>
+                </a>
+			</td>
+		</tr>
+		';
+    }
+	# /С„РѕСЂРјРёСЂСѓРµРј СЃРїРёСЃРѕРє С€Р°Р±Р»РѕРЅРѕРІ
+	
+	# СЃС‡РёС‚Р°РµРј РѕР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ С€Р°Р±Р»РѕРЅРѕРІ
+	$sql = '
+	select count(1) as items_count
+	from '.DB_PREFIX.'js
+	';
+	$allItemsCount = $dbh->query($sql)->fetch();
+	$allItemsCount = $allItemsCount[0]['items_count'];
+	
+	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+	else unset($rows);
+    
+    $result = '
+	<script type="text/javascript" src="/control/edit_js/index.js"></script>
+	
+    <div class="center" style="margin-bottom:15px">
+        <a href="/control/edit_js/?action=addItem">
+            <button id="parse_all_projects" class="btn btn-success" type="button">
+                <i class="fa fa-plus-square" style="margin-right:3px"></i>
+                    РЎРѕР·РґР°С‚СЊ С„Р°Р№Р» js-РєРѕРґР°
+            </button>
+        </a>
+    </div>
+    ';
+    
+    if (empty($rows)) $result .= 'Р’ СЃРёСЃС‚РµРјРµ РЅРµ Р·Р°РґР°РЅ РЅРё РѕРґРёРЅ С„Р°Р№Р» js-РєРѕРґР°.';
+    else
+    {
+        $result .= '
+        <div id="resultSet">
+        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+            <tr>
+                <th class="center" style="width:50px;white-space:nowrap">РџСЂР°РІРєР°</th>
+                <th class="center" style="width:35%">РќР°Р·РІР°РЅРёРµ</th>
+                <th class="center">РРјСЏ С„Р°Р№Р»Р°</th>
+                <th class="center" style="width:100px;white-space:nowrap">backup\'РѕРІ</th>
+                <th class="center" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+            </tr>
+            '.$rows.'
+        </table>
+        </div>
+        ';
+    }
+    
+    return $result;
+} # /Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ РЁРђР‘Р›РћРќРћР’
+
+# Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РЁРђР‘Р›РћРќРђ
+function showEditForm(){
+    global $dbh;
+    
+    $showEditForm = 1;
+
+    # РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ
+    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'Р¤Р°Р№Р» js-РєРѕРґР° СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ.';
+
+    if ($showEditForm)
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+        
+        # Р·Р°С‰РёС‚Р°
+        if (!$itemInfo['id']) exit('
+		РќРµ СЃСѓС‰РµСЃРІС‚СѓРµС‚ Р·Р°РїРёСЃРё СЃ ID='.$_GET['itemID'].'
+		<br /><a href="/control/edit_js/">РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ С„Р°Р№Р»РѕРІ СЃ js-РєРѕРґРѕРј</a>
+		');
+
+        # prepare all values for showing
+        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
+		
+		# РїРѕР»СѓС‡Р°РµРј html-РєРѕРґ С€Р°Р±Р»РѕРЅР°
+		$fullPathToFile = PATH_TO_PUBLIC_JS.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
+		if (file_exists($fullPathToFile))
+		{
+			$content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
+			# prepare for showing
+			$content = htmlspecialchars($content, ENT_QUOTES);
+			$content = str_replace("\t", "", $content);
+		}
+        
+        return "
+		<script type='text/javascript' src='/control/edit_js/index.js'></script>
+		<form id='templates_edit_form' action='/control/edit_js/?action=editItem&itemID=".$itemInfo['id']."&subaction=editSubmit' name='form1' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
+			
+            <button id='templates_edit_save_changes' class='btn btn-primary submit_button' type='button'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+
+            &nbsp;&nbsp;&nbsp; <a href='/control/edit_js/'><button class='btn btn-success' type='button'>
+            <i class='fa fa-share-square' style='margin-right:3px'></i>
+            РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/edit_js/?action=addItem'><button class='btn btn-success' type='button'>
+            <i class='fa fa-plus-square' style='margin-right:3px'></i>
+            РЎРѕР·РґР°С‚СЊ js-С„Р°Р№Р»
+            </button></a>
+
+			<br><br><b>URL:</b>&nbsp; <a href='".PATH_TO_PUBLIC_JS_SHORT.$itemInfo['file_name']."' target='_blank'>".'http://www.'.$_SERVER['SERVER_NAME'].PATH_TO_PUBLIC_JS_SHORT.$itemInfo['file_name']."</a> 
+
+            <br><br>
+			<div class='form-group' style='width:50%'>
+                <label>РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° js-РєРѕРґР°: <span style='color:red'>*</span></label>
+                <input type='text' name='templates_form_name' id='templates_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° js-РєРѕРґР°' value='".$itemInfo['name']."' />
+            </div>
+            
+			<div class='form-group'>
+                <label>js-РєРѕРґ: <span style='color:red'>*</span></label>
+                <textarea name='templates_form_html_code' id='templates_form_html_code' class='form-control lined form_required' style='width:95%;height:375px' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ js-РєРѕРґ'>".$content."</textarea>
+            </div>
+            
+			<button id='templates_edit_save_changes' class='btn btn-primary submit_button' type='button' style='margin-top:5px'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+            
+            &nbsp; <div class='ajax_result bottom'></div>
+            
+            <br /><br />
+            
+            <div class='form-group' style='border:1px dashed #ccc;padding:7px 10px'>
+				<label>backup'С‹ (СЂРµР·РµСЂРІРЅС‹Рµ РєРѕРїРёРё)</label>
+				<div><a href='#' id='makeBackup'>РЎРґРµР»Р°С‚СЊ backup js-РєРѕРґР°</a></div>
+                <br />
+				<div id='backupsResult' style='color:#aaaaaa'>backup'РѕРІ РЅРµС‚.</div>
+			</div>
+            
+            <div class='form-group'>
+                <b>РџРѕР»РЅС‹Р№ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ js-РєРѕРґР°:</b> &nbsp; <span style='color:#aaaaaa;font-size:14px'>".PATH_TO_PUBLIC_JS.$itemInfo['file_name']."</span>
+            </div>
+            
+			<input type='hidden' id='template_id' value='".$_GET['itemID']."' />
+		</form>
+		";
+    }
+} # /Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РЁРђР‘Р›РћРќРђ
+
+# Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РЁРђР‘Р›РћРќРђ
+function showAddForm()
+{
+    global $dbh;
+    
+    return "
+	<script type='text/javascript' src='/control/edit_js/index.js'></script>
+	<form id='templates_add_form' action='/control/edit_js/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ С„Р°Р№Р» js-РєРѕРґР°</button>
+        
+		&nbsp;&nbsp;&nbsp;<b>URL:</b>&nbsp; <a href='/' target='_blank'>http://www.".$_SERVER['SERVER_NAME']."</a> 
+		<span id='ajax_status' style='position:absolute;left:355px;top:5px'></span>
+
+        <br><br>
+        <div class='form-group' style='width:60%'>
+            <label>РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° js-РєРѕРґР° (РїРѕ-СЂСѓСЃСЃРєРё, РЅР°РїСЂРёРјРµСЂ: js-СЃРєСЂРёРїС‚С‹ РґР»СЏ РіР»Р°РІРЅРѕР№): <span style='color:red'>*</span></label>
+            <input type='text' name='templates_form_name' id='templates_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° js-РєРѕРґР°' value='".$_POST['templates_form_name']."' />
+        </div>
+        
+        <!-- ajax-СѓРІРµРґРѕРјР»РµРЅРёСЏ РґР»СЏ РїРѕР»СЏ 'РЅР°Р·РІР°РЅРёРµ' -->
+        <div id='templates_form_name_alert_div' class='alert alert-info hidden width_95'></div>
+        
+        <div class='form-group' style='width:60%'>
+            <label>РРјСЏ С„Р°Р№Р»Р° (РїРѕ-Р°РЅРіР»РёР№СЃРєРё, РЅР°РїСЂРёРјРµСЂ: jquery.main.page.js): <span style='color:red'>*</span></label>
+            <input type='text' name='templates_form_file_name' id='templates_form_file_name' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РёРјСЏ С„Р°Р№Р»Р° js-РєРѕРґР°' class='form-control form_required' value='".$_POST['templates_form_file_name']."' />
+        </div>
+        
+        <!-- ajax-СѓРІРµРґРѕРјР»РµРЅРёСЏ РґР»СЏ РїРѕР»СЏ 'РёРјСЏ С„Р°Р№Р»Р°' -->
+        <div id='templates_form_file_name_alert_div' class='alert alert-info hidden width_95'></div>
+        
+        <div class='form-group'>
+            <label>js-РєРѕРґ:</label> &nbsp; <div class='ajax_result'></div>
+            <textarea name='templates_form_html_code' id='templates_form_html_code' class='form-control lined' style='width:95%;height:375px'>".$_POST['templates_form_html_code']."</textarea>
+        </div>
+        
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ С„Р°Р№Р» js-РєРѕРґР°</button>
+        
+        <!-- СЃРєСЂС‹С‚С‹Рµ РїРѕР»СЏ -->
+        <input type='hidden' id='form_submit_allowed' value='0' />
+	</form>
+	";
+} # /Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РЁРђР‘Р›РћРќРђ
+
+# РЎРћР—Р”РђР•Рњ РќРћР’Р«Р™ РЁРђР‘Р›РћРќ
+function addItemSubmit()
+{
+	global $dbh, $html;
+	
+	# print_r($_POST);
+	# Р·Р°С‰РёС‚Р° РѕС‚ РїСЂСЏРјРѕРіРѕ Р·Р°РїСЂРѕСЃР° URL'Р°: http://www.kupi-krovat.ru/control/edit_js/?action=addItemSubmit
+	if (!empty($_POST))
+	{
+		# РџРћР”Р“РћРўРђР’Р›РР’РђР•Рњ Р”РђРќРќР«Р• Р”Р›РЇ POST Р—РђРџР РћРЎРђ
+		preparePostValues();
+
+		# РґРѕР±Р°РІР»СЏРµРј С€Р°Р±Р»РѕРЅ РІ Р‘Р”
+		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
+		# РµСЃР»Рё С€Р°Р±Р»РѕРЅ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ
+		if (!empty($lastInsertID))
+		{
+			# СЃРѕС…СЂР°РЅСЏРµРј С€Р°Р±Р»РѕРЅ РІ С„Р°Р№Р»
+			saveContentToFile(PATH_TO_PUBLIC_JS,
+							  $_POST['templates_form_file_name'], # new file name
+							  NULL, # old file name
+							  $_POST['templates_form_html_code']);
+
+			# РІС‹РІРѕРґРёРј С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/edit_js/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
+			header('Location: '.$fullUrlForEdit);
+		}
+		# РµСЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё С€Р°Р±Р»РѕРЅ РЅРµ РґРѕР±Р°РІР»РµРЅ
+		else
+		{
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё С„Р°Р№Р» js-РєРѕРґР° РЅРµ РґРѕР±Р°РІР»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+		}
+	}
+	# РµСЃР»Рё РЅР°Р±СЂР°РЅ: http://news.youroute.ru/control/news/addItemSubmit/ Рё РїСЂРё СЌС‚РѕРј $_POST РїСѓСЃС‚РѕР№
+	else
+	{
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€Р°Р±Р»РѕРЅРѕРІ
+        $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё С„Р°Р№Р» js-РєРѕРґР° РЅРµ РґРѕР±Р°РІР»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+        return showAddForm();
+	}
+} # /РЎРћР—Р”РђР•Рњ РќРћР’Р«Р™ РЁРђР‘Р›РћРќ
+
+# РЈР”РђР›РЇР•Рњ РЁРђР‘Р›РћРќ
+function deleteItem(){
+	
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID']))
+	{
+		# РІС‹РІРѕРґРёРј РѕС€РёР±РєСѓ
+		$GLOBALS['tpl_failure'] = 'Р¤Р°Р№Р» js-РєРѕРґР° РЅРµ СѓРґР°Р»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€Р°Р±Р»РѕРЅРѕРІ
+        showItems();
+	}
+	else
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+
+		# РїРѕР»СѓС‡Р°РµРј РёРјСЏ С„Р°Р№Р»Р° С€Р°Р±Р»РѕРЅР°
+		$fileName = $itemInfo['file_name']; # echo $fileName.'<hr />';
+
+		# СѓРґР°Р»СЏРµРј С„Р°Р№Р» С€Р°Р±Р»РѕРЅР°
+		$fullPathToTemplate = PATH_TO_PUBLIC_JS.$fileName; # echo $fullPathToTemplate.'<hr />';
+		if (!empty($fullPathToTemplate) && file_exists($fullPathToTemplate)) unlink($fullPathToTemplate);
+		
+		# СѓРґР°Р»СЏРµРј С€Р°Р±Р»РѕРЅ РёР· Р‘Р”
+		$result = deleteItemFromDB(); # echo $result.'<hr />';
+		if (!empty($result))
+		{
+			$GLOBALS['tpl_success'] = 'Р¤Р°Р№Р» js-РєРѕРґР° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ.';
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€Р°Р±Р»РѕРЅРѕРІ
+			return showItems();
+		}
+		else
+		{
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, С„Р°Р№Р» js-РєРѕРґР° РЅРµ СѓРґР°Р»РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ.';
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€Р°Р±Р»РѕРЅРѕРІ
+			return showItems();
+		}
+	}
+} # /РЈР”РђР›РЇР•Рњ РЁРђР‘Р›РћРќ
+
+# РЈР”РђР›Р•РќРР• РџРћР—РР¦РР
+function deleteItemFromDB()
+{
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID'])) return;
+	
+	global $dbh;
+
+	# СѓРґР°Р»СЏРµРј Р·Р°РїРёСЃРё РёР· С‚Р°Р±Р»РёС†С‹ backup'РѕРІ
+	$sql = '
+	delete from '.DB_PREFIX.'js_backups
+	where template_id = :id
+	'; # echo '<pre>'.$sql."</pre><hr />";
+	$sth = $dbh->prepare($sql);
+    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+    $sth->execute();
+	
+	# СѓРґР°Р»СЏРµРј С€Р°Р±Р»РѕРЅ
+	$sql = '
+	delete from '.DB_PREFIX.'js
+	where id = :id
+	'; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+	if ($sth->execute()) return 1;
+} # /РЈР”РђР›Р•РќРР• РџРћР—РР¦РР
+
+# Р”РћР‘РђР’Р›РЇР•Рњ РЁРђР‘Р›РћРќ Р’ Р‘Р”
+function addItemToDB()
+{
+	global $dbh;
+	
+	if (!empty($_POST['templates_form_name'])
+		and !empty($_POST['templates_form_file_name']))
+	{
+		$sql = '
+        insert into '.DB_PREFIX.'js
+        (name, file_name)
+        values
+        (:name, :file_name)
+        '; # echo $sql.'<hr />';
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':name', $_POST['templates_form_name']);
+        $sth->bindParam(':file_name', $_POST['templates_form_file_name']);
+		try { if ($sth->execute()) {
+            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
+			if (!empty($last_insert_id)) return $last_insert_id;
+			else return;
+        }}
+        catch (PDOException $e) 
+        { 
+            if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; } 
+        }
+	}
+} # /Р”РћР‘РђР’Р›РЇР•Рњ РЁРђР‘Р›РћРќ Р’ Р‘Р”
+
+# РџРћР”Р“РћРўРђР’Р›РР’РђР•Рњ Р”РђРќРќР«Р• Р”Р›РЇ POST Р—РђРџР РћРЎРђ
+function preparePostValues()
+{
+	# РџРћР”Р“РћРўРђР’Р›РР’РђР•Рњ Р”РђРќРќР«Р• Р”Р›РЇ POST Р—РђРџР РћРЎРђ
+	# trim and stripslashes all elements
+	foreach ($_POST as $key => &$val)
+	{
+		if (!empty($val))
+		{
+			if (!is_array($key) and !is_array($val))
+			{
+				$_POST[$key] = trim($val);
+				# http://stackoverflow.com/questions/2128871/slashes-in-mysql-tables-but-using-pdo-and-parameterized-queries-whats-up
+				# if (get_magic_quotes_gpc()) $_POST[$key] = stripslashes($val);
+			}
+		}
+		else
+		{
+			# РґР»СЏ PDO - С‡С‚РѕР±С‹ РѕРЅ РІСЃС‚Р°РІР»СЏР» NULL РґР»СЏ РїСѓСЃС‚С‹С… Р·РЅР°С‡РµРЅРёР№
+			if (empty($val)) $_POST[$key] = NULL;
+		}
+	} # print_r($_POST);
+} # /РџРћР”Р“РћРўРђР’Р›РР’РђР•Рњ Р”РђРќРќР«Р• Р”Р›РЇ POST Р—РђРџР РћРЎРђ
+
+# Р—РђРџРРЎР«Р’РђР•Рњ РЁРђР‘Р›РћРќ Р’ Р¤РђР™Р›
+function saveContentToFile($pathToTeplates,
+						   $newFileName,
+						   $oldFileName = NULL,
+						   $htmlCode)
+{
+    /*
+    echo 'pathToTeplates: '.$pathToTeplates.'<br />';
+    echo 'newFileName: '.$newFileName.'<br />';
+    echo 'oldFileName: '.$oldFileName.'<br />';
+    echo 'htmlCode: '.$htmlCode.'<br />';
+    */
+
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($pathToTeplates)) return;
+	if (empty($newFileName)) return;
+	if (empty($htmlCode)) return;
+	
+	# РµСЃР»Рё СѓРєР°Р·Р°РЅРѕ СЃС‚Р°СЂРѕРµ РёРјСЏ С„Р°Р№Р»Р° Рё РѕРЅРѕ РЅРµ СЂР°РІРЅРѕ РЅРѕРІРѕРјСѓ РёРјРµРЅРё,
+	# СѓРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Р№ С„Р°Р№Р»
+	if (!empty($oldFileName) and $newFileName != $oldFileName)
+	{
+		$fullPathToOldFile = $pathToTeplates.basename($oldFileName);
+		if (file_exists($fullPathToOldFile))
+		{
+			if (is_writable($fullPathToOldFile))
+			{
+				unlink($fullPathToOldFile);
+			}
+		}
+	}
+	
+	$fullPathToNewFile = $pathToTeplates.basename($newFileName); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
+    
+    # РµСЃР»Рё С„Р°Р№Р» СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Рё РїРѕР»Рµ "html-РєРѕРґ" РѕСЃС‚Р°РІР»РµРЅРѕ РїСѓСЃС‚С‹Рј, РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј
+    # РёРЅР°С‡Рµ СЃРѕР·РґР°РµРј С„Р°Р№Р» Рё РїРёС€РµРј РІ РЅРµРіРѕ РєРѕРґ РёР· РїРѕР»СЏ "html-РєРѕРґ"
+    if (file_exists($fullPathToNewFile) && empty($_POST['templates_form_html_code'])) {}
+    else {
+        file_put_contents($fullPathToNewFile, $htmlCode, LOCK_EX);
+        if (is_file($fullPathToNewFile)) chmod($fullPathToNewFile, 0755);
+    }
+} # /Р—РђРџРРЎР«Р’РђР•Рњ РЁРђР‘Р›РћРќ Р’ Р¤РђР™Р›
+
+# РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+function getItemInfo()
+{
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID'])) return;
+	
+	$sql = '
+	select *
+	from '.DB_PREFIX.'js
+	where id = "'.$_GET['itemID'].'"
+	'; # echo '<pre>'.$sql."</pre><hr />";
+	$itemInfo = $dbh->query($sql)->fetchAll(); # echo '<pre>'.(print_r($_, true)).'</pre>';
+	$itemInfo = $itemInfo[0];
+	if (!empty($itemInfo)) return $itemInfo;
+	else return;
+} # /РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+
+# /Р¤РЈРќРљР¦РРћРќРђР›

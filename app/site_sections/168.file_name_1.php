@@ -1,12 +1,12 @@
 <div class="submenu">
 <ul>
-    <li><a href="/o-nas/vakansii/" class="active">Вакансии</a></li>       
-    <li><a href="/o-nas/missiya/">Миссия и ценности</a></li>     
-    <li><a href="/o-nas/dok/">Документы\договора</a></li>    
-    <li><a href="/o-nas/klienty/">Наши клиенты</a></li>
-<li><a href="/o-nas/usloviya-prokata-generatora/">Условия проката</a></li>
+    <li><a href="/o-nas/vakansii/" class="active">Р’Р°РєР°РЅСЃРёРё</a></li>       
+    <li><a href="/o-nas/missiya/">РњРёСЃСЃРёСЏ Рё С†РµРЅРЅРѕСЃС‚Рё</a></li>     
+    <li><a href="/o-nas/dok/">Р”РѕРєСѓРјРµРЅС‚С‹\РґРѕРіРѕРІРѕСЂР°</a></li>    
+    <li><a href="/o-nas/klienty/">РќР°С€Рё РєР»РёРµРЅС‚С‹</a></li>
+<li><a href="/o-nas/usloviya-prokata-generatora/">РЈСЃР»РѕРІРёСЏ РїСЂРѕРєР°С‚Р°</a></li>
 </ul>
 </div>
 <div class="clear"></div>
 
-<p>На данный момент актуальных вакансий нет.</p>
+<p>РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ Р°РєС‚СѓР°Р»СЊРЅС‹С… РІР°РєР°РЅСЃРёР№ РЅРµС‚.</p>

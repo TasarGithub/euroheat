@@ -1,149 +1,149 @@
-<?php
-
-### ОТЛАДКА
-# print_r($_GET);
-# print_r($_POST);
-
-# $a = unserialize($_POST['form']); print_r($a);
-
-# sleep(5);
-
-# защита от запроса c другого сайта
-if (!stristr($_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'])) exit('');
-
-# указываем кодировку, которую будет отдавать javascript'у ajax-скрипт
-header('Content-type: text/html; charset=windows-1251');
-
-# подключаем и инициализируем класс для работы с БД через PDO
-include($_SERVER['DOCUMENT_ROOT'].'/control/db.connection.pdo.php');
-
-# подключаем конфиг
-include($_SERVER['DOCUMENT_ROOT'].'/control/config.control.php');
-
-# подключаем функции общего назначения для ajax-скриптов
-include($_SERVER['DOCUMENT_ROOT'].'/control/functions.common.ajax.php');
-
-# подключаем общие функции для index.php и ajax.php
-include('common.functions.php');
-
-# проверка + нужная кодировка POST-переменных
-preparePOSTVariables(); # print_r($_POST); exit;
-
-# подготавливаем поля формы
-if (!empty($_POST['params'])) parse_str($_POST['params'], $params); # print_r($params);
-
-# ЛОГИКА
-# провряем, существует ли новость по названию
-if ($_POST['action'] == 'check_item_for_existence_by_name')
-{
-    $sql = '
-    select id
-    from '.DB_PREFIX.'news
-    where h1 = :name
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-    $sth->bindParam(':name', $_POST['name']);
-    $sth->execute();
-    if ($_ = $sth->fetchColumn())
-    {
-        $result = array('result' => 'exists', 'id' => $_);
-        echo json_encode($result);
-    }
-}
-# провряем, существует ли новость по дате
-if ($_POST['action'] == 'check_item_for_existence_by_date_add')
-{
-    $sql = '
-    select id
-    from '.DB_PREFIX.'news
-    where date_add = :date_add
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-    # конвертируем дату из поля datepicker в mysql datetime:
-    if (!empty($_POST['date_add'])) $date = date("Y-m-d H:i:s", strtotime($_POST['date_add'].' 05:00:00'));
-    $sth->bindParam(':date_add', $date);
-    $sth->execute();
-    if ($_ = $sth->fetchColumn())
-    {
-        $result = array('result' => 'exists', 'id' => $_);
-        echo json_encode($result);
-    }
-}
-elseif ($_POST['action'] == 'search')
-{
-    $sql = '
-    select id,
-           date_add,
-           date_format(date_add, "%d.%m.%Y") as date_add_formatted,
-           date_format(date_add, "%d.%m.%Y") as date_add_formatted_2,
-           h1,
-           is_showable
-    from '.DB_PREFIX.'news
-    where h1 like :q
-          or date_format(date_add, "%d.%m.%Y") like :q
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-	$q = '%'.$_POST['q'].'%';
-	$sth->bindParam(':q', $q);
-    $sth->execute();
-    if ($_ = $sth->fetchAll())
-    {
-        $_c = count($_);
-        $rows = array();
-        for ($i=0;$i<$_c;$i++)
-        {
-            # ссылка
-            if (!empty($_[$i]['date_add_formatted_2'])) $link = '<a href="/novosti/'.$_[$i]['date_add_formatted_2'].'/" target="_blank">смотреть</a>';
-            else $link = '&nbsp;';
-            
-            # is_showable
-            if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
-            else unset($trClass);
-            
-            $rows[] = '
-            <tr'.$trClass.'>
-                <td class="center vertical_middle">
-                    <a class="block" href="/control/news/?action=editItem&itemID='.$_[$i]['id'].'">
-                        <i class="fa fa-edit size_18"></i>
-                    </a>
-                </td>
-                <td class="center vertical_middle">'.$link.'</td>
-                <td><span style="color:#ababab;padding-right:10px">'.$_[$i]['date_add_formatted'].'</span>'.$_[$i]['h1'].'</td>
-                <td class="center vertical_middle">
-                    <a class="block" title="Удалить новость" href="/control/news/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Новость будет удалена безвозвратно. Удалить новость?\')">
-                        <i class="fa fa-trash-o size_18"></i>
-                    </a>
-                </td>
-            </tr>
-            ';
-        }
-        if (empty($rows)) $result .= 'В системе не задана ни одна новость.';
-        else
-        {
-            if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
-            else unset($rows);
-            
-            $result .= '
-            <div id="resultSet">
-            <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
-                <tr>
-                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">Правка</th>
-                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">Ссылка</th>
-                    <th class="center vertical_middle">Заголовок h1</th>
-                    <th class="center vertical_middle" style="width:100px;white-space:nowrap">Удаление</th>
-                </tr>
-                '.$rows.'
-            </table>
-            </div>
-            ';
-        }
-        echo $result;
-    }
-    else echo 'По запросу &quot;'.$_POST['q'].'&quot; ничего не найдено.';
-}
-
-# /ЛОГИКА
-
-# ФУНКЦИИ
-
-# /ФУНКЦИИ
+<?php
+
+### РћРўР›РђР”РљРђ
+# print_r($_GET);
+# print_r($_POST);
+
+# $a = unserialize($_POST['form']); print_r($a);
+
+# sleep(5);
+
+# Р·Р°С‰РёС‚Р° РѕС‚ Р·Р°РїСЂРѕСЃР° c РґСЂСѓРіРѕРіРѕ СЃР°Р№С‚Р°
+if (!stristr($_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'])) exit('');
+
+# СѓРєР°Р·С‹РІР°РµРј РєРѕРґРёСЂРѕРІРєСѓ, РєРѕС‚РѕСЂСѓСЋ Р±СѓРґРµС‚ РѕС‚РґР°РІР°С‚СЊ javascript'Сѓ ajax-СЃРєСЂРёРїС‚
+header('Content-type: text/html; charset=windows-1251');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј Рё РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р” С‡РµСЂРµР· PDO
+include($_SERVER['DOCUMENT_ROOT'].'/control/db.connection.pdo.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РєРѕРЅС„РёРі
+include($_SERVER['DOCUMENT_ROOT'].'/control/config.control.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„СѓРЅРєС†РёРё РѕР±С‰РµРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ ajax-СЃРєСЂРёРїС‚РѕРІ
+include($_SERVER['DOCUMENT_ROOT'].'/control/functions.common.ajax.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+include('common.functions.php');
+
+# РїСЂРѕРІРµСЂРєР° + РЅСѓР¶РЅР°СЏ РєРѕРґРёСЂРѕРІРєР° POST-РїРµСЂРµРјРµРЅРЅС‹С…
+preparePOSTVariables(); # print_r($_POST); exit;
+
+# РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РїРѕР»СЏ С„РѕСЂРјС‹
+if (!empty($_POST['params'])) parse_str($_POST['params'], $params); # print_r($params);
+
+# Р›РћР“РРљРђ
+# РїСЂРѕРІСЂСЏРµРј, СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё РЅРѕРІРѕСЃС‚СЊ РїРѕ РЅР°Р·РІР°РЅРёСЋ
+if ($_POST['action'] == 'check_item_for_existence_by_name')
+{
+    $sql = '
+    select id
+    from '.DB_PREFIX.'news
+    where h1 = :name
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+    $sth->bindParam(':name', $_POST['name']);
+    $sth->execute();
+    if ($_ = $sth->fetchColumn())
+    {
+        $result = array('result' => 'exists', 'id' => $_);
+        echo json_encode($result);
+    }
+}
+# РїСЂРѕРІСЂСЏРµРј, СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё РЅРѕРІРѕСЃС‚СЊ РїРѕ РґР°С‚Рµ
+if ($_POST['action'] == 'check_item_for_existence_by_date_add')
+{
+    $sql = '
+    select id
+    from '.DB_PREFIX.'news
+    where date_add = :date_add
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+    # РєРѕРЅРІРµСЂС‚РёСЂСѓРµРј РґР°С‚Сѓ РёР· РїРѕР»СЏ datepicker РІ mysql datetime:
+    if (!empty($_POST['date_add'])) $date = date("Y-m-d H:i:s", strtotime($_POST['date_add'].' 05:00:00'));
+    $sth->bindParam(':date_add', $date);
+    $sth->execute();
+    if ($_ = $sth->fetchColumn())
+    {
+        $result = array('result' => 'exists', 'id' => $_);
+        echo json_encode($result);
+    }
+}
+elseif ($_POST['action'] == 'search')
+{
+    $sql = '
+    select id,
+           date_add,
+           date_format(date_add, "%d.%m.%Y") as date_add_formatted,
+           date_format(date_add, "%d.%m.%Y") as date_add_formatted_2,
+           h1,
+           is_showable
+    from '.DB_PREFIX.'news
+    where h1 like :q
+          or date_format(date_add, "%d.%m.%Y") like :q
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+	$q = '%'.$_POST['q'].'%';
+	$sth->bindParam(':q', $q);
+    $sth->execute();
+    if ($_ = $sth->fetchAll())
+    {
+        $_c = count($_);
+        $rows = array();
+        for ($i=0;$i<$_c;$i++)
+        {
+            # СЃСЃС‹Р»РєР°
+            if (!empty($_[$i]['date_add_formatted_2'])) $link = '<a href="/novosti/'.$_[$i]['date_add_formatted_2'].'/" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>';
+            else $link = '&nbsp;';
+            
+            # is_showable
+            if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
+            else unset($trClass);
+            
+            $rows[] = '
+            <tr'.$trClass.'>
+                <td class="center vertical_middle">
+                    <a class="block" href="/control/news/?action=editItem&itemID='.$_[$i]['id'].'">
+                        <i class="fa fa-edit size_18"></i>
+                    </a>
+                </td>
+                <td class="center vertical_middle">'.$link.'</td>
+                <td><span style="color:#ababab;padding-right:10px">'.$_[$i]['date_add_formatted'].'</span>'.$_[$i]['h1'].'</td>
+                <td class="center vertical_middle">
+                    <a class="block" title="РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ" href="/control/news/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'РќРѕРІРѕСЃС‚СЊ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅР° Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ?\')">
+                        <i class="fa fa-trash-o size_18"></i>
+                    </a>
+                </td>
+            </tr>
+            ';
+        }
+        if (empty($rows)) $result .= 'Р’ СЃРёСЃС‚РµРјРµ РЅРµ Р·Р°РґР°РЅР° РЅРё РѕРґРЅР° РЅРѕРІРѕСЃС‚СЊ.';
+        else
+        {
+            if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+            else unset($rows);
+            
+            $result .= '
+            <div id="resultSet">
+            <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+                <tr>
+                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">РџСЂР°РІРєР°</th>
+                    <th class="center vertical_middle" style="width:50px;white-space:nowrap">РЎСЃС‹Р»РєР°</th>
+                    <th class="center vertical_middle">Р—Р°РіРѕР»РѕРІРѕРє h1</th>
+                    <th class="center vertical_middle" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+                </tr>
+                '.$rows.'
+            </table>
+            </div>
+            ';
+        }
+        echo $result;
+    }
+    else echo 'РџРѕ Р·Р°РїСЂРѕСЃСѓ &quot;'.$_POST['q'].'&quot; РЅРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ.';
+}
+
+# /Р›РћР“РРљРђ
+
+# Р¤РЈРќРљР¦РР
+
+# /Р¤РЈРќРљР¦РР

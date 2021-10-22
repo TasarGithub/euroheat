@@ -1,15 +1,16 @@
 <div class="news_item">
-    <div class="date answer_t">Ответ на вопрос:</div>
+    <div class="date answer_t">РћС‚РІРµС‚ РЅР° РІРѕРїСЂРѕСЃ:</div>
     <?php echo $GLOBALS['tpl_item']['text']; ?>
 </div>
 
-<a class="page_back" href="../">&laquo; на страницу Вопрос ответ</a>
+<a class="page_back" href="../">&laquo; РЅР° СЃС‚СЂР°РЅРёС†Сѓ Р’РѕРїСЂРѕСЃ РѕС‚РІРµС‚</a>
 <div class="clear"></div><br />
 
-<?php if (!empty($GLOBALS['tpl_another_faq'])): # блок "Другие вопросы-ответы" ?>
-<div class="h4">Другие вопросы</div>
+<?php if (!empty($GLOBALS['tpl_another_faq'])): # Р±Р»РѕРє "Р”СЂСѓРіРёРµ РІРѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹" ?>
+<div class="h4">Р”СЂСѓРіРёРµ РІРѕРїСЂРѕСЃС‹</div>
 
 <?php foreach ($GLOBALS['tpl_another_faq'] as $item): ?>
-<div class="news_item"><a class="news_item_a" href="/vopros/<?php echo $item['url']; ?>/"><?php echo $item['h1']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/vopros/<?php echo $item['url']; ?>/">Подробнее &raquo;</a></div>
+<div class="news_item"><a class="news_item_a" href="/vopros/<?php echo $item['url']; ?>/"><?php echo $item['h1']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/vopros/<?php echo $item['url']; ?>/">РџРѕРґСЂРѕР±РЅРµРµ &raquo;</a></div>
 <?php endforeach; ?>
-<?php endif; # /блок "Другие вопросы-ответы" ?>
+
+<?php endif; # /Р±Р»РѕРє "Р”СЂСѓРіРёРµ РІРѕРїСЂРѕСЃС‹-РѕС‚РІРµС‚С‹" ?>

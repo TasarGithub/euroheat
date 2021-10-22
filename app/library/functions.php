@@ -1,160 +1,381 @@
 <?php
 
+
+
 function convertRuLettersToEn($text) # convert ru letters to en
+
 {
+
     // variables checking
+
     if (empty($text)) return;
+
     
-    $search  = array('‡', '¿', '·', '¡', '‚', '¬', '„', '√', '‰', 'ƒ', 'Â', '≈', '∏',  '®',  'Ê', '∆',  'Á', '«', 'Ë', '»', 'È', '…', 'Í', ' ', 'Î', 'À', 'Ï', 'Ã', 'Ì', 'Õ', 'Ó', 'Œ', 'Ô', 'œ', '', '–', 'Ò', '—', 'Ú', '“', 'Û', '”', 'Ù', '‘', 'ı', '’', 'ˆ', '÷', '˜',  '◊',  '¯',   'ÿ', '˘',  'Ÿ',  '˙', '⁄', '˚', '€', '¸', '‹', '˝', '›', '˛',  'ﬁ',  'ˇ',  'ﬂ');
+
+    $search  = array('–∞', '–ê', '–±', '–ë', '–≤', '–í', '–≥', '–ì', '–¥', '–î', '–µ', '–ï', '—ë',  '–Å',  '–∂', '–ñ',  '–∑', '–ó', '–∏', '–ò', '–π', '–ô', '–∫', '–ö', '–ª', '–õ', '–º', '–ú', '–Ω', '–ù', '–æ', '–û', '–ø', '–ü', '—Ä', '–†', '—Å', '–°', '—Ç', '–¢', '—É', '–£', '—Ñ', '–§', '—Ö', '–•', '—Ü', '–¶', '—á',  '–ß',  '—à',   '–®', '—â',  '–©',  '—ä', '–™', '—ã', '–´', '—å', '–¨', '—ç', '–≠', '—é',  '–Æ',  '—è',  '–Ø');
+
     $replace = array('a', 'A', 'b', 'B', 'v', 'V', 'g', 'G', 'd', 'D', 'e', 'E', 'jo', 'Jo', 'zh', 'Zh', 'z', 'Z', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'f', 'F', 'h', 'H', 'c', 'C', 'ch', 'Ch', 'sh', 'Sh', 'sh', 'Sh', '',  '',  'y', 'Y', '',  '', 'e', 'E', 'ju', 'Ju', 'ya', 'Ya');
+
            
+
     $text = str_replace($search, $replace, $text);
+
 	
+
 	return $text;
+
 } # /convert ru letters to en
 
-# ¬Œ¬«–¿Ÿ¿≈Ã Õ¿«¬¿Õ»≈ Ã≈—ﬂ÷¿ Õ¿ –”—— ŒÃ ¬ –Œƒ»“≈À‹ÕŒÃ œ¿ƒ≈∆≈
+
+
+# –í–û–í–ó–†–ê–©–ê–ï–ú –ù–ê–ó–í–ê–ù–ò–ï –ú–ï–°–Ø–¶–ê –ù–ê –†–£–°–°–ö–û–ú –í –†–û–î–ò–¢–ï–õ–¨–ù–û–ú –ü–ê–î–ï–ñ–ï
+
 function getRusMonthName($monthNum)
+
 {
+
 	if (!$monthNum) return;
+
 	
-	if ($monthNum == '1' || $monthNum == '01') return 'ˇÌ‚‡ˇ';
-	if ($monthNum == '2' || $monthNum == '02') return 'ÙÂ‚‡Îˇ';
-	if ($monthNum == '3' || $monthNum == '03') return 'Ï‡Ú‡';
-	if ($monthNum == '4' || $monthNum == '04') return '‡ÔÂÎˇ';
-	if ($monthNum == '5' || $monthNum == '05') return 'Ï‡ˇ';
-	if ($monthNum == '6' || $monthNum == '06') return 'Ë˛Ìˇ';
-	if ($monthNum == '7' || $monthNum == '07') return 'Ë˛Îˇ';
-	if ($monthNum == '8' || $monthNum == '08') return '‡‚„ÛÒÚ‡';
-	if ($monthNum == '9' || $monthNum == '09') return 'ÒÂÌÚˇ·ˇ';
-	if ($monthNum == '10') return 'ÓÍÚˇ·ˇ';
-	if ($monthNum == '11') return 'ÌÓˇ·ˇ';
-	if ($monthNum == '12') return '‰ÂÍ‡·ˇ';
-} # /¬Œ¬«–¿Ÿ¿≈Ã Õ¿«¬¿Õ»≈ Ã≈—ﬂ÷¿ Õ¿ –”—— ŒÃ ¬ –Œƒ»“≈À‹ÕŒÃ œ¿ƒ≈∆≈
 
-# Œ¡–≈«¿≈Ã “≈ C“ ƒŒ ‘» —»–Œ¬¿ÕÕŒ√Œ  ŒÀ»◊≈—“¬¿ —»Ã¬ŒÀŒ¬
+	if ($monthNum == '1' || $monthNum == '01') return '—è–Ω–≤–∞—Ä—è';
+
+	if ($monthNum == '2' || $monthNum == '02') return '—Ñ–µ–≤—Ä–∞–ª—è';
+
+	if ($monthNum == '3' || $monthNum == '03') return '–º–∞—Ä—Ç–∞';
+
+	if ($monthNum == '4' || $monthNum == '04') return '–∞–ø—Ä–µ–ª—è';
+
+	if ($monthNum == '5' || $monthNum == '05') return '–º–∞—è';
+
+	if ($monthNum == '6' || $monthNum == '06') return '–∏—é–Ω—è';
+
+	if ($monthNum == '7' || $monthNum == '07') return '–∏—é–ª—è';
+
+	if ($monthNum == '8' || $monthNum == '08') return '–∞–≤–≥—É—Å—Ç–∞';
+
+	if ($monthNum == '9' || $monthNum == '09') return '—Å–µ–Ω—Ç—è–±—Ä—è';
+
+	if ($monthNum == '10') return '–æ–∫—Ç—è–±—Ä—è';
+
+	if ($monthNum == '11') return '–Ω–æ—è–±—Ä—è';
+
+	if ($monthNum == '12') return '–¥–µ–∫–∞–±—Ä—è';
+
+} # /–í–û–í–ó–†–ê–©–ê–ï–ú –ù–ê–ó–í–ê–ù–ò–ï –ú–ï–°–Ø–¶–ê –ù–ê –†–£–°–°–ö–û–ú –í –†–û–î–ò–¢–ï–õ–¨–ù–û–ú –ü–ê–î–ï–ñ–ï
+
+
+
+# –û–ë–†–ï–ó–ê–ï–ú –¢–ï–öC–¢ –î–û –§–ò–ö–°–ò–†–û–í–ê–ù–ù–û–ì–û –ö–û–õ–ò–ß–ï–°–¢–í–ê –°–ò–ú–í–û–õ–û–í
+
 function cutText($text, $length)
+
 {
-    # ÔÓ‚ÂÍ‡ ÔÂÂÏÂÌÌ˚ı
+
+
+// echo "cutText  ".$text.PHP_EOL;
+    # –ø—Ä–æ–≤–µ—Ä–∫–∞ –ø–µ—Ä–µ–º–µ–Ω–Ω—ã—Ö
+
     if (empty($text) || empty($length)) return;
-    
+
+    // echo "<br/>";
+    // echo "<br/>";
+    // echo "<br/>";
+    // echo "<br/>";
+
     $text = strip_tags($text);
-    
-    if (strlen($text) > $length)
+//     echo "strip_tags(text): ".$text;
+//       echo "<br/>";
+//     echo "<br/>";
+
+//   echo "strlen(text)  :".strlen($text);
+//     echo "<br/>";
+// echo "length  :".$length;
+//     echo "<br/>";
+
+//     echo "iconv_strlen(text)".iconv_strlen($text);
+// echo "<br/>";
+
+//     echo "mb_strlen(text)".mb_strlen($text);
+// echo "<br/>";
+
+
+    // if (strlen($text) > $length)
+    if (mb_strlen($text) > $length)
     {
-        # $text = substr($text, 0, $length - 10);
-        $text = substr($text, 0, $length);
-        $text[strlen($text)-1] = preg_replace("/[^A-Za-z0-9 ]/", '', $text[strlen($text)-1]);
-        $text = rtrim($text, ',.');
-        $text = trim($text).'..';
+
+        # $text = mb_substr($text, 0, $length - 10);
+
+        $text = mb_substr($text, 0, $length);
+    // echo "mb_substr(text):  ".$text;
+    // echo "<br/>";
+// –∑–∞—á–µ–º  —É–±–∏—Ä–∞—Ç—å –ø–æ—Å–ª–µ–¥–Ω–∏–π —Å–∏–º–≤–æ–ª, –µ—Å–ª–∏  –æ–Ω –∫–∏—Ä–∏–ª–ª–∏—Ü–∞? –∫–∞–∫–æ–π —Å–º—ã—Å–ª? –ì–¥–µ-—Ç–æ –µ—â–µ –º–æ–∂–µ—Ç –∏—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å—Å—è? –≠—Ç–æ –ø–æ–±–∞–π—Ç–æ–≤—ã–π —Å–¥–≤–∏–≥, –¥–ª—è –¥–≤—É—Ö–±–∞–π—Ç–æ–≤–æ–π –∫–æ–¥–∏—Ä–æ–≤–∫–∏ Unicod –≤—ã–∑—ã–≤–∞–µ—Ç –æ—à–∏–±–∫—É
+// –≤—ã–¥–µ–ª–∞–µ–º –ø–æ—Å–ª–µ–¥–Ω–∏–π —Å–∏–º–≤–æ–ª
+// $endsymbol = mb_substr($text, $length-1);
+// echo "endsymbol:  ".$endsymbol;
+//     echo "<hr/>";
+//     echo "<br/>";
+//     echo "mb_ereg_match: ";
+
+    //   echo "<hr/>";
+    // echo "<br/>";  
+if (mb_ereg_match("[^A-Za-z0-9]", mb_substr($text, $length-1) ))
+{
+    $text = mb_substr($text, 0, $length-1);
+}
+
+    // $text[mb_strlen($text)-1] = preg_replace("/[^A-Za-z0-9 ]/", '', $text[mb_strlen($text)-1]);
+    // echo "text[mb_strlen(text)-1]".$text[mb_strlen($text)-1];
+    // echo "<br/>";
+    // echo "<hr/>";
+
+    // echo "text[mb_strlen(text)]".$text[mb_strlen($text)];
+    // echo "<hr/>";
+    // echo "<br/>";
+
+    // echo "<hr/>";
+
+    // echo "text[1]".$text[1];
+    // echo "<hr/>";
+    // echo "<br/>";
+
+    //     echo "<hr/>";
+
+    // echo "text[2]".$text[2];
+    // echo "<hr/>";
+    // echo "<br/>";
+
+    //     echo "<hr/>";
+
+    // echo "text[10]".$text[10];
+    // echo "<hr/>";
+    // echo "<br/>";
+
+
+    $text = rtrim($text, ',.');
+
+    $text = trim($text).'..';
+
+
+
     }
+
     return $text;
-} # /Œ¡–≈«¿≈Ã “≈ C“ ƒŒ ‘» —»–Œ¬¿ÕÕŒ√Œ  ŒÀ»◊≈—“¬¿ —»Ã¬ŒÀŒ¬
 
-# ◊»“¿≈Ã  ŒÕ“≈Õ“ »« ‘¿…À¿: œ”“‹ ” ¿«€¬¿≈Ã Œ“ DOCUMENT_ROOT
+} # /–û–ë–†–ï–ó–ê–ï–ú –¢–ï–öC–¢ –î–û –§–ò–ö–°–ò–†–û–í–ê–ù–ù–û–ì–û –ö–û–õ–ò–ß–ï–°–¢–í–ê –°–ò–ú–í–û–õ–û–í
+
+
+
+# –ß–ò–¢–ê–ï–ú –ö–û–ù–¢–ï–ù–¢ –ò–ó –§–ê–ô–õ–ê: –ü–£–¢–¨ –£–ö–ê–ó–´–í–ê–ï–ú –û–¢ DOCUMENT_ROOT
+
 function getContent($pathToFile)
-{
-    # ÔÓ‚ÂÍ‡ ÔÂÂÏÂÌÌ˚ı
-    if (empty($pathToFile)) return;
-    
-    $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].$pathToFile; # echo $fullPathToFile.'<hr />';
-    if (file_exists($fullPathToFile))
-    {
-        ob_start(); // start capturing output
-        include($fullPathToFile); // execute the file
-        $content = ob_get_contents(); // get the contents from the buffer
-        ob_end_clean(); // stop buffering and discard contents
-        if (!empty($content)) return $content;
-    }
-} # /◊»“¿≈Ã  ŒÕ“≈Õ“ »« ‘¿…À¿: œ”“‹ ” ¿«€¬¿≈Ã Œ“ DOCUMENT_ROOT
 
-# ¡ÀŒ  "—Œ¬≈“€, ÕŒ¬Œ—“», ¬Œœ–Œ—-Œ“¬≈“"
-function showBlockInFooter()
 {
+
+    # –ø—Ä–æ–≤–µ—Ä–∫–∞ –ø–µ—Ä–µ–º–µ–Ω–Ω—ã—Ö
+
+    if (empty($pathToFile)) return;
+
+    
+
+    $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].$pathToFile; # echo $fullPathToFile.'<hr />';
+
+    if (file_exists($fullPathToFile))
+
+    {
+
+        ob_start(); // start capturing output
+
+        include($fullPathToFile); // execute the file
+
+        $content = ob_get_contents(); // get the contents from the buffer
+
+        ob_end_clean(); // stop buffering and discard contents
+
+        if (!empty($content)) return $content;
+
+    }
+
+} # /–ß–ò–¢–ê–ï–ú –ö–û–ù–¢–ï–ù–¢ –ò–ó –§–ê–ô–õ–ê: –ü–£–¢–¨ –£–ö–ê–ó–´–í–ê–ï–ú –û–¢ DOCUMENT_ROOT
+
+
+
+# –ë–õ–û–ö "–°–û–í–ï–¢–´, –ù–û–í–û–°–¢–ò, –í–û–ü–†–û–°-–û–¢–í–ï–¢"
+
+function showBlockInFooter()
+
+{
+
     global $registry;
 
-    # ÔÓ‰ÍÎ˛˜‡ÂÏ ÍÓÌÚÓÎÎÂ˚
+
+
+    # –ø–æ–¥–∫–ª—é—á–∞–µ–º –∫–æ–Ω—Ç—Ä–æ–ª–ª–µ—Ä—ã
+
     if (!isIncluded('articles_controller.php')) include(MVC_PATH . 'articles_controller.php');
+
     if (!isIncluded('news_controller.php')) include(MVC_PATH.'news_controller.php');
+
     if (!isIncluded('faq_controller.php')) include(MVC_PATH.'faq_controller.php');
+
     if (!isIncluded('feedback_controller.php')) include(MVC_PATH.'feedback_controller.php');
 
+
+
     $articles_controller = new articles_controller($registry);
+
     $articles_controller = $articles_controller->load('articles');
 
+
+
     $news_controller = new news_controller($registry);
+
     $news_controller = $news_controller->load('news');
 
+
+
     $faq_controller = new faq_controller($registry);
+
     $faq_controller = $faq_controller->load('faq');
 
+
+
     $feedback_controller = new feedback_controller($registry);
+
     $feedback_controller = $feedback_controller->load('feedback');
-    # /ÔÓ‰ÍÎ˛˜‡ÂÏ ÍÓÌÚÓÎÎÂ˚
 
-    # ÔÓÎÛ˜‡ÂÏ ÒÔËÒÓÍ ÓÚÁ˚‚Ó‚
-    if (empty($GLOBALS['tpl_hide_feedback'])) { # ÂÒÎË ÓÚÁ˚‚˚ ÌÂ ÒÍ˚Ú˚
+    # /–ø–æ–¥–∫–ª—é—á–∞–µ–º –∫–æ–Ω—Ç—Ä–æ–ª–ª–µ—Ä—ã
+
+
+
+    # –ø–æ–ª—É—á–∞–µ–º —Å–ø–∏—Å–æ–∫ –æ—Ç–∑—ã–≤–æ–≤
+
+    if (empty($GLOBALS['tpl_hide_feedback'])) { # –µ—Å–ª–∏ –æ—Ç–∑—ã–≤—ã –Ω–µ —Å–∫—Ä—ã—Ç—ã
+
         $GLOBALS['tpl_feedback'] = $feedback_controller->model->getItemsForInsidePages(); # echo '<pre>'.(print_r($GLOBALS['tpl_feedback'], true)).'</pre>'; # exit;
-        foreach ($GLOBALS['tpl_feedback'] as &$item) {
-            $item['feedback'] = cutText($item['feedback'], 190);
-            # $item['name'] = cutText($item['name'], 13);
-        }
-        unset($item);
-    } # /ÂÒÎË ÓÚÁ˚‚˚ ÌÂ ÒÍ˚Ú˚
 
-    # ÔÓÎÛ˜‡ÂÏ ÍÓÎË˜ÂÒÚ‚Ó ÒÚ‡ÚÂÈ
+        foreach ($GLOBALS['tpl_feedback'] as &$item) {
+
+            $item['feedback'] = cutText($item['feedback'], 190);
+
+            # $item['name'] = cutText($item['name'], 13);
+
+        }
+
+        unset($item);
+
+    } # /–µ—Å–ª–∏ –æ—Ç–∑—ã–≤—ã –Ω–µ —Å–∫—Ä—ã—Ç—ã
+
+
+
+    # –ø–æ–ª—É—á–∞–µ–º –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ —Å—Ç–∞—Ç–µ–π
+
     $GLOBALS['tpl_articles_count'] = $articles_controller->model->getItemsCount();
 
-    # ÔÓÎÛ˜‡ÂÏ ÒÚ‡Ú¸Ë Ì‡ ‡Ì‰ÓÏ
+
+
+    # –ø–æ–ª—É—á–∞–µ–º —Å—Ç–∞—Ç—å–∏ –Ω–∞ —Ä–∞–Ω–¥–æ–º
+
     $GLOBALS['tpl_articles'] = $articles_controller->model->getRandomItems(5, $GLOBALS['tpl_articles_id_selected']);
 
-    # ÔÓÎÛ˜‡ÂÏ ÍÓÎË˜ÂÒÚ‚Ó ‚ÓÔÓÒÓ‚-ÓÚ‚ÂÚÓ‚
+
+
+    # –ø–æ–ª—É—á–∞–µ–º –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ –≤–æ–ø—Ä–æ—Å–æ–≤-–æ—Ç–≤–µ—Ç–æ–≤
+
     $GLOBALS['tpl_faq_count'] = $faq_controller->model->getItemsCount();
 
-    # ÔÓÎÛ˜‡ÂÏ ‚ÓÔÓÒ˚-ÓÚ‚ÂÚ˚ Ì‡ ‡Ì‰ÓÏ
+
+
+    # –ø–æ–ª—É—á–∞–µ–º –≤–æ–ø—Ä–æ—Å—ã-–æ—Ç–≤–µ—Ç—ã –Ω–∞ —Ä–∞–Ω–¥–æ–º
+
     $GLOBALS['tpl_faq'] = $faq_controller->model->getRandomItems(5, $GLOBALS['tpl_faq_id_selected']);
+
     foreach ($GLOBALS['tpl_faq'] as &$item) {
+
         $item['h1'] = cutText($item['h1'], 55);
+
     } unset($item);
 
-    # ÔÓÎÛ˜‡ÂÏ ÌÓ‚ÓÒÚË Ì‡ ‡Ì‰ÓÏ
+
+
+    # –ø–æ–ª—É—á–∞–µ–º –Ω–æ–≤–æ—Å—Ç–∏ –Ω–∞ —Ä–∞–Ω–¥–æ–º
+
     $GLOBALS['tpl_news'] = $news_controller->model->getRandomItems(3, $GLOBALS['tpl_news_id_selected']);
-} # /¡ÀŒ  "—Œ¬≈“€, ÕŒ¬Œ—“», ¬Œœ–Œ—-Œ“¬≈“"
 
-# œ–Œ¬≈–ﬂ≈Ã, œŒƒ Àﬁ◊≈Õ À» ‘¿…À »À» Õ≈“
+} # /–ë–õ–û–ö "–°–û–í–ï–¢–´, –ù–û–í–û–°–¢–ò, –í–û–ü–†–û–°-–û–¢–í–ï–¢"
+
+
+
+# –ü–†–û–í–ï–†–Ø–ï–ú, –ü–û–î–ö–õ–Æ–ß–ï–ù –õ–ò –§–ê–ô–õ –ò–õ–ò –ù–ï–¢
+
 function isIncluded($fileName) {
-    $included_files = get_included_files(); # echo '<pre>'.(print_r($included_files, true)).'</pre>';
-    foreach ($included_files as $item) {
-        if (basename($item) == $fileName) return 1;
-    }
-} # /œ–Œ¬≈–ﬂ≈Ã, œŒƒ Àﬁ◊≈Õ À» ‘¿…À »À» Õ≈““
 
-# œŒÀ”◊¿≈Ã ¿Õ Œ– ƒÀﬂ œ≈–≈À»Õ Œ¬ » ¬ œŒƒ¬¿À≈
-/*
-function getFooteranchor($anchorId)
-{
-    # ÔÓ‚ÂÍ‡ ÔÂÂÏÂÌÌ˚ı
-    if (empty($anchorId)) return;
-    
-    global $dbh;
-    
-    $sql = '
-    select anchor,
-           target
-    from '.DB_PREFIX.'footeranchors
-    where id = :id
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-    $sth->bindParam(':id', $anchorId, PDO::PARAM_INT);
-    try
-    {
-        $sth->execute();
-        $_ = $sth->fetch();
-        if (!empty($_))
-        {
-            $GLOBALS['tpl_footeranchor']['anchor'] = $_['anchor'];
-            $GLOBALS['tpl_footeranchor']['target'] = $_['target'];
-        }
+    $included_files = get_included_files(); # echo '<pre>'.(print_r($included_files, true)).'</pre>';
+
+    foreach ($included_files as $item) {
+
+        if (basename($item) == $fileName) return 1;
+
     }
-    catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "Œ¯Ë·Í‡ ‚ SQL-Á‡ÔÓÒÂ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
-} */ # /œŒÀ”◊¿≈Ã ¿Õ Œ– ƒÀﬂ œ≈–≈À»Õ Œ¬ » ¬ œŒƒ¬¿À≈
+
+} # /–ü–†–û–í–ï–†–Ø–ï–ú, –ü–û–î–ö–õ–Æ–ß–ï–ù –õ–ò –§–ê–ô–õ –ò–õ–ò –ù–ï–¢–¢
+
+
+
+# –ü–û–õ–£–ß–ê–ï–ú –ê–ù–ö–û–† –î–õ–Ø –ü–ï–†–ï–õ–ò–ù–ö–û–í–ö–ò –í –ü–û–î–í–ê–õ–ï
+
+/*
+
+function getFooteranchor($anchorId)
+
+{
+
+    # –ø—Ä–æ–≤–µ—Ä–∫–∞ –ø–µ—Ä–µ–º–µ–Ω–Ω—ã—Ö
+
+    if (empty($anchorId)) return;
+
+    
+
+    global $dbh;
+
+    
+
+    $sql = '
+
+    select anchor,
+
+           target
+
+    from '.DB_PREFIX.'footeranchors
+
+    where id = :id
+
+    '; # echo '<pre>'.$sql."</pre><hr />";
+
+    $sth = $dbh->prepare($sql);
+
+    $sth->bindParam(':id', $anchorId, PDO::PARAM_INT);
+
+    try
+
+    {
+
+        $sth->execute();
+
+        $_ = $sth->fetch();
+
+        if (!empty($_))
+
+        {
+
+            $GLOBALS['tpl_footeranchor']['anchor'] = $_['anchor'];
+
+            $GLOBALS['tpl_footeranchor']['target'] = $_['target'];
+
+        }
+
+    }
+
+    catch (PDOException $e) { if (DB_SHOW_ERRORS) { echo "–û—à–∏–±–∫–∞ –≤ SQL-–∑–∞–ø—Ä–æ—Å–µ:<br /><br />".$sql."<br /><br />".$e->getMessage(); } }
+
+} */ # /–ü–û–õ–£–ß–ê–ï–ú –ê–ù–ö–û–† –î–õ–Ø –ü–ï–†–ï–õ–ò–ù–ö–û–í–ö–ò –í –ü–û–î–í–ê–õ–ï

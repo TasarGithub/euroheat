@@ -1,844 +1,844 @@
-<?php 
-# Модуль админки для работы с шоу (представления) (таблица shows)
-# romanov.egor@gmail.com; 2015.10.14
-
-# подключаем файл конфига
-include('../loader.control.php');
-
-# подключаем общие функции для index.php и ajax.php
-include('common.functions.php');
-
-# НАСТРОЙКИ
-$GLOBALS['tpl_title'] = 'Шоу (Вернадского)';
-$GLOBALS['imagesPath'] = '/public/images/shows_circus/';
-
-# ЗАЩИТА
-if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
-
-# ЛОГИКА
-if ($_GET['action'] == "addItem")
-{ 
-    $GLOBALS['tpl_title'] .= ' > добавляем шоу';
-    $GLOBALS['tpl_h1'] = 'Добавляем шоу';
-    $GLOBALS['tpl_content'] = showAddForm();
-}
-elseif ($_GET['action'] == "addItemSubmit") {
-    $GLOBALS['tpl_title'] .= ' > добавляем шоу';
-    $GLOBALS['tpl_h1'] = 'Добавляем шоу';
-    $GLOBALS['tpl_content'] = addItemSubmit(); 
-}
-elseif ($_GET['action'] == "editItem") {
-    $GLOBALS['tpl_title'] .= ' > редактируем шоу';
-    $GLOBALS['tpl_h1'] = 'Редактируем шоу';
-    $GLOBALS['tpl_content'] = showEditForm(); 
-}
-elseif ($_GET['action'] == "deleteItem") {
-    $GLOBALS['tpl_title'] .= ' > удаляем шоу';
-    $GLOBALS['tpl_h1'] = 'Удаляем шоу';
-    $GLOBALS['tpl_content'] = deleteItem(); 
-}
-else { 
-    $GLOBALS['tpl_title'] .= ' > все шоу';
-    $GLOBALS['tpl_h1'] = 'Все шоу на Вернадского ('.$dbh->query('select count(1) from `'.DB_PREFIX.'shows_circus`')->fetchColumn().')';
-    $GLOBALS['tpl_content'] = showItems(); 
-}
-# /ЛОГИКА
-
-# выводим главный шаблон
-$tpl->setMainTemplate('template_for_all_pages.php');
-$tpl->echoMainTemplate();
-
-# ФУНКЦИОНАЛ
-
-# ФОРМИРУЕМ СПИСОК ВСЕХ ШОУ
-function showItems($count = null)
-{
-    global $dbh;
-    
-    # получаем список шоу
-    $sql = '
-    select id,
-           name,
-           url,
-           image_for_slider_on_main_page,
-           element_order_listing,
-           is_showable
-    from `'.DB_PREFIX.'shows_circus`
-    order by isnull(element_order_listing),
-             element_order_listing,
-             name
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sql_for_count = '
-    select count(id)
-    from `'.DB_PREFIX.'shows_circus`
-    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
-	$pages = new pages($_GET["page"], # текущая страница
-					   25, # записей на страницу
-					   $dbh, # объект базы данных
-                       '', # routeVars
-					   $sql, # sql-запрос
-					   $sql_for_count, # sql-запрос для подсчета количества записей
-					   '/control/shows_circus/', # ссыка на 1ю страницу
-					   '/control/shows_circus/?page=%page%', # ссыка на остальные страницы
-						1500 # максимальное количество записей на страницу
-						);
-	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
-    $_ = $_result['resultSet'];
-    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">Страницы: '.$_result['pagesSet'].'</div>';
-    $_c = count($_);
-	$rows = array();
-    for ($i=0;$i<$_c;$i++) {
-        # ссылка
-        $link = '<a href="/cirk/'.$_[$i]['url'].'/" target="_blank">смотреть</a>';
-        
-        # is_showable
-        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
-        else unset($trClass);
-
-        # image_for_slider_on_main_page
-        # if (!empty($_[$i]['image_for_slider_on_main_page'])) $is_image_for_slider_on_main_page = 'да';
-        # else $is_image_for_slider_on_main_page = '&nbsp;';
-        
-        $rows[] = '
-		<tr'.$trClass.'>
-            <td class="center vertical_middle">
-                <a class="block" href="/control/shows_circus/?action=editItem&itemID='.$_[$i]['id'].'">
-                    <i class="fa fa-edit size_18"></i>
-                </a>
-            </td>
-			<td class="center vertical_middle">'.$link.'</td>
-			<td>'.$_[$i]['name'].'</td>
-			<td class="center">'.(!empty($_[$i]['element_order_listing']) ? $_[$i]['element_order_listing'] : '&nbsp;').'</td>
-			<!--<td class="center">'.$is_image_for_slider_on_main_page.'</td>-->
-			<td class="center vertical_middle">
-                <a class="block" title="Удалить шоу" href="/control/shows_circus/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Шоу будет удалено безвозвратно. Удалить шоу?\')">
-                    <i class="fa fa-trash-o size_18"></i>
-                </a>
-			</td>
-		</tr>
-		';
-    }
-	
-	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
-	else unset($rows);
-
-    $result = '
-	<script type="text/javascript" src="/control/shows_circus/index.js"></script>
-	
-    <div style="width:50%;float:left">
-        <b>URL:</b>&nbsp; <a href="/cirk/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/cirk/</a>
-    </div>
-    <div style="width:50%;float:right;text-align:right;padding-right:15px">
-        Поиск по названию: &nbsp;
-        <input id="search" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
-    </div>
-    <br style="clear:both" />
-
-    <div class="center" style="margin-bottom:15px">
-        <a href="/control/shows_circus/?action=addItem">
-            <button id="parse_all_projects" class="btn btn-success" type="button">
-                <i class="fa fa-plus-square" style="margin-right:3px"></i>
-                    Добавить шоу
-            </button>
-        </a>
-    </div>
-    ';
-    
-    if (empty($rows)) $result .= 'В системе не задано ни одно шоу.';
-    else
-    {
-        $result .= '
-        <div id="resultSet">
-        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
-            <tr>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Правка</th>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Ссылка</th>
-                <th class="center vertical_middle">Название</th>
-                <th class="center vertical_middle" style="width:175px">Порядок вывода в листинге</th>
-                <!--<th class="center vertical_middle" style="width:175px">Картинка для слайдера на главной</th>-->
-                <th class="center vertical_middle" style="width:100px;white-space:nowrap">Удаление</th>
-            </tr>
-            '.$rows.'
-        </table>
-        '.$pagesList.'
-        </div>';
-    }
-    
-    return $result;
-} # / ФОРМИРУЕМ СПИСОК ВСЕХ ШОУ
-
-# ФОРМА РЕДАКТИРОВАНИЯ ШОУ
-function showEditForm()
-{
-    global $dbh;
-    
-    $showEditForm = 1;
-
-    # выводим сообщение
-    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'Шоу успешно добавлено.';
-    
-    # сохраняем изменения в бд
-    if ($_GET['subaction'] == 'submit' && !empty($_POST)) {
-        $sql = '
-        update `'.DB_PREFIX.'shows_circus`
-        set name = :name,
-            url = :url,
-            title = :title,
-            navigation = :navigation,
-            full_navigation = :full_navigation,
-            h1 = :h1,
-            footeranchor = :footeranchor,
-            text_for_slider_on_main_page = :text_for_slider_on_main_page,
-            element_order_listing = :element_order_listing,
-            is_showable = :is_showable
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':name', $_POST['show_form_name']);
-        $sth->bindParam(':url', $_POST['show_form_url']);
-        $sth->bindParam(':title', $_POST['show_form_title']);
-        $sth->bindParam(':navigation', $_POST['show_form_navigation']);
-        # full_navigation
-        if (empty($_POST['show_form_full_navigation'])) $_POST['show_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['show_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['show_form_h1']);
-        # text_for_slider_on_main_page
-        $sth->bindValue(':text_for_slider_on_main_page', !empty($_POST['show_form_text_for_slider_on_main_page']) ? $_POST['show_form_text_for_slider_on_main_page'] : null);
-        # is_showable
-        $isShowable = !empty($_POST['show_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-        # footeranchor
-        if ($_POST['show_form_footeranchor'] == '') $_POST['show_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['show_form_footeranchor']);
-        # element_order_listing
-        $sth->bindValue(':element_order_listing', !empty($_POST['show_form_element_order_listing']) ? $_POST['show_form_element_order_listing'] : null);
-        # id
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute())
-        {
-            $GLOBALS['tpl_success'] = 'Информация сохранена.';
-
-            # копируем картинку # print_r($_FILES);
-            if (!empty($_FILES['show_form_image_for_slider_on_main_page']['tmp_name'])) {
-                copyImage(array(
-                    'itemID' => $_GET['itemID'],
-                    'imageFormName' => 'show_form_image_for_slider_on_main_page',
-                    'imageDbColumnName' => 'image_for_slider_on_main_page',
-                    'imagePrefix' => ''
-                ));
-            } # /копируем картинку
-            
-			# сохраняем текст в файл
-			saveContentToFile($_GET['itemID'],
-							  $_POST['show_form_text']);
-        }
-        else
-        {
-            $GLOBALS['tpl_failure'] = 'К сожалению, информация не сохранена. Пжл, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-        }
-    } # /сохраняем изменения в бд
-
-    # удаляем указанную картинку
-    if ($_GET['subaction'] == 'remove_photo') {
-        # проверка переменных
-        $allowedCoumns = array('image_for_slider_on_main_page');
-        if (empty($_GET['itemID'])) $GLOBALS['tpl_failure'] = 'Не передан ID записи.';
-        elseif (empty($_GET['db_column_name'])) $GLOBALS['tpl_failure'] = 'Неверно передано название столбца картинки.';
-        elseif (!in_array($_GET['db_column_name'], $allowedCoumns)) $GLOBALS['tpl_failure'] = 'Неверно передано название столбца картинки.';
-        else
-        {
-            # получаем инофрмацию о картинке
-            $sql = '
-            select '.$_GET['db_column_name'].'
-            from '.DB_PREFIX.'shows_circus
-            where id = :id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            $columnName = $sth->fetchColumn(); # echo 'columnName: '.$columnName;
-            # удаляем картинку
-            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$columnName; # echo 'fullPathToImage: '.$fullPathToImage;
-            if (!empty($fullPathToImage) && file_exists($fullPathToImage)) unlink($fullPathToImage);
-            # вносим изменения в бд
-            $sql = '
-            update '.DB_PREFIX.'shows_circus
-            set '.$_GET['db_column_name'].' = NULL
-            where id = :id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-            if ($sth->execute())
-            {
-                $GLOBALS['tpl_success'] = 'Картинка успешно удалена.';
-                $_POST['tabs_state'] = 4;
-            }
-            else $GLOBALS['tpl_failure'] = 'К сожалению, картинка не удалена. Пжл, обратитесь к разработчикам сайта.';
-        }
-    } # /удаляем указанную картинку
-
-    # выводим форму редактирования
-    if ($showEditForm) {
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-        
-        # защита
-        if (!$itemInfo['id']) exit('
-		Не существует записи с ID='.$_GET['itemID'].'
-		<br /><a href="/control/shows_circus/">Перейти к списку шоу</a>
-		');
-        
-		# читаем текст шоу из файла
-        if (!empty($itemInfo['file_name']))
-        {
-            $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_shows_circus/'.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
-            if (file_exists($fullPathToFile)) {
-                $content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
-                # prepare for showing
-                $content = htmlspecialchars($content, ENT_QUOTES);
-                $content = str_replace("\t", "", $content);
-            }
-        }
-
-        # prepare all values for showing
-        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
-
-        # получаем и выводим инфу по фото
-        $imageInfo = showPhotoInfo(array('imageName' => $itemInfo['image_for_slider_on_main_page'], 'imageDbColumnName' => 'image_for_slider_on_main_page'));
-        
-        return "
-		<script type='text/javascript' src='/control/shows_circus/index.js'></script>
-		<form id='show_form' action='/control/shows_circus/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='show_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
-            
-            <button class='btn btn-primary submit_button' type='submit'>Сохранить информацию</button>
-
-            &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/'><button class='btn btn-success' type='button'>
-            <i class='fa fa-share-square' style='margin-right:3px'></i>
-            Перейти к списку
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/?action=addItem'><button class='btn btn-success' type='button'>
-            <i class='fa fa-plus-square' style='margin-right:3px'></i>
-            Добавить шоу
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"Шоу будет удалено безвозвратно. Удалить шоу?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> Удалить шоу</button></a>
-
-			<br><br><b>URL:</b>&nbsp; <a href='/cirk/".$itemInfo['url']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/cirk/".$itemInfo['url']."/</a>
-            
-            <br><br>
-            <div class='form-group' style='width:60%'>
-                <label>Директория (по-английски): <span style='color:red'>*</span></label>
-                <input type='text' name='show_form_url' id='show_form_url' class='form-control form_required' data-required-label='Пжл, укажите директорию (например: legenda)' value='".$itemInfo['url']."' />
-            </div>
-
-            <div class='form-group' style='width:60%'>
-                <label>Название: <span style='color:red'>*</span></label>
-                <input type='text' name='show_form_name' id='show_form_name' class='form-control form_required' data-required-label='Пжл, укажите название по-русски' value='".$itemInfo['name']."' />
-            </div>
-            
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок страницы:</label>
-                <input type='text' name='show_form_title' id='show_form_title' class='form-control' data-required-label='Пжл, укажите заголовок страницы' value='".$itemInfo['title']."' />
-            </div>
-            
-            <div class='form-group' style='width:90%'>
-                <label>Строка навигации:</label>
-                <input type='text' name='show_form_navigation' id='show_form_navigation' class='form-control' value='".$itemInfo['navigation']."' />
-            </div>
-            
-			<div class='form-group' style='width:95%'>
-                <label>Строка навигации в ручном режиме:
-                       <br />
-                       <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-                </label>
-                <textarea name='show_form_full_navigation' id='show_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
-            </div>
-
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок h1:</label>
-                <input type='text' name='show_form_h1' id='show_form_h1' class='form-control' value='".$itemInfo['h1']."' />
-            </div>
-
-            <div class='form-group'>
-                <label>Текст страницы:</label>
-                <textarea name='show_form_text' id='show_form_text' class='form-control lined' style='width:90%;height:270px'>".$content."</textarea>
-            </div>
-
-            <!--
-            <div class='well' style='width:85%'>
-
-                <div class='form-group' style='width:90%'>
-                    <label>Текст-подсказка для слайдера на главной (<a href='/control/public/images/help_screenshot_1.png' target='_blank'>скриншот</a>):</label>
-                    <input type='text' name='show_form_text_for_slider_on_main_page' id='show_form_text_for_slider_on_main_page' class='form-control' value='".$itemInfo['text_for_slider_on_main_page']."' />
-                </div>
-
-                <div class='form-group'>
-                    <label>Картинка для слайдера на главной<br /><span style='font-weight:normal'>* если не указана, в слайдере на главной не выводится</span>:</label>
-                    <br /> <input id='show_form_image_for_slider_on_main_page' name='show_form_image_for_slider_on_main_page' type='file' style='display:inline-block' />
-                </div>
-
-                ".$imageInfo."
-
-            </div>
-            -->
-
-            <div class='form-group' style='width:60%'>
-                <label>Порядок вывода в листинге:</label> &nbsp;
-                <input type='text' name='show_form_element_order_listing' id='show_form_element_order_listing' class='form-control' data-required-label='' value='".$itemInfo['element_order_listing']."' style='display:inline-block;width:100px' />
-            </div>
-
-            <div class='form-group' style='width:95%'>
-                <label>Анкор для перелинковки в подвале:</label> &nbsp; 
-                <textarea name='show_form_footeranchor' id='show_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
-            </div>
-
-            <div class='form-group' style='margin-bottom:0'>
-                <label>
-                    <input type='checkbox' name='show_form_is_showable' id='show_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checekd"' : '')." />&nbsp; Отображать шоу на сайте
-                </label>
-            </div>
-            
-            <br />
-			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>Сохранить информацию</button>
-            
-		</form>
-		";
-    }
-} # /ФОРМА РЕДАКТИРОВАНИЯ ШОУ
-
-# ФОРМА ДОБАВЛЕНИЯ ШОУ
-function showAddForm()
-{
-    global $dbh;
-    
-    return "
-	<script type='text/javascript' src='/control/shows_circus/index.js'></script>
-	<form id='show_form' action='/control/shows_circus/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
-        <button class='btn btn-primary submit_button' type='submit'>Добавить шоу</button>
-        
-        &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/'><button class='btn btn-success' type='button'>
-        <i class='fa fa-share-square' style='margin-right:3px'></i>
-        Перейти к списку
-        </button></a>
-        
-		<br /><br /><b>URL:</b>&nbsp; <a href='/cirk/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/cirk/</a>
-
-        <br /><br />
-        <div class='form-group' style='width:60%'>
-            <label>Директория (по-английски): <span style='color:red'>*</span></label>
-            <input type='text' name='show_form_url' id='show_form_url' class='form-control form_required' data-required-label='Пжл, укажите директорию (например: legenda)' value='".$_POST['url']."' />
-        </div>
-
-        <div class='form-group' style='width:60%'>
-            <label>Название: <span style='color:red'>*</span></label>
-            <input type='text' name='show_form_name' id='show_form_name' class='form-control form_required' data-required-label='Пжл, укажите название по-русски' value='".$_POST['name']."' />
-        </div>
-
-        <div id='show_form_name_alert_div' class='alert alert-info hidden width_95'></div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок страницы:</label>
-            <input type='text' name='show_form_title' id='show_form_title' class='form-control' data-required-label='Пжл, укажите заголовок страницы' value='".$_POST['title']."' />
-        </div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Строка навигации:</label>
-            <input type='text' name='show_form_navigation' id='show_form_navigation' class='form-control' value='".$_POST['navigation']."' />
-        </div>
-        
-        <div class='form-group' style='width:95%'>
-            <label>Строка навигации в ручном режиме:
-                   <br />
-                   <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-            </label>
-            <textarea name='show_form_full_navigation' id='show_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['show_form_full_navigation']."</textarea>
-        </div>
-
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок h1:</label>
-            <input type='text' name='show_form_h1' id='show_form_h1' class='form-control' value='".$_POST['h1']."' />
-        </div>
-
-        <div class='form-group'>
-            <label>Текст страницы:</label>
-            <textarea name='show_form_text' id='show_form_text' class='form-control lined' style='width:90%;height:270px'></textarea>
-        </div>
-
-        <!--
-        <div class='well' style='width:85%'>
-
-            <div class='form-group' style='width:90%'>
-                <label>Текст-подсказка для слайдера на главной (<a href='/control/public/images/help_screenshot_1.png' target='_blank'>скриншот</a>):</label>
-                <input type='text' name='show_form_text_for_slider_on_main_page' id='show_form_text_for_slider_on_main_page' class='form-control' value='".$_POST['show_form_text_for_slider_on_main_page']."' />
-            </div>
-
-            <div class='form-group' style='margin-bottom:5px'>
-                <label>Картинка для слайдера на главной<br /><span style='font-weight:normal'>* если не указана, в слайдере на главной не выводится</span>:</label>
-                <br /> <input id='show_form_image_for_slider_on_main_page' name='show_form_image_for_slider_on_main_page' type='file' style='display:inline-block' />
-            </div>
-
-        </div>
-        -->
-
-        <div class='form-group' style='width:60%'>
-            <label>Порядок вывода в листинге:</label> &nbsp;
-            <input type='text' name='show_form_element_order_listing' id='show_form_element_order_listing' class='form-control' data-required-label='' value='".$_POST['show_form_element_order_listing']."' style='display:inline-block;width:100px' />
-        </div>
-        
-        <div class='form-group' style='width:95%'>
-            <label>Анкор для перелинковки в подвале:</label> &nbsp;
-            <textarea name='show_form_footeranchor' id='show_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['show_form_footeranchor']."</textarea>
-        </div>
-
-        <div class='form-group' style='margin-bottom:0'>
-            <label>
-                <input type='checkbox' name='show_form_is_showable' id='show_form_is_showable' class='form_checkbox' checked='checekd' />&nbsp; Отображать шоу на сайте
-            </label>
-        </div>
-        
-        <br />
-        
-        <button class='btn btn-primary submit_button' type='submit'>Добавить шоу</button>
-	</form>
-	";
-} # /ФОРМА ДОБАВЛЕНИЯ НОВОСТИ
-
-# ДОБАВЛЯЕМ ШОУ В БД
-function addItemSubmit()
-{
-	global $dbh, $html;
-	
-	# print_r($_POST);
-	# защита от прямого запроса URL'а: http://kupi-krovat.ru/control/shows_circus/?action=addItemSubmit
-	if (!empty($_POST))
-	{
-        # проверка + нужная кодировка POST-переменных
-        preparePOSTVariables(); # print_r($_POST); exit;
-
-		# добавляем шоу в БД
-		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
-		# если шоу успешно добавлено
-		if (!empty($lastInsertID)) {
-            # копируем картинку # print_r($_FILES);
-            if (!empty($_FILES['show_form_image_for_slider_on_main_page']['tmp_name']))
-            {
-                copyImage(array(
-                    'itemID' => $lastInsertID,
-                    'imageFormName' => 'show_form_image_for_slider_on_main_page',
-                    'imageDbColumnName' => 'image_for_slider_on_main_page',
-                    'imagePrefix' => ''
-                ));
-            } # /копируем картинку
-
-			# сохраняем текст в файл
-			saveContentToFile($lastInsertID,
-							  $_POST['show_form_text']);
-            
-			# делаем перенаправление на форму редактирования
-			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/shows_circus/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
-			header('Location: '.$fullUrlForEdit);
-		}
-		# если возникла ошибка и шоу не добавлено
-		else {
-            $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и шоу не добавлено. Пожалуйста, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-		}
-	}
-	# если набран: /control/shows_circus/addItemSubmit/ и при этом $_POST пустой
-	else
-	{
-		# выводим список шоу
-        $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и шоу не добавлено. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-        return showAddForm();
-	}
-} # /ДОБАВЛЯЕМ ШОУ В БД
-
-# УДАЛЯЕМ ШОУ
-function deleteItem(){
-	
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID'])) {
-		# выводим ошибку
-		$GLOBALS['tpl_failure'] = 'Шоу не удалено. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-		# выводим список шоу
-        showItems();
-	}
-	else {
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-
-		# удаляем шоу из БД
-        $sql = '
-        delete from `'.DB_PREFIX.'shows_circus`
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute()) {
-			$GLOBALS['tpl_success'] = 'Шоу успешно удалено.';
-
-            # удаляем картинку
-            if (!empty($itemInfo['image_for_slider_on_main_page'])) {
-                $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$itemInfo['image_for_slider_on_main_page'];
-                if (file_exists($fullPathToImage) && is_file($fullPathToImage)) unlink($fullPathToImage);
-            }
-
-            # удаляем файл шоу
-            if (!empty($itemInfo['file_name'])) {
-                $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_shows_circus/'.basename($itemInfo['file_name']);
-                if (is_file($fullPathToFile)) unlink($fullPathToFile);
-            }
-
-            # уадялем backup'ы
-            $sql = '
-            delete from '.DB_PREFIX.'backups
-            where table_name = "faq"
-                  and entry_id = :entry_id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            
-			# выводим список шоу
-			return showItems();
-		}
-		else
-		{
-            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'К сожалению, шоу не удалено. Пожалуйста, обратитесь к разработчикам сайта.';
-			# выводим список шоу
-			return showItems();
-		}
-	}
-} # /УДАЛЯЕМ ШОУ
-
-# ДОБАВЛЯЕМ ШОУ В БД
-function addItemToDB()
-{
-	global $dbh;
-	
-	if (!empty($_POST['show_form_name']))
-	{ 
-        $sql = '
-        insert into `'.DB_PREFIX.'shows_circus`
-        (name, 
-         url,
-         title,
-         full_navigation,
-         navigation,
-         h1,
-         text_for_slider_on_main_page,
-         footeranchor,
-         element_order_listing,
-         is_showable)
-        values
-        (:name,
-         :url,
-         :title,
-         :full_navigation,
-         :navigation,
-         :h1,
-         :text_for_slider_on_main_page,
-         :footeranchor,
-         :element_order_listing,
-         :is_showable)
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':name', $_POST['show_form_name']);
-        $sth->bindParam(':url', $_POST['show_form_url']);
-        $sth->bindParam(':title', $_POST['show_form_title']);
-        $sth->bindParam(':navigation', $_POST['show_form_navigation']);
-        # full_navigation
-        if (empty($_POST['show_form_full_navigation'])) $_POST['show_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['show_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['show_form_h1']);
-        # text_for_slider_on_main_page
-        $sth->bindValue(':text_for_slider_on_main_page', !empty($_POST['show_form_text_for_slider_on_main_page']) ? $_POST['show_form_text_for_slider_on_main_page'] : null);
-        # footeranchor
-        if ($_POST['show_form_footeranchor'] == '') $_POST['show_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['show_form_footeranchor']);
-        # element_order_listing
-        $sth->bindValue(':element_order_listing', !empty($_POST['show_form_element_order_listing']) ? $_POST['show_form_element_order_listing'] : null);
-        # is_showable
-        $isShowable = !empty($_POST['show_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-		try { if ($sth->execute()) {
-            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
-			if (!empty($last_insert_id)) {
-                # фиксируем имя файла шоу
-                $sql = '
-                update `'.DB_PREFIX.'shows_circus`
-                set file_name = :file_name
-                where id = :id
-                '; # echo '<pre>'.$sql."</pre><hr />";
-                $sth = $dbh->prepare($sql);
-                # file_name
-                $file_name = $last_insert_id.'.php';
-                $sth->bindParam(':file_name', $file_name);
-                $sth->bindParam(':id', $last_insert_id, PDO::PARAM_INT);
-                $sth->execute();
-                # /фиксируем имя файла шоу
-                
-                return $last_insert_id;
-            }
-			else return;
-        }}
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
-	}
-    else echo 'В метод addItemToDB не передано show_form_name.';
-} # /ДОБАВЛЯЕМ ШОУ В БД
-
-# ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-function getItemInfo()
-{
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID'])) return;
-	
-	$sql = '
-	select *
-	from `'.DB_PREFIX.'shows_circus`
-	where id = :id
-	'; # echo '<pre>'.$sql."</pre><hr />";
-	$sth = $dbh->prepare($sql);
-    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-    $sth->execute();
-    $itemInfo = $sth->fetch();
-	if (!empty($itemInfo)) return $itemInfo;
-	else return;
-} # /ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-
-# СОХРАНЯЕМ КОНТЕНТ В ФАЙЛ
-function saveContentToFile($itemID,
-						   $text)
-{
-    # echo 'itemID: '.$itemID.'<br />';
-    # echo 'text: '.$text.'<br />';
-
-	# проверка переменных
-	if (empty($itemID)) return;
-	if (empty($text)) return;
-	
-	$fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_shows_circus/'.basename($itemID.'.php'); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
-    
-    file_put_contents($fullPathToFile, $text, LOCK_EX);
-    if (is_file($fullPathToFile)) chmod($fullPathToFile, 0755);
-} # /СОХРАНЯЕМ КОНТЕНТ В ФАЙЛ
-
-# КОПИРУЕМ КАРТИНКУ
-function copyImage($array)
-{
-    global $dbh;
-
-    # print_r($_FILES);
-    # print_r($array);
-
-    # проверка переменных
-    if (empty($array['itemID'])) return;
-    if (empty($array['imageFormName'])) return;
-    if (empty($array['imageDbColumnName'])) return;
-    # if (empty($array['imagePrefix'])) return;
-
-    # echo '<pre>'.(print_r($array, true)).'</pre>';
-    # echo $_FILES[$array['imageFormName']]['tmp_name'];
-    if (is_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'])) {
-        # УДАЛЯЕМ СТАРУЮ КАРТИНКУ, ЕСЛИ ОНА ЕСТЬ
-        $sql = '
-		select '.$array['imageDbColumnName'].'
-		from '.DB_PREFIX.'shows_circus
-		where id = :id
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
-        $sth->execute();
-        $_ = $sth->fetchColumn();
-        if (!empty($_)) {
-            $oldImage = $_;
-            # удаляем из БД
-            $sql = '
-			update '.DB_PREFIX.'shows_circus
-			set '.$array['imageDbColumnName'].' = NULL
-			where id = :id
-			'; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            # удаляем файл
-            $result = @unlink($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage);
-            # echo $result.'<hr />';
-            # echo $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage;
-        }
-        # /УДАЛЯЕМ СТАРУЮ КАРТИНКУ, ЕСЛИ ОНА ЕСТЬ
-
-        # КОПИРУЕМ НОВУЮ КАРТИНКУ
-        $ext = getImageExt($_FILES[$array['imageFormName']]['tmp_name']); # echo $ext.'<hr />';
-        $newImageName = $array['itemID']."".$array['imagePrefix'].".".$ext; # echo $newImageName.'<hr />';
-        $fullPathToUpload = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$newImageName; # echo $fullPathToUpload.'<hr />';
-        # копируем на основную зону
-        if (move_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'], $fullPathToUpload)) {
-            # пишем инфу в БД
-            $sql = '
-			update '.DB_PREFIX.'shows_circus
-			set '.$array['imageDbColumnName'].' = :new_image_name
-			where id = :id
-			'; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':new_image_name', $newImageName);
-            $sth->bindParam(':id', $array['itemID']);
-            $sth->execute();
-
-            return array($newImageName, $newImageLargeName);
-        }
-        else return;
-        # /КОПИРУЕМ НОВУЮ КАРТИНКУ
-    }
-} # /КОПИРУЕМ КАРТИНКУ
-
-# ПОЛУЧАЕМ РАСШИРЕНИЕ КАРТИНКИ
-# $imageName - full path to image
-function getImageExt($fullPathToImage)
-{
-    # print_r($fullPathToImage);
-
-    if (empty($fullPathToImage)) return;
-
-    $info = getimagesize($fullPathToImage); # print_r($info);
-    $ext = str_replace("image/", "", $info['mime']); # echo $ext.'<hr />';
-
-    if (!empty($ext)) return $ext;
-    else return;
-} # /ПОЛУЧАЕМ РАСШИРЕНИЕ КАРТИНКИ
-
-# ВЫВОДИМ ИНФУ ПО КАРТИНКЕ
-function showPhotoInfo($array)
-{
-    # проверка переменных
-    if (empty($array['imageName'])) return;
-    if (empty($array['imageDbColumnName'])) return;
-
-    if (file_exists($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath']).$array['imageName']) {
-        $imageInfo = @getimagesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']); # echo '<pre>'.(print_r($imageInfo, true)).'</pre>';
-        $imageSize = @filesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']);
-        $imageSize = @round($imageSize / 1024, 1);
-
-        return '
-		Путь: <a href="'.$GLOBALS['imagesPath'].$array['imageName'].'" target="_blank">'.$_SERVER['HTTP_HOST'].$GLOBALS['imagesPath'].$array['imageName'].'</a>
-		<br />Вес: '.$imageSize.' кб.
-		<br />Размер: '.$imageInfo[0].'px x '.$imageInfo[1].'px
-		<br /><br />
-		<a href="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" target="_blank"><img src="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" border="0" /></a>
-        <br /><a href="/control/shows_circus/?action=editItem&itemID='.$_GET['itemID'].'&subaction=remove_photo&db_column_name='.$array['imageDbColumnName'].'" onclick="return confirm(\'Удалить картинку?\');">Удалить картинку</a>
-		';
-        # <hr style="border:none;background-color:#ccc;color:#ccc;height:1px" />
-    }
-} # /ВЫВОДИМ ИНФУ ПО КАРТИНКЕ
-
-# /ФУНКЦИОНАЛ
+<?php 
+# РњРѕРґСѓР»СЊ Р°РґРјРёРЅРєРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С€РѕСѓ (РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ) (С‚Р°Р±Р»РёС†Р° shows)
+# romanov.egor@gmail.com; 2015.10.14
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р» РєРѕРЅС„РёРіР°
+include('../loader.control.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+include('common.functions.php');
+
+# РќРђРЎРўР РћР™РљР
+$GLOBALS['tpl_title'] = 'РЁРѕСѓ (Р’РµСЂРЅР°РґСЃРєРѕРіРѕ)';
+$GLOBALS['imagesPath'] = '/public/images/shows_circus/';
+
+# Р—РђР©РРўРђ
+if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
+
+# Р›РћР“РРљРђ
+if ($_GET['action'] == "addItem")
+{ 
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј С€РѕСѓ';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј С€РѕСѓ';
+    $GLOBALS['tpl_content'] = showAddForm();
+}
+elseif ($_GET['action'] == "addItemSubmit") {
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј С€РѕСѓ';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј С€РѕСѓ';
+    $GLOBALS['tpl_content'] = addItemSubmit(); 
+}
+elseif ($_GET['action'] == "editItem") {
+    $GLOBALS['tpl_title'] .= ' > СЂРµРґР°РєС‚РёСЂСѓРµРј С€РѕСѓ';
+    $GLOBALS['tpl_h1'] = 'Р РµРґР°РєС‚РёСЂСѓРµРј С€РѕСѓ';
+    $GLOBALS['tpl_content'] = showEditForm(); 
+}
+elseif ($_GET['action'] == "deleteItem") {
+    $GLOBALS['tpl_title'] .= ' > СѓРґР°Р»СЏРµРј С€РѕСѓ';
+    $GLOBALS['tpl_h1'] = 'РЈРґР°Р»СЏРµРј С€РѕСѓ';
+    $GLOBALS['tpl_content'] = deleteItem(); 
+}
+else { 
+    $GLOBALS['tpl_title'] .= ' > РІСЃРµ С€РѕСѓ';
+    $GLOBALS['tpl_h1'] = 'Р’СЃРµ С€РѕСѓ РЅР° Р’РµСЂРЅР°РґСЃРєРѕРіРѕ ('.$dbh->query('select count(1) from `'.DB_PREFIX.'shows_circus`')->fetchColumn().')';
+    $GLOBALS['tpl_content'] = showItems(); 
+}
+# /Р›РћР“РРљРђ
+
+# РІС‹РІРѕРґРёРј РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
+$tpl->setMainTemplate('template_for_all_pages.php');
+$tpl->echoMainTemplate();
+
+# Р¤РЈРќРљР¦РРћРќРђР›
+
+# Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ РЁРћРЈ
+function showItems($count = null)
+{
+    global $dbh;
+    
+    # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє С€РѕСѓ
+    $sql = '
+    select id,
+           name,
+           url,
+           image_for_slider_on_main_page,
+           element_order_listing,
+           is_showable
+    from `'.DB_PREFIX.'shows_circus`
+    order by isnull(element_order_listing),
+             element_order_listing,
+             name
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sql_for_count = '
+    select count(id)
+    from `'.DB_PREFIX.'shows_circus`
+    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
+	$pages = new pages($_GET["page"], # С‚РµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°
+					   25, # Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+					   $dbh, # РѕР±СЉРµРєС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+                       '', # routeVars
+					   $sql, # sql-Р·Р°РїСЂРѕСЃ
+					   $sql_for_count, # sql-Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
+					   '/control/shows_circus/', # СЃСЃС‹РєР° РЅР° 1СЋ СЃС‚СЂР°РЅРёС†Сѓ
+					   '/control/shows_circus/?page=%page%', # СЃСЃС‹РєР° РЅР° РѕСЃС‚Р°Р»СЊРЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
+						1500 # РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+						);
+	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
+    $_ = $_result['resultSet'];
+    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">РЎС‚СЂР°РЅРёС†С‹: '.$_result['pagesSet'].'</div>';
+    $_c = count($_);
+	$rows = array();
+    for ($i=0;$i<$_c;$i++) {
+        # СЃСЃС‹Р»РєР°
+        $link = '<a href="/cirk/'.$_[$i]['url'].'/" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>';
+        
+        # is_showable
+        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
+        else unset($trClass);
+
+        # image_for_slider_on_main_page
+        # if (!empty($_[$i]['image_for_slider_on_main_page'])) $is_image_for_slider_on_main_page = 'РґР°';
+        # else $is_image_for_slider_on_main_page = '&nbsp;';
+        
+        $rows[] = '
+		<tr'.$trClass.'>
+            <td class="center vertical_middle">
+                <a class="block" href="/control/shows_circus/?action=editItem&itemID='.$_[$i]['id'].'">
+                    <i class="fa fa-edit size_18"></i>
+                </a>
+            </td>
+			<td class="center vertical_middle">'.$link.'</td>
+			<td>'.$_[$i]['name'].'</td>
+			<td class="center">'.(!empty($_[$i]['element_order_listing']) ? $_[$i]['element_order_listing'] : '&nbsp;').'</td>
+			<!--<td class="center">'.$is_image_for_slider_on_main_page.'</td>-->
+			<td class="center vertical_middle">
+                <a class="block" title="РЈРґР°Р»РёС‚СЊ С€РѕСѓ" href="/control/shows_circus/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'РЁРѕСѓ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅРѕ Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ С€РѕСѓ?\')">
+                    <i class="fa fa-trash-o size_18"></i>
+                </a>
+			</td>
+		</tr>
+		';
+    }
+	
+	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+	else unset($rows);
+
+    $result = '
+	<script type="text/javascript" src="/control/shows_circus/index.js"></script>
+	
+    <div style="width:50%;float:left">
+        <b>URL:</b>&nbsp; <a href="/cirk/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/cirk/</a>
+    </div>
+    <div style="width:50%;float:right;text-align:right;padding-right:15px">
+        РџРѕРёСЃРє РїРѕ РЅР°Р·РІР°РЅРёСЋ: &nbsp;
+        <input id="search" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
+    </div>
+    <br style="clear:both" />
+
+    <div class="center" style="margin-bottom:15px">
+        <a href="/control/shows_circus/?action=addItem">
+            <button id="parse_all_projects" class="btn btn-success" type="button">
+                <i class="fa fa-plus-square" style="margin-right:3px"></i>
+                    Р”РѕР±Р°РІРёС‚СЊ С€РѕСѓ
+            </button>
+        </a>
+    </div>
+    ';
+    
+    if (empty($rows)) $result .= 'Р’ СЃРёСЃС‚РµРјРµ РЅРµ Р·Р°РґР°РЅРѕ РЅРё РѕРґРЅРѕ С€РѕСѓ.';
+    else
+    {
+        $result .= '
+        <div id="resultSet">
+        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+            <tr>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РџСЂР°РІРєР°</th>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РЎСЃС‹Р»РєР°</th>
+                <th class="center vertical_middle">РќР°Р·РІР°РЅРёРµ</th>
+                <th class="center vertical_middle" style="width:175px">РџРѕСЂСЏРґРѕРє РІС‹РІРѕРґР° РІ Р»РёСЃС‚РёРЅРіРµ</th>
+                <!--<th class="center vertical_middle" style="width:175px">РљР°СЂС‚РёРЅРєР° РґР»СЏ СЃР»Р°Р№РґРµСЂР° РЅР° РіР»Р°РІРЅРѕР№</th>-->
+                <th class="center vertical_middle" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+            </tr>
+            '.$rows.'
+        </table>
+        '.$pagesList.'
+        </div>';
+    }
+    
+    return $result;
+} # / Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ РЁРћРЈ
+
+# Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РЁРћРЈ
+function showEditForm()
+{
+    global $dbh;
+    
+    $showEditForm = 1;
+
+    # РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ
+    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'РЁРѕСѓ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ.';
+    
+    # СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+    if ($_GET['subaction'] == 'submit' && !empty($_POST)) {
+        $sql = '
+        update `'.DB_PREFIX.'shows_circus`
+        set name = :name,
+            url = :url,
+            title = :title,
+            navigation = :navigation,
+            full_navigation = :full_navigation,
+            h1 = :h1,
+            footeranchor = :footeranchor,
+            text_for_slider_on_main_page = :text_for_slider_on_main_page,
+            element_order_listing = :element_order_listing,
+            is_showable = :is_showable
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':name', $_POST['show_form_name']);
+        $sth->bindParam(':url', $_POST['show_form_url']);
+        $sth->bindParam(':title', $_POST['show_form_title']);
+        $sth->bindParam(':navigation', $_POST['show_form_navigation']);
+        # full_navigation
+        if (empty($_POST['show_form_full_navigation'])) $_POST['show_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['show_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['show_form_h1']);
+        # text_for_slider_on_main_page
+        $sth->bindValue(':text_for_slider_on_main_page', !empty($_POST['show_form_text_for_slider_on_main_page']) ? $_POST['show_form_text_for_slider_on_main_page'] : null);
+        # is_showable
+        $isShowable = !empty($_POST['show_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+        # footeranchor
+        if ($_POST['show_form_footeranchor'] == '') $_POST['show_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['show_form_footeranchor']);
+        # element_order_listing
+        $sth->bindValue(':element_order_listing', !empty($_POST['show_form_element_order_listing']) ? $_POST['show_form_element_order_listing'] : null);
+        # id
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute())
+        {
+            $GLOBALS['tpl_success'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°.';
+
+            # РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ # print_r($_FILES);
+            if (!empty($_FILES['show_form_image_for_slider_on_main_page']['tmp_name'])) {
+                copyImage(array(
+                    'itemID' => $_GET['itemID'],
+                    'imageFormName' => 'show_form_image_for_slider_on_main_page',
+                    'imageDbColumnName' => 'image_for_slider_on_main_page',
+                    'imagePrefix' => ''
+                ));
+            } # /РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ
+            
+			# СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚ РІ С„Р°Р№Р»
+			saveContentToFile($_GET['itemID'],
+							  $_POST['show_form_text']);
+        }
+        else
+        {
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РёРЅС„РѕСЂРјР°С†РёСЏ РЅРµ СЃРѕС…СЂР°РЅРµРЅР°. РџР¶Р», РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+        }
+    } # /СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+
+    # СѓРґР°Р»СЏРµРј СѓРєР°Р·Р°РЅРЅСѓСЋ РєР°СЂС‚РёРЅРєСѓ
+    if ($_GET['subaction'] == 'remove_photo') {
+        # РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+        $allowedCoumns = array('image_for_slider_on_main_page');
+        if (empty($_GET['itemID'])) $GLOBALS['tpl_failure'] = 'РќРµ РїРµСЂРµРґР°РЅ ID Р·Р°РїРёСЃРё.';
+        elseif (empty($_GET['db_column_name'])) $GLOBALS['tpl_failure'] = 'РќРµРІРµСЂРЅРѕ РїРµСЂРµРґР°РЅРѕ РЅР°Р·РІР°РЅРёРµ СЃС‚РѕР»Р±С†Р° РєР°СЂС‚РёРЅРєРё.';
+        elseif (!in_array($_GET['db_column_name'], $allowedCoumns)) $GLOBALS['tpl_failure'] = 'РќРµРІРµСЂРЅРѕ РїРµСЂРµРґР°РЅРѕ РЅР°Р·РІР°РЅРёРµ СЃС‚РѕР»Р±С†Р° РєР°СЂС‚РёРЅРєРё.';
+        else
+        {
+            # РїРѕР»СѓС‡Р°РµРј РёРЅРѕС„СЂРјР°С†РёСЋ Рѕ РєР°СЂС‚РёРЅРєРµ
+            $sql = '
+            select '.$_GET['db_column_name'].'
+            from '.DB_PREFIX.'shows_circus
+            where id = :id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            $columnName = $sth->fetchColumn(); # echo 'columnName: '.$columnName;
+            # СѓРґР°Р»СЏРµРј РєР°СЂС‚РёРЅРєСѓ
+            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$columnName; # echo 'fullPathToImage: '.$fullPathToImage;
+            if (!empty($fullPathToImage) && file_exists($fullPathToImage)) unlink($fullPathToImage);
+            # РІРЅРѕСЃРёРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+            $sql = '
+            update '.DB_PREFIX.'shows_circus
+            set '.$_GET['db_column_name'].' = NULL
+            where id = :id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+            if ($sth->execute())
+            {
+                $GLOBALS['tpl_success'] = 'РљР°СЂС‚РёРЅРєР° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°.';
+                $_POST['tabs_state'] = 4;
+            }
+            else $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РєР°СЂС‚РёРЅРєР° РЅРµ СѓРґР°Р»РµРЅР°. РџР¶Р», РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        }
+    } # /СѓРґР°Р»СЏРµРј СѓРєР°Р·Р°РЅРЅСѓСЋ РєР°СЂС‚РёРЅРєСѓ
+
+    # РІС‹РІРѕРґРёРј С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+    if ($showEditForm) {
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+        
+        # Р·Р°С‰РёС‚Р°
+        if (!$itemInfo['id']) exit('
+		РќРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р·Р°РїРёСЃРё СЃ ID='.$_GET['itemID'].'
+		<br /><a href="/control/shows_circus/">РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ С€РѕСѓ</a>
+		');
+        
+		# С‡РёС‚Р°РµРј С‚РµРєСЃС‚ С€РѕСѓ РёР· С„Р°Р№Р»Р°
+        if (!empty($itemInfo['file_name']))
+        {
+            $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_shows_circus/'.basename($itemInfo['file_name']); # echo $fullPathToFile.'<hr />';
+            if (file_exists($fullPathToFile)) {
+                $content = file_get_contents($fullPathToFile); # echo $content.'<hr />';
+                # prepare for showing
+                $content = htmlspecialchars($content, ENT_QUOTES);
+                $content = str_replace("\t", "", $content);
+            }
+        }
+
+        # prepare all values for showing
+        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
+
+        # РїРѕР»СѓС‡Р°РµРј Рё РІС‹РІРѕРґРёРј РёРЅС„Сѓ РїРѕ С„РѕС‚Рѕ
+        $imageInfo = showPhotoInfo(array('imageName' => $itemInfo['image_for_slider_on_main_page'], 'imageDbColumnName' => 'image_for_slider_on_main_page'));
+        
+        return "
+		<script type='text/javascript' src='/control/shows_circus/index.js'></script>
+		<form id='show_form' action='/control/shows_circus/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='show_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
+            
+            <button class='btn btn-primary submit_button' type='submit'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+
+            &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/'><button class='btn btn-success' type='button'>
+            <i class='fa fa-share-square' style='margin-right:3px'></i>
+            РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/?action=addItem'><button class='btn btn-success' type='button'>
+            <i class='fa fa-plus-square' style='margin-right:3px'></i>
+            Р”РѕР±Р°РІРёС‚СЊ С€РѕСѓ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"РЁРѕСѓ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅРѕ Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ С€РѕСѓ?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> РЈРґР°Р»РёС‚СЊ С€РѕСѓ</button></a>
+
+			<br><br><b>URL:</b>&nbsp; <a href='/cirk/".$itemInfo['url']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/cirk/".$itemInfo['url']."/</a>
+            
+            <br><br>
+            <div class='form-group' style='width:60%'>
+                <label>Р”РёСЂРµРєС‚РѕСЂРёСЏ (РїРѕ-Р°РЅРіР»РёР№СЃРєРё): <span style='color:red'>*</span></label>
+                <input type='text' name='show_form_url' id='show_form_url' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ (РЅР°РїСЂРёРјРµСЂ: legenda)' value='".$itemInfo['url']."' />
+            </div>
+
+            <div class='form-group' style='width:60%'>
+                <label>РќР°Р·РІР°РЅРёРµ: <span style='color:red'>*</span></label>
+                <input type='text' name='show_form_name' id='show_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїРѕ-СЂСѓСЃСЃРєРё' value='".$itemInfo['name']."' />
+            </div>
+            
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹:</label>
+                <input type='text' name='show_form_title' id='show_form_title' class='form-control' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$itemInfo['title']."' />
+            </div>
+            
+            <div class='form-group' style='width:90%'>
+                <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё:</label>
+                <input type='text' name='show_form_navigation' id='show_form_navigation' class='form-control' value='".$itemInfo['navigation']."' />
+            </div>
+            
+			<div class='form-group' style='width:95%'>
+                <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                       <br />
+                       <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+                </label>
+                <textarea name='show_form_full_navigation' id='show_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
+            </div>
+
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє h1:</label>
+                <input type='text' name='show_form_h1' id='show_form_h1' class='form-control' value='".$itemInfo['h1']."' />
+            </div>
+
+            <div class='form-group'>
+                <label>РўРµРєСЃС‚ СЃС‚СЂР°РЅРёС†С‹:</label>
+                <textarea name='show_form_text' id='show_form_text' class='form-control lined' style='width:90%;height:270px'>".$content."</textarea>
+            </div>
+
+            <!--
+            <div class='well' style='width:85%'>
+
+                <div class='form-group' style='width:90%'>
+                    <label>РўРµРєСЃС‚-РїРѕРґСЃРєР°Р·РєР° РґР»СЏ СЃР»Р°Р№РґРµСЂР° РЅР° РіР»Р°РІРЅРѕР№ (<a href='/control/public/images/help_screenshot_1.png' target='_blank'>СЃРєСЂРёРЅС€РѕС‚</a>):</label>
+                    <input type='text' name='show_form_text_for_slider_on_main_page' id='show_form_text_for_slider_on_main_page' class='form-control' value='".$itemInfo['text_for_slider_on_main_page']."' />
+                </div>
+
+                <div class='form-group'>
+                    <label>РљР°СЂС‚РёРЅРєР° РґР»СЏ СЃР»Р°Р№РґРµСЂР° РЅР° РіР»Р°РІРЅРѕР№<br /><span style='font-weight:normal'>* РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅР°, РІ СЃР»Р°Р№РґРµСЂРµ РЅР° РіР»Р°РІРЅРѕР№ РЅРµ РІС‹РІРѕРґРёС‚СЃСЏ</span>:</label>
+                    <br /> <input id='show_form_image_for_slider_on_main_page' name='show_form_image_for_slider_on_main_page' type='file' style='display:inline-block' />
+                </div>
+
+                ".$imageInfo."
+
+            </div>
+            -->
+
+            <div class='form-group' style='width:60%'>
+                <label>РџРѕСЂСЏРґРѕРє РІС‹РІРѕРґР° РІ Р»РёСЃС‚РёРЅРіРµ:</label> &nbsp;
+                <input type='text' name='show_form_element_order_listing' id='show_form_element_order_listing' class='form-control' data-required-label='' value='".$itemInfo['element_order_listing']."' style='display:inline-block;width:100px' />
+            </div>
+
+            <div class='form-group' style='width:95%'>
+                <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp; 
+                <textarea name='show_form_footeranchor' id='show_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
+            </div>
+
+            <div class='form-group' style='margin-bottom:0'>
+                <label>
+                    <input type='checkbox' name='show_form_is_showable' id='show_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checekd"' : '')." />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ С€РѕСѓ РЅР° СЃР°Р№С‚Рµ
+                </label>
+            </div>
+            
+            <br />
+			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+            
+		</form>
+		";
+    }
+} # /Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РЁРћРЈ
+
+# Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РЁРћРЈ
+function showAddForm()
+{
+    global $dbh;
+    
+    return "
+	<script type='text/javascript' src='/control/shows_circus/index.js'></script>
+	<form id='show_form' action='/control/shows_circus/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ С€РѕСѓ</button>
+        
+        &nbsp;&nbsp;&nbsp; <a href='/control/shows_circus/'><button class='btn btn-success' type='button'>
+        <i class='fa fa-share-square' style='margin-right:3px'></i>
+        РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+        </button></a>
+        
+		<br /><br /><b>URL:</b>&nbsp; <a href='/cirk/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/cirk/</a>
+
+        <br /><br />
+        <div class='form-group' style='width:60%'>
+            <label>Р”РёСЂРµРєС‚РѕСЂРёСЏ (РїРѕ-Р°РЅРіР»РёР№СЃРєРё): <span style='color:red'>*</span></label>
+            <input type='text' name='show_form_url' id='show_form_url' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ (РЅР°РїСЂРёРјРµСЂ: legenda)' value='".$_POST['url']."' />
+        </div>
+
+        <div class='form-group' style='width:60%'>
+            <label>РќР°Р·РІР°РЅРёРµ: <span style='color:red'>*</span></label>
+            <input type='text' name='show_form_name' id='show_form_name' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїРѕ-СЂСѓСЃСЃРєРё' value='".$_POST['name']."' />
+        </div>
+
+        <div id='show_form_name_alert_div' class='alert alert-info hidden width_95'></div>
+
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹:</label>
+            <input type='text' name='show_form_title' id='show_form_title' class='form-control' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$_POST['title']."' />
+        </div>
+
+        <div class='form-group' style='width:90%'>
+            <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё:</label>
+            <input type='text' name='show_form_navigation' id='show_form_navigation' class='form-control' value='".$_POST['navigation']."' />
+        </div>
+        
+        <div class='form-group' style='width:95%'>
+            <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                   <br />
+                   <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+            </label>
+            <textarea name='show_form_full_navigation' id='show_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['show_form_full_navigation']."</textarea>
+        </div>
+
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє h1:</label>
+            <input type='text' name='show_form_h1' id='show_form_h1' class='form-control' value='".$_POST['h1']."' />
+        </div>
+
+        <div class='form-group'>
+            <label>РўРµРєСЃС‚ СЃС‚СЂР°РЅРёС†С‹:</label>
+            <textarea name='show_form_text' id='show_form_text' class='form-control lined' style='width:90%;height:270px'></textarea>
+        </div>
+
+        <!--
+        <div class='well' style='width:85%'>
+
+            <div class='form-group' style='width:90%'>
+                <label>РўРµРєСЃС‚-РїРѕРґСЃРєР°Р·РєР° РґР»СЏ СЃР»Р°Р№РґРµСЂР° РЅР° РіР»Р°РІРЅРѕР№ (<a href='/control/public/images/help_screenshot_1.png' target='_blank'>СЃРєСЂРёРЅС€РѕС‚</a>):</label>
+                <input type='text' name='show_form_text_for_slider_on_main_page' id='show_form_text_for_slider_on_main_page' class='form-control' value='".$_POST['show_form_text_for_slider_on_main_page']."' />
+            </div>
+
+            <div class='form-group' style='margin-bottom:5px'>
+                <label>РљР°СЂС‚РёРЅРєР° РґР»СЏ СЃР»Р°Р№РґРµСЂР° РЅР° РіР»Р°РІРЅРѕР№<br /><span style='font-weight:normal'>* РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅР°, РІ СЃР»Р°Р№РґРµСЂРµ РЅР° РіР»Р°РІРЅРѕР№ РЅРµ РІС‹РІРѕРґРёС‚СЃСЏ</span>:</label>
+                <br /> <input id='show_form_image_for_slider_on_main_page' name='show_form_image_for_slider_on_main_page' type='file' style='display:inline-block' />
+            </div>
+
+        </div>
+        -->
+
+        <div class='form-group' style='width:60%'>
+            <label>РџРѕСЂСЏРґРѕРє РІС‹РІРѕРґР° РІ Р»РёСЃС‚РёРЅРіРµ:</label> &nbsp;
+            <input type='text' name='show_form_element_order_listing' id='show_form_element_order_listing' class='form-control' data-required-label='' value='".$_POST['show_form_element_order_listing']."' style='display:inline-block;width:100px' />
+        </div>
+        
+        <div class='form-group' style='width:95%'>
+            <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp;
+            <textarea name='show_form_footeranchor' id='show_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['show_form_footeranchor']."</textarea>
+        </div>
+
+        <div class='form-group' style='margin-bottom:0'>
+            <label>
+                <input type='checkbox' name='show_form_is_showable' id='show_form_is_showable' class='form_checkbox' checked='checekd' />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ С€РѕСѓ РЅР° СЃР°Р№С‚Рµ
+            </label>
+        </div>
+        
+        <br />
+        
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ С€РѕСѓ</button>
+	</form>
+	";
+} # /Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РќРћР’РћРЎРўР
+
+# Р”РћР‘РђР’Р›РЇР•Рњ РЁРћРЈ Р’ Р‘Р”
+function addItemSubmit()
+{
+	global $dbh, $html;
+	
+	# print_r($_POST);
+	# Р·Р°С‰РёС‚Р° РѕС‚ РїСЂСЏРјРѕРіРѕ Р·Р°РїСЂРѕСЃР° URL'Р°: http://kupi-krovat.ru/control/shows_circus/?action=addItemSubmit
+	if (!empty($_POST))
+	{
+        # РїСЂРѕРІРµСЂРєР° + РЅСѓР¶РЅР°СЏ РєРѕРґРёСЂРѕРІРєР° POST-РїРµСЂРµРјРµРЅРЅС‹С…
+        preparePOSTVariables(); # print_r($_POST); exit;
+
+		# РґРѕР±Р°РІР»СЏРµРј С€РѕСѓ РІ Р‘Р”
+		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
+		# РµСЃР»Рё С€РѕСѓ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ
+		if (!empty($lastInsertID)) {
+            # РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ # print_r($_FILES);
+            if (!empty($_FILES['show_form_image_for_slider_on_main_page']['tmp_name']))
+            {
+                copyImage(array(
+                    'itemID' => $lastInsertID,
+                    'imageFormName' => 'show_form_image_for_slider_on_main_page',
+                    'imageDbColumnName' => 'image_for_slider_on_main_page',
+                    'imagePrefix' => ''
+                ));
+            } # /РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ
+
+			# СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚ РІ С„Р°Р№Р»
+			saveContentToFile($lastInsertID,
+							  $_POST['show_form_text']);
+            
+			# РґРµР»Р°РµРј РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/shows_circus/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
+			header('Location: '.$fullUrlForEdit);
+		}
+		# РµСЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё С€РѕСѓ РЅРµ РґРѕР±Р°РІР»РµРЅРѕ
+		else {
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё С€РѕСѓ РЅРµ РґРѕР±Р°РІР»РµРЅРѕ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+		}
+	}
+	# РµСЃР»Рё РЅР°Р±СЂР°РЅ: /control/shows_circus/addItemSubmit/ Рё РїСЂРё СЌС‚РѕРј $_POST РїСѓСЃС‚РѕР№
+	else
+	{
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€РѕСѓ
+        $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё С€РѕСѓ РЅРµ РґРѕР±Р°РІР»РµРЅРѕ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+        return showAddForm();
+	}
+} # /Р”РћР‘РђР’Р›РЇР•Рњ РЁРћРЈ Р’ Р‘Р”
+
+# РЈР”РђР›РЇР•Рњ РЁРћРЈ
+function deleteItem(){
+	
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID'])) {
+		# РІС‹РІРѕРґРёРј РѕС€РёР±РєСѓ
+		$GLOBALS['tpl_failure'] = 'РЁРѕСѓ РЅРµ СѓРґР°Р»РµРЅРѕ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€РѕСѓ
+        showItems();
+	}
+	else {
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+
+		# СѓРґР°Р»СЏРµРј С€РѕСѓ РёР· Р‘Р”
+        $sql = '
+        delete from `'.DB_PREFIX.'shows_circus`
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute()) {
+			$GLOBALS['tpl_success'] = 'РЁРѕСѓ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅРѕ.';
+
+            # СѓРґР°Р»СЏРµРј РєР°СЂС‚РёРЅРєСѓ
+            if (!empty($itemInfo['image_for_slider_on_main_page'])) {
+                $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$itemInfo['image_for_slider_on_main_page'];
+                if (file_exists($fullPathToImage) && is_file($fullPathToImage)) unlink($fullPathToImage);
+            }
+
+            # СѓРґР°Р»СЏРµРј С„Р°Р№Р» С€РѕСѓ
+            if (!empty($itemInfo['file_name'])) {
+                $fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_shows_circus/'.basename($itemInfo['file_name']);
+                if (is_file($fullPathToFile)) unlink($fullPathToFile);
+            }
+
+            # СѓР°РґСЏР»РµРј backup'С‹
+            $sql = '
+            delete from '.DB_PREFIX.'backups
+            where table_name = "faq"
+                  and entry_id = :entry_id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€РѕСѓ
+			return showItems();
+		}
+		else
+		{
+            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, С€РѕСѓ РЅРµ СѓРґР°Р»РµРЅРѕ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє С€РѕСѓ
+			return showItems();
+		}
+	}
+} # /РЈР”РђР›РЇР•Рњ РЁРћРЈ
+
+# Р”РћР‘РђР’Р›РЇР•Рњ РЁРћРЈ Р’ Р‘Р”
+function addItemToDB()
+{
+	global $dbh;
+	
+	if (!empty($_POST['show_form_name']))
+	{ 
+        $sql = '
+        insert into `'.DB_PREFIX.'shows_circus`
+        (name, 
+         url,
+         title,
+         full_navigation,
+         navigation,
+         h1,
+         text_for_slider_on_main_page,
+         footeranchor,
+         element_order_listing,
+         is_showable)
+        values
+        (:name,
+         :url,
+         :title,
+         :full_navigation,
+         :navigation,
+         :h1,
+         :text_for_slider_on_main_page,
+         :footeranchor,
+         :element_order_listing,
+         :is_showable)
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':name', $_POST['show_form_name']);
+        $sth->bindParam(':url', $_POST['show_form_url']);
+        $sth->bindParam(':title', $_POST['show_form_title']);
+        $sth->bindParam(':navigation', $_POST['show_form_navigation']);
+        # full_navigation
+        if (empty($_POST['show_form_full_navigation'])) $_POST['show_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['show_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['show_form_h1']);
+        # text_for_slider_on_main_page
+        $sth->bindValue(':text_for_slider_on_main_page', !empty($_POST['show_form_text_for_slider_on_main_page']) ? $_POST['show_form_text_for_slider_on_main_page'] : null);
+        # footeranchor
+        if ($_POST['show_form_footeranchor'] == '') $_POST['show_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['show_form_footeranchor']);
+        # element_order_listing
+        $sth->bindValue(':element_order_listing', !empty($_POST['show_form_element_order_listing']) ? $_POST['show_form_element_order_listing'] : null);
+        # is_showable
+        $isShowable = !empty($_POST['show_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+		try { if ($sth->execute()) {
+            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
+			if (!empty($last_insert_id)) {
+                # С„РёРєСЃРёСЂСѓРµРј РёРјСЏ С„Р°Р№Р»Р° С€РѕСѓ
+                $sql = '
+                update `'.DB_PREFIX.'shows_circus`
+                set file_name = :file_name
+                where id = :id
+                '; # echo '<pre>'.$sql."</pre><hr />";
+                $sth = $dbh->prepare($sql);
+                # file_name
+                $file_name = $last_insert_id.'.php';
+                $sth->bindParam(':file_name', $file_name);
+                $sth->bindParam(':id', $last_insert_id, PDO::PARAM_INT);
+                $sth->execute();
+                # /С„РёРєСЃРёСЂСѓРµРј РёРјСЏ С„Р°Р№Р»Р° С€РѕСѓ
+                
+                return $last_insert_id;
+            }
+			else return;
+        }}
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
+	}
+    else echo 'Р’ РјРµС‚РѕРґ addItemToDB РЅРµ РїРµСЂРµРґР°РЅРѕ show_form_name.';
+} # /Р”РћР‘РђР’Р›РЇР•Рњ РЁРћРЈ Р’ Р‘Р”
+
+# РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+function getItemInfo()
+{
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID'])) return;
+	
+	$sql = '
+	select *
+	from `'.DB_PREFIX.'shows_circus`
+	where id = :id
+	'; # echo '<pre>'.$sql."</pre><hr />";
+	$sth = $dbh->prepare($sql);
+    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+    $sth->execute();
+    $itemInfo = $sth->fetch();
+	if (!empty($itemInfo)) return $itemInfo;
+	else return;
+} # /РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+
+# РЎРћРҐР РђРќРЇР•Рњ РљРћРќРўР•РќРў Р’ Р¤РђР™Р›
+function saveContentToFile($itemID,
+						   $text)
+{
+    # echo 'itemID: '.$itemID.'<br />';
+    # echo 'text: '.$text.'<br />';
+
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($itemID)) return;
+	if (empty($text)) return;
+	
+	$fullPathToFile = $_SERVER['DOCUMENT_ROOT'].'/app/site_sections_shows_circus/'.basename($itemID.'.php'); # echo 'fullPathToNewFile: '.$fullPathToNewFile.'<br />';
+    
+    file_put_contents($fullPathToFile, $text, LOCK_EX);
+    if (is_file($fullPathToFile)) chmod($fullPathToFile, 0755);
+} # /РЎРћРҐР РђРќРЇР•Рњ РљРћРќРўР•РќРў Р’ Р¤РђР™Р›
+
+# РљРћРџРР РЈР•Рњ РљРђР РўРРќРљРЈ
+function copyImage($array)
+{
+    global $dbh;
+
+    # print_r($_FILES);
+    # print_r($array);
+
+    # РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+    if (empty($array['itemID'])) return;
+    if (empty($array['imageFormName'])) return;
+    if (empty($array['imageDbColumnName'])) return;
+    # if (empty($array['imagePrefix'])) return;
+
+    # echo '<pre>'.(print_r($array, true)).'</pre>';
+    # echo $_FILES[$array['imageFormName']]['tmp_name'];
+    if (is_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'])) {
+        # РЈР”РђР›РЇР•Рњ РЎРўРђР РЈР® РљРђР РўРРќРљРЈ, Р•РЎР›Р РћРќРђ Р•РЎРўР¬
+        $sql = '
+		select '.$array['imageDbColumnName'].'
+		from '.DB_PREFIX.'shows_circus
+		where id = :id
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
+        $sth->execute();
+        $_ = $sth->fetchColumn();
+        if (!empty($_)) {
+            $oldImage = $_;
+            # СѓРґР°Р»СЏРµРј РёР· Р‘Р”
+            $sql = '
+			update '.DB_PREFIX.'shows_circus
+			set '.$array['imageDbColumnName'].' = NULL
+			where id = :id
+			'; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            # СѓРґР°Р»СЏРµРј С„Р°Р№Р»
+            $result = @unlink($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage);
+            # echo $result.'<hr />';
+            # echo $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage;
+        }
+        # /РЈР”РђР›РЇР•Рњ РЎРўРђР РЈР® РљРђР РўРРќРљРЈ, Р•РЎР›Р РћРќРђ Р•РЎРўР¬
+
+        # РљРћРџРР РЈР•Рњ РќРћР’РЈР® РљРђР РўРРќРљРЈ
+        $ext = getImageExt($_FILES[$array['imageFormName']]['tmp_name']); # echo $ext.'<hr />';
+        $newImageName = $array['itemID']."".$array['imagePrefix'].".".$ext; # echo $newImageName.'<hr />';
+        $fullPathToUpload = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$newImageName; # echo $fullPathToUpload.'<hr />';
+        # РєРѕРїРёСЂСѓРµРј РЅР° РѕСЃРЅРѕРІРЅСѓСЋ Р·РѕРЅСѓ
+        if (move_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'], $fullPathToUpload)) {
+            # РїРёС€РµРј РёРЅС„Сѓ РІ Р‘Р”
+            $sql = '
+			update '.DB_PREFIX.'shows_circus
+			set '.$array['imageDbColumnName'].' = :new_image_name
+			where id = :id
+			'; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':new_image_name', $newImageName);
+            $sth->bindParam(':id', $array['itemID']);
+            $sth->execute();
+
+            return array($newImageName, $newImageLargeName);
+        }
+        else return;
+        # /РљРћРџРР РЈР•Рњ РќРћР’РЈР® РљРђР РўРРќРљРЈ
+    }
+} # /РљРћРџРР РЈР•Рњ РљРђР РўРРќРљРЈ
+
+# РџРћР›РЈР§РђР•Рњ Р РђРЎРЁРР Р•РќРР• РљРђР РўРРќРљР
+# $imageName - full path to image
+function getImageExt($fullPathToImage)
+{
+    # print_r($fullPathToImage);
+
+    if (empty($fullPathToImage)) return;
+
+    $info = getimagesize($fullPathToImage); # print_r($info);
+    $ext = str_replace("image/", "", $info['mime']); # echo $ext.'<hr />';
+
+    if (!empty($ext)) return $ext;
+    else return;
+} # /РџРћР›РЈР§РђР•Рњ Р РђРЎРЁРР Р•РќРР• РљРђР РўРРќРљР
+
+# Р’Р«Р’РћР”РРњ РРќР¤РЈ РџРћ РљРђР РўРРќРљР•
+function showPhotoInfo($array)
+{
+    # РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+    if (empty($array['imageName'])) return;
+    if (empty($array['imageDbColumnName'])) return;
+
+    if (file_exists($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath']).$array['imageName']) {
+        $imageInfo = @getimagesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']); # echo '<pre>'.(print_r($imageInfo, true)).'</pre>';
+        $imageSize = @filesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']);
+        $imageSize = @round($imageSize / 1024, 1);
+
+        return '
+		РџСѓС‚СЊ: <a href="'.$GLOBALS['imagesPath'].$array['imageName'].'" target="_blank">'.$_SERVER['HTTP_HOST'].$GLOBALS['imagesPath'].$array['imageName'].'</a>
+		<br />Р’РµСЃ: '.$imageSize.' РєР±.
+		<br />Р Р°Р·РјРµСЂ: '.$imageInfo[0].'px x '.$imageInfo[1].'px
+		<br /><br />
+		<a href="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" target="_blank"><img src="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" border="0" /></a>
+        <br /><a href="/control/shows_circus/?action=editItem&itemID='.$_GET['itemID'].'&subaction=remove_photo&db_column_name='.$array['imageDbColumnName'].'" onclick="return confirm(\'РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ?\');">РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ</a>
+		';
+        # <hr style="border:none;background-color:#ccc;color:#ccc;height:1px" />
+    }
+} # /Р’Р«Р’РћР”РРњ РРќР¤РЈ РџРћ РљРђР РўРРќРљР•
+
+# /Р¤РЈРќРљР¦РРћРќРђР›

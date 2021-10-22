@@ -6,26 +6,26 @@
  */
 
 {
-	"sProcessing":   "处理中...",
-	"sLengthMenu":   "显示 _MENU_ 项结果",
-	"sZeroRecords":  "没有匹配结果",
-	"sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-	"sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
-	"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+	"sProcessing":   "РµВ¤вЂћР·С’вЂ РґС‘В­...",
+	"sLengthMenu":   "Р¶пїЅС•Р·В¤С” _MENU_ Р№РЋв„–Р·В»вЂњР¶С›Сљ",
+	"sZeroRecords":  "Р¶Р†РЋР¶СљвЂ°РµРЉв„–Р№вЂ¦РЊР·В»вЂњР¶С›Сљ",
+	"sInfo":         "Р¶пїЅС•Р·В¤С”Р·В¬В¬ _START_ РёвЂЎС– _END_ Р№РЋв„–Р·В»вЂњР¶С›СљРїС�РЉРµвЂ¦В± _TOTAL_ Р№РЋв„–",
+	"sInfoEmpty":    "Р¶пїЅС•Р·В¤С”Р·В¬В¬ 0 РёвЂЎС– 0 Р№РЋв„–Р·В»вЂњР¶С›СљРїС�РЉРµвЂ¦В± 0 Р№РЋв„–",
+	"sInfoFiltered": "(Р·вЂќВ± _MAX_ Р№РЋв„–Р·В»вЂњР¶С›СљРёС—вЂЎР¶В»В¤)",
 	"sInfoPostFix":  "",
-	"sSearch":       "搜索:",
+	"sSearch":       "Р¶С’СљР·Т‘Сћ:",
 	"sUrl":          "",
-	"sEmptyTable":     "表中数据为空",
-	"sLoadingRecords": "载入中...",
+	"sEmptyTable":     "РёРЋРЃРґС‘В­Р¶вЂўВ°Р¶РЊВ®РґС‘С”Р·В©С”",
+	"sLoadingRecords": "РёР…Р…РµвЂ¦ТђРґС‘В­...",
 	"sInfoThousands":  ",",
 	"oPaginate": {
-		"sFirst":    "首页",
-		"sPrevious": "上页",
-		"sNext":     "下页",
-		"sLast":     "末页"
+		"sFirst":    "Р№В¦вЂ“Р№РЋВµ",
+		"sPrevious": "РґС‘Р‰Р№РЋВµ",
+		"sNext":     "РґС‘вЂ№Р№РЋВµ",
+		"sLast":     "Р¶СљВ«Р№РЋВµ"
 	},
 	"oAria": {
-		"sSortAscending":  ": 以升序排列此列",
-		"sSortDescending": ": 以降序排列此列"
+		"sSortAscending":  ": РґВ»ТђРµРЊвЂЎРµС”РЏР¶Р‹вЂ™Рµв‚¬вЂ”Р¶В­В¤Рµв‚¬вЂ”",
+		"sSortDescending": ": РґВ»ТђР№в„ўРЊРµС”РЏР¶Р‹вЂ™Рµв‚¬вЂ”Р¶В­В¤Рµв‚¬вЂ”"
 	}
 }

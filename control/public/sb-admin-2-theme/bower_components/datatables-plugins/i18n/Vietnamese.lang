@@ -6,19 +6,19 @@
  */
 
 {
-	"sProcessing":   "Đang xử lý...",
-	"sLengthMenu":   "Xem _MENU_ mục",
-	"sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-	"sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-	"sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-	"sInfoFiltered": "(được lọc từ _MAX_ mục)",
+	"sProcessing":   "Р”С’ang xР±В»В­ lР“Р…...",
+	"sLengthMenu":   "Xem _MENU_ mР±В»Тђc",
+	"sZeroRecords":  "KhР“Т‘ng tР“В¬m thР±С”Тђy dР“Р†ng nР“В o phР“в„– hР±В»Р€p",
+	"sInfo":         "Р”С’ang xem _START_ Р”вЂ�Р±С”С—n _END_ trong tР±В»вЂўng sР±В»вЂ� _TOTAL_ mР±В»Тђc",
+	"sInfoEmpty":    "Р”С’ang xem 0 Р”вЂ�Р±С”С—n 0 trong tР±В»вЂўng sР±В»вЂ� 0 mР±В»Тђc",
+	"sInfoFiltered": "(Р”вЂ�Р–В°Р±В»Р€c lР±В»РЊc tР±В»В« _MAX_ mР±В»Тђc)",
 	"sInfoPostFix":  "",
-	"sSearch":       "Tìm:",
+	"sSearch":       "TР“В¬m:",
 	"sUrl":          "",
 	"oPaginate": {
-		"sFirst":    "Đầu",
-		"sPrevious": "Trước",
-		"sNext":     "Tiếp",
-		"sLast":     "Cuối"
+		"sFirst":    "Р”С’Р±С”В§u",
+		"sPrevious": "TrР–В°Р±В»вЂєc",
+		"sNext":     "TiР±С”С—p",
+		"sLast":     "CuР±В»вЂ�i"
 	}
 }

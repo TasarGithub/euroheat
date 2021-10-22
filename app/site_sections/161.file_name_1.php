@@ -1,20 +1,20 @@
-<?php if (!empty($GLOBALS['tpl_faq'])): # вывод вопросов-ответов ?>
+<?php if (!empty($GLOBALS['tpl_faq'])): # РІС‹РІРѕРґ РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ ?>
 <?php foreach ($GLOBALS['tpl_faq'] as $item): ?>
 <div class="news_item">
-    <a class="news_item_a" href="/vopros/<?php echo $item['url']; ?>/"><?php echo $item['h1']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/vopros/<?php echo $item['url']; ?>/">Подробнее &raquo;</a>
+    <a class="news_item_a" href="/vopros/<?php echo $item['url']; ?>/"><?php echo $item['h1']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/vopros/<?php echo $item['url']; ?>/">РџРѕРґСЂРѕР±РЅРµРµ &raquo;</a>
 </div>
 <?php endforeach; ?>
-<?php endif; # /вывод вопросов-ответов ?>
+<?php endif; # /РІС‹РІРѕРґ РІРѕРїСЂРѕСЃРѕРІ-РѕС‚РІРµС‚РѕРІ ?>
 
 <br />   
 
-<?php if (!empty($GLOBALS['tpl_faq_pages'])): # вывод страниц ?>
+<?php if (!empty($GLOBALS['tpl_faq_pages'])): # РІС‹РІРѕРґ СЃС‚СЂР°РЅРёС† ?>
 <div class="paging_b">
     <div class="paging">
         <?php echo $GLOBALS['tpl_faq_pages']; ?>
     </div>
 
-    <div class="sum_pages">Всего: <?php echo $GLOBALS['tpl_faq_count']; ?></div>
+    <div class="sum_pages">Р’СЃРµРіРѕ: <?php echo $GLOBALS['tpl_faq_count']; ?></div>
     <div class="clear"></div>
 </div>
-<?php endif; # /вывод страниц ?>
+<?php endif; # /РІС‹РІРѕРґ СЃС‚СЂР°РЅРёС† ?>

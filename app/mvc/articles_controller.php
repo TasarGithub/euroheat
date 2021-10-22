@@ -1,77 +1,153 @@
 <?php
+
 class articles_controller extends controller_base
+
 {
-	# ПОДРОБНЫЙ ВЫВОД СТАТЬИ
+
+	# РџРћР”Р РћР‘РќР«Р™ Р’Р«Р’РћР” РЎРўРђРўР¬Р
+
 	function showItem()
+
 	{
-		# 301 если URL заканчивается не на "/", делаем 301 редирект на URL со "/"
+
+		# 301 РµСЃР»Рё URL Р·Р°РєР°РЅС‡РёРІР°РµС‚СЃСЏ РЅРµ РЅР° "/", РґРµР»Р°РµРј 301 СЂРµРґРёСЂРµРєС‚ РЅР° URL СЃРѕ "/"
+
 		if ($_SERVER['REQUEST_URI'][strlen($_SERVER['REQUEST_URI']) - 1] != "/"
+
             && !stristr($_SERVER['REQUEST_URI'], '?')
+
             && !stristr($_SERVER['REQUEST_URI'], '#')) {
+
 			header("HTTP/1.0 301 Moved Permanently");
+
 			header("Location: http://".DOMAIN.$_SERVER['REQUEST_URI']."/");
+
 			exit;
+
 		}
+
         
-		# подгружаем сторонние модули
+
+		# РїРѕРґРіСЂСѓР¶Р°РµРј СЃС‚РѕСЂРѕРЅРЅРёРµ РјРѕРґСѓР»Рё
+
 		$site_section_default_controller = $this->load('site_section_default');
+
+
 
         # print_r($this->routeVars);
 
-        # получаем информацию по позиции
+
+
+        # РїРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ РїРѕР·РёС†РёРё
+
         $itemInfo = $GLOBALS['tpl_item'] = $this->model->getItemInfo($this->routeVars['itemURL']); # print_r($itemInfo);
 
+
+
 		# 404
+
 		if (empty($itemInfo['id'])) {
+
 			header("HTTP/1.0 404 Not Found");
+
 			header("Location: http://".DOMAIN);
+
 			exit;
+
 		}
+
         
-        # получаем информацию по родительской директории
+
+        # РїРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ СЂРѕРґРёС‚РµР»СЊСЃРєРѕР№ РґРёСЂРµРєС‚РѕСЂРёРё
+
         $parentSectionInfo = $site_section_default_controller->model->getSiteSectionInfo('sovet'); # print_r($parentSectionInfo);
+
         
-        # заголовок страницы
+
+        # Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹
+
         if (!empty($itemInfo['title'])) $GLOBALS['tpl_title'] = $itemInfo['title'];
+
         else $GLOBALS['tpl_title'] = $itemInfo['h1'];
+
         
-        # строка навигации в ручном режиме
+
+        # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ
+
         if (!empty($itemInfo['full_navigation'])) $GLOBALS['tpl_navigation'] = $itemInfo['full_navigation'];
-        # строка навигации
+
+        # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё
+
         else
+
         {
-            # строка навигации
+
+            # СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё
+
             if (!empty($itemInfo['navigation'])) $navigation = $itemInfo['navigation'];
+
             else $navigation = $itemInfo['h1'];
+
             $GLOBALS['tpl_navigation'] = '
+
             <a href="/sovet/">'.$parentSectionInfo['navigation'].'</a> <span>&raquo;</span>
+
             '.$navigation;
+
         }
+
         
-        # заголовок h1
+
+        # Р·Р°РіРѕР»РѕРІРѕРє h1
+
         if (!empty($itemInfo['h1'])) $GLOBALS['tpl_h1'] = $itemInfo['h1'];
+
         
-        # получаем список позиций для блока "Другие статьи"
+
+        # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РїРѕР·РёС†РёР№ РґР»СЏ Р±Р»РѕРєР° "Р”СЂСѓРіРёРµ СЃС‚Р°С‚СЊРё"
+
         $GLOBALS['tpl_another_articles'] = $this->model->getArticlesForBlockAnotherArticles($itemInfo['id']); # print_r($GLOBALS['tpl_another_articles']);
+
         foreach ($GLOBALS['tpl_another_articles'] as &$item) { $item['text'] = cutText($item['text'], 213); } unset($item);
+
         
-        # текст статьи
+
+        # С‚РµРєСЃС‚ СЃС‚Р°С‚СЊРё
+
         if (!empty($itemInfo['file_name'])) $GLOBALS['tpl_item']['text'] = getContent('/app/site_sections_articles/'.$itemInfo['file_name']);
+
         
-		# контент
+
+		# РєРѕРЅС‚РµРЅС‚
+
 		$GLOBALS['tpl_content'] = $this->tpl->getTemplate('articles_detailed.html');
+
         
-        # перелинковка в подвале
+
+        # РїРµСЂРµР»РёРЅРєРѕРІРєР° РІ РїРѕРґРІР°Р»Рµ
+
         if (!empty($itemInfo['footeranchor'])) $GLOBALS['tpl_footeranchor'] = $itemInfo['footeranchor'];
 
-        # фиксируем id статьи для блока "Советы, Новости, Вопрос-ответ" для /loader.php
+
+
+        # С„РёРєСЃРёСЂСѓРµРј id СЃС‚Р°С‚СЊРё РґР»СЏ Р±Р»РѕРєР° "РЎРѕРІРµС‚С‹, РќРѕРІРѕСЃС‚Рё, Р’РѕРїСЂРѕСЃ-РѕС‚РІРµС‚" РґР»СЏ /loader.php
+
         $GLOBALS['tpl_articles_id_selected'] = $itemInfo['id'];
 
-        # выводим блок "Советы, новости, вопрос-ответ" в подвале
+
+
+        # РІС‹РІРѕРґРёРј Р±Р»РѕРє "РЎРѕРІРµС‚С‹, РЅРѕРІРѕСЃС‚Рё, РІРѕРїСЂРѕСЃ-РѕС‚РІРµС‚" РІ РїРѕРґРІР°Р»Рµ
+
         showBlockInFooter();
+
         
-		# выводим шаблон для внутренних
+
+		# РІС‹РІРѕРґРёРј С€Р°Р±Р»РѕРЅ РґР»СЏ РІРЅСѓС‚СЂРµРЅРЅРёС…
+
 		$this->tpl->setMainTemplate('template_for_inside_pages_v1.html');
+
 		$this->tpl->echoMainTemplate();
-	} # /ПОДРОБНЫЙ ВЫВОД СТАТЬИ
+
+	} # /РџРћР”Р РћР‘РќР«Р™ Р’Р«Р’РћР” РЎРўРђРўР¬Р
+
 }

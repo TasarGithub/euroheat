@@ -1,25 +1,25 @@
 <div class="catalog-page-wr">
 <div class="catalog-page-left-col">
 <ul class="catalog-page-left-col-menu-wr">
-<li class="active"><a href="/teploobmenniki/">Теплообменники</a>
+<li class="active"><a href="/teploobmenniki/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a>
 <ul>
-<li><a href="/kalorifery/">Водяные калориферы</a></li>
-<li><a href="/vodyanye-vozduhoohladiteli/">Водяные воздухоохладители</a></li>
-<li><a href="/freonovye-ispariteli/">Фреоновые испарители</a></li>
-<li><a href="/teploobmenniki/parovye/">Паровые теплообменники</a></li>
-<li><a href="/teploobmenniki/nerzhaveyuschie/">Теплообменники из нержавеющей стали</a></li>
-<li><a href="/teploobmenniki/vts_clima/">Водяные калориферы VTS CLIMA (серия WCL)</a></li>
-<li><a href="/teploobmenniki/kalorifery-cva/">Водяные калориферы VTS CLIMA (серия CVA)</a></li>
-<li><a href="/teploobmenniki/vts-nvs/">Теплообменники VTS CLIMA (серия NVS)</a></li>
-<li><a href="/teploobmenniki/kalorifery-kan/">Вентиляционные теплообменники серии КАН / ВАН</a></li>
-<li><a href="/teploobmenniki/kanalnye-nagrevateli-i-ohladiteli/">Канальные теплообменники</a></li>
-<li><a href="/teploobmenniki/analogi-teploobmennikov/">Аналоги калориферов</a></li>
-<li>  <a href="/teploobmenniki/voda-vozduh/">Теплообменники «вода-воздух»</a></li>
-<li>  <a href="/teploobmenniki/s-zaschitoi-ot-korrozii/">Теплообменники с антикоррозийным покрытием</a></li>
+<li><a href="/kalorifery/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹</a></li>
+<li><a href="/vodyanye-vozduhoohladiteli/">Р’РѕРґСЏРЅС‹Рµ РІРѕР·РґСѓС…РѕРѕС…Р»Р°РґРёС‚РµР»Рё</a></li>
+<li><a href="/freonovye-ispariteli/">Р¤СЂРµРѕРЅРѕРІС‹Рµ РёСЃРїР°СЂРёС‚РµР»Рё</a></li>
+<li><a href="/teploobmenniki/parovye/">РџР°СЂРѕРІС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a></li>
+<li><a href="/teploobmenniki/nerzhaveyuschie/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё</a></li>
+<li><a href="/teploobmenniki/vts_clima/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹ VTS CLIMA (СЃРµСЂРёСЏ WCL)</a></li>
+<li><a href="/teploobmenniki/kalorifery-cva/">Р’РѕРґСЏРЅС‹Рµ РєР°Р»РѕСЂРёС„РµСЂС‹ VTS CLIMA (СЃРµСЂРёСЏ CVA)</a></li>
+<li><a href="/teploobmenniki/vts-nvs/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё VTS CLIMA (СЃРµСЂРёСЏ NVS)</a></li>
+<li><a href="/teploobmenniki/kalorifery-kan/">Р’РµРЅС‚РёР»СЏС†РёРѕРЅРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃРµСЂРёРё РљРђРќ / Р’РђРќ</a></li>
+<li><a href="/teploobmenniki/kanalnye-nagrevateli-i-ohladiteli/">РљР°РЅР°Р»СЊРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</a></li>
+<li><a href="/teploobmenniki/analogi-teploobmennikov/">РђРЅР°Р»РѕРіРё РєР°Р»РѕСЂРёС„РµСЂРѕРІ</a></li>
+<li>  <a href="/teploobmenniki/voda-vozduh/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё В«РІРѕРґР°-РІРѕР·РґСѓС…В»</a></li>
+<li>  <a href="/teploobmenniki/s-zaschitoi-ot-korrozii/">РўРµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃ Р°РЅС‚РёРєРѕСЂСЂРѕР·РёР№РЅС‹Рј РїРѕРєСЂС‹С‚РёРµРј</a></li>
 </ul>
 </div>
 <div class="catalog-page-right-col">
-<p>Наша компания предлагает  медно-алюминиевые теплообменники для канальных агрегатов VTS N-TYPE. Установки ВТС представлены в четырех типоразмерах и могут комплектоваться водяными калориферами, водяными охладителями и фреоновыми испарителями.</p>
+<p>РќР°С€Р° РєРѕРјРїР°РЅРёСЏ РїСЂРµРґР»Р°РіР°РµС‚  РјРµРґРЅРѕ-Р°Р»СЋРјРёРЅРёРµРІС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РґР»СЏ РєР°РЅР°Р»СЊРЅС‹С… Р°РіСЂРµРіР°С‚РѕРІ VTS N-TYPE. РЈСЃС‚Р°РЅРѕРІРєРё Р’РўРЎ РїСЂРµРґСЃС‚Р°РІР»РµРЅС‹ РІ С‡РµС‚С‹СЂРµС… С‚РёРїРѕСЂР°Р·РјРµСЂР°С… Рё РјРѕРіСѓС‚ РєРѕРјРїР»РµРєС‚РѕРІР°С‚СЊСЃСЏ РІРѕРґСЏРЅС‹РјРё РєР°Р»РѕСЂРёС„РµСЂР°РјРё, РІРѕРґСЏРЅС‹РјРё РѕС…Р»Р°РґРёС‚РµР»СЏРјРё Рё С„СЂРµРѕРЅРѕРІС‹РјРё РёСЃРїР°СЂРёС‚РµР»СЏРјРё.</p>
 <p>&nbsp;</p>
 <style>
 .price_table td {
@@ -29,14 +29,14 @@
    text-align: left;
 }
 </style>
-<h3>Секция водяного нагревателя</h3><table class="price_table">
+<h3>РЎРµРєС†РёСЏ РІРѕРґСЏРЅРѕРіРѕ РЅР°РіСЂРµРІР°С‚РµР»СЏ</h3><table class="price_table">
 
 <tr>
-<td>Модель теплообменника</td>
-<td>Шаг ламелей мм.</td>
-<td>Рядность теплообменника</td>
-  <td>Подключение труб</td>
-  <td class="green">Цена</td>
+<td>РњРѕРґРµР»СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>РЁР°Рі Р»Р°РјРµР»РµР№ РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+  <td>РџРѕРґРєР»СЋС‡РµРЅРёРµ С‚СЂСѓР±</td>
+  <td class="green">Р¦РµРЅР°</td>
 </tr>
 
 
@@ -44,8 +44,8 @@
 <td nowrap="">NVS80 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1 1/4" (Ду 32)</td>
-  <td class="green">По запросу</td>
+  <td>1 1/4" (Р”Сѓ 32)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -56,8 +56,8 @@
 <td nowrap="">NVS23 2R</td>
 <td>2,5</td>
   <td>2</td>
-  <td>1" (Ду 25)</td>
-  <td class="green">По запросу</td>
+  <td>1" (Р”Сѓ 25)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
  
@@ -66,8 +66,8 @@
 <td nowrap="">NVS23 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1" (Ду 25)</td>
-  <td class="green">По запросу</td>
+  <td>1" (Р”Сѓ 25)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -77,8 +77,8 @@
 <td nowrap="">NVS39 2R</td>
 <td>2,5</td>
   <td>2</td>
-  <td>1" (Ду 25)</td>
-  <td class="green">По запросу</td>
+  <td>1" (Р”Сѓ 25)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
  
@@ -87,8 +87,8 @@
 <td nowrap="">NVS39 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1" (Ду 25)</td>
-  <td class="green">По запросу</td>
+  <td>1" (Р”Сѓ 25)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -97,8 +97,8 @@
 <td nowrap="">NVS65 2R</td>
 <td>2,5</td>
   <td>2</td>
-  <td>1 1/4" (Ду 32)</td>
-  <td class="green">По запросу</td>
+  <td>1 1/4" (Р”Сѓ 32)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
  
@@ -107,8 +107,8 @@
 <td nowrap="">NVS65 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1 1/4" (Ду 32)</td>
-  <td class="green">По запросу</td>
+  <td>1 1/4" (Р”Сѓ 32)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -118,22 +118,22 @@
 <td nowrap="">NVS80 2R</td>
 <td>2,5</td>
   <td>2</td>
-  <td>1 1/4" (Ду 32)</td>
-  <td class="green">По запросу</td>
+  <td>1 1/4" (Р”Сѓ 32)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
  
 
 </table>
 
-<h3>Секция водяного охладителя</h3><table class="price_table">
+<h3>РЎРµРєС†РёСЏ РІРѕРґСЏРЅРѕРіРѕ РѕС…Р»Р°РґРёС‚РµР»СЏ</h3><table class="price_table">
 
 <tr>
-<td>Модель теплообменника</td>
-<td>Шаг ламелей мм.</td>
-<td>Рядность теплообменника</td>
-  <td>Подключение труб</td>
-  <td class="green">Цена</td>
+<td>РњРѕРґРµР»СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>РЁР°Рі Р»Р°РјРµР»РµР№ РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+  <td>РџРѕРґРєР»СЋС‡РµРЅРёРµ С‚СЂСѓР±</td>
+  <td class="green">Р¦РµРЅР°</td>
 </tr>
 
 
@@ -141,8 +141,8 @@
 <td nowrap="">NVS80 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1 1/4" (Ду 32)</td>
-  <td class="green">По запросу</td>
+  <td>1 1/4" (Р”Сѓ 32)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -154,8 +154,8 @@
 <td nowrap="">NVS23 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1" (Ду 25)</td>
-  <td class="green">По запросу</td>
+  <td>1" (Р”Сѓ 25)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -166,8 +166,8 @@
 <td nowrap="">NVS39 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1" (Ду 25)</td>
-  <td class="green">По запросу</td>
+  <td>1" (Р”Сѓ 25)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -177,8 +177,8 @@
 <td nowrap="">NVS65 3R</td>
 <td>2,5</td>
   <td>3</td>
-  <td>1 1/4" (Ду 32)</td>
-  <td class="green">По запросу</td>
+  <td>1 1/4" (Р”Сѓ 32)</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -193,14 +193,14 @@
 }
 </style>
 
-<h3>Секция фреонового испарителя</h3><table class="price_table">
+<h3>РЎРµРєС†РёСЏ С„СЂРµРѕРЅРѕРІРѕРіРѕ РёСЃРїР°СЂРёС‚РµР»СЏ</h3><table class="price_table">
 
 <tr>
-<td>Модель теплообменника</td>
-<td>Шаг ламелей мм.</td>
-<td>Рядность теплообменника</td>
-  <td>Подключение труб</td>
-  <td class="green">Цена</td>
+<td>РњРѕРґРµР»СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+<td>РЁР°Рі Р»Р°РјРµР»РµР№ РјРј.</td>
+<td>Р СЏРґРЅРѕСЃС‚СЊ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°</td>
+  <td>РџРѕРґРєР»СЋС‡РµРЅРёРµ С‚СЂСѓР±</td>
+  <td class="green">Р¦РµРЅР°</td>
 </tr>
 
 
@@ -208,8 +208,8 @@
 <td nowrap="">NVS80 DX 3-1</td>
 <td>2,5</td>
   <td>3</td>
-  <td>вх.5/8" вых.28</td>
-  <td class="green">По запросу</td>
+  <td>РІС….5/8" РІС‹С….28</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -221,8 +221,8 @@
 <td nowrap="">NVS23 DX 3-1</td>
 <td>2,5</td>
   <td>3</td>
-  <td>вх.5/8" вых.28</td>
-  <td class="green">По запросу</td>
+  <td>РІС….5/8" РІС‹С….28</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -233,8 +233,8 @@
 <td nowrap="">NVS39 DX 3-1</td>
 <td>2,5</td>
   <td>3</td>
-  <td>вх.5/8" вых.28</td>
-  <td class="green">По запросу</td>
+  <td>РІС….5/8" РІС‹С….28</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 
@@ -244,10 +244,10 @@
 <td nowrap="">NVS65 DX 3-1</td>
 <td>2,5</td>
   <td>3</td>
-  <td>вх.5/8" вых.28</td>
-  <td class="green">По запросу</td>
+  <td>РІС….5/8" РІС‹С….28</td>
+  <td class="green">РџРѕ Р·Р°РїСЂРѕСЃСѓ</td>
 </tr>
 
 </table>
-<p>Вместе с теплообменником можно заказать <a href="/smesitelnye-uzly/">смесительные узлы</a> и <a href="/filtry/">фильтры для систем вентиляции</a>. </p>
+<p>Р’РјРµСЃС‚Рµ СЃ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРј РјРѕР¶РЅРѕ Р·Р°РєР°Р·Р°С‚СЊ <a href="/smesitelnye-uzly/">СЃРјРµСЃРёС‚РµР»СЊРЅС‹Рµ СѓР·Р»С‹</a> Рё <a href="/filtry/">С„РёР»СЊС‚СЂС‹ РґР»СЏ СЃРёСЃС‚РµРј РІРµРЅС‚РёР»СЏС†РёРё</a>. </p>
 </div>

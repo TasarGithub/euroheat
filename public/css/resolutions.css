@@ -117,7 +117,7 @@ margin-left: 0;
 width: 100%;
 text-align: left;
     }    
-    /* .switch_menu{
+    .switch_menu{
         display: block;
     }
     .m_menu{
@@ -134,7 +134,7 @@ text-align: left;
     }
     .menu_active .m_menu li{
         margin-left: 0;
-    } */
+    }
     .header.active{
         position: absolute;
     }
@@ -343,7 +343,8 @@ margin: 20px 0 0 -47px;
     font-size: 14px;
     margin-top: 0;
 }
-.header-email{
+
+.header__header-email{
    display: none;
 }
     .catalog-page-wr{
@@ -353,9 +354,10 @@ margin: 20px 0 0 -47px;
  
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
     .logo {
-        margin: 0 0 0 0;
+      margin: 0 0 0 0;
        width: 240px;
         background: url(/public/images/logo-dark-1.jpg) no-repeat 0 center / 90px auto;
+
     }
     .slogan {
         margin-left: 20px;
@@ -379,18 +381,20 @@ margin: 20px 0 0 -47px;
         width: 750px;
     }
     .phone_b {
-       margin-top: 15px;
-padding: 2px 0 0 55px;
+       /*margin-top: 15px;*/
+         padding: 2px 0 0 55px;
         background: url(/public/images/icon_sprite_2.png) no-repeat 0 0;
-float: right;
+      /*float: right;*/
     }
 .header-email {
     float: none;
     display: block;
     margin-bottom: 2px;
+   font-size: 21px;
 }
+
     .phone_b .phone{
-        font-size: 28px;
+        font-size: 21px;
     }
     .top_menu li a {
         font-size: 18px;
@@ -560,7 +564,8 @@ line-height: 1.0;
  
 @media only screen and (min-width: 1024px) {
     .logo {
-        margin: 0 0 0 0;
+       /* margin: 0 0 0 0;*/
+      margin-top: 0;
     }
     .logo div{
         margin-top: 17px;
@@ -578,22 +583,20 @@ line-height: 1.0;
         width: 1000px;
     }
     .container {
-        max-width: 1140px;
+        width: 1000px;
     }
     .phone_b {
         margin-top: 18px;
-padding: 2px 0 0 55px;
+         padding: 2px 0 0 55px;
         background: url(/public/images/icon_sprite_2.png) no-repeat 0 0;
-float: right;
+         /*float: right;*/
     }
-.header .phone_b{
-text-align: right;
-}
+   
     .footer .phone_b {
         margin-top: 8px;
 }
     .phone_b .phone{
-        font-size: 36px;
+        font-size: 32px;
     }
     .top_menu li a {
         font-size: 18px;

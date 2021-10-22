@@ -58,7 +58,7 @@
    (patches by Brian Peiris, pull requests #1064 and #1127)
 
  - Added Ruby code examples for time conversion.
-   (patch by Mike Połtyn, pull request #1182)
+   (patch by Mike PoР•вЂљtyn, pull request #1182)
 
  - Minor improvements to API.md and README.md.
    (patches by Patrik Ragnarsson, pull requests #1085 and #1086)

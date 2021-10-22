@@ -217,7 +217,7 @@
         margin: 0 40px;
     }
 
-    /* Стили для нового слайдера */
+    /* РЎС‚РёР»Рё РґР»СЏ РЅРѕРІРѕРіРѕ СЃР»Р°Р№РґРµСЂР° */
     .owl-carousel{
         margin: 10px 0 0 0;
         width: 920px !important;
@@ -257,7 +257,7 @@
     .owl-nav .owl-next:hover{
         background: url(/public/images/arrows_2.png) no-repeat 0 -108px !important;
     }
-    /* /Стили для нового слайдера */
+    /* /РЎС‚РёР»Рё РґР»СЏ РЅРѕРІРѕРіРѕ СЃР»Р°Р№РґРµСЂР° */
 
     .owl-carousel_b_photos{
         margin: 30px 0 30px 0;

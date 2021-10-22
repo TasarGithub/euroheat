@@ -2,18 +2,18 @@
  * Lithuanian translation
  *  @name Lithuanian
  *  @anchor Lithuanian
- *  @author <a href="http://www.kurdingopinigai.lt">Kęstutis Morkūnas</a>
+ *  @author <a href="http://www.kurdingopinigai.lt">KР”в„ўstutis MorkР•В«nas</a>
  */
 
 {
 	"sProcessing":   "Apdorojama...",
-	"sLengthMenu":   "Rodyti _MENU_ įrašus",
-	"sZeroRecords":  "Įrašų nerasta",
-	"sInfo":         "Rodomi įrašai nuo _START_ iki _END_ iš _TOTAL_ įrašų",
-	"sInfoEmpty":    "Rodomi įrašai nuo 0 iki 0 iš 0",
-	"sInfoFiltered": "(atrinkta iš _MAX_ įrašų)",
+	"sLengthMenu":   "Rodyti _MENU_ Р”Р‡raР•РЋus",
+	"sZeroRecords":  "Р”В®raР•РЋР•С– nerasta",
+	"sInfo":         "Rodomi Р”Р‡raР•РЋai nuo _START_ iki _END_ iР•РЋ _TOTAL_ Р”Р‡raР•РЋР•С–",
+	"sInfoEmpty":    "Rodomi Р”Р‡raР•РЋai nuo 0 iki 0 iР•РЋ 0",
+	"sInfoFiltered": "(atrinkta iР•РЋ _MAX_ Р”Р‡raР•РЋР•С–)",
 	"sInfoPostFix":  "",
-	"sSearch":       "Ieškoti:",
+	"sSearch":       "IeР•РЋkoti:",
 	"sUrl":          "",
 	"oPaginate": {
 		"sFirst":    "Pirmas",

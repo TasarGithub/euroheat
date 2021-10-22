@@ -1,767 +1,767 @@
-<?php 
-# Модуль админки для работы с новостями (таблица news)
-# romanov.egor@gmail.com; 2015.5.25
-
-# подключаем файл конфига
-include('../loader.control.php');
-
-# подключаем общие функции для index.php и ajax.php
-include('common.functions.php');
-
-# НАСТРОЙКИ
-$GLOBALS['tpl_title'] = 'Новости';
-$GLOBALS['imagesPath'] = '/public/images/news/';
-
-# ЗАЩИТА
-if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
-
-# ЛОГИКА
-if ($_GET['action'] == "addItem")
-{ 
-    $GLOBALS['tpl_title'] .= ' > добавляем новость';
-    $GLOBALS['tpl_h1'] = 'Добавляем новость'; 
-    $GLOBALS['tpl_content'] = showAddForm();
-}
-elseif ($_GET['action'] == "addItemSubmit") {
-    $GLOBALS['tpl_title'] .= ' > добавляем новость';
-    $GLOBALS['tpl_h1'] = 'Добавляем новость'; 
-    $GLOBALS['tpl_content'] = addItemSubmit(); 
-}
-elseif ($_GET['action'] == "editItem") {
-    $GLOBALS['tpl_title'] .= ' > редактируем новость';
-    $GLOBALS['tpl_h1'] = 'Редактируем новость'; 
-    $GLOBALS['tpl_content'] = showEditForm(); 
-}
-elseif ($_GET['action'] == "deleteItem") {
-    $GLOBALS['tpl_title'] .= ' > удаляем новость';
-    $GLOBALS['tpl_h1'] = 'Удаляем новость'; 
-    $GLOBALS['tpl_content'] = deleteItem(); 
-}
-else { 
-    $GLOBALS['tpl_title'] .= ' > все новости';
-    $GLOBALS['tpl_h1'] = 'Все новости ('.$dbh->query('select count(1) from '.DB_PREFIX.'news')->fetchColumn().')'; 
-    $GLOBALS['tpl_content'] = showItems(); 
-}
-# /ЛОГИКА
-
-# выводим главный шаблон
-$tpl->setMainTemplate('template_for_all_pages.php');
-$tpl->echoMainTemplate();
-
-# ФУНКЦИОНАЛ
-
-# ФОРМИРУЕМ СПИСОК ВСЕХ НОВОСТЕЙ
-function showItems($count = null)
-{
-    global $dbh;
-    
-    # получаем список новостей
-    $sql = '
-    select id,
-           date_add,
-           date_format(date_add, "%d.%m.%Y") as date_add_formatted,
-           date_format(date_add, "%d-%m-%Y") as date_add_formatted_2,
-           h1,
-           is_showable
-    from '.DB_PREFIX.'news
-    order by date_add desc,
-             id desc
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sql_for_count = '
-    select count(id)
-    from '.DB_PREFIX.'news
-    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
-	$pages = new pages($_GET["page"], # текущая страница
-					   25, # записей на страницу
-					   $dbh, # объект базы данных
-                       '', # routeVars
-					   $sql, # sql-запрос
-					   $sql_for_count, # sql-запрос для подсчета количества записей
-					   '/control/news/', # ссыка на 1ю страницу
-					   '/control/news/?page=%page%', # ссыка на остальные страницы
-						1500 # максимальное количество записей на страницу
-						);
-	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
-    $_ = $_result['resultSet'];
-    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">Страницы: '.$_result['pagesSet'].'</div>';
-    $_c = count($_);
-	$rows = array();
-    for ($i=0;$i<$_c;$i++) {
-        # ссылка
-        if (!empty($_[$i]['date_add_formatted_2'])) $link = '<a href="/novosti/'.$_[$i]['date_add_formatted_2'].'/" target="_blank">смотреть</a>';
-        else $link = '&nbsp;';
-        
-        # is_showable
-        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
-        else unset($trClass);
-        
-        $rows[] = '
-		<tr'.$trClass.'>
-            <td class="center vertical_middle">
-                <a class="block" href="/control/news/?action=editItem&itemID='.$_[$i]['id'].'">
-                    <i class="fa fa-edit size_18"></i>
-                </a>
-            </td>
-			<td class="center vertical_middle">'.$link.'</td>
-			<td><span style="color:#ababab;padding-right:10px">'.$_[$i]['date_add_formatted'].'</span>'.$_[$i]['h1'].'</td>
-			<td class="center vertical_middle">
-                <a class="block" title="Удалить новость" href="/control/news/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Новость будет удалена безвозвратно. Удалить новость?\')">
-                    <i class="fa fa-trash-o size_18"></i>
-                </a>
-			</td>
-		</tr>
-		';
-    } # /формируем список новостей
-	
-	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
-	else unset($rows);
-    
-    $result = '
-	<script type="text/javascript" src="/control/news/index.js"></script>
-	
-    <div style="width:50%;float:left">
-        <b>URL:</b>&nbsp; <a href="/novosti/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/novosti/</a>
-    </div>
-    <div style="width:50%;float:right;text-align:right;padding-right:15px">
-        Поиск по заголовку h1 / дате: &nbsp;
-        <input id="search_by_news" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
-    </div>
-    <br style="clear:both" />
-    
-    <div class="center" style="margin-bottom:15px">
-        <a href="/control/news/?action=addItem">
-            <button id="parse_all_projects" class="btn btn-success" type="button">
-                <i class="fa fa-plus-square" style="margin-right:3px"></i>
-                    Добавить новость
-            </button>
-        </a>
-    </div>
-    ';
-    
-    if (empty($rows)) $result .= 'В системе не задана ни одна новость.';
-    else {
-        $result .= '
-        <div id="resultSet">
-        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
-            <tr>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Правка</th>
-                <th class="center vertical_middle" style="width:50px;white-space:nowrap">Ссылка</th>
-                <th class="center vertical_middle">Заголовок h1</th>
-                <th class="center vertical_middle" style="width:100px;white-space:nowrap">Удаление</th>
-            </tr>
-            '.$rows.'
-        </table>
-        '.$pagesList.'
-        </div>';
-    }
-    
-    return $result;
-} # /ФОРМИРУЕМ СПИСОК ВСЕХ НОВОСТЕЙ
-
-# ФОРМА РЕДАКТИРОВАНИЯ НОВОСТИ
-function showEditForm()
-{
-    global $dbh;
-    
-    $showEditForm = 1;
-
-    # выводим сообщение
-    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'Новость успешно добавлена.';
-    
-    # сохраняем изменения в бд
-    if ($_GET['subaction'] == 'submit' && !empty($_POST)) {
-        $sql = '
-        update '.DB_PREFIX.'news
-        set page_title = :page_title,
-            full_navigation = :full_navigation,
-            h1 = :h1,
-            text = :text,
-            date_add = :date_add,
-            footeranchor = :footeranchor,
-            is_showable = :is_showable
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':page_title', $_POST['news_form_page_title']);
-        # full_navigation
-        if (empty($_POST['news_form_full_navigation'])) $_POST['news_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['news_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['news_form_h1']);
-        # text
-        $text = !empty($_POST['news_form_text']) ? $_POST['news_form_text'] : NULL;
-        $sth->bindParam(':text', $text);
-        # date_add
-        # конвертируем дату из поля datepicker в mysql datetime:
-        if (!empty($_POST['news_form_date_add'])) $date = date("Y-m-d H:i:s", strtotime($_POST['news_form_date_add'].' 05:00:00'));
-        else $date = 'now()';
-        $sth->bindParam(':date_add', $date);
-        # footeranchor
-        if ($_POST['news_form_footeranchor'] == '') $_POST['news_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['news_form_footeranchor']);
-        # is_showable
-        $isShowable = !empty($_POST['news_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-        # id
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute())
-        {
-            $GLOBALS['tpl_success'] = 'Информация сохранена.';
-            
-            # копируем картинку # print_r($_FILES);
-            if (!empty($_FILES['news_form_image']['tmp_name']))
-            {
-                copyImage(array(
-                'itemID' => $_GET['itemID'],
-                'imageFormName' => 'news_form_image',
-                'imageDbColumnName' => 'image',
-                'imagePrefix' => ''
-                ));
-            }
-            # /копируем картинку
-        }
-        else
-        {
-            $GLOBALS['tpl_failure'] = 'К сожалению, информация не сохранена. Пжл, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-        }
-    } # /сохраняем изменения в бд
-    # удаляем указанную картинку
-    if ($_GET['subaction'] == 'remove_photo')
-    {
-        # проверка переменных
-        $allowedCoumns = array('image');
-        if (empty($_GET['itemID'])) $GLOBALS['tpl_failure'] = 'Не передан ID записи.';
-        elseif (empty($_GET['db_column_name'])) $GLOBALS['tpl_failure'] = 'Неверно передано название столбца картинки.';
-        elseif (!in_array($_GET['db_column_name'], $allowedCoumns)) $GLOBALS['tpl_failure'] = 'Неверно передано название столбца картинки.';
-        else
-        {
-            # получаем инофрмацию о картинке
-            $sql = '
-            select '.$_GET['db_column_name'].'
-            from '.DB_PREFIX.'news
-            where id = :id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            $columnName = $sth->fetchColumn(); # echo 'columnName: '.$columnName;
-            # удаляем картинку
-            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$columnName; # echo 'fullPathToImage: '.$fullPathToImage;
-            if (!empty($fullPathToImage) && file_exists($fullPathToImage)) unlink($fullPathToImage);
-            # вносим изменения в бд
-            $sql = '
-            update '.DB_PREFIX.'news
-            set '.$_GET['db_column_name'].' = NULL
-            where id = :id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-            if ($sth->execute())
-            {
-                $GLOBALS['tpl_success'] = 'Картинка успешно удалена.';
-                $_POST['tabs_state'] = 4;
-            }
-            else $GLOBALS['tpl_failure'] = 'К сожалению, картинка не удалена. Пжл, обратитесь к разработчикам сайта.';
-        }
-    } # /удаляем указанную картинку
-    
-    # /проверка переменных
-
-    # выводим форму редактирования
-    if ($showEditForm)
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-        
-        # защита
-        if (!$itemInfo['id']) exit('
-		Не существует записи с ID='.$_GET['itemID'].'
-		<br /><a href="/control/news/">Перейти к списку новостей</a>
-		');
-
-        # prepare all values for showing
-        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
-        
-        # получаем и выводим инфу по фото
-        $imageInfo = showPhotoInfo(array('imageName' => $itemInfo['image'], 'imageDbColumnName' => 'image'));
-        
-        return "
-		<script type='text/javascript' src='/control/news/index.js'></script>
-		<form id='news_form' action='/control/news/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='news_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
-            
-            <button class='btn btn-primary submit_button' type='submit'>Сохранить информацию</button>
-
-            &nbsp;&nbsp;&nbsp; <a href='/control/news/'><button class='btn btn-success' type='button'>
-            <i class='fa fa-share-square' style='margin-right:3px'></i>
-            Перейти к списку
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/news/?action=addItem'><button class='btn btn-success' type='button'>
-            <i class='fa fa-plus-square' style='margin-right:3px'></i>
-            Добавить новость
-            </button></a>
-            
-            &nbsp;&nbsp;&nbsp; <a href='/control/news/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"Новость будет удалена безвозвратно. Удалить новость?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> Удалить новость</button></a>
-
-			<br><br><b>URL:</b>&nbsp; <a href='/novosti/".$itemInfo['date_add_formatted_2']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/novosti/".$itemInfo['date_add_formatted_2']."/</a>
-            
-            <br /><br />
-            <div class='form-group' style='width:60%'>
-                <label>Дата (ДД.ММ.ГГГГ): <span style='color:red'>*</span></label>
-                <input type='text' name='news_form_date_add' id='news_form_date_add' class='form-control form_required' data-required-label='Пжл, укажите дату добавления новости' value='".$itemInfo['date_add_formatted']."' style='width:100px;display:inline-block' />
-            </div>
-
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок страницы: <span style='color:red'>*</span></label>
-                <input type='text' name='news_form_page_title' id='news_form_page_title' class='form-control form_required' data-required-label='Пжл, укажите заголовок страницы' value='".$itemInfo['page_title']."' />
-            </div>
-
-            <div class='form-group' style='width:90%'>
-                <label>Заголовок h1: <span style='color:red'>*</span></label>
-                <input type='text' name='news_form_h1' id='news_form_h1' class='form-control form_required' data-required-label='Пжл, укажите заголовок h1' value='".$itemInfo['h1']."' />
-            </div>
-
-            <div id='news_form_h1_alert_div' class='alert alert-info hidden width_95'></div>
-
-            <div class='form-group'>
-                <label>Текст новости:</label>
-                <textarea name='news_form_text' id='news_form_text' class='form-control lined' style='width:90%;height:270px'>".$itemInfo['text']."</textarea>
-            </div>
-
-            <div class='form-group'>
-                <label>Картинка (не обязательно):</label>
-                &nbsp; <input id='news_form_image' name='news_form_image' type='file' style='display:inline-block' />
-            </div>
-            
-            ".$imageInfo."
-            
-			<div class='form-group' style='width:95%'>
-                <label>Строка навигации в ручном режиме:
-                       <br />
-                       <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-                </label>
-                <textarea name='news_form_full_navigation' id='news_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
-            </div>
-            
-            <div class='form-group' style='width:95%'>
-                <label>Анкор для перелинковки в подвале:</label> &nbsp; 
-                <textarea name='news_form_footeranchor' id='news_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
-            </div>
-                        
-            <div class='form-group' style='margin-bottom:0'>
-                <label>
-                    <input type='checkbox' name='news_form_is_showable' id='news_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checked"' : '')." />&nbsp; Отображать новость на сайте
-                </label>
-            </div>
-            
-            <br />
-			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>Сохранить информацию</button>
-            
-		</form>
-		";
-    }
-} # /ФОРМА РЕДАКТИРОВАНИЯ НОВОСТИ
-
-# ФОРМА ДОБАВЛЕНИЯ НОВОСТИ
-function showAddForm()
-{
-    global $dbh;
-    
-    return "
-	<script type='text/javascript' src='/control/news/index.js'></script>
-	<form id='news_form' action='/control/news/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
-        <button class='btn btn-primary submit_button' type='submit'>Добавить новость</button>
-        
-        &nbsp;&nbsp;&nbsp; <a href='/control/news/'><button class='btn btn-success' type='button'>
-        <i class='fa fa-share-square' style='margin-right:3px'></i>
-        Перейти к списку
-        </button></a>
-        
-		<br /><br /><b>URL:</b>&nbsp; <a href='/novosti/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/novosti/</a>
-
-        <br /><br />
-        <div class='form-group' style='width:60%'>
-            <label>Дата (ДД.ММ.ГГГГ): <span style='color:red'>*</span></label>
-            <input type='text' name='news_form_date_add' id='news_form_date_add' class='form-control form_required' data-required-label='Пжл, укажите дату добавления новости' value='".date("d").".".date("m").".".date("Y")."' style='width:100px;display:inline-block' />
-        </div>
-
-        <div id='news_form_date_add_alert_div' class='alert alert-info hidden width_95'></div>
-        
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок страницы: <span style='color:red'>*</span></label>
-            <input type='text' name='news_form_page_title' id='news_form_page_title' class='form-control form_required' data-required-label='Пжл, укажите заголовок страницы' value='".$_POST['news_form_page_title']."' />
-        </div>
-        
-        <div class='form-group' style='width:90%'>
-            <label>Заголовок h1: <span style='color:red'>*</span></label>
-            <input type='text' name='news_form_h1' id='news_form_h1' class='form-control form_required' data-required-label='Пжл, укажите заголовок h1' value='".$_POST['news_form_h1']."' />
-        </div>
-        
-        <div id='news_form_h1_alert_div' class='alert alert-info hidden width_95'></div>
-        
-        <div class='form-group'>
-            <label>Текст новости:</label>
-            <textarea name='news_form_text' id='news_form_text' class='form-control lined' style='width:90%;height:270px'>".$_POST['news_form_text']."</textarea>
-        </div>
-        
-       <div class='form-group'>
-            <label>Картинка (не обязательно):</label>
-            &nbsp; <input id='news_form_image' name='news_form_image' type='file' style='display:inline-block' />
-       </div>
-        
-        <div class='form-group' style='width:95%'>
-            <label>Строка навигации в ручном режиме:
-                   <br />
-                   <span style='font-weight:normal'>* если указана, на сайте выводится строка навигации из этого поля:</span>
-            </label>
-            <textarea name='news_form_full_navigation' id='news_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['news_form_full_navigation']."</textarea>
-        </div>
-        
-        <div class='form-group' style='width:95%'>
-            <label>Анкор для перелинковки в подвале:</label> &nbsp;
-            <textarea name='news_form_footeranchor' id='news_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['news_form_footeranchor']."</textarea>
-        </div>
-                    
-        <div class='form-group' style='margin-bottom:0'>
-            <label>
-                <input type='checkbox' name='news_form_is_showable' id='news_form_is_showable' class='form_checkbox' checked='checked' />&nbsp; Отображать новость на сайте
-            </label>
-        </div>
-        
-        <br />
-        
-        <button class='btn btn-primary submit_button' type='submit'>Добавить новость</button>
-	</form>
-	";
-} # /ФОРМА ДОБАВЛЕНИЯ НОВОСТИ
-
-# ДОБАВЛЯЕМ НОВОСТЬ В БД
-function addItemSubmit()
-{
-	global $dbh, $html;
-	
-	# print_r($_POST);
-	# защита от прямого запроса URL'а: http://kupi-krovat.ru/control/news/?action=addItemSubmit
-	if (!empty($_POST))
-	{
-        # проверка + нужная кодировка POST-переменных
-        preparePOSTVariables(); # print_r($_POST); exit;
-
-		# добавляем новость в БД
-		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
-		# если новость успешно добавлена
-		if (!empty($lastInsertID))
-		{
-            # копируем картинку # print_r($_FILES);
-            if (!empty($_FILES['news_form_image']['tmp_name']))
-            {
-                copyImage(array(
-                'itemID' => $lastInsertID,
-                'imageFormName' => 'news_form_image',
-                'imageDbColumnName' => 'image',
-                'imagePrefix' => ''
-                ));
-            } # /копируем картинку
-            
-			# делаем перенаправление на форму редактирования
-			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/news/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
-			header('Location: '.$fullUrlForEdit);
-		}
-		# если возникла ошибка и новость не добавлено
-		else
-		{
-            $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и новость не добавлена. Пожалуйста, обратитесь к разработчикам сайта.';
-            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
-            return showAddForm();
-		}
-	}
-	# если набран: http://news.youroute.ru/control/news/addItemSubmit/ и при этом $_POST пустой
-	else
-	{
-		# выводим список новостей
-        $GLOBALS['tpl_failure'] = 'К сожалению, возникла ошибка и новость не добавлена. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-        return showAddForm();
-	}
-} # /ДОБАВЛЯЕМ НОВОСТЬ В БД
-
-# УДАЛЯЕМ НОВОСТЬ
-function deleteItem(){
-	
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID']))
-	{
-		# выводим ошибку
-		$GLOBALS['tpl_failure'] = 'Новость не удалена. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-		# выводим список новостей
-        showItems();
-	}
-	else
-	{
-		# получаем данные по позиции
-		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
-
-		# удаляем картинку
-        if (!empty($itemInfo['image']))
-        {
-            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$itemInfo['image'];
-            if (file_exists($fullPathToImage) && is_file($fullPathToImage)) unlink($fullPathToImage);
-        }
-
-		# удаляем новость из БД
-        $sql = '
-        delete from '.DB_PREFIX.'news
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute())
-		{
-			$GLOBALS['tpl_success'] = 'Новость успешно удалена.';
-            
-            # уадялем backup'ы
-            $sql = '
-            delete from '.DB_PREFIX.'backups
-            where table_name = "news"
-                  and entry_id = :entry_id
-            '; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-            
-			# выводим список новостей
-			return showItems();
-		}
-		else
-		{
-            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'К сожалению, новость не удалена. Пожалуйста, обратитесь к разработчикам сайта.';
-			# выводим список новостей
-			return showItems();
-		}
-	}
-} # /УДАЛЯЕМ НОВОСТЬ
-
-# ДОБАВЛЯЕМ НОВОСТЬ В БД
-function addItemToDB()
-{
-	global $dbh;
-	
-	if (!empty($_POST['news_form_page_title'])
-		and !empty($_POST['news_form_h1']))
-	{ 
-        $sql = '
-        insert into '.DB_PREFIX.'news
-        (page_title,
-         full_navigation,
-         h1,
-         text,
-         date_add,
-         footeranchor,
-         is_showable)
-        values
-        (:page_title,
-         :full_navigation,
-         :h1,
-         :text,
-         :date_add,
-         :footeranchor,
-         :is_showable)    
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':page_title', $_POST['news_form_page_title']);
-        # full_navigation
-        if (empty($_POST['news_form_full_navigation'])) $_POST['news_form_full_navigation'] = null;
-        $sth->bindParam(':full_navigation', $_POST['news_form_full_navigation']);
-        $sth->bindParam(':h1', $_POST['news_form_h1']);
-        # text
-        $text = !empty($_POST['news_form_text']) ? $_POST['news_form_text'] : NULL;
-        $sth->bindParam(':text', $text);
-        # date_add
-        # конвертируем дату из поля datepicker в mysql datetime:
-        if (!empty($_POST['news_form_date_add'])) $date = date("Y-m-d H:i:s", strtotime($_POST['news_form_date_add'].' 05:00:00'));
-        else $date = 'now()';
-        $sth->bindParam(':date_add', $date);
-        # footeranchor
-        if ($_POST['news_form_footeranchor'] == '') $_POST['news_form_footeranchor'] = null;
-        $sth->bindParam(':footeranchor', $_POST['news_form_footeranchor']);
-        # is_showable
-        $isShowable = !empty($_POST['news_form_is_showable']) ? 1 : NULL;
-        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
-		try { if ($sth->execute()) {
-            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
-			if (!empty($last_insert_id)) return $last_insert_id;
-			else return;
-        }}
-        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
-	}
-    else echo 'В метод addItemToDB не переданы news_form_page_title или news_form_h1.';
-} # /ДОБАВЛЯЕМ НОВОСТЬ В БД
-
-# ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-function getItemInfo()
-{
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID'])) return;
-	
-	$sql = '
-	select *,
-           date_format(date_add, "%d.%m.%Y") as date_add_formatted,
-           date_format(date_add, "%d-%m-%Y") as date_add_formatted_2
-	from '.DB_PREFIX.'news
-	where id = :id
-	'; # echo '<pre>'.$sql."</pre><hr />";
-	$sth = $dbh->prepare($sql);
-    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-    $sth->execute();
-    $itemInfo = $sth->fetch();
-	if (!empty($itemInfo)) return $itemInfo;
-	else return;
-} # /ПОЛУЧАЕМ ДАННЫЕ ПО ПОЗИЦИИ
-
-# КОПИРУЕМ КАРТИНКУ
-function copyImage($array)
-{
-	global $dbh;
-	
-    # print_r($_FILES);
-    # print_r($array);
-    
-	# проверка переменных
-	if (empty($array['itemID'])) return;
-	if (empty($array['imageFormName'])) return;
-	if (empty($array['imageDbColumnName'])) return;
-	# if (empty($array['imagePrefix'])) return;
-
-	# echo '<pre>'.(print_r($array, true)).'</pre>';
-	# echo $_FILES[$array['imageFormName']]['tmp_name'];
-	if (is_uploaded_file($_FILES[$array['imageFormName']]['tmp_name']))
-	{
-		# УДАЛЯЕМ СТАРУЮ КАРТИНКУ, ЕСЛИ ОНА ЕСТЬ
-		$sql = '
-		select '.$array['imageDbColumnName'].'
-		from '.DB_PREFIX.'news
-		where id = :id
-		'; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
-        $sth->execute();
-        $_ = $sth->fetchColumn();
-		if (!empty($_))
-		{
-			$oldImage = $_;
-			# удаляем из БД
-			$sql = '
-			update '.DB_PREFIX.'news
-			set '.$array['imageDbColumnName'].' = NULL
-			where id = :id
-			'; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
-            $sth->execute();
-			# удаляем файл
-			$result = @unlink($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage); 
-			# echo $result.'<hr />';
-			# echo $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage;
-		}
-		# /УДАЛЯЕМ СТАРУЮ КАРТИНКУ, ЕСЛИ ОНА ЕСТЬ
-	
-		# КОПИРУЕМ НОВУЮ КАРТИНКУ
-		$ext = getImageExt($_FILES[$array['imageFormName']]['tmp_name']); # echo $ext.'<hr />';
-		$newImageName = $array['itemID']."".$array['imagePrefix'].".".$ext; # echo $newImageName.'<hr />';
-		$fullPathToUpload = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$newImageName; # echo $fullPathToUpload.'<hr />';
-		# копируем на основную зону
-		if (move_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'], $fullPathToUpload))
-		{
-			# пишем инфу в БД
-			$sql = '
-			update '.DB_PREFIX.'news
-			set '.$array['imageDbColumnName'].' = :new_image_name
-			where id = :id
-			'; # echo '<pre>'.$sql."</pre><hr />";
-            $sth = $dbh->prepare($sql);
-            $sth->bindParam(':new_image_name', $newImageName);
-            $sth->bindParam(':id', $array['itemID']);
-            $sth->execute();
-			
-			return array($newImageName, $newImageLargeName);
-		}
-		else return;
-		# /КОПИРУЕМ НОВУЮ КАРТИНКУ
-	}
-} # /КОПИРУЕМ КАРТИНКУ
-
-# ПОЛУЧАЕМ РАСШИРЕНИЕ КАРТИНКИ
-# $imageName - full path to image
-function getImageExt($fullPathToImage)
-{
-	# print_r($fullPathToImage);
-	
-	if (empty($fullPathToImage)) return;
-
-	$info = getimagesize($fullPathToImage); # print_r($info);
-	$ext = str_replace("image/", "", $info['mime']); # echo $ext.'<hr />';
-	
-	if (!empty($ext)) return $ext;
-	else return;
-} # /ПОЛУЧАЕМ РАСШИРЕНИЕ КАРТИНКИ
-
-# ВЫВОДИМ ИНФУ ПО КАРТИНКЕ
-function showPhotoInfo($array)
-{
-	# проверка переменных
-	if (empty($array['imageName'])) return;
-	if (empty($array['imageDbColumnName'])) return;
-	
-	if (file_exists($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath']).$array['imageName'])
-	{
-		$imageInfo = @getimagesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']); # echo '<pre>'.(print_r($imageInfo, true)).'</pre>';
-		$imageSize = @filesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']);
-		$imageSize = @round($imageSize / 1024, 1);
-		
-		return '
-		Путь: <a href="'.$GLOBALS['imagesPath'].$array['imageName'].'" target="_blank">'.$_SERVER['HTTP_HOST'].$GLOBALS['imagesPath'].$array['imageName'].'</a>
-		<br />Вес: '.$imageSize.' кб.
-		<br />Размер: '.$imageInfo[0].'px x '.$imageInfo[1].'px
-		<br /><br />
-		<a href="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" target="_blank"><img src="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" border="0" /></a>
-        <br /><a href="/control/news/?action=editItem&itemID='.$_GET['itemID'].'&subaction=remove_photo&db_column_name='.$array['imageDbColumnName'].'" onclick="return confirm(\'Удалить картинку?\');">Удалить картинку</a>
-		<hr style="border:none;background-color:#ccc;color:#ccc;height:1px" />
-		';
-	}
-} # /ВЫВОДИМ ИНФУ ПО КАРТИНКЕ
-
-# СТРОИМ SELECT С АНКОРАМИ ДЛЯ ПЕРЕЛИНКОВКИ В ПОДВАЛЕ
-/* function buildAllFooteranchors($footerAnchorID = NULL)
-{
-    global $dbh;
-    
-    $sql = '
-    select id,
-           anchor
-    from '.DB_PREFIX.'footeranchors
-    order by anchor
-    '; # echo '<pre>'.$sql."</pre><hr />";
-    $sth = $dbh->prepare($sql);
-    $sth->execute();
-    $_ = $sth->fetchAll();
-    $options = array();
-    foreach ($_ as $item)
-    {
-        # selected
-        if (!empty($footerAnchorID) && $footerAnchorID == $item['id']) $selected = ' selected="selected"';
-        else unset($selected);
-        
-        $options[] = '<option value="'.$item['id'].'"'.$selected.'>'.$item['anchor'].'</option>';
-    }
-    if (!empty($options) and is_array($options)) $options = implode(PHP_EOL, $options);
-    $result = '<select id="news_form_footeranchor_id" name="news_form_footeranchor_id" class="form-control">'.PHP_EOL.'<option value="null">не выбран</option>'.PHP_EOL.$options.'</select>';
-    if (!empty($result)) return $result;
-} */ # /СТРОИМ SELECT С АНКОРАМИ ДЛЯ ПЕРЕЛИНКОВКИ В ПОДВАЛЕ
-
-# /ФУНКЦИОНАЛ
+<?php 
+# РњРѕРґСѓР»СЊ Р°РґРјРёРЅРєРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РЅРѕРІРѕСЃС‚СЏРјРё (С‚Р°Р±Р»РёС†Р° news)
+# romanov.egor@gmail.com; 2015.5.25
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р» РєРѕРЅС„РёРіР°
+include('../loader.control.php');
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+include('common.functions.php');
+
+# РќРђРЎРўР РћР™РљР
+$GLOBALS['tpl_title'] = 'РќРѕРІРѕСЃС‚Рё';
+$GLOBALS['imagesPath'] = '/public/images/news/';
+
+# Р—РђР©РРўРђ
+if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
+
+# Р›РћР“РРљРђ
+if ($_GET['action'] == "addItem")
+{ 
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј РЅРѕРІРѕСЃС‚СЊ';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІРѕСЃС‚СЊ'; 
+    $GLOBALS['tpl_content'] = showAddForm();
+}
+elseif ($_GET['action'] == "addItemSubmit") {
+    $GLOBALS['tpl_title'] .= ' > РґРѕР±Р°РІР»СЏРµРј РЅРѕРІРѕСЃС‚СЊ';
+    $GLOBALS['tpl_h1'] = 'Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІРѕСЃС‚СЊ'; 
+    $GLOBALS['tpl_content'] = addItemSubmit(); 
+}
+elseif ($_GET['action'] == "editItem") {
+    $GLOBALS['tpl_title'] .= ' > СЂРµРґР°РєС‚РёСЂСѓРµРј РЅРѕРІРѕСЃС‚СЊ';
+    $GLOBALS['tpl_h1'] = 'Р РµРґР°РєС‚РёСЂСѓРµРј РЅРѕРІРѕСЃС‚СЊ'; 
+    $GLOBALS['tpl_content'] = showEditForm(); 
+}
+elseif ($_GET['action'] == "deleteItem") {
+    $GLOBALS['tpl_title'] .= ' > СѓРґР°Р»СЏРµРј РЅРѕРІРѕСЃС‚СЊ';
+    $GLOBALS['tpl_h1'] = 'РЈРґР°Р»СЏРµРј РЅРѕРІРѕСЃС‚СЊ'; 
+    $GLOBALS['tpl_content'] = deleteItem(); 
+}
+else { 
+    $GLOBALS['tpl_title'] .= ' > РІСЃРµ РЅРѕРІРѕСЃС‚Рё';
+    $GLOBALS['tpl_h1'] = 'Р’СЃРµ РЅРѕРІРѕСЃС‚Рё ('.$dbh->query('select count(1) from '.DB_PREFIX.'news')->fetchColumn().')'; 
+    $GLOBALS['tpl_content'] = showItems(); 
+}
+# /Р›РћР“РРљРђ
+
+# РІС‹РІРѕРґРёРј РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
+$tpl->setMainTemplate('template_for_all_pages.php');
+$tpl->echoMainTemplate();
+
+# Р¤РЈРќРљР¦РРћРќРђР›
+
+# Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ РќРћР’РћРЎРўР•Р™
+function showItems($count = null)
+{
+    global $dbh;
+    
+    # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+    $sql = '
+    select id,
+           date_add,
+           date_format(date_add, "%d.%m.%Y") as date_add_formatted,
+           date_format(date_add, "%d-%m-%Y") as date_add_formatted_2,
+           h1,
+           is_showable
+    from '.DB_PREFIX.'news
+    order by date_add desc,
+             id desc
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sql_for_count = '
+    select count(id)
+    from '.DB_PREFIX.'news
+    '; # echo '<pre>'.$sql_for_count."</pre><hr />";
+	$pages = new pages($_GET["page"], # С‚РµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°
+					   25, # Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+					   $dbh, # РѕР±СЉРµРєС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+                       '', # routeVars
+					   $sql, # sql-Р·Р°РїСЂРѕСЃ
+					   $sql_for_count, # sql-Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
+					   '/control/news/', # СЃСЃС‹РєР° РЅР° 1СЋ СЃС‚СЂР°РЅРёС†Сѓ
+					   '/control/news/?page=%page%', # СЃСЃС‹РєР° РЅР° РѕСЃС‚Р°Р»СЊРЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
+						1500 # РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+						);
+	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
+    $_ = $_result['resultSet'];
+    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">РЎС‚СЂР°РЅРёС†С‹: '.$_result['pagesSet'].'</div>';
+    $_c = count($_);
+	$rows = array();
+    for ($i=0;$i<$_c;$i++) {
+        # СЃСЃС‹Р»РєР°
+        if (!empty($_[$i]['date_add_formatted_2'])) $link = '<a href="/novosti/'.$_[$i]['date_add_formatted_2'].'/" target="_blank">СЃРјРѕС‚СЂРµС‚СЊ</a>';
+        else $link = '&nbsp;';
+        
+        # is_showable
+        if (empty($_[$i]['is_showable'])) $trClass = ' class="item_hidden"';
+        else unset($trClass);
+        
+        $rows[] = '
+		<tr'.$trClass.'>
+            <td class="center vertical_middle">
+                <a class="block" href="/control/news/?action=editItem&itemID='.$_[$i]['id'].'">
+                    <i class="fa fa-edit size_18"></i>
+                </a>
+            </td>
+			<td class="center vertical_middle">'.$link.'</td>
+			<td><span style="color:#ababab;padding-right:10px">'.$_[$i]['date_add_formatted'].'</span>'.$_[$i]['h1'].'</td>
+			<td class="center vertical_middle">
+                <a class="block" title="РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ" href="/control/news/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'РќРѕРІРѕСЃС‚СЊ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅР° Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ?\')">
+                    <i class="fa fa-trash-o size_18"></i>
+                </a>
+			</td>
+		</tr>
+		';
+    } # /С„РѕСЂРјРёСЂСѓРµРј СЃРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+	
+	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+	else unset($rows);
+    
+    $result = '
+	<script type="text/javascript" src="/control/news/index.js"></script>
+	
+    <div style="width:50%;float:left">
+        <b>URL:</b>&nbsp; <a href="/novosti/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'/novosti/</a>
+    </div>
+    <div style="width:50%;float:right;text-align:right;padding-right:15px">
+        РџРѕРёСЃРє РїРѕ Р·Р°РіРѕР»РѕРІРєСѓ h1 / РґР°С‚Рµ: &nbsp;
+        <input id="search_by_news" class="form-control form_required" type="text" value="" style="display:inline-block;width:150px" />
+    </div>
+    <br style="clear:both" />
+    
+    <div class="center" style="margin-bottom:15px">
+        <a href="/control/news/?action=addItem">
+            <button id="parse_all_projects" class="btn btn-success" type="button">
+                <i class="fa fa-plus-square" style="margin-right:3px"></i>
+                    Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕСЃС‚СЊ
+            </button>
+        </a>
+    </div>
+    ';
+    
+    if (empty($rows)) $result .= 'Р’ СЃРёСЃС‚РµРјРµ РЅРµ Р·Р°РґР°РЅР° РЅРё РѕРґРЅР° РЅРѕРІРѕСЃС‚СЊ.';
+    else {
+        $result .= '
+        <div id="resultSet">
+        <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+            <tr>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РџСЂР°РІРєР°</th>
+                <th class="center vertical_middle" style="width:50px;white-space:nowrap">РЎСЃС‹Р»РєР°</th>
+                <th class="center vertical_middle">Р—Р°РіРѕР»РѕРІРѕРє h1</th>
+                <th class="center vertical_middle" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+            </tr>
+            '.$rows.'
+        </table>
+        '.$pagesList.'
+        </div>';
+    }
+    
+    return $result;
+} # /Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ РќРћР’РћРЎРўР•Р™
+
+# Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РќРћР’РћРЎРўР
+function showEditForm()
+{
+    global $dbh;
+    
+    $showEditForm = 1;
+
+    # РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ
+    if ($_GET['success'] == 1) $GLOBALS['tpl_success'] = 'РќРѕРІРѕСЃС‚СЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°.';
+    
+    # СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+    if ($_GET['subaction'] == 'submit' && !empty($_POST)) {
+        $sql = '
+        update '.DB_PREFIX.'news
+        set page_title = :page_title,
+            full_navigation = :full_navigation,
+            h1 = :h1,
+            text = :text,
+            date_add = :date_add,
+            footeranchor = :footeranchor,
+            is_showable = :is_showable
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':page_title', $_POST['news_form_page_title']);
+        # full_navigation
+        if (empty($_POST['news_form_full_navigation'])) $_POST['news_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['news_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['news_form_h1']);
+        # text
+        $text = !empty($_POST['news_form_text']) ? $_POST['news_form_text'] : NULL;
+        $sth->bindParam(':text', $text);
+        # date_add
+        # РєРѕРЅРІРµСЂС‚РёСЂСѓРµРј РґР°С‚Сѓ РёР· РїРѕР»СЏ datepicker РІ mysql datetime:
+        if (!empty($_POST['news_form_date_add'])) $date = date("Y-m-d H:i:s", strtotime($_POST['news_form_date_add'].' 05:00:00'));
+        else $date = 'now()';
+        $sth->bindParam(':date_add', $date);
+        # footeranchor
+        if ($_POST['news_form_footeranchor'] == '') $_POST['news_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['news_form_footeranchor']);
+        # is_showable
+        $isShowable = !empty($_POST['news_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+        # id
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute())
+        {
+            $GLOBALS['tpl_success'] = 'РРЅС„РѕСЂРјР°С†РёСЏ СЃРѕС…СЂР°РЅРµРЅР°.';
+            
+            # РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ # print_r($_FILES);
+            if (!empty($_FILES['news_form_image']['tmp_name']))
+            {
+                copyImage(array(
+                'itemID' => $_GET['itemID'],
+                'imageFormName' => 'news_form_image',
+                'imageDbColumnName' => 'image',
+                'imagePrefix' => ''
+                ));
+            }
+            # /РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ
+        }
+        else
+        {
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РёРЅС„РѕСЂРјР°С†РёСЏ РЅРµ СЃРѕС…СЂР°РЅРµРЅР°. РџР¶Р», РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+        }
+    } # /СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+    # СѓРґР°Р»СЏРµРј СѓРєР°Р·Р°РЅРЅСѓСЋ РєР°СЂС‚РёРЅРєСѓ
+    if ($_GET['subaction'] == 'remove_photo')
+    {
+        # РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+        $allowedCoumns = array('image');
+        if (empty($_GET['itemID'])) $GLOBALS['tpl_failure'] = 'РќРµ РїРµСЂРµРґР°РЅ ID Р·Р°РїРёСЃРё.';
+        elseif (empty($_GET['db_column_name'])) $GLOBALS['tpl_failure'] = 'РќРµРІРµСЂРЅРѕ РїРµСЂРµРґР°РЅРѕ РЅР°Р·РІР°РЅРёРµ СЃС‚РѕР»Р±С†Р° РєР°СЂС‚РёРЅРєРё.';
+        elseif (!in_array($_GET['db_column_name'], $allowedCoumns)) $GLOBALS['tpl_failure'] = 'РќРµРІРµСЂРЅРѕ РїРµСЂРµРґР°РЅРѕ РЅР°Р·РІР°РЅРёРµ СЃС‚РѕР»Р±С†Р° РєР°СЂС‚РёРЅРєРё.';
+        else
+        {
+            # РїРѕР»СѓС‡Р°РµРј РёРЅРѕС„СЂРјР°С†РёСЋ Рѕ РєР°СЂС‚РёРЅРєРµ
+            $sql = '
+            select '.$_GET['db_column_name'].'
+            from '.DB_PREFIX.'news
+            where id = :id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            $columnName = $sth->fetchColumn(); # echo 'columnName: '.$columnName;
+            # СѓРґР°Р»СЏРµРј РєР°СЂС‚РёРЅРєСѓ
+            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$columnName; # echo 'fullPathToImage: '.$fullPathToImage;
+            if (!empty($fullPathToImage) && file_exists($fullPathToImage)) unlink($fullPathToImage);
+            # РІРЅРѕСЃРёРј РёР·РјРµРЅРµРЅРёСЏ РІ Р±Рґ
+            $sql = '
+            update '.DB_PREFIX.'news
+            set '.$_GET['db_column_name'].' = NULL
+            where id = :id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+            if ($sth->execute())
+            {
+                $GLOBALS['tpl_success'] = 'РљР°СЂС‚РёРЅРєР° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°.';
+                $_POST['tabs_state'] = 4;
+            }
+            else $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РєР°СЂС‚РёРЅРєР° РЅРµ СѓРґР°Р»РµРЅР°. РџР¶Р», РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        }
+    } # /СѓРґР°Р»СЏРµРј СѓРєР°Р·Р°РЅРЅСѓСЋ РєР°СЂС‚РёРЅРєСѓ
+    
+    # /РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+
+    # РІС‹РІРѕРґРёРј С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+    if ($showEditForm)
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+        
+        # Р·Р°С‰РёС‚Р°
+        if (!$itemInfo['id']) exit('
+		РќРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р·Р°РїРёСЃРё СЃ ID='.$_GET['itemID'].'
+		<br /><a href="/control/news/">РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ РЅРѕРІРѕСЃС‚РµР№</a>
+		');
+
+        # prepare all values for showing
+        # foreach ($itemInfo as $k => $v) $itemInfo[$k] = htmlspecialchars($v, ENT_QUOTES);
+        
+        # РїРѕР»СѓС‡Р°РµРј Рё РІС‹РІРѕРґРёРј РёРЅС„Сѓ РїРѕ С„РѕС‚Рѕ
+        $imageInfo = showPhotoInfo(array('imageName' => $itemInfo['image'], 'imageDbColumnName' => 'image'));
+        
+        return "
+		<script type='text/javascript' src='/control/news/index.js'></script>
+		<form id='news_form' action='/control/news/?action=editItem&itemID=".$itemInfo['id']."&subaction=submit' name='news_form' method='post' enctype='multipart/form-data' onSubmit=\"return SendForm('form1')\" id='editItemForm' style='font-size:14px;position:relative'>
+            
+            <button class='btn btn-primary submit_button' type='submit'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+
+            &nbsp;&nbsp;&nbsp; <a href='/control/news/'><button class='btn btn-success' type='button'>
+            <i class='fa fa-share-square' style='margin-right:3px'></i>
+            РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/news/?action=addItem'><button class='btn btn-success' type='button'>
+            <i class='fa fa-plus-square' style='margin-right:3px'></i>
+            Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕСЃС‚СЊ
+            </button></a>
+            
+            &nbsp;&nbsp;&nbsp; <a href='/control/news/?action=deleteItem&itemID=".$itemInfo['id']."' onClick='return confirm(\"РќРѕРІРѕСЃС‚СЊ Р±СѓРґРµС‚ СѓРґР°Р»РµРЅР° Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ?\");'><button class='btn btn-danger' type='button'><i class='fa fa-trash-o' style='margin-right:3px'></i> РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ</button></a>
+
+			<br><br><b>URL:</b>&nbsp; <a href='/novosti/".$itemInfo['date_add_formatted_2']."/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/novosti/".$itemInfo['date_add_formatted_2']."/</a>
+            
+            <br /><br />
+            <div class='form-group' style='width:60%'>
+                <label>Р”Р°С‚Р° (Р”Р”.РњРњ.Р“Р“Р“Р“): <span style='color:red'>*</span></label>
+                <input type='text' name='news_form_date_add' id='news_form_date_add' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґР°С‚Сѓ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕСЃС‚Рё' value='".$itemInfo['date_add_formatted']."' style='width:100px;display:inline-block' />
+            </div>
+
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹: <span style='color:red'>*</span></label>
+                <input type='text' name='news_form_page_title' id='news_form_page_title' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$itemInfo['page_title']."' />
+            </div>
+
+            <div class='form-group' style='width:90%'>
+                <label>Р—Р°РіРѕР»РѕРІРѕРє h1: <span style='color:red'>*</span></label>
+                <input type='text' name='news_form_h1' id='news_form_h1' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє h1' value='".$itemInfo['h1']."' />
+            </div>
+
+            <div id='news_form_h1_alert_div' class='alert alert-info hidden width_95'></div>
+
+            <div class='form-group'>
+                <label>РўРµРєСЃС‚ РЅРѕРІРѕСЃС‚Рё:</label>
+                <textarea name='news_form_text' id='news_form_text' class='form-control lined' style='width:90%;height:270px'>".$itemInfo['text']."</textarea>
+            </div>
+
+            <div class='form-group'>
+                <label>РљР°СЂС‚РёРЅРєР° (РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ):</label>
+                &nbsp; <input id='news_form_image' name='news_form_image' type='file' style='display:inline-block' />
+            </div>
+            
+            ".$imageInfo."
+            
+			<div class='form-group' style='width:95%'>
+                <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                       <br />
+                       <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+                </label>
+                <textarea name='news_form_full_navigation' id='news_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$itemInfo['full_navigation']."</textarea>
+            </div>
+            
+            <div class='form-group' style='width:95%'>
+                <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp; 
+                <textarea name='news_form_footeranchor' id='news_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$itemInfo['footeranchor']."</textarea>
+            </div>
+                        
+            <div class='form-group' style='margin-bottom:0'>
+                <label>
+                    <input type='checkbox' name='news_form_is_showable' id='news_form_is_showable' class='form_checkbox' ".(!empty($itemInfo['is_showable']) ? 'checked="checked"' : '')." />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РЅРѕРІРѕСЃС‚СЊ РЅР° СЃР°Р№С‚Рµ
+                </label>
+            </div>
+            
+            <br />
+			<button class='btn btn-primary submit_button' type='submit' style='margin-top:5px'>РЎРѕС…СЂР°РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ</button>
+            
+		</form>
+		";
+    }
+} # /Р¤РћР РњРђ Р Р•Р”РђРљРўРР РћР’РђРќРРЇ РќРћР’РћРЎРўР
+
+# Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РќРћР’РћРЎРўР
+function showAddForm()
+{
+    global $dbh;
+    
+    return "
+	<script type='text/javascript' src='/control/news/index.js'></script>
+	<form id='news_form' action='/control/news/?action=addItemSubmit' name='form1' method='post' enctype='multipart/form-data' id='addItemForm' style='font-size:14px;position:relative'>
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕСЃС‚СЊ</button>
+        
+        &nbsp;&nbsp;&nbsp; <a href='/control/news/'><button class='btn btn-success' type='button'>
+        <i class='fa fa-share-square' style='margin-right:3px'></i>
+        РџРµСЂРµР№С‚Рё Рє СЃРїРёСЃРєСѓ
+        </button></a>
+        
+		<br /><br /><b>URL:</b>&nbsp; <a href='/novosti/' target='_blank'>http://".$_SERVER['SERVER_NAME']."/novosti/</a>
+
+        <br /><br />
+        <div class='form-group' style='width:60%'>
+            <label>Р”Р°С‚Р° (Р”Р”.РњРњ.Р“Р“Р“Р“): <span style='color:red'>*</span></label>
+            <input type='text' name='news_form_date_add' id='news_form_date_add' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ РґР°С‚Сѓ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕСЃС‚Рё' value='".date("d").".".date("m").".".date("Y")."' style='width:100px;display:inline-block' />
+        </div>
+
+        <div id='news_form_date_add_alert_div' class='alert alert-info hidden width_95'></div>
+        
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹: <span style='color:red'>*</span></label>
+            <input type='text' name='news_form_page_title' id='news_form_page_title' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹' value='".$_POST['news_form_page_title']."' />
+        </div>
+        
+        <div class='form-group' style='width:90%'>
+            <label>Р—Р°РіРѕР»РѕРІРѕРє h1: <span style='color:red'>*</span></label>
+            <input type='text' name='news_form_h1' id='news_form_h1' class='form-control form_required' data-required-label='РџР¶Р», СѓРєР°Р¶РёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє h1' value='".$_POST['news_form_h1']."' />
+        </div>
+        
+        <div id='news_form_h1_alert_div' class='alert alert-info hidden width_95'></div>
+        
+        <div class='form-group'>
+            <label>РўРµРєСЃС‚ РЅРѕРІРѕСЃС‚Рё:</label>
+            <textarea name='news_form_text' id='news_form_text' class='form-control lined' style='width:90%;height:270px'>".$_POST['news_form_text']."</textarea>
+        </div>
+        
+       <div class='form-group'>
+            <label>РљР°СЂС‚РёРЅРєР° (РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ):</label>
+            &nbsp; <input id='news_form_image' name='news_form_image' type='file' style='display:inline-block' />
+       </div>
+        
+        <div class='form-group' style='width:95%'>
+            <label>РЎС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РІ СЂСѓС‡РЅРѕРј СЂРµР¶РёРјРµ:
+                   <br />
+                   <span style='font-weight:normal'>* РµСЃР»Рё СѓРєР°Р·Р°РЅР°, РЅР° СЃР°Р№С‚Рµ РІС‹РІРѕРґРёС‚СЃСЏ СЃС‚СЂРѕРєР° РЅР°РІРёРіР°С†РёРё РёР· СЌС‚РѕРіРѕ РїРѕР»СЏ:</span>
+            </label>
+            <textarea name='news_form_full_navigation' id='news_form_full_navigation' class='form-control' style='width:95%;height:100px'>".$_POST['news_form_full_navigation']."</textarea>
+        </div>
+        
+        <div class='form-group' style='width:95%'>
+            <label>РђРЅРєРѕСЂ РґР»СЏ РїРµСЂРµР»РёРЅРєРѕРІРєРё РІ РїРѕРґРІР°Р»Рµ:</label> &nbsp;
+            <textarea name='news_form_footeranchor' id='news_form_footeranchor' class='form-control' style='width:95%;height:55px'>".$_POST['news_form_footeranchor']."</textarea>
+        </div>
+                    
+        <div class='form-group' style='margin-bottom:0'>
+            <label>
+                <input type='checkbox' name='news_form_is_showable' id='news_form_is_showable' class='form_checkbox' checked='checked' />&nbsp; РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РЅРѕРІРѕСЃС‚СЊ РЅР° СЃР°Р№С‚Рµ
+            </label>
+        </div>
+        
+        <br />
+        
+        <button class='btn btn-primary submit_button' type='submit'>Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕСЃС‚СЊ</button>
+	</form>
+	";
+} # /Р¤РћР РњРђ Р”РћР‘РђР’Р›Р•РќРРЇ РќРћР’РћРЎРўР
+
+# Р”РћР‘РђР’Р›РЇР•Рњ РќРћР’РћРЎРўР¬ Р’ Р‘Р”
+function addItemSubmit()
+{
+	global $dbh, $html;
+	
+	# print_r($_POST);
+	# Р·Р°С‰РёС‚Р° РѕС‚ РїСЂСЏРјРѕРіРѕ Р·Р°РїСЂРѕСЃР° URL'Р°: http://kupi-krovat.ru/control/news/?action=addItemSubmit
+	if (!empty($_POST))
+	{
+        # РїСЂРѕРІРµСЂРєР° + РЅСѓР¶РЅР°СЏ РєРѕРґРёСЂРѕРІРєР° POST-РїРµСЂРµРјРµРЅРЅС‹С…
+        preparePOSTVariables(); # print_r($_POST); exit;
+
+		# РґРѕР±Р°РІР»СЏРµРј РЅРѕРІРѕСЃС‚СЊ РІ Р‘Р”
+		$lastInsertID = addItemToDB(); # echo $lastInsertID.'<hr />';
+		# РµСЃР»Рё РЅРѕРІРѕСЃС‚СЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°
+		if (!empty($lastInsertID))
+		{
+            # РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ # print_r($_FILES);
+            if (!empty($_FILES['news_form_image']['tmp_name']))
+            {
+                copyImage(array(
+                'itemID' => $lastInsertID,
+                'imageFormName' => 'news_form_image',
+                'imageDbColumnName' => 'image',
+                'imagePrefix' => ''
+                ));
+            } # /РєРѕРїРёСЂСѓРµРј РєР°СЂС‚РёРЅРєСѓ
+            
+			# РґРµР»Р°РµРј РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° С„РѕСЂРјСѓ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+			$fullUrlForEdit = 'http://'.$_SERVER['SERVER_NAME']."/control/news/?action=editItem&itemID=".$lastInsertID.'&success=1';  # echo $fullUrlForEdit.'<hr />';
+			header('Location: '.$fullUrlForEdit);
+		}
+		# РµСЃР»Рё РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё РЅРѕРІРѕСЃС‚СЊ РЅРµ РґРѕР±Р°РІР»РµРЅРѕ
+		else
+		{
+            $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё РЅРѕРІРѕСЃС‚СЊ РЅРµ РґРѕР±Р°РІР»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+            if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr class="slim">'.$GLOBALS['error'];
+            return showAddForm();
+		}
+	}
+	# РµСЃР»Рё РЅР°Р±СЂР°РЅ: http://news.youroute.ru/control/news/addItemSubmit/ Рё РїСЂРё СЌС‚РѕРј $_POST РїСѓСЃС‚РѕР№
+	else
+	{
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+        $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР° Рё РЅРѕРІРѕСЃС‚СЊ РЅРµ РґРѕР±Р°РІР»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+        return showAddForm();
+	}
+} # /Р”РћР‘РђР’Р›РЇР•Рњ РќРћР’РћРЎРўР¬ Р’ Р‘Р”
+
+# РЈР”РђР›РЇР•Рњ РќРћР’РћРЎРўР¬
+function deleteItem(){
+	
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID']))
+	{
+		# РІС‹РІРѕРґРёРј РѕС€РёР±РєСѓ
+		$GLOBALS['tpl_failure'] = 'РќРѕРІРѕСЃС‚СЊ РЅРµ СѓРґР°Р»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+        showItems();
+	}
+	else
+	{
+		# РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїРѕ РїРѕР·РёС†РёРё
+		$itemInfo = getItemInfo($_GET['itemID']); # echo '<pre>'.(print_r($itemInfo, true)).'</pre>';
+
+		# СѓРґР°Р»СЏРµРј РєР°СЂС‚РёРЅРєСѓ
+        if (!empty($itemInfo['image']))
+        {
+            $fullPathToImage = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$itemInfo['image'];
+            if (file_exists($fullPathToImage) && is_file($fullPathToImage)) unlink($fullPathToImage);
+        }
+
+		# СѓРґР°Р»СЏРµРј РЅРѕРІРѕСЃС‚СЊ РёР· Р‘Р”
+        $sql = '
+        delete from '.DB_PREFIX.'news
+        where id = :id
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+        if ($sth->execute())
+		{
+			$GLOBALS['tpl_success'] = 'РќРѕРІРѕСЃС‚СЊ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°.';
+            
+            # СѓР°РґСЏР»РµРј backup'С‹
+            $sql = '
+            delete from '.DB_PREFIX.'backups
+            where table_name = "news"
+                  and entry_id = :entry_id
+            '; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':entry_id', $_GET['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+            
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+			return showItems();
+		}
+		else
+		{
+            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РЅРѕРІРѕСЃС‚СЊ РЅРµ СѓРґР°Р»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє РЅРѕРІРѕСЃС‚РµР№
+			return showItems();
+		}
+	}
+} # /РЈР”РђР›РЇР•Рњ РќРћР’РћРЎРўР¬
+
+# Р”РћР‘РђР’Р›РЇР•Рњ РќРћР’РћРЎРўР¬ Р’ Р‘Р”
+function addItemToDB()
+{
+	global $dbh;
+	
+	if (!empty($_POST['news_form_page_title'])
+		and !empty($_POST['news_form_h1']))
+	{ 
+        $sql = '
+        insert into '.DB_PREFIX.'news
+        (page_title,
+         full_navigation,
+         h1,
+         text,
+         date_add,
+         footeranchor,
+         is_showable)
+        values
+        (:page_title,
+         :full_navigation,
+         :h1,
+         :text,
+         :date_add,
+         :footeranchor,
+         :is_showable)    
+        '; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':page_title', $_POST['news_form_page_title']);
+        # full_navigation
+        if (empty($_POST['news_form_full_navigation'])) $_POST['news_form_full_navigation'] = null;
+        $sth->bindParam(':full_navigation', $_POST['news_form_full_navigation']);
+        $sth->bindParam(':h1', $_POST['news_form_h1']);
+        # text
+        $text = !empty($_POST['news_form_text']) ? $_POST['news_form_text'] : NULL;
+        $sth->bindParam(':text', $text);
+        # date_add
+        # РєРѕРЅРІРµСЂС‚РёСЂСѓРµРј РґР°С‚Сѓ РёР· РїРѕР»СЏ datepicker РІ mysql datetime:
+        if (!empty($_POST['news_form_date_add'])) $date = date("Y-m-d H:i:s", strtotime($_POST['news_form_date_add'].' 05:00:00'));
+        else $date = 'now()';
+        $sth->bindParam(':date_add', $date);
+        # footeranchor
+        if ($_POST['news_form_footeranchor'] == '') $_POST['news_form_footeranchor'] = null;
+        $sth->bindParam(':footeranchor', $_POST['news_form_footeranchor']);
+        # is_showable
+        $isShowable = !empty($_POST['news_form_is_showable']) ? 1 : NULL;
+        $sth->bindParam(':is_showable', $isShowable, PDO::PARAM_INT);
+		try { if ($sth->execute()) {
+            $last_insert_id = $dbh->lastInsertId(); # echo $last_insert_id.'<hr />';
+			if (!empty($last_insert_id)) return $last_insert_id;
+			else return;
+        }}
+        catch (PDOException $e) { if (DB_SHOW_ERRORS) { $GLOBALS['error'] = 'Error in SQL: '.$sql.' ('.$e->getMessage().')'; }}
+	}
+    else echo 'Р’ РјРµС‚РѕРґ addItemToDB РЅРµ РїРµСЂРµРґР°РЅС‹ news_form_page_title РёР»Рё news_form_h1.';
+} # /Р”РћР‘РђР’Р›РЇР•Рњ РќРћР’РћРЎРўР¬ Р’ Р‘Р”
+
+# РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+function getItemInfo()
+{
+	global $dbh;
+	
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($_GET['itemID'])) return;
+	
+	$sql = '
+	select *,
+           date_format(date_add, "%d.%m.%Y") as date_add_formatted,
+           date_format(date_add, "%d-%m-%Y") as date_add_formatted_2
+	from '.DB_PREFIX.'news
+	where id = :id
+	'; # echo '<pre>'.$sql."</pre><hr />";
+	$sth = $dbh->prepare($sql);
+    $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+    $sth->execute();
+    $itemInfo = $sth->fetch();
+	if (!empty($itemInfo)) return $itemInfo;
+	else return;
+} # /РџРћР›РЈР§РђР•Рњ Р”РђРќРќР«Р• РџРћ РџРћР—РР¦РР
+
+# РљРћРџРР РЈР•Рњ РљРђР РўРРќРљРЈ
+function copyImage($array)
+{
+	global $dbh;
+	
+    # print_r($_FILES);
+    # print_r($array);
+    
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($array['itemID'])) return;
+	if (empty($array['imageFormName'])) return;
+	if (empty($array['imageDbColumnName'])) return;
+	# if (empty($array['imagePrefix'])) return;
+
+	# echo '<pre>'.(print_r($array, true)).'</pre>';
+	# echo $_FILES[$array['imageFormName']]['tmp_name'];
+	if (is_uploaded_file($_FILES[$array['imageFormName']]['tmp_name']))
+	{
+		# РЈР”РђР›РЇР•Рњ РЎРўРђР РЈР® РљРђР РўРРќРљРЈ, Р•РЎР›Р РћРќРђ Р•РЎРўР¬
+		$sql = '
+		select '.$array['imageDbColumnName'].'
+		from '.DB_PREFIX.'news
+		where id = :id
+		'; # echo '<pre>'.$sql."</pre><hr />";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
+        $sth->execute();
+        $_ = $sth->fetchColumn();
+		if (!empty($_))
+		{
+			$oldImage = $_;
+			# СѓРґР°Р»СЏРµРј РёР· Р‘Р”
+			$sql = '
+			update '.DB_PREFIX.'news
+			set '.$array['imageDbColumnName'].' = NULL
+			where id = :id
+			'; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':id', $array['itemID'], PDO::PARAM_INT);
+            $sth->execute();
+			# СѓРґР°Р»СЏРµРј С„Р°Р№Р»
+			$result = @unlink($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage); 
+			# echo $result.'<hr />';
+			# echo $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$oldImage;
+		}
+		# /РЈР”РђР›РЇР•Рњ РЎРўРђР РЈР® РљРђР РўРРќРљРЈ, Р•РЎР›Р РћРќРђ Р•РЎРўР¬
+	
+		# РљРћРџРР РЈР•Рњ РќРћР’РЈР® РљРђР РўРРќРљРЈ
+		$ext = getImageExt($_FILES[$array['imageFormName']]['tmp_name']); # echo $ext.'<hr />';
+		$newImageName = $array['itemID']."".$array['imagePrefix'].".".$ext; # echo $newImageName.'<hr />';
+		$fullPathToUpload = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$newImageName; # echo $fullPathToUpload.'<hr />';
+		# РєРѕРїРёСЂСѓРµРј РЅР° РѕСЃРЅРѕРІРЅСѓСЋ Р·РѕРЅСѓ
+		if (move_uploaded_file($_FILES[$array['imageFormName']]['tmp_name'], $fullPathToUpload))
+		{
+			# РїРёС€РµРј РёРЅС„Сѓ РІ Р‘Р”
+			$sql = '
+			update '.DB_PREFIX.'news
+			set '.$array['imageDbColumnName'].' = :new_image_name
+			where id = :id
+			'; # echo '<pre>'.$sql."</pre><hr />";
+            $sth = $dbh->prepare($sql);
+            $sth->bindParam(':new_image_name', $newImageName);
+            $sth->bindParam(':id', $array['itemID']);
+            $sth->execute();
+			
+			return array($newImageName, $newImageLargeName);
+		}
+		else return;
+		# /РљРћРџРР РЈР•Рњ РќРћР’РЈР® РљРђР РўРРќРљРЈ
+	}
+} # /РљРћРџРР РЈР•Рњ РљРђР РўРРќРљРЈ
+
+# РџРћР›РЈР§РђР•Рњ Р РђРЎРЁРР Р•РќРР• РљРђР РўРРќРљР
+# $imageName - full path to image
+function getImageExt($fullPathToImage)
+{
+	# print_r($fullPathToImage);
+	
+	if (empty($fullPathToImage)) return;
+
+	$info = getimagesize($fullPathToImage); # print_r($info);
+	$ext = str_replace("image/", "", $info['mime']); # echo $ext.'<hr />';
+	
+	if (!empty($ext)) return $ext;
+	else return;
+} # /РџРћР›РЈР§РђР•Рњ Р РђРЎРЁРР Р•РќРР• РљРђР РўРРќРљР
+
+# Р’Р«Р’РћР”РРњ РРќР¤РЈ РџРћ РљРђР РўРРќРљР•
+function showPhotoInfo($array)
+{
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+	if (empty($array['imageName'])) return;
+	if (empty($array['imageDbColumnName'])) return;
+	
+	if (file_exists($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath']).$array['imageName'])
+	{
+		$imageInfo = @getimagesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']); # echo '<pre>'.(print_r($imageInfo, true)).'</pre>';
+		$imageSize = @filesize($_SERVER['DOCUMENT_ROOT'].$GLOBALS['imagesPath'].$array['imageName']);
+		$imageSize = @round($imageSize / 1024, 1);
+		
+		return '
+		РџСѓС‚СЊ: <a href="'.$GLOBALS['imagesPath'].$array['imageName'].'" target="_blank">'.$_SERVER['HTTP_HOST'].$GLOBALS['imagesPath'].$array['imageName'].'</a>
+		<br />Р’РµСЃ: '.$imageSize.' РєР±.
+		<br />Р Р°Р·РјРµСЂ: '.$imageInfo[0].'px x '.$imageInfo[1].'px
+		<br /><br />
+		<a href="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" target="_blank"><img src="'.$GLOBALS['imagesPath'].$array['imageName'].'?rand='.rand(1, 99999999).'" border="0" /></a>
+        <br /><a href="/control/news/?action=editItem&itemID='.$_GET['itemID'].'&subaction=remove_photo&db_column_name='.$array['imageDbColumnName'].'" onclick="return confirm(\'РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ?\');">РЈРґР°Р»РёС‚СЊ РєР°СЂС‚РёРЅРєСѓ</a>
+		<hr style="border:none;background-color:#ccc;color:#ccc;height:1px" />
+		';
+	}
+} # /Р’Р«Р’РћР”РРњ РРќР¤РЈ РџРћ РљРђР РўРРќРљР•
+
+# РЎРўР РћРРњ SELECT РЎ РђРќРљРћР РђРњР Р”Р›РЇ РџР•Р Р•Р›РРќРљРћР’РљР Р’ РџРћР”Р’РђР›Р•
+/* function buildAllFooteranchors($footerAnchorID = NULL)
+{
+    global $dbh;
+    
+    $sql = '
+    select id,
+           anchor
+    from '.DB_PREFIX.'footeranchors
+    order by anchor
+    '; # echo '<pre>'.$sql."</pre><hr />";
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $_ = $sth->fetchAll();
+    $options = array();
+    foreach ($_ as $item)
+    {
+        # selected
+        if (!empty($footerAnchorID) && $footerAnchorID == $item['id']) $selected = ' selected="selected"';
+        else unset($selected);
+        
+        $options[] = '<option value="'.$item['id'].'"'.$selected.'>'.$item['anchor'].'</option>';
+    }
+    if (!empty($options) and is_array($options)) $options = implode(PHP_EOL, $options);
+    $result = '<select id="news_form_footeranchor_id" name="news_form_footeranchor_id" class="form-control">'.PHP_EOL.'<option value="null">РЅРµ РІС‹Р±СЂР°РЅ</option>'.PHP_EOL.$options.'</select>';
+    if (!empty($result)) return $result;
+} */ # /РЎРўР РћРРњ SELECT РЎ РђРќРљРћР РђРњР Р”Р›РЇ РџР•Р Р•Р›РРќРљРћР’РљР Р’ РџРћР”Р’РђР›Р•
+
+# /Р¤РЈРќРљР¦РРћРќРђР›

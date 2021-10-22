@@ -1,33 +1,33 @@
-<section class="section">
-<div class ="grey_div_margin-right">
-<div class="h4_padding-left">ЭТИЛЕНГЛИКОЛЬ </div><br />
-<ul class="ulli">
-<li>сорт высший (ГОСТ 19730-83)</li>
-<li>производство ПАО "Нижнекамскнефтехим" РТ г. Нижнекамск</li>
-<li>для систем отопления</li>
-<li>От 3 бочек - доставка по Московской области</li>
-<li>ЦЕНА 15180 руб. - 200 литров бочка</li>
-</ul>
-</div>
-
-<div class ="grey_div">
-   <div id="contacts_form" class="form_analog">
-<div id="contacts_form_label" class="h4">Заполните форму для заказа:</div>
-<div id="contacts_form_body">
-   <input id="contacts_form_name" type="text" value="" class="form-control" placeholder="Ваше имя" />
-   <input id="contacts_form_phone" type="text" value="" class="form-control" placeholder="Телефон" />
-   <textarea id="contacts_form_text" rows="3" class="form-markirovka" placeholder=""></textarea>
-   <button id='contacts_form_submit_button' type="button" class="green_btn">Отправить</button>
-   <span id="contacts_form_ajax_preloader" class="modal_ajax_preloader"></span>
-</div>
-
-</div>
-</div>
-
-<div class="clear"></div>
-</section>
-
-
-<img class="img-responsive" src="/public/images/glikol_1.jpg" /><br>
-
+<section class="section">
+<div class ="grey_div_margin-right">
+<div class="h4_padding-left">Р­РўРР›Р•РќР“Р›РРљРћР›Р¬ </div><br />
+<ul class="ulli">
+<li>СЃРѕСЂС‚ РІС‹СЃС€РёР№ (Р“РћРЎРў 19730-83)</li>
+<li>РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ РџРђРћ "РќРёР¶РЅРµРєР°РјСЃРєРЅРµС„С‚РµС…РёРј" Р Рў Рі. РќРёР¶РЅРµРєР°РјСЃРє</li>
+<li>РґР»СЏ СЃРёСЃС‚РµРј РѕС‚РѕРїР»РµРЅРёСЏ</li>
+<li>РћС‚ 3 Р±РѕС‡РµРє - РґРѕСЃС‚Р°РІРєР° РїРѕ РњРѕСЃРєРѕРІСЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё</li>
+<li>Р¦Р•РќРђ 15180 СЂСѓР±. - 200 Р»РёС‚СЂРѕРІ Р±РѕС‡РєР°</li>
+</ul>
+</div>
+
+<div class ="grey_div">
+   <div id="contacts_form" class="form_analog">
+<div id="contacts_form_label" class="h4">Р—Р°РїРѕР»РЅРёС‚Рµ С„РѕСЂРјСѓ РґР»СЏ Р·Р°РєР°Р·Р°:</div>
+<div id="contacts_form_body">
+   <input id="contacts_form_name" type="text" value="" class="form-control" placeholder="Р’Р°С€Рµ РёРјСЏ" />
+   <input id="contacts_form_phone" type="text" value="" class="form-control" placeholder="РўРµР»РµС„РѕРЅ" />
+   <textarea id="contacts_form_text" rows="3" class="form-markirovka" placeholder=""></textarea>
+   <button id='contacts_form_submit_button' type="button" class="green_btn">РћС‚РїСЂР°РІРёС‚СЊ</button>
+   <span id="contacts_form_ajax_preloader" class="modal_ajax_preloader"></span>
+</div>
+
+</div>
+</div>
+
+<div class="clear"></div>
+</section>
+
+
+<img class="img-responsive" src="/public/images/glikol_1.jpg" /><br>
+
 <img class="img-responsive" src="/public/images/glikol_3.jpg" /><br>

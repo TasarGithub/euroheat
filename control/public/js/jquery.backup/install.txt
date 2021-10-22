@@ -1,14 +1,14 @@
 1. add this to admin's module
-<!-- подключаем модуль для backup'а всех полей -->
+<!-- Р С—Р С•Р Т‘Р С”Р В»РЎР‹РЎвЂЎР В°Р ВµР С Р СР С•Р Т‘РЎС“Р В»РЎРЉ Р Т‘Р В»РЎРЏ backup'Р В° Р Р†РЎРѓР ВµРЎвЂ¦ Р С—Р С•Р В»Р ВµР в„– -->
 <script src='/control/js/jquery.backup/jquery.backup.js'></script>
 <link href='/control/js/jquery.backup/jquery.backup.css' rel='stylesheet' type='text/css' />
         
-<!-- подключаем js-скрипты для текущего раздела админки -->
+<!-- Р С—Р С•Р Т‘Р С”Р В»РЎР‹РЎвЂЎР В°Р ВµР С js-РЎРѓР С”РЎР‚Р С‘Р С—РЎвЂљРЎвЂ№ Р Т‘Р В»РЎРЏ РЎвЂљР ВµР С”РЎС“РЎвЂ°Р ВµР С–Р С• РЎР‚Р В°Р В·Р Т‘Р ВµР В»Р В° Р В°Р Т‘Р СР С‘Р Р…Р С”Р С‘ -->
 <script src='/control/static_sections.js'></script>
 
-2. редактируем jquery.backup.js, jquery.backup.ajax.php:
-1) путь к php-скриптам в jquery.backup.js
-2) HTTP_REFERER в jquery.backup.ajax.php
+2. РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚РЎС“Р ВµР С jquery.backup.js, jquery.backup.ajax.php:
+1) Р С—РЎС“РЎвЂљРЎРЉ Р С” php-РЎРѓР С”РЎР‚Р С‘Р С—РЎвЂљР В°Р С Р Р† jquery.backup.js
+2) HTTP_REFERER Р Р† jquery.backup.ajax.php
         
 3. create: 
 
@@ -23,15 +23,15 @@
 $(document).ready(function($){ // jquery ready
     var section_name = $('#section_name').val();
     
-    // при редактировании продукции
+    // Р С—РЎР‚Р С‘ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘Р С‘ Р С—РЎР‚Р С•Р Т‘РЎС“Р С”РЎвЂ Р С‘Р С‘
     if (section_name == 'edit_item' && isGetVarExists('itemID')){
-        // формируем список backup'ов для указанных полей
+        // РЎвЂћР С•РЎР‚Р СР С‘РЎР‚РЎС“Р ВµР С РЎРѓР С—Р С‘РЎРѓР С•Р С” backup'Р С•Р Р† Р Т‘Р В»РЎРЏ РЎС“Р С”Р В°Р В·Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»Р ВµР в„–
         $.backup({ 'table_name' : 'static_sections', 'entry_id' : isGetVarExists('itemID'), 'fields_name' : ['name', 'page_title', 'navigation', 'h1', 'text']});
-    } // /при редактировании продукции
+    } // /Р С—РЎР‚Р С‘ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘Р С‘ Р С—РЎР‚Р С•Р Т‘РЎС“Р С”РЎвЂ Р С‘Р С‘
     
 }); // /jquery ready
 
-// ОПРЕДЕЛЯЕМ, СУЩЕСТВУЕТ ЛИ GET-ПЕРЕМЕННАЯ
+// Р С›Р СџР В Р вЂўР вЂќР вЂўР вЂєР Р‡Р вЂўР Сљ, Р РЋР Р€Р В©Р вЂўР РЋР СћР вЂ™Р Р€Р вЂўР Сћ Р вЂєР пїЅ GET-Р СџР вЂўР В Р вЂўР СљР вЂўР СњР СњР С’Р Р‡
 function isGetVarExists(var_name){
 	if (typeof var_name === "undefined") return;
 	
@@ -47,6 +47,6 @@ function isGetVarExists(var_name){
 		if (vars2[0] == var_name) return vars2[1]; // content of variable
 	}
 	return;
-} // /ОПРЕДЕЛЯЕМ, СУЩЕСТВУЕТ ЛИ GET-ПЕРЕМЕННАЯ
+} // /Р С›Р СџР В Р вЂўР вЂќР вЂўР вЂєР Р‡Р вЂўР Сљ, Р РЋР Р€Р В©Р вЂўР РЋР СћР вЂ™Р Р€Р вЂўР Сћ Р вЂєР пїЅ GET-Р СџР вЂўР В Р вЂўР СљР вЂўР СњР СњР С’Р Р‡
 
-6. Создаем таблицу backups
+6. Р РЋР С•Р В·Р Т‘Р В°Р ВµР С РЎвЂљР В°Р В±Р В»Р С‘РЎвЂ РЎС“ backups

@@ -1,162 +1,328 @@
 <?php 
-# Модуль админки для работы с заявками (таблица online_requests)
+
+# РњРѕРґСѓР»СЊ Р°РґРјРёРЅРєРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р·Р°СЏРІРєР°РјРё (С‚Р°Р±Р»РёС†Р° online_requests)
+
 # romanov.egor@gmail.com; 2015.10.19
 
-# подключаем файл конфига
+# ftp://euroheater@95.181.171.240/www/euroheater.ru/control/online_requests/index.php
+
+# РїРѕРґРєР»СЋС‡Р°РµРј С„Р°Р№Р» РєРѕРЅС„РёРіР°
+
 include('../loader.control.php');
 
-# подключаем общие функции для index.php и ajax.php
+
+
+# РїРѕРґРєР»СЋС‡Р°РµРј РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+
 include('common.functions.php');
 
-# НАСТРОЙКИ
-$GLOBALS['tpl_title'] = 'Онлайн-заявки';
+// header('Content-type: text/html; charset=windows-1251');
 
-# ЗАЩИТА
+# РќРђРЎРўР РћР™РљР
+
+$GLOBALS['tpl_title'] = 'РћРЅР»Р°Р№РЅ-Р·Р°СЏРІРєРё';
+
+
+
+# Р—РђР©РРўРђ
+
 if ($_GET['itemID']) $_GET['itemID'] = (int)$_GET['itemID'];
 
-# ЛОГИКА
+
+
+# Р›РћР“РРљРђ
+
+
 
 if ($_GET['action'] == "deleteItem") {
-    $GLOBALS['tpl_title'] .= ' > удаляем заявку';
-    $GLOBALS['tpl_h1'] = 'Удаляем заявку';
+
+    $GLOBALS['tpl_title'] .= ' > СѓРґР°Р»СЏРµРј Р·Р°СЏРІРєСѓ';
+
+    $GLOBALS['tpl_h1'] = 'РЈРґР°Р»СЏРµРј Р·Р°СЏРІРєСѓ';
+
     $GLOBALS['tpl_content'] = deleteItem();
+
 }
+
 else {
-    $GLOBALS['tpl_title'] = 'Все онлайн-заявки';
-    $GLOBALS['tpl_h1'] = 'Все онлайн-заявки ('.$dbh->query('select count(1) from '.DB_PREFIX.'online_requests')->fetchColumn().')';
+
+    $GLOBALS['tpl_title'] = 'Р’СЃРµ РѕРЅР»Р°Р№РЅ-Р·Р°СЏРІРєРё';
+
+    $GLOBALS['tpl_h1'] = 'Р’СЃРµ РѕРЅР»Р°Р№РЅ-Р·Р°СЏРІРєРё ('.$dbh->query('select count(1) from '.DB_PREFIX.'online_requests')->fetchColumn().')';
+
     $GLOBALS['tpl_content'] = showItems();
+
 }
 
-# /ЛОГИКА
 
-# выводим главный шаблон
+
+# /Р›РћР“РРљРђ
+
+
+
+# РІС‹РІРѕРґРёРј РіР»Р°РІРЅС‹Р№ С€Р°Р±Р»РѕРЅ
+
 $tpl->setMainTemplate('template_for_all_pages.php');
+
 $tpl->echoMainTemplate();
 
-# ФУНКЦИОНАЛ
 
-# ФОРМИРУЕМ СПИСОК ВСЕХ ЗАЯВОК
+
+# Р¤РЈРќРљР¦РРћРќРђР›
+
+
+
+# Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ Р—РђРЇР’РћРљ
+
 function showItems($count = null)
+
 {
+
     global $dbh;
+
     
-    # получаем список заявок
+
+    # РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·Р°СЏРІРѕРє
+
     $sql = '
+
     select t1.id,
+
            t1.date_add,
+
            date_format(t1.date_add, "%e") as date_add_day,
-           elt(month(t1.date_add), "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря") as date_add_month,
+
+           elt(month(t1.date_add), "СЏРЅРІР°СЂСЏ", "С„РµРІСЂР°Р»СЏ", "РјР°СЂС‚Р°", "Р°РїСЂРµР»СЏ", "РјР°СЏ", "РёСЋРЅСЏ", "РёСЋР»СЏ", "Р°РІРіСѓСЃС‚Р°", "СЃРµРЅС‚СЏР±СЂСЏ", "РѕРєС‚СЏР±СЂСЏ", "РЅРѕСЏР±СЂСЏ", "РґРµРєР°Р±СЂСЏ") as date_add_month,
+
            date_format(t1.date_add, "%Y") as date_add_year,
+
            date_format(t1.date_add, "%H:%i") as date_add_time,
+
            t1.order_content,
+
            t2.name as type_name
+
     from '.DB_PREFIX.'online_requests as t1
+
     left outer join online_requests_types as t2
+
         on t2.id = t1.request_type_id
+
     order by t1.id desc
+
     '; # echo '<pre>'.$sql."</pre><hr />";
+
     $sql_for_count = '
+
     select count(id)
+
     from '.DB_PREFIX.'online_requests
+
     '; # echo '<pre>'.$sql_for_count."</pre><hr />";
-	$pages = new pages($_GET["page"], # текущая страница
-					   25, # записей на страницу
-					   $dbh, # объект базы данных
+
+	$pages = new pages($_GET["page"], # С‚РµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р°
+
+					   25, # Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+
+					   $dbh, # РѕР±СЉРµРєС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
+
                        '', # routeVars
-					   $sql, # sql-запрос
-					   $sql_for_count, # sql-запрос для подсчета количества записей
-					   '/control/online_requests/', # ссыка на 1ю страницу
-					   '/control/online_requests/?page=%page%', # ссыка на остальные страницы
-						1500 # максимальное количество записей на страницу
+
+					   $sql, # sql-Р·Р°РїСЂРѕСЃ
+
+					   $sql_for_count, # sql-Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№
+
+					   '/control/online_requests/', # СЃСЃС‹Р»РєР° РЅР° 1СЋ СЃС‚СЂР°РЅРёС†Сѓ
+
+					   '/control/online_requests/?page=%page%', # СЃСЃС‹Р»РєР° РЅР° РѕСЃС‚Р°Р»СЊРЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
+
+						1500 # РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+
 						);
+
 	$_result = $pages->getResult(); # echo '<pre>'.(print_r($_result, true)).'</pre>'; exit;
+
     $_ = $_result['resultSet'];
-    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">Страницы: '.$_result['pagesSet'].'</div>';
+
+    if (!empty($_result['pagesSet'])) $pagesList = '<div class="pages_set">РЎС‚СЂР°РЅРёС†С‹: '.$_result['pagesSet'].'</div>';
+
     $_c = count($_);
+
 	$rows = array();
+
     for ($i=0;$i<$_c;$i++) {
+
         # type_name
+
         if (!empty($_[$i]['type_name'])) $typeName = '<b>'.$_[$i]['type_name'].'</b>';
+       
         else unset($typeName);
 
+
+// РєРѕРЅРІРµСЂС‚Р°С†РёСЏ РїРѕР»СѓС‡Р°РµРјС‹С… РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С… РЅСѓР¶РЅР° РєР°Рє РєРѕСЃС‚С‹Р»СЊ РµСЃР»Рё С‡Р°СЃС‚СЊ РІ utf-8  Рё РІСЃС‘ РІ win-1251
+        // $typeName = iconv('windows-1251', 'UTF-8', $typeName);
+        // $order_content = iconv('windows-1251', 'UTF-8', $_[$i]['order_content']);
+
+//      echo  '#4#';
+// print_r($order_content);
+
+// echo '@4@';
+
+//  <td>'.$typeName.'<pre class="no_border">'.$_[$i]['order_content'].'</pre></td>
+
         $rows[] = '
+
 		<tr>
+        
 			<td>'.$typeName.'<pre class="no_border">'.$_[$i]['order_content'].'</pre></td>
 			<td><pre class="no_border">'.$_[$i]['date_add_day'].' '.$_[$i]['date_add_month'].' '.$_[$i]['date_add_year'].' '.$_[$i]['date_add_time'].'</pre></td>
 			<td class="center vertical_middle">
-                <a class="block" title="Удалить заявку" href="/control/online_requests/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Заявка будет удалена безвозвратно. Удалить заявку?\')">
+
+                <a class="block" title="РЈРґР°Р»РёС‚СЊ Р·Р°СЏРІРєСѓ" href="/control/online_requests/?action=deleteItem&itemID='.$_[$i]['id'].'" onClick="return confirm(\'Р—Р°СЏРІРєР° Р±СѓРґРµС‚ СѓРґР°Р»РµРЅР° Р±РµР·РІРѕР·РІСЂР°С‚РЅРѕ. РЈРґР°Р»РёС‚СЊ Р·Р°СЏРІРєСѓ?\')">
                     <i class="fa fa-trash-o size_18"></i>
                 </a>
 			</td>
 		</tr>
+
 		';
-    } # /формируем список заявок
+
+
+    } # /С„РѕСЂРјРёСЂСѓРµРј СЃРїРёСЃРѕРє Р·Р°СЏРІРѕРє
+
 	
+
 	if (!empty($rows) and is_array($rows)) $rows = implode("\n", $rows);
+
 	else unset($rows);
+
     
+
     $result = '
+
     <div style="width:50%;float:left">
+
         <b>URL:</b>&nbsp; <a href="/" target="_blank">http://'.$_SERVER['SERVER_NAME'].'</a>
+
     </div>
 
+
+
     <br style="clear:both" />
+
     <br />
+
     ';
+
     
-    if (empty($rows)) $result .= 'В системе нет заявок.';
+
+    if (empty($rows)) $result .= 'Р’ СЃРёСЃС‚РµРјРµ РЅРµС‚ Р·Р°СЏРІРѕРє.';
+
     else {
+
         $result .= '
+
         <div id="resultSet">
+
         <table border="1" cellpadding="2" class="table table-striped table-bordered table-hover projects_list">
+
             <tr>
-                <th class="center vertical_middle">Заявка</th>
-                <th class="center vertical_middle" style="width:200px">Дата</th>
-                <th class="center vertical_middle" style="width:100px;white-space:nowrap">Удаление</th>
+
+                <th class="center vertical_middle">Р—Р°СЏРІРєР°</th>
+
+                <th class="center vertical_middle" style="width:200px">Р”Р°С‚Р°</th>
+
+                <th class="center vertical_middle" style="width:100px;white-space:nowrap">РЈРґР°Р»РµРЅРёРµ</th>
+
             </tr>
+
             '.$rows.'
+
         </table>
+
         '.$pagesList.'
+
         </div>';
+
     }
+
     
+
     return $result;
-} # /ФОРМИРУЕМ СПИСОК ВСЕХ ЗАЯВОК
 
-# УДАЛЯЕМ ЗАЯВКУ
+} # /Р¤РћР РњРР РЈР•Рњ РЎРџРРЎРћРљ Р’РЎР•РҐ Р—РђРЇР’РћРљ
+
+
+
+# РЈР”РђР›РЇР•Рњ Р—РђРЇР’РљРЈ
+
 function deleteItem(){
-	
-	global $dbh;
-	
-	# проверка переменных
-	if (empty($_GET['itemID']))	{
-		# выводим ошибку
-		$GLOBALS['tpl_failure'] = 'Заявка не удалена. Пожалуйста, обратитесь к разработчикам сайта.';
-        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
-		# выводим список заявок
-        showItems();
-	}
-	else {
-		# удаляем заявку из БД
-        $sql = '
-        delete from '.DB_PREFIX.'online_requests
-        where id = :id
-        '; # echo '<pre>'.$sql."</pre><hr />";
-        $sth = $dbh->prepare($sql);
-        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
-        if ($sth->execute()) {
-			$GLOBALS['tpl_success'] = 'Заявка успешно удалена.';
-            
-			# выводим список заявок
-			return showItems();
-		}
-		else
-		{
-            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'К сожалению, заявка не удалена. Пожалуйста, обратитесь к разработчикам сайта.';
-			# выводим список заявок
-			return showItems();
-		}
-	}
-} # /УДАЛЯЕМ ЗАЯВКУ
 
-# /ФУНКЦИОНАЛ
+	
+
+	global $dbh;
+
+	
+
+	# РїСЂРѕРІРµСЂРєР° РїРµСЂРµРјРµРЅРЅС‹С…
+
+	if (empty($_GET['itemID']))	{
+
+		# РІС‹РІРѕРґРёРј РѕС€РёР±РєСѓ
+
+		$GLOBALS['tpl_failure'] = 'Р—Р°СЏРІРєР° РЅРµ СѓРґР°Р»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+
+        if (!empty($GLOBALS['error'])) $GLOBALS['tpl_failure'] .= '<hr>'.$GLOBALS['error'];
+
+		# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє Р·Р°СЏРІРѕРє
+
+        showItems();
+
+	}
+
+	else {
+
+		# СѓРґР°Р»СЏРµРј Р·Р°СЏРІРєСѓ РёР· Р‘Р”
+
+        $sql = '
+
+        delete from '.DB_PREFIX.'online_requests
+
+        where id = :id
+
+        '; # echo '<pre>'.$sql."</pre><hr />";
+
+        $sth = $dbh->prepare($sql);
+
+        $sth->bindParam(':id', $_GET['itemID'], PDO::PARAM_INT);
+
+        if ($sth->execute()) {
+
+			$GLOBALS['tpl_success'] = 'Р—Р°СЏРІРєР° СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°.';
+
+            
+
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє Р·Р°СЏРІРѕРє
+
+			return showItems();
+
+		}
+
+		else
+
+		{
+
+            if (empty($GLOBALS['tpl_failure'])) $GLOBALS['tpl_failure'] = 'Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, Р·Р°СЏРІРєР° РЅРµ СѓРґР°Р»РµРЅР°. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј СЃР°Р№С‚Р°.';
+
+			# РІС‹РІРѕРґРёРј СЃРїРёСЃРѕРє Р·Р°СЏРІРѕРє
+
+			return showItems();
+
+		}
+
+	}
+
+} # /РЈР”РђР›РЇР•Рњ Р—РђРЇР’РљРЈ
+
+
+
+# /Р¤РЈРќРљР¦РРћРќРђР›

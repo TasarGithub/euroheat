@@ -2,29 +2,29 @@
  * Slovak translation
  *  @name Slovak
  *  @anchor Slovak
- *  @author <a href="https://github.com/dlugos">Ivan Dlugoš</a>
- *  @author (original translation) <a href="http://miskerik.com/">Maroš Miškerik</a>
+ *  @author <a href="https://github.com/dlugos">Ivan DlugoР•РЋ</a>
+ *  @author (original translation) <a href="http://miskerik.com/">MaroР•РЋ MiР•РЋkerik</a>
  */
 {
-	"sEmptyTable":     "Nie sú k dispozícii žiadne dáta",
-	"sInfo":           "Záznamy _START_ až _END_ z celkom _TOTAL_",
-	"sInfoEmpty":      "Záznamy 0 až 0 z celkom 0 ",
-	"sInfoFiltered":   "(vyfiltrované spomedzi _MAX_ záznamov)",
+	"sEmptyTable":     "Nie sР“С” k dispozР“В­cii Р•С•iadne dР“РЋta",
+	"sInfo":           "ZР“РЋznamy _START_ aР•С• _END_ z celkom _TOTAL_",
+	"sInfoEmpty":      "ZР“РЋznamy 0 aР•С• 0 z celkom 0 ",
+	"sInfoFiltered":   "(vyfiltrovanР“В© spomedzi _MAX_ zР“РЋznamov)",
 	"sInfoPostFix":    "",
   	"sInfoThousands":  ",",
-	"sLengthMenu":     "Zobraz _MENU_ záznamov",
-	"sLoadingRecords": "Načítavam...",
-	"sProcessing":     "Spracúvam...",
-	"sSearch":         "Hľadať:",
-	"sZeroRecords":    "Nenašli sa žiadne vyhovujúce záznamy",
+	"sLengthMenu":     "Zobraz _MENU_ zР“РЋznamov",
+	"sLoadingRecords": "NaР”РЊР“В­tavam...",
+	"sProcessing":     "SpracР“С”vam...",
+	"sSearch":         "HР”С•adaР•Тђ:",
+	"sZeroRecords":    "NenaР•РЋli sa Р•С•iadne vyhovujР“С”ce zР“РЋznamy",
 	"oPaginate": {
-		"sFirst":    "Prvá",
-		"sLast":     "Posledná",
-		"sNext":     "Nasledujúca",
-		"sPrevious": "Predchádzajúca"
+		"sFirst":    "PrvР“РЋ",
+		"sLast":     "PoslednР“РЋ",
+		"sNext":     "NasledujР“С”ca",
+		"sPrevious": "PredchР“РЋdzajР“С”ca"
 	},
 	"oAria": {
-		"sSortAscending":  ": aktivujte na zoradenie stĺpca vzostupne",
-		"sSortDescending": ": aktivujte na zoradenie stĺpca zostupne"
+		"sSortAscending":  ": aktivujte na zoradenie stР”С”pca vzostupne",
+		"sSortDescending": ": aktivujte na zoradenie stР”С”pca zostupne"
 	}
 }

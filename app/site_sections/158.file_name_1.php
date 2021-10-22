@@ -1,157 +1,157 @@
-        <p> На заказ мы изготовили более 2 000 уникальных теплообменников — строго по ТЗ, с честной рядностью и точными характеристиками.
-                
-<p>У нас есть производство в России и партнерский завод в Италии (CoMa. Spa). В Европе выпускается аппаратура из коррозионностойких сталей — INOX AISI 304 и INOX AISI 316 .</p>
-<p>Мы доставляем теплообменники в сборе, по запросу проводим подключение на месте. 
-</p>
-
-<br />
-<div class="projects_b">
-                <div class="item">
-                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате"><img src="/public/images/cases/case-1.jpg"></a>
-                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox"  data-fancybox-group="gallery2" data-fancybox-title="Здание Правительства Москвы: Дом-книжка на Новом Арбате">Здание Правительства Москвы: "Дом-книжка" на Новом Арбате</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Lotte Plaza Hotel Moscow"><img src="/public/images/cases/case-2.jpg"></a>
-                    <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery2"  data-fancybox-title="Lotte Plaza Hotel Moscow">Lotte Plaza Hotel Moscow</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Экспоцентр на Красной Пресне"><img src="/public/images/cases/case-3.jpg"></a>
-                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Экспоцентр на Красной Пресне">Экспоцентр на Красной Пресне</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт"><img src="/public/images/cases/case-4.jpg"></a>
-                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Шоколадно-кондитерская фабрика Рот Фронт">Шоколадно-кондитерская фабрика Рот Фронт</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФКП «Щелковский биокомбинат»"><img src="/public/images/cases/case-5.jpg"></a>
-                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФКП «Щелковский биокомбинат»">ФКП «Щелковский биокомбинат»</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»"><img src="/public/images/cases/case-6.jpg"></a>
-                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ЗАО «Энергоконтракт-Томилино»">ЗАО «Энергоконтракт-Томилино»</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Управление административными зданиями» корпорации Росатом"><img src="/public/images/cases/case-7.jpg"></a>
-                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Управление административными зданиями» корпорации Росатом">«Управление административными зданиями» корпорации Росатом</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="АТЦ Москва на Каширском шоссе"><img src="/public/images/cases/case-8.jpg"></a>
-                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="АТЦ Москва на Каширском шоссе">АТЦ Москва на Каширском шоссе</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово"><img src="/public/images/cases/case-9.jpg"></a>
-                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Волейбольный спортивно-развлекательный комплекс в г. Одинцово">Волейбольный спортивно-развлекательный комплекс в г. Одинцово</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ТЦ Капитолий Ленинградский"><img src="/public/images/cases/case-10.jpg"></a>
-                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ТЦ Капитолий Ленинградский">ТЦ Капитолий Ленинградский</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России"><img src="/public/images/cases/case-11.jpg"></a>
-                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России">ФГАУ МНТК Микрохирургия глаза им. акад. С.Н. Федорова Минздрава России</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="World class - сеть фитнес-клубов"><img src="/public/images/cases/case-12.jpg"></a>
-                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="World class - сеть фитнес-клубов">World class - сеть фитнес-клубов</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="«Фуяо Стекло Рус»"><img src="/public/images/cases/case-13.jpg"></a>
-                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="«Фуяо Стекло Рус»">«Фуяо Стекло Рус»</a>
-                </div>
-
-
-
-                <div class="item">
-                    <a href="/public/images/cases/case-14-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ООО «Фабрика срочной химчистки и стирки белья №25»"><img src="/public/images/cases/case-14.jpg"></a>
-                    <a href="/public/images/cases/case-14-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ООО «Фабрика срочной химчистки и стирки белья №25»">ООО «Фабрика срочной химчистки и стирки белья №25»</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-15-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Павловская гимназия"><img src="/public/images/cases/case-15.jpg"></a>
-                    <a href="/public/images/cases/case-15-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Павловская гимназия">Павловская гимназия</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-16-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Медси (Фитнес клуб Олимпик-стар)"><img src="/public/images/cases/case-16.jpg"></a>
-                    <a href="/public/images/cases/case-16-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Медси (Фитнес клуб Олимпик-стар)">Медси (Фитнес клуб Олимпик-стар)</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-17-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ГК Фармасинтез"><img src="/public/images/cases/case-17.jpg"></a>
-                    <a href="/public/images/cases/case-17-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ГК Фармасинтез">ГК Фармасинтез</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-18-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Санаторий Черноморье"><img src="/public/images/cases/case-18.jpg"></a>
-                    <a href="/public/images/cases/case-18-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Санаторий Черноморье">Санаторий Черноморье</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-19-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Клинический санаторий Барвиха"><img src="/public/images/cases/case-19.jpg"></a>
-                    <a href="/public/images/cases/case-19-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Клинический санаторий Барвиха">Клинический санаторий Барвиха</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-20-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Кондопожский Лесопильно-Экспортный Завод – Астар (Карелия)"><img src="/public/images/cases/case-20.jpg"></a>
-                    <a href="/public/images/cases/case-20-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Кондопожский Лесопильно-Экспортный Завод – Астар (Карелия)">Кондопожский Лесопильно-Экспортный Завод – Астар (Карелия)</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-21-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Объединенные хлебозаводы Ваш Хлеб"><img src="/public/images/cases/case-21.jpg"></a>
-                    <a href="/public/images/cases/case-21-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Объединенные хлебозаводы Ваш Хлеб">Объединенные хлебозаводы Ваш Хлеб</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-22-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ТОО «АРТС» (Казахстан)"><img src="/public/images/cases/case-22.jpg"></a>
-                    <a href="/public/images/cases/case-22-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ТОО «АРТС» (Казахстан)">ТОО «АРТС» (Казахстан)</a>
-                </div>
-
-
-                <div class="item">
-                    <a href="/public/images/cases/erevanplaza.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="БЦ Ереван плаза (Ереван)"><img src="/public/images/cases/erevanplaza.jpg"></a>
-                    <a href="/public/images/cases/erevanplaza.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="БЦ Ереван плаза (Ереван)">БЦ Ереван плаза (Ереван)</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-24-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ТОО ПРОМИНВЕСТ-Алматы (Казахстан)"><img src="/public/images/cases/case-24.jpg"></a>
-                    <a href="/public/images/cases/case-24-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ТОО ПРОМИНВЕСТ-Алматы (Казахстан)">ТОО ПРОМИНВЕСТ-Алматы (Казахстан)</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-25-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="МПК Атяшевский"><img src="/public/images/cases/case-25.jpg"></a>
-                    <a href="/public/images/cases/case-25-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="МПК Атяшевский">МПК Атяшевский</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-26-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Останкинский МК"><img src="/public/images/cases/case-26.jpg"></a>
-                    <a href="/public/images/cases/case-26-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Останкинский МК">Останкинский МК</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-27-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Гусевский консервный комбинат (Калининградская область)"><img src="/public/images/cases/case-27.jpg"></a>
-                    <a href="/public/images/cases/case-27-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Гусевский консервный комбинат (Калининградская область)">Гусевский консервный комбинат (Калининградская область)</a>
-                </div>
-
-                <div class="item">
-                    <a href="/public/images/cases/case-28-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Кондитерский концерн Бабаевский"><img src="/public/images/cases/case-28.jpg"></a>
-                    <a href="/public/images/cases/case-28-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Кондитерский концерн Бабаевский">Кондитерский концерн Бабаевский</a>
-                </div>
-
-                <div class="item">
-                    <a href="/public/images/cases/case-29-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Кондитерская фабрика Ударница"><img src="/public/images/cases/case-29.jpg"></a>
-                    <a href="/public/images/cases/case-29-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Кондитерская фабрика Ударница">Кондитерская фабрика Ударница</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-30-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="КНАУФ ГИПС ДЗЕРЖИНСК"><img src="/public/images/cases/case-30.jpg"></a>
-                    <a href="/public/images/cases/case-30-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="КНАУФ ГИПС ДЗЕРЖИНСК">КНАУФ ГИПС ДЗЕРЖИНСК</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-31-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Фуд-сити (на Калужском шоссе)"><img src="/public/images/cases/case-31.jpg"></a>
-                    <a href="/public/images/cases/case-31-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Фуд-сити (на Калужском шоссе)">Фуд-сити (на Калужском шоссе)</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-32-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="ДМАТ Шамиля Тарпищева"><img src="/public/images/cases/case-32.jpg"></a>
-                    <a href="/public/images/cases/case-32-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="ДМАТ Шамиля Тарпищева">ДМАТ Шамиля Тарпищева</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-33-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Восток-Авто Внуково"><img src="/public/images/cases/case-33.jpg"></a>
-                    <a href="/public/images/cases/case-33-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Восток-Авто Внуково">Восток-Авто Внуково</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-34-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Варшавские бани (Москва, Варшавское шоссе)"><img src="/public/images/cases/case-34.jpg"></a>
-                    <a href="/public/images/cases/case-34-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Варшавские бани (Москва, Варшавское шоссе)">Варшавские бани (Москва, Варшавское шоссе)</a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/cases/case-35-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Белебеевский молочный комбинат"><img src="/public/images/cases/case-35.jpg"></a>
-                    <a href="/public/images/cases/case-35-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Белебеевский молочный комбинат">Белебеевский молочный комбинат</a>
-                </div>
-</div><div class="clear"></div>
+        <p> РќР° Р·Р°РєР°Р· РјС‹ РёР·РіРѕС‚РѕРІРёР»Рё Р±РѕР»РµРµ 2 000 СѓРЅРёРєР°Р»СЊРЅС‹С… С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ вЂ” СЃС‚СЂРѕРіРѕ РїРѕ РўР—, СЃ С‡РµСЃС‚РЅРѕР№ СЂСЏРґРЅРѕСЃС‚СЊСЋ Рё С‚РѕС‡РЅС‹РјРё С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°РјРё.
+                
+<p>РЈ РЅР°СЃ РµСЃС‚СЊ РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ РІ Р РѕСЃСЃРёРё Рё РїР°СЂС‚РЅРµСЂСЃРєРёР№ Р·Р°РІРѕРґ РІ РС‚Р°Р»РёРё (CoMa. Spa). Р’ Р•РІСЂРѕРїРµ РІС‹РїСѓСЃРєР°РµС‚СЃСЏ Р°РїРїР°СЂР°С‚СѓСЂР° РёР· РєРѕСЂСЂРѕР·РёРѕРЅРЅРѕСЃС‚РѕР№РєРёС… СЃС‚Р°Р»РµР№ вЂ” INOX AISI 304 Рё INOX AISI 316 .</p>
+<p>РњС‹ РґРѕСЃС‚Р°РІР»СЏРµРј С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РІ СЃР±РѕСЂРµ, РїРѕ Р·Р°РїСЂРѕСЃСѓ РїСЂРѕРІРѕРґРёРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РЅР° РјРµСЃС‚Рµ. 
+</p>
+
+<br />
+<div class="projects_b">
+                <div class="item">
+                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: Р”РѕРј-РєРЅРёР¶РєР° РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ"><img src="/public/images/cases/case-1.jpg"></a>
+                    <a href="/public/images/cases/case-1-big.jpg" class="fancybox"  data-fancybox-group="gallery2" data-fancybox-title="Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: Р”РѕРј-РєРЅРёР¶РєР° РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ">Р—РґР°РЅРёРµ РџСЂР°РІРёС‚РµР»СЊСЃС‚РІР° РњРѕСЃРєРІС‹: "Р”РѕРј-РєРЅРёР¶РєР°" РЅР° РќРѕРІРѕРј РђСЂР±Р°С‚Рµ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Lotte Plaza Hotel Moscow"><img src="/public/images/cases/case-2.jpg"></a>
+                    <a href="/public/images/cases/case-2-big.jpg" class="fancybox" data-fancybox-group="gallery2"  data-fancybox-title="Lotte Plaza Hotel Moscow">Lotte Plaza Hotel Moscow</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ"><img src="/public/images/cases/case-3.jpg"></a>
+                    <a href="/public/images/cases/case-3-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ">Р­РєСЃРїРѕС†РµРЅС‚СЂ РЅР° РљСЂР°СЃРЅРѕР№ РџСЂРµСЃРЅРµ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚"><img src="/public/images/cases/case-4.jpg"></a>
+                    <a href="/public/images/cases/case-4-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚">РЁРѕРєРѕР»Р°РґРЅРѕ-РєРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° Р РѕС‚ Р¤СЂРѕРЅС‚</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»"><img src="/public/images/cases/case-5.jpg"></a>
+                    <a href="/public/images/cases/case-5-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»">Р¤РљРџ В«Р©РµР»РєРѕРІСЃРєРёР№ Р±РёРѕРєРѕРјР±РёРЅР°С‚В»</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»"><img src="/public/images/cases/case-6.jpg"></a>
+                    <a href="/public/images/cases/case-6-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»">Р—РђРћ В«Р­РЅРµСЂРіРѕРєРѕРЅС‚СЂР°РєС‚-РўРѕРјРёР»РёРЅРѕВ»</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј"><img src="/public/images/cases/case-7.jpg"></a>
+                    <a href="/public/images/cases/case-7-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј">В«РЈРїСЂР°РІР»РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅС‹РјРё Р·РґР°РЅРёСЏРјРёВ» РєРѕСЂРїРѕСЂР°С†РёРё Р РѕСЃР°С‚РѕРј</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ"><img src="/public/images/cases/case-8.jpg"></a>
+                    <a href="/public/images/cases/case-8-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ">РђРўР¦ РњРѕСЃРєРІР° РЅР° РљР°С€РёСЂСЃРєРѕРј С€РѕСЃСЃРµ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ"><img src="/public/images/cases/case-9.jpg"></a>
+                    <a href="/public/images/cases/case-9-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ">Р’РѕР»РµР№Р±РѕР»СЊРЅС‹Р№ СЃРїРѕСЂС‚РёРІРЅРѕ-СЂР°Р·РІР»РµРєР°С‚РµР»СЊРЅС‹Р№ РєРѕРјРїР»РµРєСЃ РІ Рі. РћРґРёРЅС†РѕРІРѕ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№"><img src="/public/images/cases/case-10.jpg"></a>
+                    <a href="/public/images/cases/case-10-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№">РўР¦ РљР°РїРёС‚РѕР»РёР№ Р›РµРЅРёРЅРіСЂР°РґСЃРєРёР№</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё"><img src="/public/images/cases/case-11.jpg"></a>
+                    <a href="/public/images/cases/case-11-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё">Р¤Р“РђРЈ РњРќРўРљ РњРёРєСЂРѕС…РёСЂСѓСЂРіРёСЏ РіР»Р°Р·Р° РёРј. Р°РєР°Рґ. РЎ.Рќ. Р¤РµРґРѕСЂРѕРІР° РњРёРЅР·РґСЂР°РІР° Р РѕСЃСЃРёРё</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ"><img src="/public/images/cases/case-12.jpg"></a>
+                    <a href="/public/images/cases/case-12-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ">World class - СЃРµС‚СЊ С„РёС‚РЅРµСЃ-РєР»СѓР±РѕРІ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»"><img src="/public/images/cases/case-13.jpg"></a>
+                    <a href="/public/images/cases/case-13-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»">В«Р¤СѓСЏРѕ РЎС‚РµРєР»Рѕ Р СѓСЃВ»</a>
+                </div>
+
+
+
+                <div class="item">
+                    <a href="/public/images/cases/case-14-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РћРћРћ В«Р¤Р°Р±СЂРёРєР° СЃСЂРѕС‡РЅРѕР№ С…РёРјС‡РёСЃС‚РєРё Рё СЃС‚РёСЂРєРё Р±РµР»СЊСЏ в„–25В»"><img src="/public/images/cases/case-14.jpg"></a>
+                    <a href="/public/images/cases/case-14-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РћРћРћ В«Р¤Р°Р±СЂРёРєР° СЃСЂРѕС‡РЅРѕР№ С…РёРјС‡РёСЃС‚РєРё Рё СЃС‚РёСЂРєРё Р±РµР»СЊСЏ в„–25В»">РћРћРћ В«Р¤Р°Р±СЂРёРєР° СЃСЂРѕС‡РЅРѕР№ С…РёРјС‡РёСЃС‚РєРё Рё СЃС‚РёСЂРєРё Р±РµР»СЊСЏ в„–25В»</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-15-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РџР°РІР»РѕРІСЃРєР°СЏ РіРёРјРЅР°Р·РёСЏ"><img src="/public/images/cases/case-15.jpg"></a>
+                    <a href="/public/images/cases/case-15-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РџР°РІР»РѕРІСЃРєР°СЏ РіРёРјРЅР°Р·РёСЏ">РџР°РІР»РѕРІСЃРєР°СЏ РіРёРјРЅР°Р·РёСЏ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-16-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РњРµРґСЃРё (Р¤РёС‚РЅРµСЃ РєР»СѓР± РћР»РёРјРїРёРє-СЃС‚Р°СЂ)"><img src="/public/images/cases/case-16.jpg"></a>
+                    <a href="/public/images/cases/case-16-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РњРµРґСЃРё (Р¤РёС‚РЅРµСЃ РєР»СѓР± РћР»РёРјРїРёРє-СЃС‚Р°СЂ)">РњРµРґСЃРё (Р¤РёС‚РЅРµСЃ РєР»СѓР± РћР»РёРјРїРёРє-СЃС‚Р°СЂ)</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-17-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р“Рљ Р¤Р°СЂРјР°СЃРёРЅС‚РµР·"><img src="/public/images/cases/case-17.jpg"></a>
+                    <a href="/public/images/cases/case-17-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р“Рљ Р¤Р°СЂРјР°СЃРёРЅС‚РµР·">Р“Рљ Р¤Р°СЂРјР°СЃРёРЅС‚РµР·</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-18-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РЎР°РЅР°С‚РѕСЂРёР№ Р§РµСЂРЅРѕРјРѕСЂСЊРµ"><img src="/public/images/cases/case-18.jpg"></a>
+                    <a href="/public/images/cases/case-18-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РЎР°РЅР°С‚РѕСЂРёР№ Р§РµСЂРЅРѕРјРѕСЂСЊРµ">РЎР°РЅР°С‚РѕСЂРёР№ Р§РµСЂРЅРѕРјРѕСЂСЊРµ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-19-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РљР»РёРЅРёС‡РµСЃРєРёР№ СЃР°РЅР°С‚РѕСЂРёР№ Р‘Р°СЂРІРёС…Р°"><img src="/public/images/cases/case-19.jpg"></a>
+                    <a href="/public/images/cases/case-19-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РљР»РёРЅРёС‡РµСЃРєРёР№ СЃР°РЅР°С‚РѕСЂРёР№ Р‘Р°СЂРІРёС…Р°">РљР»РёРЅРёС‡РµСЃРєРёР№ СЃР°РЅР°С‚РѕСЂРёР№ Р‘Р°СЂРІРёС…Р°</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-20-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РљРѕРЅРґРѕРїРѕР¶СЃРєРёР№ Р›РµСЃРѕРїРёР»СЊРЅРѕ-Р­РєСЃРїРѕСЂС‚РЅС‹Р№ Р—Р°РІРѕРґ вЂ“ РђСЃС‚Р°СЂ (РљР°СЂРµР»РёСЏ)"><img src="/public/images/cases/case-20.jpg"></a>
+                    <a href="/public/images/cases/case-20-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РљРѕРЅРґРѕРїРѕР¶СЃРєРёР№ Р›РµСЃРѕРїРёР»СЊРЅРѕ-Р­РєСЃРїРѕСЂС‚РЅС‹Р№ Р—Р°РІРѕРґ вЂ“ РђСЃС‚Р°СЂ (РљР°СЂРµР»РёСЏ)">РљРѕРЅРґРѕРїРѕР¶СЃРєРёР№ Р›РµСЃРѕРїРёР»СЊРЅРѕ-Р­РєСЃРїРѕСЂС‚РЅС‹Р№ Р—Р°РІРѕРґ вЂ“ РђСЃС‚Р°СЂ (РљР°СЂРµР»РёСЏ)</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-21-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РћР±СЉРµРґРёРЅРµРЅРЅС‹Рµ С…Р»РµР±РѕР·Р°РІРѕРґС‹ Р’Р°С€ РҐР»РµР±"><img src="/public/images/cases/case-21.jpg"></a>
+                    <a href="/public/images/cases/case-21-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РћР±СЉРµРґРёРЅРµРЅРЅС‹Рµ С…Р»РµР±РѕР·Р°РІРѕРґС‹ Р’Р°С€ РҐР»РµР±">РћР±СЉРµРґРёРЅРµРЅРЅС‹Рµ С…Р»РµР±РѕР·Р°РІРѕРґС‹ Р’Р°С€ РҐР»РµР±</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-22-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РўРћРћ В«РђР РўРЎВ» (РљР°Р·Р°С…СЃС‚Р°РЅ)"><img src="/public/images/cases/case-22.jpg"></a>
+                    <a href="/public/images/cases/case-22-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РўРћРћ В«РђР РўРЎВ» (РљР°Р·Р°С…СЃС‚Р°РЅ)">РўРћРћ В«РђР РўРЎВ» (РљР°Р·Р°С…СЃС‚Р°РЅ)</a>
+                </div>
+
+
+                <div class="item">
+                    <a href="/public/images/cases/erevanplaza.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р‘Р¦ Р•СЂРµРІР°РЅ РїР»Р°Р·Р° (Р•СЂРµРІР°РЅ)"><img src="/public/images/cases/erevanplaza.jpg"></a>
+                    <a href="/public/images/cases/erevanplaza.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р‘Р¦ Р•СЂРµРІР°РЅ РїР»Р°Р·Р° (Р•СЂРµРІР°РЅ)">Р‘Р¦ Р•СЂРµРІР°РЅ РїР»Р°Р·Р° (Р•СЂРµРІР°РЅ)</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-24-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РўРћРћ РџР РћРњРРќР’Р•РЎРў-РђР»РјР°С‚С‹ (РљР°Р·Р°С…СЃС‚Р°РЅ)"><img src="/public/images/cases/case-24.jpg"></a>
+                    <a href="/public/images/cases/case-24-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РўРћРћ РџР РћРњРРќР’Р•РЎРў-РђР»РјР°С‚С‹ (РљР°Р·Р°С…СЃС‚Р°РЅ)">РўРћРћ РџР РћРњРРќР’Р•РЎРў-РђР»РјР°С‚С‹ (РљР°Р·Р°С…СЃС‚Р°РЅ)</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-25-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РњРџРљ РђС‚СЏС€РµРІСЃРєРёР№"><img src="/public/images/cases/case-25.jpg"></a>
+                    <a href="/public/images/cases/case-25-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РњРџРљ РђС‚СЏС€РµРІСЃРєРёР№">РњРџРљ РђС‚СЏС€РµРІСЃРєРёР№</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-26-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РћСЃС‚Р°РЅРєРёРЅСЃРєРёР№ РњРљ"><img src="/public/images/cases/case-26.jpg"></a>
+                    <a href="/public/images/cases/case-26-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РћСЃС‚Р°РЅРєРёРЅСЃРєРёР№ РњРљ">РћСЃС‚Р°РЅРєРёРЅСЃРєРёР№ РњРљ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-27-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р“СѓСЃРµРІСЃРєРёР№ РєРѕРЅСЃРµСЂРІРЅС‹Р№ РєРѕРјР±РёРЅР°С‚ (РљР°Р»РёРЅРёРЅРіСЂР°РґСЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ)"><img src="/public/images/cases/case-27.jpg"></a>
+                    <a href="/public/images/cases/case-27-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р“СѓСЃРµРІСЃРєРёР№ РєРѕРЅСЃРµСЂРІРЅС‹Р№ РєРѕРјР±РёРЅР°С‚ (РљР°Р»РёРЅРёРЅРіСЂР°РґСЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ)">Р“СѓСЃРµРІСЃРєРёР№ РєРѕРЅСЃРµСЂРІРЅС‹Р№ РєРѕРјР±РёРЅР°С‚ (РљР°Р»РёРЅРёРЅРіСЂР°РґСЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ)</a>
+                </div>
+
+                <div class="item">
+                    <a href="/public/images/cases/case-28-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РљРѕРЅРґРёС‚РµСЂСЃРєРёР№ РєРѕРЅС†РµСЂРЅ Р‘Р°Р±Р°РµРІСЃРєРёР№"><img src="/public/images/cases/case-28.jpg"></a>
+                    <a href="/public/images/cases/case-28-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РљРѕРЅРґРёС‚РµСЂСЃРєРёР№ РєРѕРЅС†РµСЂРЅ Р‘Р°Р±Р°РµРІСЃРєРёР№">РљРѕРЅРґРёС‚РµСЂСЃРєРёР№ РєРѕРЅС†РµСЂРЅ Р‘Р°Р±Р°РµРІСЃРєРёР№</a>
+                </div>
+
+                <div class="item">
+                    <a href="/public/images/cases/case-29-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РљРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° РЈРґР°СЂРЅРёС†Р°"><img src="/public/images/cases/case-29.jpg"></a>
+                    <a href="/public/images/cases/case-29-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РљРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° РЈРґР°СЂРЅРёС†Р°">РљРѕРЅРґРёС‚РµСЂСЃРєР°СЏ С„Р°Р±СЂРёРєР° РЈРґР°СЂРЅРёС†Р°</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-30-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="РљРќРђРЈР¤ Р“РРџРЎ Р”Р—Р•Р Р–РРќРЎРљ"><img src="/public/images/cases/case-30.jpg"></a>
+                    <a href="/public/images/cases/case-30-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="РљРќРђРЈР¤ Р“РРџРЎ Р”Р—Р•Р Р–РРќРЎРљ">РљРќРђРЈР¤ Р“РРџРЎ Р”Р—Р•Р Р–РРќРЎРљ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-31-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р¤СѓРґ-СЃРёС‚Рё (РЅР° РљР°Р»СѓР¶СЃРєРѕРј С€РѕСЃСЃРµ)"><img src="/public/images/cases/case-31.jpg"></a>
+                    <a href="/public/images/cases/case-31-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р¤СѓРґ-СЃРёС‚Рё (РЅР° РљР°Р»СѓР¶СЃРєРѕРј С€РѕСЃСЃРµ)">Р¤СѓРґ-СЃРёС‚Рё (РЅР° РљР°Р»СѓР¶СЃРєРѕРј С€РѕСЃСЃРµ)</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-32-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р”РњРђРў РЁР°РјРёР»СЏ РўР°СЂРїРёС‰РµРІР°"><img src="/public/images/cases/case-32.jpg"></a>
+                    <a href="/public/images/cases/case-32-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р”РњРђРў РЁР°РјРёР»СЏ РўР°СЂРїРёС‰РµРІР°">Р”РњРђРў РЁР°РјРёР»СЏ РўР°СЂРїРёС‰РµРІР°</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-33-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р’РѕСЃС‚РѕРє-РђРІС‚Рѕ Р’РЅСѓРєРѕРІРѕ"><img src="/public/images/cases/case-33.jpg"></a>
+                    <a href="/public/images/cases/case-33-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р’РѕСЃС‚РѕРє-РђРІС‚Рѕ Р’РЅСѓРєРѕРІРѕ">Р’РѕСЃС‚РѕРє-РђРІС‚Рѕ Р’РЅСѓРєРѕРІРѕ</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-34-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р’Р°СЂС€Р°РІСЃРєРёРµ Р±Р°РЅРё (РњРѕСЃРєРІР°, Р’Р°СЂС€Р°РІСЃРєРѕРµ С€РѕСЃСЃРµ)"><img src="/public/images/cases/case-34.jpg"></a>
+                    <a href="/public/images/cases/case-34-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р’Р°СЂС€Р°РІСЃРєРёРµ Р±Р°РЅРё (РњРѕСЃРєРІР°, Р’Р°СЂС€Р°РІСЃРєРѕРµ С€РѕСЃСЃРµ)">Р’Р°СЂС€Р°РІСЃРєРёРµ Р±Р°РЅРё (РњРѕСЃРєРІР°, Р’Р°СЂС€Р°РІСЃРєРѕРµ С€РѕСЃСЃРµ)</a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/cases/case-35-big.jpg" class="fancybox" data-fancybox-group="gallery1" data-fancybox-title="Р‘РµР»РµР±РµРµРІСЃРєРёР№ РјРѕР»РѕС‡РЅС‹Р№ РєРѕРјР±РёРЅР°С‚"><img src="/public/images/cases/case-35.jpg"></a>
+                    <a href="/public/images/cases/case-35-big.jpg" class="fancybox" data-fancybox-group="gallery2" data-fancybox-title="Р‘РµР»РµР±РµРµРІСЃРєРёР№ РјРѕР»РѕС‡РЅС‹Р№ РєРѕРјР±РёРЅР°С‚">Р‘РµР»РµР±РµРµРІСЃРєРёР№ РјРѕР»РѕС‡РЅС‹Р№ РєРѕРјР±РёРЅР°С‚</a>
+                </div>
+</div><div class="clear"></div>
 <br />

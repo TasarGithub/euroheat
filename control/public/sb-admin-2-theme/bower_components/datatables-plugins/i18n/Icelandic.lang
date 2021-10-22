@@ -6,25 +6,25 @@
  */
 
 {
-	"sEmptyTable":     "Engin gögn eru í þessari töflu",
-	"sInfo":           "Sýni _START_ til _END_ af _TOTAL_ færslum",
-	"sInfoEmpty":      "Sýni 0 til 0 af 0 færslum",
-	"sInfoFiltered":   "(síað út frá _MAX_ færslum)",
+	"sEmptyTable":     "Engin gР“В¶gn eru Р“В­ Р“С•essari tР“В¶flu",
+	"sInfo":           "SР“Р…ni _START_ til _END_ af _TOTAL_ fР“В¦rslum",
+	"sInfoEmpty":      "SР“Р…ni 0 til 0 af 0 fР“В¦rslum",
+	"sInfoFiltered":   "(sР“В­aР“В° Р“С”t frР“РЋ _MAX_ fР“В¦rslum)",
 	"sInfoPostFix":    "",
 	"sInfoThousands":  ".",
-	"sLengthMenu":     "Sýna _MENU_ færslur",
-	"sLoadingRecords": "Hleð...",
-	"sProcessing":     "Úrvinnsla...",
+	"sLengthMenu":     "SР“Р…na _MENU_ fР“В¦rslur",
+	"sLoadingRecords": "HleР“В°...",
+	"sProcessing":     "Р“С™rvinnsla...",
 	"sSearch":         "Leita:",
-	"sZeroRecords":    "Engar færslur fundust",
+	"sZeroRecords":    "Engar fР“В¦rslur fundust",
 	"oPaginate": {
 		"sFirst":    "Fyrsta",
-		"sLast":     "Síðasta",
-		"sNext":     "Næsta",
+		"sLast":     "SР“В­Р“В°asta",
+		"sNext":     "NР“В¦sta",
 		"sPrevious": "Fyrri"
 	},
 	"oAria": {
-		"sSortAscending":  ": virkja til að raða dálki í hækkandi röð",
-		"sSortDescending": ": virkja til að raða dálki lækkandi í röð"
+		"sSortAscending":  ": virkja til aР“В° raР“В°a dР“РЋlki Р“В­ hР“В¦kkandi rР“В¶Р“В°",
+		"sSortDescending": ": virkja til aР“В° raР“В°a dР“РЋlki lР“В¦kkandi Р“В­ rР“В¶Р“В°"
 	}
 }

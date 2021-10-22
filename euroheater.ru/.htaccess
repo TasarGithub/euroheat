@@ -1,0 +1,95 @@
+# error document
+ErrorDocument 404 http://euroheater.ru
+
+# задаем кодировку по умолчанию
+#php_value default_charset cp1251
+#AddDefaultCharset windows-1251
+php_value default_charset utf-8
+AddDefaultCharset UTF-8
+
+# directory index
+DirectoryIndex index.php
+
+# php errors
+php_flag display_errors On
+# php_flag display_errors Off
+
+# аналог error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING  ^ E_DEPRECATED);
+php_value error_reporting 22517
+
+# запрет на прямой доступ к 'db.connection.php'
+<Files "db.connection.php">
+deny from all
+</Files>
+
+# запрет на прямой доступ к '*.backup'
+<Files "*.backup">
+deny from all
+</Files>
+
+# apache mod_rewrite
+RewriteEngine on
+
+# Защита от клонов
+RewriteCond %{HTTP_HOST} !^euroheater\.ru$ [NC]
+RewriteCond %{HTTP_HOST} !^www\.euroheater\.ru$ [NC]
+RewriteRule .* - [F,L]
+
+# redirect all pages "without www" to "with www"
+# RewriteCond %{HTTP_HOST} !^www\..*$
+# RewriteRule ^.*$ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# 301 всех запросов с http или без www на https://www.
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule (.*) https://euroheater.ru%{REQUEST_URI} [R=301,L]
+
+# 301 с www на без-www
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^ %{HTTP:X-Forwarded-Proto}://%1%{REQUEST_URI} [NE,R=301,L]
+
+# 301 от Алекса от 26 декабря 2018
+RewriteRule ^pages\/production\.htm$ http://euroheater.ru/catalog/ [R=301,L]
+RewriteRule ^pages\/kalorifer\ kan\.htm$ http://euroheater.ru/teploobmenniki/kalorifery-kan/ [R=301,L]
+RewriteRule ^pages\/kalorifer\.htm$ http://euroheater.ru/kalorifery/ [R=301,L]
+RewriteRule ^pages\/kanal\.htm$ http://euroheater.ru/teploobmenniki/kanalnye-nagrevateli-i-ohladiteli/ [R=301,L]
+RewriteRule ^pages\/steam_teploobmennik\.htm$ http://euroheater.ru/teploobmenniki/parovye/ [R=301,L]
+RewriteRule ^pages\/klima\.htm$ http://euroheater.ru/teploobmenniki/vts_clima/ [R=301,L]
+RewriteRule ^pages\/kalorifer\ cva\.htm$ http://euroheater.ru/teploobmenniki/kalorifery-cva/ [R=301,L]
+RewriteRule ^pages\/teploobmenniki_analogs\.htm$ http://euroheater.ru/teploobmenniki/dlya-pritochnyh-ustanovok/ [R=301,L]
+RewriteRule ^pages\/isparitel\.htm$ http://euroheater.ru/freonovye-ispariteli/ [R=301,L]
+RewriteRule ^pages\/kalorifer\ nvs\.htm$ http://euroheater.ru/teploobmenniki/vts-nvs/ [R=301,L]
+RewriteRule ^pages\/inox_teploobmennik\.htm$ http://euroheater.ru/teploobmenniki/nerzhaveyuschie/ [R=301,L]
+RewriteRule ^pages\/coolers\.htm$ http://euroheater.ru/vodyanye-vozduhoohladiteli/ [R=301,L]
+RewriteRule ^pages\/uzel_kalorifer\.htm$ http://euroheater.ru/smesitelnye-uzly/obvyazka-kalorifera/ [R=301,L]
+RewriteRule ^pages\/uzel_zavesa\.htm$ http://euroheater.ru/smesitelnye-uzly/dlya-teplovoi-zavesy/ [R=301,L]
+RewriteRule ^pages\/uzel_ohladitel\.htm$ http://euroheater.ru/smesitelnye-uzly/obvyazka-ohladitelya/ [R=301,L]
+RewriteRule ^pages\/uzel\.htm$ http://euroheater.ru/smesitelnye-uzly/ [R=301,L]
+RewriteRule ^pages\/uzel_vts\.htm$ http://euroheater.ru/smesitelnye-uzly/vts/ [R=301,L]
+RewriteRule ^pages\/filters_cassette\.htm$ http://euroheater.ru/filtry/kassetnye-dlya-ventilyacii/ [R=301,L]
+RewriteRule ^pages\/filters_panel\.htm$ http://euroheater.ru/filtry/panelnye-dlya-ventilyacii/ [R=301,L]
+RewriteRule ^pages\/filters_pocket\.htm$ http://euroheater.ru/filtry/karmannye-dlya-ventilyacii/ [R=301,L]
+RewriteRule ^pages\/filters\.htm$ http://euroheater.ru/filtry/ [R=301,L]
+RewriteRule ^pages\/teploobmenniki_plast\.htm$ http://euroheater.ru/teploobmenniki/ [R=301,L]
+RewriteRule ^pages\/kalorifer\ ksk\.htm$ http://euroheater.ru/kalorifery/ [R=301,L]
+RewriteRule ^pages\/flanges\.htm$ http://euroheater.ru/karta-sajta/ [R=301,L]
+RewriteRule ^pages\/flanges_12820-80\.htm$ http://euroheater.ru/raschet-nagrevatelya/ [R=301,L]
+RewriteRule ^pages\/flanges_12821-80\.htm$ http://euroheater.ru/raschet-ohladitelya/ [R=301,L]
+RewriteRule ^pages\/flanges_25662\.htm$ http://euroheater.ru/raschet-isparitelya/ [R=301,L]
+RewriteRule ^pages\/ventilator_smoke\.htm$ http://euroheater.ru/raschet-condensatora/ [R=301,L]
+RewriteRule ^pages\/ventilator_smoke1\.htm$ http://euroheater.ru/raschet-parovogo-teploobmennika/ [R=301,L]
+RewriteRule ^pages\/ventilator_smoke2\.htm$ http://euroheater.ru/o-nas/klienty/ [R=301,L]
+RewriteRule ^pages\/ventilator_smoke3\.htm$ http://euroheater.ru/proekty/ [R=301,L]
+RewriteRule ^pages\/ventilator_smoke4\.htm$ http://euroheater.ru/novosti/ [R=301,L]
+RewriteRule ^pages\/opros.htm$ http://euroheater.ru/calculator/ [R=301,L]
+# 301 от Ирины Гончаренко от 26 декабря 2018
+RewriteRule ^pages/clients.htm$ http://euroheater.ru/o-nas/klienty/ [R=301,L]
+
+### MVC-движок
+# ЕДИНАЯ ТОЧКА ВХОДА ВСЕХ ЗАПРОСОВ НА САЙТ
+# проверяем, существует ли запрашиваемый файл или директория
+# если нет, то перенаправляем запрос на index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# описание флага QSA: http://httpd.apache.org/docs/2.4/rewrite/flags.html
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]

@@ -1,131 +1,131 @@
-<p class="water_heater_desc">Расчет и подбор нагревателя выполняются по указанным вами техническим характеристикам.</p>
-<p class="water_heater_desc">Все они существенно влияют на конструкцию и, соответственно, на цену.</p>
-<p class="water_heater_desc">Если вы хотите обсудить несколько вариантов исполнения, обратитесь напрямую к нашему менеджеру.</p>
-<p class="water_heater_desc">Обязательно укажите контактную информацию, без нее мы не сможем с вами связаться.</p>
+<p class="water_heater_desc">Р Р°СЃС‡РµС‚ Рё РїРѕРґР±РѕСЂ РЅР°РіСЂРµРІР°С‚РµР»СЏ РІС‹РїРѕР»РЅСЏСЋС‚СЃСЏ РїРѕ СѓРєР°Р·Р°РЅРЅС‹Рј РІР°РјРё С‚РµС…РЅРёС‡РµСЃРєРёРј С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°Рј.</p>
+<p class="water_heater_desc">Р’СЃРµ РѕРЅРё СЃСѓС‰РµСЃС‚РІРµРЅРЅРѕ РІР»РёСЏСЋС‚ РЅР° РєРѕРЅСЃС‚СЂСѓРєС†РёСЋ Рё, СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ, РЅР° С†РµРЅСѓ.</p>
+<p class="water_heater_desc">Р•СЃР»Рё РІС‹ С…РѕС‚РёС‚Рµ РѕР±СЃСѓРґРёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ РІР°СЂРёР°РЅС‚РѕРІ РёСЃРїРѕР»РЅРµРЅРёСЏ, РѕР±СЂР°С‚РёС‚РµСЃСЊ РЅР°РїСЂСЏРјСѓСЋ Рє РЅР°С€РµРјСѓ РјРµРЅРµРґР¶РµСЂСѓ.</p>
+<p class="water_heater_desc">РћР±СЏР·Р°С‚РµР»СЊРЅРѕ СѓРєР°Р¶РёС‚Рµ РєРѕРЅС‚Р°РєС‚РЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ, Р±РµР· РЅРµРµ РјС‹ РЅРµ СЃРјРѕР¶РµРј СЃ РІР°РјРё СЃРІСЏР·Р°С‚СЊСЃСЏ.</p>
 
 <div id="water_heater_form" class="form-calculator">
 
-<h3>Данные по размерам</h3>
+<h3>Р”Р°РЅРЅС‹Рµ РїРѕ СЂР°Р·РјРµСЂР°Рј</h3>
 
 <img src="/public/images/nagrevatel.jpg" class="img-responsive" /><br /><br />
 
 <div class="form-calculator-sizes-data">
-<input id="water_heater_form_fta" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTA, мм" value="" />
-<input id="water_heater_form_ftb" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTB, мм" value="" />
-<input id="water_heater_form_a" type="text" class="form-control form-calculator-sizes-data__input" placeholder="A, мм" value="" />
-<input id="water_heater_form_b" type="text" class="form-control form-calculator-sizes-data__input" placeholder="B, мм" value="" />
-<input id="water_heater_form_s" type="text" class="form-control form-calculator-sizes-data__input" placeholder="S, мм" value="" />
+<input id="water_heater_form_fta" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTA, РјРј" value="" />
+<input id="water_heater_form_ftb" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTB, РјРј" value="" />
+<input id="water_heater_form_a" type="text" class="form-control form-calculator-sizes-data__input" placeholder="A, РјРј" value="" />
+<input id="water_heater_form_b" type="text" class="form-control form-calculator-sizes-data__input" placeholder="B, РјРј" value="" />
+<input id="water_heater_form_s" type="text" class="form-control form-calculator-sizes-data__input" placeholder="S, РјРј" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
 <select id="water_heater_form_e_diameter" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Диаметр E</option>
-<option value='1/2" (Ду 15)'>1/2" (Ду 15)</option>
-<option value='3/4" (Ду 20)'>3/4" (Ду 20)</option>
-<option value='1" (Ду 25)'>1" (Ду 25)</option>
-<option value='1 1/4" (Ду 32)'>1 1/4" (Ду 32)</option>
-<option value='1 1/2" (Ду 40)'>1 1/2" (Ду 40)</option>
-<option value='2" (Ду 50)'>2" (Ду 50)</option>
-<option value='2 1/2" (Ду 65)'>2 1/2" (Ду 65)</option>
-<option value='3" (Ду 80)'>3" (Ду 80)</option>
-<option value='4" (Ду 100)'>4" (Ду 100)</option>
+<option value="" disabled selected>Р”РёР°РјРµС‚СЂ E</option>
+<option value='1/2" (Р”Сѓ 15)'>1/2" (Р”Сѓ 15)</option>
+<option value='3/4" (Р”Сѓ 20)'>3/4" (Р”Сѓ 20)</option>
+<option value='1" (Р”Сѓ 25)'>1" (Р”Сѓ 25)</option>
+<option value='1 1/4" (Р”Сѓ 32)'>1 1/4" (Р”Сѓ 32)</option>
+<option value='1 1/2" (Р”Сѓ 40)'>1 1/2" (Р”Сѓ 40)</option>
+<option value='2" (Р”Сѓ 50)'>2" (Р”Сѓ 50)</option>
+<option value='2 1/2" (Р”Сѓ 65)'>2 1/2" (Р”Сѓ 65)</option>
+<option value='3" (Р”Сѓ 80)'>3" (Р”Сѓ 80)</option>
+<option value='4" (Р”Сѓ 100)'>4" (Р”Сѓ 100)</option>
 </select>
 
 <select id="water_heater_form_input_u_diameter" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Диаметр U</option>
-<option value='1/2" (Ду 15)'>1/2" (Ду 15)</option>
-<option value='3/4" (Ду 20)'>3/4" (Ду 20)</option>
-<option value='1" (Ду 25)'>1" (Ду 25)</option>
-<option value='1 1/4" (Ду 32)'>1 1/4" (Ду 32)</option>
-<option value='1 1/2" (Ду 40)'>1 1/2" (Ду 40)</option>
-<option value='2" (Ду 50)'>2" (Ду 50)</option>
-<option value='2 1/2" (Ду 65)'>2 1/2" (Ду 65)</option>
-<option value='3" (Ду 80)'>3" (Ду 80)</option>
-<option value='4" (Ду 100)'>4" (Ду 100)</option>
+<option value="" disabled selected>Р”РёР°РјРµС‚СЂ U</option>
+<option value='1/2" (Р”Сѓ 15)'>1/2" (Р”Сѓ 15)</option>
+<option value='3/4" (Р”Сѓ 20)'>3/4" (Р”Сѓ 20)</option>
+<option value='1" (Р”Сѓ 25)'>1" (Р”Сѓ 25)</option>
+<option value='1 1/4" (Р”Сѓ 32)'>1 1/4" (Р”Сѓ 32)</option>
+<option value='1 1/2" (Р”Сѓ 40)'>1 1/2" (Р”Сѓ 40)</option>
+<option value='2" (Р”Сѓ 50)'>2" (Р”Сѓ 50)</option>
+<option value='2 1/2" (Р”Сѓ 65)'>2 1/2" (Р”Сѓ 65)</option>
+<option value='3" (Р”Сѓ 80)'>3" (Р”Сѓ 80)</option>
+<option value='4" (Р”Сѓ 100)'>4" (Р”Сѓ 100)</option>
 </select>
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="water_heater_form_lane" type="text" class="form-control form-calculator-water-data__input" placeholder="Рядность" value="" />
-<input id="water_heater_form_lamella_step" type="text" class="form-control form-calculator-water-data__input" placeholder="Шаг ламели, мм" value="" />
+<input id="water_heater_form_lane" type="text" class="form-control form-calculator-water-data__input" placeholder="Р СЏРґРЅРѕСЃС‚СЊ" value="" />
+<input id="water_heater_form_lamella_step" type="text" class="form-control form-calculator-water-data__input" placeholder="РЁР°Рі Р»Р°РјРµР»Рё, РјРј" value="" />
 </div>
 
-<h3>Материалы</h3>
+<h3>РњР°С‚РµСЂРёР°Р»С‹</h3>
 <div class="form-calculator-sizes-data">
 <select id="water_heater_form_tube_material" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Материал трубки</option>
-<option value="Медь">Медь</option>
-<option value="Нержавеющая сталь">Нержавеющая сталь</option>
+<option value="" disabled selected>РњР°С‚РµСЂРёР°Р» С‚СЂСѓР±РєРё</option>
+<option value="РњРµРґСЊ">РњРµРґСЊ</option>
+<option value="РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ">РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ</option>
 </select>
 <select id="water_heater_form_lamella_material" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Материал ламелей</option>
-<option value="Алюминий">Алюминий</option>
-<option value="Нержавеющая сталь">Нержавеющая сталь</option>
-<option value="Медь">Медь</option>
+<option value="" disabled selected>РњР°С‚РµСЂРёР°Р» Р»Р°РјРµР»РµР№</option>
+<option value="РђР»СЋРјРёРЅРёР№">РђР»СЋРјРёРЅРёР№</option>
+<option value="РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ">РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ</option>
+<option value="РњРµРґСЊ">РњРµРґСЊ</option>
 </select>
 </div>
 
-<h3>Техническое задание</h3>
+<h3>РўРµС…РЅРёС‡РµСЃРєРѕРµ Р·Р°РґР°РЅРёРµ</h3>
 <div class="form-calculator-sizes-data">
-<input id="water_heater_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Расход воздуха, м3/ч" value="" />
-<input id="water_heater_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура воздуха на входе, °C" value="" />
-<input id="water_heater_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура воздуха на выходе, °C" value="" />
+<input id="water_heater_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Р Р°СЃС…РѕРґ РІРѕР·РґСѓС…Р°, Рј3/С‡" value="" />
+<input id="water_heater_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РІРѕР·РґСѓС…Р° РЅР° РІС…РѕРґРµ, В°C" value="" />
+<input id="water_heater_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РІРѕР·РґСѓС…Р° РЅР° РІС‹С…РѕРґРµ, В°C" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
 <select id="water_heater_form_coolant_type" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Тип теплоносителя</option>
-<option value="Вода">Вода</option>
-<option value="Этиленгликоль 5%">Этиленгликоль 5%</option>
-<option value="Этиленгликоль 10%">Этиленгликоль 10%</option>
-<option value="Этиленгликоль 15%">Этиленгликоль 15%</option>
-<option value="Этиленгликоль 20%">Этиленгликоль 20%</option>
-<option value="Этиленгликоль 25%">Этиленгликоль 25%</option>
-<option value="Этиленгликоль 30%">Этиленгликоль 30%</option>
-<option value="Этиленгликоль 35%">Этиленгликоль 35%</option>
-<option value="Этиленгликоль 40%">Этиленгликоль 40%</option>
-<option value="Этиленгликоль 45%">Этиленгликоль 45%</option>
-<option value="Этиленгликоль 50%">Этиленгликоль 50%</option>
-<option value="Пропиленгликоль 15%">Пропиленгликоль 15%</option>
-<option value="Пропиленгликоль 20%">Пропиленгликоль 20%</option>
-<option value="Пропиленгликоль 25%">Пропиленгликоль 25%</option>
-<option value="Пропиленгликоль 30%">Пропиленгликоль 30%</option>
-<option value="Пропиленгликоль 35%">Пропиленгликоль 35%</option>
-<option value="Пропиленгликоль 40%">Пропиленгликоль 40%</option>
-<option value="Пропиленгликоль 45%">Пропиленгликоль 45%</option>
-<option value="Пропиленгликоль 50%">Пропиленгликоль 50%</option>
-<option value="Пропиленгликоль 55%">Пропиленгликоль 55%</option>
+<option value="" disabled selected>РўРёРї С‚РµРїР»РѕРЅРѕСЃРёС‚РµР»СЏ</option>
+<option value="Р’РѕРґР°">Р’РѕРґР°</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 5%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 5%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 10%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 10%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 15%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 15%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 20%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 20%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 25%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 25%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 30%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 30%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 35%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 35%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 40%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 40%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 45%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 45%</option>
+<option value="Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 50%">Р­С‚РёР»РµРЅРіР»РёРєРѕР»СЊ 50%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 15%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 15%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 20%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 20%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 25%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 25%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 30%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 30%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 35%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 35%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 40%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 40%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 45%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 45%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 50%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 50%</option>
+<option value="РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 55%">РџСЂРѕРїРёР»РµРЅРіР»РёРєРѕР»СЊ 55%</option>
 </select>
 
-<input id="water_heater_form_input_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура теплоносителя на входе, °C" value="" />
+<input id="water_heater_form_input_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° С‚РµРїР»РѕРЅРѕСЃРёС‚РµР»СЏ РЅР° РІС…РѕРґРµ, В°C" value="" />
 
 </div>
 
 <div class="form-calculator-sizes-data">
 
-<input id="water_heater_form_output_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура теплоносителя на выходе °C" value="" />
+<input id="water_heater_form_output_coolant_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° С‚РµРїР»РѕРЅРѕСЃРёС‚РµР»СЏ РЅР° РІС‹С…РѕРґРµ В°C" value="" />
 
-<input id="water_heater_form_power" type="text" class="form-control form-calculator-water-data__input" placeholder="Мощность, кВт" value="" />
+<input id="water_heater_form_power" type="text" class="form-control form-calculator-water-data__input" placeholder="РњРѕС‰РЅРѕСЃС‚СЊ, РєР’С‚" value="" />
 
 </div>
 
 <div class="form-calculator-sizes-data">
-<textarea id="water_heater_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="Дополнительная информация"></textarea>
+<textarea id="water_heater_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ"></textarea>
 </div>
 
-<h3>Контактные данные</h3>
+<h3>РљРѕРЅС‚Р°РєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ</h3>
 <div class="form-calculator-contact-data">
-<input id="water_heater_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="ФИО" value="" />
-<input id="water_heater_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="Компания" value="" />
-<input id="water_heater_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Город" value="" />
+<input id="water_heater_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р¤РРћ" value="" />
+<input id="water_heater_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="РљРѕРјРїР°РЅРёСЏ" value="" />
+<input id="water_heater_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р“РѕСЂРѕРґ" value="" />
 </div>
 
 <div class="form-calculator-contact-data">
 <input id="water_heater_form_email" type="text" class="form-control form-calculator-contact-data__input" placeholder="E-mail" value="" />
-<input id="water_heater_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="Телефон" value="" />
+<input id="water_heater_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="РўРµР»РµС„РѕРЅ" value="" />
 </div>
     
-<button id="water_heater_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">Отправить</button>
+<button id="water_heater_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">РћС‚РїСЂР°РІРёС‚СЊ</button>
 
 <span id="water_heater_form_ajax_preloader" class="ajax_preloader"></span>
     

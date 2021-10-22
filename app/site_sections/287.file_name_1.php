@@ -1,55 +1,55 @@
 <div id="refrigerator_form" class="form-calculator">
 
-<h3>Данные по размерам</h3>
+<h3>Р”Р°РЅРЅС‹Рµ РїРѕ СЂР°Р·РјРµСЂР°Рј</h3>
 
 <img src="/public/images/condensator.jpg" class="img-responsive" /><br /><br />
 <div class="form-calculator-sizes-data">
-<input id="refrigerator_form_fta" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTA, мм" value="" />
-<input id="refrigerator_form_ftb" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTB, мм" value="" />
-<input id="refrigerator_form_a" type="text" class="form-control form-calculator-sizes-data__input" placeholder="A, мм" value="" />
+<input id="refrigerator_form_fta" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTA, РјРј" value="" />
+<input id="refrigerator_form_ftb" type="text" class="form-control form-calculator-sizes-data__input" placeholder="FTB, РјРј" value="" />
+<input id="refrigerator_form_a" type="text" class="form-control form-calculator-sizes-data__input" placeholder="A, РјРј" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="refrigerator_form_b" type="text" class="form-control form-calculator-sizes-data__input" placeholder="B, мм" value="" />
-<input id="refrigerator_form_s" type="text" class="form-control form-calculator-sizes-data__input" placeholder="S, мм" value="" />
-<input id="refrigerator_form_e_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Диаметр E, мм" value="" />
+<input id="refrigerator_form_b" type="text" class="form-control form-calculator-sizes-data__input" placeholder="B, РјРј" value="" />
+<input id="refrigerator_form_s" type="text" class="form-control form-calculator-sizes-data__input" placeholder="S, РјРј" value="" />
+<input id="refrigerator_form_e_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р”РёР°РјРµС‚СЂ E, РјРј" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="refrigerator_form_input_u_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Диаметр U, мм" value="" />
-<input id="refrigerator_form_lane" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Рядность" value="" />
-<input id="refrigerator_form_lamella_step" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Шаг ламели, мм" value="" />
+<input id="refrigerator_form_input_u_diameter" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р”РёР°РјРµС‚СЂ U, РјРј" value="" />
+<input id="refrigerator_form_lane" type="text" class="form-control form-calculator-sizes-data__input" placeholder="Р СЏРґРЅРѕСЃС‚СЊ" value="" />
+<input id="refrigerator_form_lamella_step" type="text" class="form-control form-calculator-sizes-data__input" placeholder="РЁР°Рі Р»Р°РјРµР»Рё, РјРј" value="" />
 </div>
 
-<h3>Материалы</h3>
+<h3>РњР°С‚РµСЂРёР°Р»С‹</h3>
 <div class="form-calculator-sizes-data">
 <select id="refrigerator_form_tube_material" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Материал трубки</option>
-<option value="Медь">Медь</option>
-<option value="Нержавеющая сталь">Нержавеющая сталь</option>
+<option value="" disabled selected>РњР°С‚РµСЂРёР°Р» С‚СЂСѓР±РєРё</option>
+<option value="РњРµРґСЊ">РњРµРґСЊ</option>
+<option value="РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ">РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ</option>
 </select>
 <select id="refrigerator_form_lamella_material" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Материал ламелей</option>
-<option value="Алюминий">Алюминий</option>
-<option value="Нержавеющая сталь">Нержавеющая сталь</option>
-<option value="Медь">Медь</option>
+<option value="" disabled selected>РњР°С‚РµСЂРёР°Р» Р»Р°РјРµР»РµР№</option>
+<option value="РђР»СЋРјРёРЅРёР№">РђР»СЋРјРёРЅРёР№</option>
+<option value="РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ">РќРµСЂР¶Р°РІРµСЋС‰Р°СЏ СЃС‚Р°Р»СЊ</option>
+<option value="РњРµРґСЊ">РњРµРґСЊ</option>
 </select>
 </div>
 
-<h3>Техническое задание</h3>
+<h3>РўРµС…РЅРёС‡РµСЃРєРѕРµ Р·Р°РґР°РЅРёРµ</h3>
 <div class="form-calculator-sizes-data">
-<input id="refrigerator_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Расход воздуха, м3/ч" value="" />
-<input id="refrigerator_form_air_humidity" type="text" class="form-control form-calculator-water-data__input" placeholder="Влажность воздуха, %" value="" />
+<input id="refrigerator_form_air_spending" type="text" class="form-control form-calculator-water-data__input" placeholder="Р Р°СЃС…РѕРґ РІРѕР·РґСѓС…Р°, Рј3/С‡" value="" />
+<input id="refrigerator_form_air_humidity" type="text" class="form-control form-calculator-water-data__input" placeholder="Р’Р»Р°Р¶РЅРѕСЃС‚СЊ РІРѕР·РґСѓС…Р°, %" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<input id="refrigerator_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура воздуха на входе, °C" value="" />
-<input id="refrigerator_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура воздуха на выходе, °C" value="" />
+<input id="refrigerator_form_input_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РІРѕР·РґСѓС…Р° РЅР° РІС…РѕРґРµ, В°C" value="" />
+<input id="refrigerator_form_output_air_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РІРѕР·РґСѓС…Р° РЅР° РІС‹С…РѕРґРµ, В°C" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
 <select id="refrigerator_form_freon_type" class="form-control form-calculator-diametr-col__select">
-<option value="" disabled selected>Тип фреона</option>
+<option value="" disabled selected>РўРёРї С„СЂРµРѕРЅР°</option>
 <option value="R134a">R134a</option>
 <option value="R22">R22</option>
 <option value="R290">R290</option>
@@ -59,26 +59,26 @@
 <option value="R507A">R507A</option>
 </select>
 
-<input id="refrigerator_form_freon_evaporation_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="Температура испарения фреона, °C" value="" />
-<input id="refrigerator_form_power" type="text" class="form-control form-calculator-water-data__input" placeholder="Мощность, кВт" value="" />
+<input id="refrigerator_form_freon_evaporation_temperature" type="text" class="form-control form-calculator-water-data__input" placeholder="РўРµРјРїРµСЂР°С‚СѓСЂР° РёСЃРїР°СЂРµРЅРёСЏ С„СЂРµРѕРЅР°, В°C" value="" />
+<input id="refrigerator_form_power" type="text" class="form-control form-calculator-water-data__input" placeholder="РњРѕС‰РЅРѕСЃС‚СЊ, РєР’С‚" value="" />
 </div>
 
 <div class="form-calculator-sizes-data">
-<textarea id="refrigerator_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="Дополнительная информация"></textarea>
+<textarea id="refrigerator_form_notes" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ"></textarea>
 </div>
 
-<h3>Контактные данные</h3>
+<h3>РљРѕРЅС‚Р°РєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ</h3>
 <div class="form-calculator-contact-data">
-<input id="refrigerator_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="ФИО" value="" />
-<input id="refrigerator_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="Компания" value="" />
-<input id="refrigerator_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Город" value="" />
+<input id="refrigerator_form_name" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р¤РРћ" value="" />
+<input id="refrigerator_form_company" type="text" class="form-control form-calculator-contact-data__input" placeholder="РљРѕРјРїР°РЅРёСЏ" value="" />
+<input id="refrigerator_form_city" type="text" class="form-control form-calculator-contact-data__input" placeholder="Р“РѕСЂРѕРґ" value="" />
 </div>
 <div class="form-calculator-contact-data">
 <input id="refrigerator_form_email" type="text" class="form-control form-calculator-contact-data__input" placeholder="E-mail" value="" />
-<input id="refrigerator_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="Телефон" value="" />
+<input id="refrigerator_form_phone" type="text" class="form-control form-calculator-contact-data__input" placeholder="РўРµР»РµС„РѕРЅ" value="" />
 </div>
     
-<button id="refrigerator_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">Отправить</button>
+<button id="refrigerator_form_submit_button" type="button" class="green_btn form-calculator-contact-data__btn">РћС‚РїСЂР°РІРёС‚СЊ</button>
 
 <span id="refrigerator_form_ajax_preloader" class="ajax_preloader"></span>
     

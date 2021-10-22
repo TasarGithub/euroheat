@@ -2,29 +2,29 @@
  * Hungarian translation
  *  @name Hungarian
  *  @anchor Hungarian
- *  @author <a href="http://www.maschek.hu">Adam Maschek</a> and Lajos Cseppentő
+ *  @author <a href="http://www.maschek.hu">Adam Maschek</a> and Lajos CseppentР•вЂ�
  */
 
 {
-   "sEmptyTable":     "Nincs rendelkezésre álló adat",
-   "sInfo":           "Találatok: _START_ - _END_ Összesen: _TOTAL_",
-   "sInfoEmpty":      "Nulla találat",
-   "sInfoFiltered":   "(_MAX_ összes rekord közül szűrve)",
+   "sEmptyTable":     "Nincs rendelkezР“В©sre Р“РЋllР“С– adat",
+   "sInfo":           "TalР“РЋlatok: _START_ - _END_ Р“вЂ“sszesen: _TOTAL_",
+   "sInfoEmpty":      "Nulla talР“РЋlat",
+   "sInfoFiltered":   "(_MAX_ Р“В¶sszes rekord kР“В¶zР“С�l szР•В±rve)",
    "sInfoPostFix":    "",
    "sInfoThousands":  " ",
-   "sLengthMenu":     "_MENU_ találat oldalanként",
-   "sLoadingRecords": "Betöltés...",
-   "sProcessing":     "Feldolgozás...",
-   "sSearch":         "Keresés:",
-   "sZeroRecords":    "Nincs a keresésnek megfelelő találat",
+   "sLengthMenu":     "_MENU_ talР“РЋlat oldalankР“В©nt",
+   "sLoadingRecords": "BetР“В¶ltР“В©s...",
+   "sProcessing":     "FeldolgozР“РЋs...",
+   "sSearch":         "KeresР“В©s:",
+   "sZeroRecords":    "Nincs a keresР“В©snek megfelelР•вЂ� talР“РЋlat",
    "oPaginate": {
-       "sFirst":    "Első",
-       "sPrevious": "Előző",
-       "sNext":     "Következő",
-       "sLast":     "Utolsó"
+       "sFirst":    "ElsР•вЂ�",
+       "sPrevious": "ElР•вЂ�zР•вЂ�",
+       "sNext":     "KР“В¶vetkezР•вЂ�",
+       "sLast":     "UtolsР“С–"
    },
    "oAria": {
-       "sSortAscending":  ": aktiválja a növekvő rendezéshez",
-       "sSortDescending": ": aktiválja a csökkenő rendezéshez"
+       "sSortAscending":  ": aktivР“РЋlja a nР“В¶vekvР•вЂ� rendezР“В©shez",
+       "sSortDescending": ": aktivР“РЋlja a csР“В¶kkenР•вЂ� rendezР“В©shez"
    }
 }

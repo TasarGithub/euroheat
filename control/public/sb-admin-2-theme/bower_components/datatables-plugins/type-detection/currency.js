@@ -1,6 +1,6 @@
 /**
  * This plug-in will add automatic detection for currency columns to 
- * DataTables. Note that only $, £ and € symbols are detected with this code,
+ * DataTables. Note that only $, Р’Р€ and РІвЂљВ¬ symbols are detected with this code,
  * but it is trivial to add more or change the current ones. This is best used
  * in conjunction with the currency sorting plug-in.
  * 
@@ -17,7 +17,7 @@
 (function(){
 
 // Change this list to the valid characters you want
-var validChars = "$£€c" + "0123456789" + ".-,'";
+var validChars = "$Р’Р€РІвЂљВ¬c" + "0123456789" + ".-,'";
 
 // Init the regex just once for speed - it is "closure locked"
 var

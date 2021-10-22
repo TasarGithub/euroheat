@@ -1,47 +1,47 @@
-<p><a href="/o-nas/">ООО «Аренда электростанций»</a> предоставляет исключительно генераторы SDMO (Франция) не старше 2012 года на правах официального дилера. <a class="read_more" href="#">Подробнее &raquo;</a></p>
-            <div class="hidden-text">
-                <ul><li>выезжаем на объект круглосуточно – устраняем неполадки в день звонка, если нужно – работаем по ночам;</li>
-<li>в случае серьезной поломки – меняем генератор на аналогичный в течение 24 часов;</li>
-<li>все дизельные электростанции в шумозащитных кожухах – можно сразу начинать работу в спальных районах;</li>
-<li>в комплект со станцией входит пост оператора и топливные емкости – без изменения цены аренды.</li></ul>
-
-            </div>
-  <a class="order_btn" href="#rent_modal" data-toggle="modal"><div class="arrow_1"></div>Отправить заявку на аренду</a>
-
-
-            <div class="owl-carousel owl-carousel_b_photos">
-                <div class="item">
-                    <a href="/public/images/photos/pic_1.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_1.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_10.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_10.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_15.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_15.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_17.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_17.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_18.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_18.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_20.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_20.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_23.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_23.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_25.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_25.jpg"></a>
-                </div>
-                <div class="item">
-                    <a href="/public/images/photos/pic_32.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_32.jpg"></a>
-                </div>
-            </div>
-            
-          <br />
-  <a class="order_btn_2 icon_1" href="/public/docs/1_euroheater.ru_price.doc">Скачать прайс-лист</a>
-        <a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">Скачать договор на аренду</a>
-        <br />
-
-<p>Если вы берете электростанции в аренду по Москве или области, оборудование прибудет на объект на следующее утро после подписания договора. Сам договор и счет на предоплату присылаем на ваш электронный адрес в течение часа после звонка.</p>
+<p><a href="/o-nas/">РћРћРћ В«РђСЂРµРЅРґР° СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёР№В»</a> РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµС‚ РёСЃРєР»СЋС‡РёС‚РµР»СЊРЅРѕ РіРµРЅРµСЂР°С‚РѕСЂС‹ SDMO (Р¤СЂР°РЅС†РёСЏ) РЅРµ СЃС‚Р°СЂС€Рµ 2012 РіРѕРґР° РЅР° РїСЂР°РІР°С… РѕС„РёС†РёР°Р»СЊРЅРѕРіРѕ РґРёР»РµСЂР°. <a class="read_more" href="#">РџРѕРґСЂРѕР±РЅРµРµ &raquo;</a></p>
+            <div class="hidden-text">
+                <ul><li>РІС‹РµР·Р¶Р°РµРј РЅР° РѕР±СЉРµРєС‚ РєСЂСѓРіР»РѕСЃСѓС‚РѕС‡РЅРѕ вЂ“ СѓСЃС‚СЂР°РЅСЏРµРј РЅРµРїРѕР»Р°РґРєРё РІ РґРµРЅСЊ Р·РІРѕРЅРєР°, РµСЃР»Рё РЅСѓР¶РЅРѕ вЂ“ СЂР°Р±РѕС‚Р°РµРј РїРѕ РЅРѕС‡Р°Рј;</li>
+<li>РІ СЃР»СѓС‡Р°Рµ СЃРµСЂСЊРµР·РЅРѕР№ РїРѕР»РѕРјРєРё вЂ“ РјРµРЅСЏРµРј РіРµРЅРµСЂР°С‚РѕСЂ РЅР° Р°РЅР°Р»РѕРіРёС‡РЅС‹Р№ РІ С‚РµС‡РµРЅРёРµ 24 С‡Р°СЃРѕРІ;</li>
+<li>РІСЃРµ РґРёР·РµР»СЊРЅС‹Рµ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё РІ С€СѓРјРѕР·Р°С‰РёС‚РЅС‹С… РєРѕР¶СѓС…Р°С… вЂ“ РјРѕР¶РЅРѕ СЃСЂР°Р·Сѓ РЅР°С‡РёРЅР°С‚СЊ СЂР°Р±РѕС‚Сѓ РІ СЃРїР°Р»СЊРЅС‹С… СЂР°Р№РѕРЅР°С…;</li>
+<li>РІ РєРѕРјРїР»РµРєС‚ СЃРѕ СЃС‚Р°РЅС†РёРµР№ РІС…РѕРґРёС‚ РїРѕСЃС‚ РѕРїРµСЂР°С‚РѕСЂР° Рё С‚РѕРїР»РёРІРЅС‹Рµ РµРјРєРѕСЃС‚Рё вЂ“ Р±РµР· РёР·РјРµРЅРµРЅРёСЏ С†РµРЅС‹ Р°СЂРµРЅРґС‹.</li></ul>
+
+            </div>
+  <a class="order_btn" href="#rent_modal" data-toggle="modal"><div class="arrow_1"></div>РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ РЅР° Р°СЂРµРЅРґСѓ</a>
+
+
+            <div class="owl-carousel owl-carousel_b_photos">
+                <div class="item">
+                    <a href="/public/images/photos/pic_1.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_1.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_10.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_10.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_15.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_15.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_17.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_17.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_18.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_18.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_20.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_20.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_23.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_23.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_25.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_25.jpg"></a>
+                </div>
+                <div class="item">
+                    <a href="/public/images/photos/pic_32.jpg" class="fancybox" data-fancybox-group="gallery1"><img src="/public/images/photos/small/pic_32.jpg"></a>
+                </div>
+            </div>
+            
+          <br />
+  <a class="order_btn_2 icon_1" href="/public/docs/1_euroheater.ru_price.doc">РЎРєР°С‡Р°С‚СЊ РїСЂР°Р№СЃ-Р»РёСЃС‚</a>
+        <a class="order_btn_1 icon_2" href="/public/docs/2_euroheater.ru_dogovor.docx">РЎРєР°С‡Р°С‚СЊ РґРѕРіРѕРІРѕСЂ РЅР° Р°СЂРµРЅРґСѓ</a>
+        <br />
+
+<p>Р•СЃР»Рё РІС‹ Р±РµСЂРµС‚Рµ СЌР»РµРєС‚СЂРѕСЃС‚Р°РЅС†РёРё РІ Р°СЂРµРЅРґСѓ РїРѕ РњРѕСЃРєРІРµ РёР»Рё РѕР±Р»Р°СЃС‚Рё, РѕР±РѕСЂСѓРґРѕРІР°РЅРёРµ РїСЂРёР±СѓРґРµС‚ РЅР° РѕР±СЉРµРєС‚ РЅР° СЃР»РµРґСѓСЋС‰РµРµ СѓС‚СЂРѕ РїРѕСЃР»Рµ РїРѕРґРїРёСЃР°РЅРёСЏ РґРѕРіРѕРІРѕСЂР°. РЎР°Рј РґРѕРіРѕРІРѕСЂ Рё СЃС‡РµС‚ РЅР° РїСЂРµРґРѕРїР»Р°С‚Сѓ РїСЂРёСЃС‹Р»Р°РµРј РЅР° РІР°С€ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РІ С‚РµС‡РµРЅРёРµ С‡Р°СЃР° РїРѕСЃР»Рµ Р·РІРѕРЅРєР°.</p>

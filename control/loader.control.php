@@ -40,7 +40,8 @@ if ($_SERVER['REQUEST_URI'] == '/control/')
 # загрузка классов "на лету"
 function __autoload($class_name)
 {
-	$filename = strtolower($class_name); # echo "filename: ".$filename."<hr />";
+	$filename = strtolower($class_name); 
+	# echo "filename: ".$filename."<hr />";
 	# для не-MVC классов
 	$file = DOCUMENT_ROOT.'/control/#library/'.$filename.'.php';
 	

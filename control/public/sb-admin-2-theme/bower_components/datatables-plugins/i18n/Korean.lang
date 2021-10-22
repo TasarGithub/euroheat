@@ -6,25 +6,25 @@
  */
 
 {
-   "sEmptyTable":     "데이터가 없습니다",
+   "sEmptyTable":     "Р»РЊВ°РјСњТ‘РЅвЂћВ°РєВ°Р‚ РјвЂ”вЂ РјР‰ВµР»вЂ№в‚¬Р»вЂ№В¤",
    "sInfo":           "_START_ - _END_ / _TOTAL_",
    "sInfoEmpty":      "0 - 0 / 0",
-   "sInfoFiltered":   "(총 _MAX_ 개)",
+   "sInfoFiltered":   "(РјТ‘Сњ _MAX_ РєВ°Сљ)",
    "sInfoPostFix":    "",
    "sInfoThousands":  ",",
-   "sLengthMenu":     "페이지당 줄수 _MENU_",
-   "sLoadingRecords": "읽는중...",
-   "sProcessing":     "처리중...",
-   "sSearch":         "검색:",
-   "sZeroRecords":    "검색 결과가 없습니다",
+   "sLengthMenu":     "РЅР‹пїЅРјСњТ‘РјВ§Р‚Р»вЂ№в„– РјВ¤вЂћРјв‚¬пїЅ _MENU_",
+   "sLoadingRecords": "РјСњР…Р»Р‰вЂќРјВ¤вЂ�...",
+   "sProcessing":     "РјР†пїЅР»В¦В¬РјВ¤вЂ�...",
+   "sSearch":         "РєР†Р‚РјС“вЂ°:",
+   "sZeroRecords":    "РєР†Р‚РјС“вЂ° РєР†В°РєС–С�РєВ°Р‚ РјвЂ”вЂ РјР‰ВµР»вЂ№в‚¬Р»вЂ№В¤",
    "oPaginate": {
-       "sFirst":    "처음",
-       "sLast":     "마지막",
-       "sNext":     "다음",
-       "sPrevious": "이전"
+       "sFirst":    "РјР†пїЅРјСњРЉ",
+       "sLast":     "Р»В§в‚¬РјВ§Р‚Р»В§вЂ°",
+       "sNext":     "Р»вЂ№В¤РјСњРЉ",
+       "sPrevious": "РјСњТ‘РјВ вЂћ"
    },
    "oAria": {
-       "sSortAscending":  ": 오름차순 정렬",
-       "sSortDescending": ": 내림차순 정렬"
+       "sSortAscending":  ": РјпїЅВ¤Р»В¦вЂћРјВ°РЃРјв‚¬Сљ РјВ вЂўР»В В¬",
+       "sSortDescending": ": Р»вЂљТ‘Р»В¦С�РјВ°РЃРјв‚¬Сљ РјВ вЂўР»В В¬"
    }
 }

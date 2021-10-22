@@ -1,19 +1,19 @@
-// document ready
-$(document).ready(function() {
-	// ИНИЦИАЛИЗИРУЕМ JQUERY UI TABS
-	$( "#tabs" ).tabs();
-	
-	// ЕСЛИ ВЫБРАНА ВКЛАДКА "JQUERY UI TABS"
-	var tabState = $('#tabs_state').val();
-	if (tabState) $("#tabs").tabs("option", "active", tabState);
-	
-	// СОБЫТИЕ: КЛИК НА ВКЛАДКЕ "JQUERY UI TABS"
-	$('#tabs').tabs( {
-		activate: function(event, ui) {
-			// alert(ui.newTab.index());
-			$('#tabs_state').val(ui.newTab.index()); // console.log(ui.newTab.index());
-            // добавляем к textarea номера строк (для тех textarea, которые были в скрытых складках и не инициализировались при загрузке страницы)
-            $('div#tabs-' + (ui.newTab.index() + 1) + ' .lined').linedtextarea();
-		}
-	});
+// document ready
+$(document).ready(function() {
+	// Р пїЅР СњР пїЅР В¦Р пїЅР С’Р вЂєР пїЅР вЂ”Р пїЅР В Р Р€Р вЂўР Сљ JQUERY UI TABS
+	$( "#tabs" ).tabs();
+	
+	// Р вЂўР РЋР вЂєР пїЅ Р вЂ™Р В«Р вЂР В Р С’Р СњР С’ Р вЂ™Р С™Р вЂєР С’Р вЂќР С™Р С’ "JQUERY UI TABS"
+	var tabState = $('#tabs_state').val();
+	if (tabState) $("#tabs").tabs("option", "active", tabState);
+	
+	// Р РЋР С›Р вЂР В«Р СћР пїЅР вЂў: Р С™Р вЂєР пїЅР С™ Р СњР С’ Р вЂ™Р С™Р вЂєР С’Р вЂќР С™Р вЂў "JQUERY UI TABS"
+	$('#tabs').tabs( {
+		activate: function(event, ui) {
+			// alert(ui.newTab.index());
+			$('#tabs_state').val(ui.newTab.index()); // console.log(ui.newTab.index());
+            // Р Т‘Р С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р С” textarea Р Р…Р С•Р СР ВµРЎР‚Р В° РЎРѓРЎвЂљРЎР‚Р С•Р С” (Р Т‘Р В»РЎРЏ РЎвЂљР ВµРЎвЂ¦ textarea, Р С”Р С•РЎвЂљР С•РЎР‚РЎвЂ№Р Вµ Р В±РЎвЂ№Р В»Р С‘ Р Р† РЎРѓР С”РЎР‚РЎвЂ№РЎвЂљРЎвЂ№РЎвЂ¦ РЎРѓР С”Р В»Р В°Р Т‘Р С”Р В°РЎвЂ¦ Р С‘ Р Р…Р Вµ Р С‘Р Р…Р С‘РЎвЂ Р С‘Р В°Р В»Р С‘Р В·Р С‘РЎР‚Р С•Р Р†Р В°Р В»Р С‘РЎРѓРЎРЉ Р С—РЎР‚Р С‘ Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р Вµ РЎРѓРЎвЂљРЎР‚Р В°Р Р…Р С‘РЎвЂ РЎвЂ№)
+            $('div#tabs-' + (ui.newTab.index() + 1) + ' .lined').linedtextarea();
+		}
+	});
 }); // /document ready

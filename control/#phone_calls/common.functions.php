@@ -1,82 +1,82 @@
-<?php # общие функции для index.php и ajax.php
-
-define('HTTP_HOST', str_replace('www.', '', $_SERVER['HTTP_HOST']));
-
-# ПОЛУЧАЕМ СТАТИСТИКУ
-function getCallsStatistics($array = null)
-{
-    global $dbh;
-
-    # Всего звонков было
-    # Всего уникальных звонков было
-
-    # Всего принятых звонков было
-    # Всего принятых уникальных звонков было
-
-    # Всего пропущенных звонков было
-    # Всего пропущенных уникальных звонков было
-
-    # модификация sql-запроса
-    unset($sqlCondition);
-    # даты
-    if (!empty($array['date_from']) && empty($array['date_to'])) {
-        $sqlCondition = ' and date(date_add) >= :date_from';
-    }
-    elseif (empty($array['date_from']) && !empty($array['date_to'])) {
-        $sqlCondition = ' and date(date_add) <= :date_to';
-    }
-    elseif (!empty($array['date_from']) && !empty($array['date_to'])) {
-        $sqlCondition = ' and date(date_add) >= :date_from and date(date_add) <= :date_to';
-    }
-    # /даты
-    # сортировка
-    switch ($array['type_of_sorting']) {
-        case 'accepted': $sqlCondition .= ' and is_missed_call is null'; break;
-        case 'missed': $sqlCondition .= ' and is_missed_call = 1'; break;
-        case 'chaser': $sqlCondition .= ' and caller = "74996775485"'; break;
-        # default: break;
-    }
-    # /сортировка
-    # /модификация sql-запроса
-
-    $sql = '
-    select 1,
-
-    (select count(1) from '.DB_PREFIX.'mango_calls where 1'.$sqlCondition.') as all_calls_count,
-    (select count(distinct(caller)) from '.DB_PREFIX.'mango_calls where 1'.$sqlCondition.') as all_unique_calls_count,
-
-    (select count(1) from '.DB_PREFIX.'mango_calls where is_missed_call is null'.$sqlCondition.') as all_accepted_call_counts,
-    (select count(distinct(caller)) from '.DB_PREFIX.'mango_calls where is_missed_call is null'.$sqlCondition.') as all_unique_accepted_calls_count,
-
-    (select count(1) from '.DB_PREFIX.'mango_calls where is_missed_call = 1'.$sqlCondition.') as all_missed_calls_count,
-    (select count(distinct(caller)) from '.DB_PREFIX.'mango_calls where is_missed_call = 1'.$sqlCondition.') as all_unique_missed_calls_count
-    '; # echo '<pre>'.$sql."</pre><hr />";
-
-    $sth = $dbh->prepare($sql);
-
-    if (!empty($array['date_from']) && empty($array['date_to'])) {
-        $dateFrom = date("Y-m-d", strtotime($array['date_from']));
-        $sth->bindValue(':date_from', $dateFrom);
-    }
-    elseif (empty($array['date_from']) && !empty($array['date_to'])) {
-        $dateTo = date("Y-m-d", strtotime($array['date_to']));
-        $sth->bindValue(':date_to', $dateTo);
-    }
-    elseif (!empty($array['date_from']) && !empty($array['date_to'])) {
-        $dateFrom = date("Y-m-d", strtotime($array['date_from']));
-        $dateTo = date("Y-m-d", strtotime($array['date_to']));
-        $sth->bindValue(':date_from', $dateFrom);
-        $sth->bindValue(':date_to', $dateTo);
-    }
-
-    $sth->execute();
-    $_ = $sth->fetch();
-
-    if (!empty($_) && is_array($_)) {
-        $statistics = '<b>Статистика</b>: всего звонков: '.$_['all_calls_count'].', всего уникальных: '.$_['all_unique_calls_count'].', всего принятых: '.$_['all_accepted_call_counts'].', всего принятых уникальных: '.$_['all_unique_accepted_calls_count'].',<br />всего пропущенных: '.$_['all_missed_calls_count'].', всего пропущенных уникальных: '.$_['all_unique_missed_calls_count'];
-
-        return $statistics;
-    }
-    else return null;
-
-} # /ПОЛУЧАЕМ СТАТИСТИКУ
+<?php # РѕР±С‰РёРµ С„СѓРЅРєС†РёРё РґР»СЏ index.php Рё ajax.php
+
+define('HTTP_HOST', str_replace('www.', '', $_SERVER['HTTP_HOST']));
+
+# РџРћР›РЈР§РђР•Рњ РЎРўРђРўРРЎРўРРљРЈ
+function getCallsStatistics($array = null)
+{
+    global $dbh;
+
+    # Р’СЃРµРіРѕ Р·РІРѕРЅРєРѕРІ Р±С‹Р»Рѕ
+    # Р’СЃРµРіРѕ СѓРЅРёРєР°Р»СЊРЅС‹С… Р·РІРѕРЅРєРѕРІ Р±С‹Р»Рѕ
+
+    # Р’СЃРµРіРѕ РїСЂРёРЅСЏС‚С‹С… Р·РІРѕРЅРєРѕРІ Р±С‹Р»Рѕ
+    # Р’СЃРµРіРѕ РїСЂРёРЅСЏС‚С‹С… СѓРЅРёРєР°Р»СЊРЅС‹С… Р·РІРѕРЅРєРѕРІ Р±С‹Р»Рѕ
+
+    # Р’СЃРµРіРѕ РїСЂРѕРїСѓС‰РµРЅРЅС‹С… Р·РІРѕРЅРєРѕРІ Р±С‹Р»Рѕ
+    # Р’СЃРµРіРѕ РїСЂРѕРїСѓС‰РµРЅРЅС‹С… СѓРЅРёРєР°Р»СЊРЅС‹С… Р·РІРѕРЅРєРѕРІ Р±С‹Р»Рѕ
+
+    # РјРѕРґРёС„РёРєР°С†РёСЏ sql-Р·Р°РїСЂРѕСЃР°
+    unset($sqlCondition);
+    # РґР°С‚С‹
+    if (!empty($array['date_from']) && empty($array['date_to'])) {
+        $sqlCondition = ' and date(date_add) >= :date_from';
+    }
+    elseif (empty($array['date_from']) && !empty($array['date_to'])) {
+        $sqlCondition = ' and date(date_add) <= :date_to';
+    }
+    elseif (!empty($array['date_from']) && !empty($array['date_to'])) {
+        $sqlCondition = ' and date(date_add) >= :date_from and date(date_add) <= :date_to';
+    }
+    # /РґР°С‚С‹
+    # СЃРѕСЂС‚РёСЂРѕРІРєР°
+    switch ($array['type_of_sorting']) {
+        case 'accepted': $sqlCondition .= ' and is_missed_call is null'; break;
+        case 'missed': $sqlCondition .= ' and is_missed_call = 1'; break;
+        case 'chaser': $sqlCondition .= ' and caller = "74996775485"'; break;
+        # default: break;
+    }
+    # /СЃРѕСЂС‚РёСЂРѕРІРєР°
+    # /РјРѕРґРёС„РёРєР°С†РёСЏ sql-Р·Р°РїСЂРѕСЃР°
+
+    $sql = '
+    select 1,
+
+    (select count(1) from '.DB_PREFIX.'mango_calls where 1'.$sqlCondition.') as all_calls_count,
+    (select count(distinct(caller)) from '.DB_PREFIX.'mango_calls where 1'.$sqlCondition.') as all_unique_calls_count,
+
+    (select count(1) from '.DB_PREFIX.'mango_calls where is_missed_call is null'.$sqlCondition.') as all_accepted_call_counts,
+    (select count(distinct(caller)) from '.DB_PREFIX.'mango_calls where is_missed_call is null'.$sqlCondition.') as all_unique_accepted_calls_count,
+
+    (select count(1) from '.DB_PREFIX.'mango_calls where is_missed_call = 1'.$sqlCondition.') as all_missed_calls_count,
+    (select count(distinct(caller)) from '.DB_PREFIX.'mango_calls where is_missed_call = 1'.$sqlCondition.') as all_unique_missed_calls_count
+    '; # echo '<pre>'.$sql."</pre><hr />";
+
+    $sth = $dbh->prepare($sql);
+
+    if (!empty($array['date_from']) && empty($array['date_to'])) {
+        $dateFrom = date("Y-m-d", strtotime($array['date_from']));
+        $sth->bindValue(':date_from', $dateFrom);
+    }
+    elseif (empty($array['date_from']) && !empty($array['date_to'])) {
+        $dateTo = date("Y-m-d", strtotime($array['date_to']));
+        $sth->bindValue(':date_to', $dateTo);
+    }
+    elseif (!empty($array['date_from']) && !empty($array['date_to'])) {
+        $dateFrom = date("Y-m-d", strtotime($array['date_from']));
+        $dateTo = date("Y-m-d", strtotime($array['date_to']));
+        $sth->bindValue(':date_from', $dateFrom);
+        $sth->bindValue(':date_to', $dateTo);
+    }
+
+    $sth->execute();
+    $_ = $sth->fetch();
+
+    if (!empty($_) && is_array($_)) {
+        $statistics = '<b>РЎС‚Р°С‚РёСЃС‚РёРєР°</b>: РІСЃРµРіРѕ Р·РІРѕРЅРєРѕРІ: '.$_['all_calls_count'].', РІСЃРµРіРѕ СѓРЅРёРєР°Р»СЊРЅС‹С…: '.$_['all_unique_calls_count'].', РІСЃРµРіРѕ РїСЂРёРЅСЏС‚С‹С…: '.$_['all_accepted_call_counts'].', РІСЃРµРіРѕ РїСЂРёРЅСЏС‚С‹С… СѓРЅРёРєР°Р»СЊРЅС‹С…: '.$_['all_unique_accepted_calls_count'].',<br />РІСЃРµРіРѕ РїСЂРѕРїСѓС‰РµРЅРЅС‹С…: '.$_['all_missed_calls_count'].', РІСЃРµРіРѕ РїСЂРѕРїСѓС‰РµРЅРЅС‹С… СѓРЅРёРєР°Р»СЊРЅС‹С…: '.$_['all_unique_missed_calls_count'];
+
+        return $statistics;
+    }
+    else return null;
+
+} # /РџРћР›РЈР§РђР•Рњ РЎРўРђРўРРЎРўРРљРЈ

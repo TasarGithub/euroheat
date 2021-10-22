@@ -1,95 +1,95 @@
  <!--
 <section class="section">
-	<div class='imgblock2'>
-	 <img src='http://www.euroheater.ru/public/images/image_fon.jpg' title='ИЗГОТОВИМ НА ЗАКАЗ ТЕПЛООБМЕННИК ДЛЯ ЛЮБЫХ СРЕД ПО ВАШЕМУ ТЗ'>
-	 <h1><center><span>ИЗГОТОВИМ НА ЗАКАЗ <br /> ТЕПЛООБМЕННИК ДЛЯ ЛЮБЫХ СРЕД <br /> ПО ВАШЕМУ ТЗ</span></center></h1> 
-	 </div>
+<div class='imgblock2'>
+ <img src='http://www.euroheater.ru/public/images/image_fon.jpg' title='РР—Р“РћРўРћР’РРњ РќРђ Р—РђРљРђР— РўР•РџР›РћРћР‘РњР•РќРќРРљ Р”Р›РЇ Р›Р®Р‘Р«РҐ РЎР Р•Р” РџРћ Р’РђРЁР•РњРЈ РўР—'>
+ <h1><center><span>РР—Р“РћРўРћР’РРњ РќРђ Р—РђРљРђР— <br /> РўР•РџР›РћРћР‘РњР•РќРќРРљ Р”Р›РЇ Р›Р®Р‘Р«РҐ РЎР Р•Р” <br /> РџРћ Р’РђРЁР•РњРЈ РўР—</span></center></h1> 
+ </div>
  </section>
  -->
  <section class="section">
-	<h2><left><span style="color:#696969"><strong><span style="font-family:arial,helvetica,sans-serif">ЗАКАЗЫВАЙТЕ ОБОРУДОВАНИЕ ПО ОБРАЗЦУ УЖЕ СУЩЕСТВУЮЩЕГО</span></strong></span></left></h2>
-	<p><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969"><strong><img alt="" src="www.euroheater.ru/public/images/img_zakaz_2.png" /><img alt="" src="http://www.euroheater.ru/public/images/img_zakaz_2.png" style="float:left; height:148px; margin:10px 40px; width:146px" /></strong>Подбираем в соответствии:&nbsp;</span></span></span></p>
-	<ul>
-		<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">с геометрией расположения трубок</span></span></span></li>
-		<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">диаметрами трубок</span></span></span></li>
-		<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">рядностью трубок</span></span></span></li>
-	</ul>
-	<p>&nbsp;</p>
-	<p><a href="https://euroheater.ru/online/"><img src="http://www.euroheater.ru/public/images/img_zakaz_4_3.png" title="nkl./n." /></a></p>
+<h2><left><span style="color:#696969"><strong><span style="font-family:arial,helvetica,sans-serif">Р—РђРљРђР—Р«Р’РђР™РўР• РћР‘РћР РЈР”РћР’РђРќРР• РџРћ РћР‘Р РђР—Р¦РЈ РЈР–Р• РЎРЈР©Р•РЎРўР’РЈР®Р©Р•Р“Рћ</span></strong></span></left></h2>
+<p><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969"><strong><img alt="" src="www.euroheater.ru/public/images/img_zakaz_2.png" /><img alt="" src="http://www.euroheater.ru/public/images/img_zakaz_2.png" style="float:left; height:148px; margin:10px 40px; width:146px" /></strong>РџРѕРґР±РёСЂР°РµРј РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё:&nbsp;</span></span></span></p>
+<ul>
+<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">СЃ РіРµРѕРјРµС‚СЂРёРµР№ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ С‚СЂСѓР±РѕРє</span></span></span></li>
+<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">РґРёР°РјРµС‚СЂР°РјРё С‚СЂСѓР±РѕРє</span></span></span></li>
+<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">СЂСЏРґРЅРѕСЃС‚СЊСЋ С‚СЂСѓР±РѕРє</span></span></span></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="https://euroheater.ru/online/"><img src="http://www.euroheater.ru/public/images/img_zakaz_4_3.png" title="nkl./n." /></a></p>
 </section>
 <section class="section">
-	<h2><span style="color:#696969"><strong><span style="font-family:arial,helvetica,sans-serif">РЕШИМ ВАШИ НЕСТАНДАРТНЫЕ ЗАДАЧИ В ТЕПЛООБМЕНЕ</span></strong></span></h2>
-	<p><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969"><strong><img alt="" src="www.euroheater.ru/public/images/img_zakaz_3.png" /><img alt="" src="http://www.euroheater.ru/public/images/img_zakaz_3.png" style="float:left; height:148px; margin:10px 40px; width:146px" /></strong>Наши компетенции:&nbsp;</span></span></span></p>
-	<ul>
-		<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">спроектируем под ваши размеры</span></span></span></li>
-		<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">учитываем специфику ваших производств</span></span></span></li>
-		<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">подбираем оптимальный материал</span></span></span></li>
-		<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">даем подробную спецификацию и смету</span></span></span></li>
-	</ul>
-	<p>&nbsp;</p>
-	<p><a href="https://euroheater.ru/online/"><img src="http://www.euroheater.ru/public/images/img_zakaz_4_3.png" title="nkl./n." /></a></p>
+<h2><span style="color:#696969"><strong><span style="font-family:arial,helvetica,sans-serif">Р Р•РЁРРњ Р’РђРЁР РќР•РЎРўРђРќР”РђР РўРќР«Р• Р—РђР”РђР§Р Р’ РўР•РџР›РћРћР‘РњР•РќР•</span></strong></span></h2>
+<p><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969"><strong><img alt="" src="www.euroheater.ru/public/images/img_zakaz_3.png" /><img alt="" src="http://www.euroheater.ru/public/images/img_zakaz_3.png" style="float:left; height:148px; margin:10px 40px; width:146px" /></strong>РќР°С€Рё РєРѕРјРїРµС‚РµРЅС†РёРё:&nbsp;</span></span></span></p>
+<ul>
+<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">СЃРїСЂРѕРµРєС‚РёСЂСѓРµРј РїРѕРґ РІР°С€Рё СЂР°Р·РјРµСЂС‹</span></span></span></li>
+<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">СѓС‡РёС‚С‹РІР°РµРј СЃРїРµС†РёС„РёРєСѓ РІР°С€РёС… РїСЂРѕРёР·РІРѕРґСЃС‚РІ</span></span></span></li>
+<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">РїРѕРґР±РёСЂР°РµРј РѕРїС‚РёРјР°Р»СЊРЅС‹Р№ РјР°С‚РµСЂРёР°Р»</span></span></span></li>
+<li><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:22px"><span style="color:#696969">РґР°РµРј РїРѕРґСЂРѕР±РЅСѓСЋ СЃРїРµС†РёС„РёРєР°С†РёСЋ Рё СЃРјРµС‚Сѓ</span></span></span></li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="https://euroheater.ru/online/"><img src="http://www.euroheater.ru/public/images/img_zakaz_4_3.png" title="nkl./n." /></a></p>
 </section>
-	<section class="section">
-		<div class="h2_2">ЗА СЧЕТ ЧЕГО ДОБИВАЕМСЯ КАЧЕСТВА?</div>
+<section class="section">
+<div class="h2_2">Р—Рђ РЎР§Р•Рў Р§Р•Р“Рћ Р”РћР‘РР’РђР•РњРЎРЇ РљРђР§Р•РЎРўР’Рђ?</div>
 
-		<div class="h4_background_pink">Материалы для промышленных теплообменников</div>	
+<div class="h4_background_pink">РњР°С‚РµСЂРёР°Р»С‹ РґР»СЏ РїСЂРѕРјС‹С€Р»РµРЅРЅС‹С… С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ</div>
 
-		<ul class="ul_arial">
-			<li>Ламели делаем из алюминия, по спецзаказу - из меди. Трубки - из мельхиора, стали, меди.&nbsp;Используем медь высшего качества - германскую и финскую</li>
-			<li>Для пищевых производств предлагаем теплообменники из нержавеющей стали марок INOX AISI 304 и&nbsp; INOX AISI 316. Их выпускают в Италии, на заводе CO.MA. spa. Из стали делаются все части теплообменника: рама, трубки, ламели и проводящие пластины.</li>
-		</ul>
-		
-		<div class="h4_background_pink">Обязательные испытания теплообменников</div>	
+<ul class="ul_arial">
+<li>Р›Р°РјРµР»Рё РґРµР»Р°РµРј РёР· Р°Р»СЋРјРёРЅРёСЏ, РїРѕ СЃРїРµС†Р·Р°РєР°Р·Сѓ - РёР· РјРµРґРё. РўСЂСѓР±РєРё - РёР· РјРµР»СЊС…РёРѕСЂР°, СЃС‚Р°Р»Рё, РјРµРґРё.&nbsp;РСЃРїРѕР»СЊР·СѓРµРј РјРµРґСЊ РІС‹СЃС€РµРіРѕ РєР°С‡РµСЃС‚РІР° - РіРµСЂРјР°РЅСЃРєСѓСЋ Рё С„РёРЅСЃРєСѓСЋ</li>
+<li>Р”Р»СЏ РїРёС‰РµРІС‹С… РїСЂРѕРёР·РІРѕРґСЃС‚РІ РїСЂРµРґР»Р°РіР°РµРј С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё РјР°СЂРѕРє INOX AISI 304 Рё&nbsp; INOX AISI 316. РС… РІС‹РїСѓСЃРєР°СЋС‚ РІ РС‚Р°Р»РёРё, РЅР° Р·Р°РІРѕРґРµ CO.MA. spa. РР· СЃС‚Р°Р»Рё РґРµР»Р°СЋС‚СЃСЏ РІСЃРµ С‡Р°СЃС‚Рё С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°: СЂР°РјР°, С‚СЂСѓР±РєРё, Р»Р°РјРµР»Рё Рё РїСЂРѕРІРѕРґСЏС‰РёРµ РїР»Р°СЃС‚РёРЅС‹.</li>
+</ul>
 
-		<p><span class="span_arial">Любые теплообменники проверяются на герметичность под давлением:</span></p>
-		<ul class="ul_arial">
-			<li>водяные (нагреватели, охладитель) - 23 атмосферы;</li>
-			<li>паровые - минимум 30 атмосфер;</li>
-			<li>фреоновые (испарители, конденсаторы) - минимум 40 атмосфер.</li>
-		</ul>
-		
-		<div class="h4_background_pink">Гарантия на теплообменники</div>	
-		
-		<p><span class="span_arial">Мы даем гарантию на все наши изделия:</span></p>
-		<p>
-			<ul class="ul_arial">
-				<li>на медно-алюминиевые теплообменники - 2 года;</li>
-				<li>на теплообменники из нержавеющей стали - 5 лет.</li>
-			</ul>
-		</p>
-	</section>
+<div class="h4_background_pink">РћР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РёСЃРїС‹С‚Р°РЅРёСЏ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРІ</div>
 
-	<section class="section">
-		<div class="h2_2">КАК МЫ ЭТО ДЕЛАЕМ?</div>
+<p><span class="span_arial">Р›СЋР±С‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РїСЂРѕРІРµСЂСЏСЋС‚СЃСЏ РЅР° РіРµСЂРјРµС‚РёС‡РЅРѕСЃС‚СЊ РїРѕРґ РґР°РІР»РµРЅРёРµРј:</span></p>
+<ul class="ul_arial">
+<li>РІРѕРґСЏРЅС‹Рµ (РЅР°РіСЂРµРІР°С‚РµР»Рё, РѕС…Р»Р°РґРёС‚РµР»СЊ) - 23 Р°С‚РјРѕСЃС„РµСЂС‹;</li>
+<li>РїР°СЂРѕРІС‹Рµ - РјРёРЅРёРјСѓРј 30 Р°С‚РјРѕСЃС„РµСЂ;</li>
+<li>С„СЂРµРѕРЅРѕРІС‹Рµ (РёСЃРїР°СЂРёС‚РµР»Рё, РєРѕРЅРґРµРЅСЃР°С‚РѕСЂС‹) - РјРёРЅРёРјСѓРј 40 Р°С‚РјРѕСЃС„РµСЂ.</li>
+</ul>
 
-		<div class="h4_background_pink">Сроки</div>	
-		<p><span class="span_arial">Производство занимает от 20 до 40 рабочих дней, в зависимости от сложности конструкции и материалов теплообменника.</span></p>
+<div class="h4_background_pink">Р“Р°СЂР°РЅС‚РёСЏ РЅР° С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё</div>
 
-		<div class="h4_background_pink">Доставка</div>	
-		<p><span class="span_arial"> По желанию заказчика доставляем изготовленные теплообменники собственным транспортом или транспортной компанией. Работаем с транспортными компаниями ПЭК, Байкал Сервис, КИТ.</span></p>
+<p><span class="span_arial">РњС‹ РґР°РµРј РіР°СЂР°РЅС‚РёСЋ РЅР° РІСЃРµ РЅР°С€Рё РёР·РґРµР»РёСЏ:</span></p>
+<p>
+<ul class="ul_arial">
+<li>РЅР° РјРµРґРЅРѕ-Р°Р»СЋРјРёРЅРёРµРІС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё - 2 РіРѕРґР°;</li>
+<li>РЅР° С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё РёР· РЅРµСЂР¶Р°РІРµСЋС‰РµР№ СЃС‚Р°Р»Рё - 5 Р»РµС‚.</li>
+</ul>
+</p>
+</section>
 
-		<div class="h4_background_pink">Монтаж</div>	
-		<p><span class="span_arial">Устанавливаем и монтируем по предварительной заявке.</span></p>
+<section class="section">
+<div class="h2_2">РљРђРљ РњР« Р­РўРћ Р”Р•Р›РђР•Рњ?</div>
 
-		<div class="h4_background_pink">Дополнительно</div>	
-		<p><span class="span_arial">Вместе с теплообменником для систем вентиляции можно заказать:</span></p>
-	</section>
+<div class="h4_background_pink">РЎСЂРѕРєРё</div>
+<p><span class="span_arial">РџСЂРѕРёР·РІРѕРґСЃС‚РІРѕ Р·Р°РЅРёРјР°РµС‚ РѕС‚ 20 РґРѕ 40 СЂР°Р±РѕС‡РёС… РґРЅРµР№, РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃР»РѕР¶РЅРѕСЃС‚Рё РєРѕРЅСЃС‚СЂСѓРєС†РёРё Рё РјР°С‚РµСЂРёР°Р»РѕРІ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєР°.</span></p>
 
-	<section>
-	<div calss="row">
-		<div class="col-md-6">
-			<a class="a_bigtext_center" href="/smesitelnye-uzly/">Смесительные узлы  </a>
-			
-			<br>
-			<br>
-			<br>
-			<br>					
-			<br><img src="/public/images/uzel.png" class="img-responsive" ><br>
-			
-		</div>
-		<div class="col-md-6">
-			<a class="a_bigtext_center" href="/filtry/">Фильтры для систем вентиляции</a>
-			<br><img src="/public/images/filter_v3.jpg" class="img-responsive" ><br>
-		</div>
-	</div>
-	</section>	
+<div class="h4_background_pink">Р”РѕСЃС‚Р°РІРєР°</div>
+<p><span class="span_arial"> РџРѕ Р¶РµР»Р°РЅРёСЋ Р·Р°РєР°Р·С‡РёРєР° РґРѕСЃС‚Р°РІР»СЏРµРј РёР·РіРѕС‚РѕРІР»РµРЅРЅС‹Рµ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРё СЃРѕР±СЃС‚РІРµРЅРЅС‹Рј С‚СЂР°РЅСЃРїРѕСЂС‚РѕРј РёР»Рё С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕР№ РєРѕРјРїР°РЅРёРµР№. Р Р°Р±РѕС‚Р°РµРј СЃ С‚СЂР°РЅСЃРїРѕСЂС‚РЅС‹РјРё РєРѕРјРїР°РЅРёСЏРјРё РџР­Рљ, Р‘Р°Р№РєР°Р» РЎРµСЂРІРёСЃ, РљРРў.</span></p>
+
+<div class="h4_background_pink">РњРѕРЅС‚Р°Р¶</div>
+<p><span class="span_arial">РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Рё РјРѕРЅС‚РёСЂСѓРµРј РїРѕ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕР№ Р·Р°СЏРІРєРµ.</span></p>
+
+<div class="h4_background_pink">Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ</div>
+<p><span class="span_arial">Р’РјРµСЃС‚Рµ СЃ С‚РµРїР»РѕРѕР±РјРµРЅРЅРёРєРѕРј РґР»СЏ СЃРёСЃС‚РµРј РІРµРЅС‚РёР»СЏС†РёРё РјРѕР¶РЅРѕ Р·Р°РєР°Р·Р°С‚СЊ:</span></p>
+</section>
+
+<section>
+<div calss="row">
+<div class="col-md-6">
+<a class="a_bigtext_center" href="/smesitelnye-uzly/">РЎРјРµСЃРёС‚РµР»СЊРЅС‹Рµ СѓР·Р»С‹  </a>
+
+<br>
+<br>
+<br>
+<br>
+<br><img src="/public/images/uzel.png" class="img-responsive" ><br>
+
+</div>
+<div class="col-md-6">
+<a class="a_bigtext_center" href="/filtry/">Р¤РёР»СЊС‚СЂС‹ РґР»СЏ СЃРёСЃС‚РµРј РІРµРЅС‚РёР»СЏС†РёРё</a>
+<br><img src="/public/images/filter_v3.jpg" class="img-responsive" ><br>
+</div>
+</div>
+</section>
