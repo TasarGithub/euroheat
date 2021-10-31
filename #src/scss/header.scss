@@ -6,7 +6,7 @@
 }
 
 .logo {
-  max-width: 270px;
+  max-width: 288px;
   // height: 95px;
   // background: url(../images/logo-dark-1.jpg) no-repeat 0 center / 90px auto;
   /* float: left; */
@@ -20,12 +20,13 @@
   line-height: 1;
   &__img {
     height: auto;
-    max-width: 100px;
+    max-width: 64px;
     margin: 0px 10px 0px 0px;
+    flex: 1 1 100%;
     & img {
       // object-fit: cover;
       width: 100%;
-      height: auto;
+      height: 100%;
     }
     @media screen and (max-width: 576px) {
       max-width: 80px;
@@ -36,12 +37,27 @@
       margin: 0px 5px 0px 0px;
     }
   }
-  &__text {
+  // .logo__desciption
+  &__desciption {
+    max-height: 75px;
+    
+  }
+  &__title{
+    display: block;
+    font-family: "Montserrat", serif;
+    font-weight: 900;
+    font-size: 24px;  
+    line-height: 29px;
+    color: $primary-black;
     text-align: left;
-    max-width: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  }
+  &__text {
+    display: block;
+    font-family: "Oswald", serif;
+    font-weight: 400;
+    text-align: left;
+    font-size: 14px;
+    line-height: 21px;
     @media (max-width: 660px) {
       display: none;
     }
@@ -175,8 +191,8 @@
     font-size: 35px;
     margin: 0 auto;
     // margin: 0 30px 0 auto;
-    background: url(../images/icons/phone-braun.png) no-repeat 0 center /
-      contain;
+    // background: url(../images/icons/phone-braun.png) no-repeat 0 center /
+      // contain;
 
     @media screen and (max-width: $md1+px) {
       // padding: 4px 0 4px 35px;
@@ -208,8 +224,8 @@
     @media screen and (max-width: $md5+px) {
       // margin: 0 auto 6px;
       // display: none;
-      background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / 13px
-        auto; //contain;
+      // background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / 13px
+      //   auto; //contain;
       font-size: ($font-phone-md5);
       text-decoration: underline;
       // background: none;
@@ -284,7 +300,7 @@
       font-size: $font-phone-md3 - 4px;
       // padding: 2px 0 4px 30px;
       padding: 0px 0 0px 30px;
-      background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 22px auto;
+      // background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 22px auto;
     }
 
     @media (max-width: 580px) {
@@ -297,7 +313,7 @@
     }
     @media screen and (max-width: $md5+px) {
       font-size: $font-phone-md5 - 2px;
-      background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 13px auto;
+      // background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 13px auto;
       // background: none;0
       // padding: 0px 0 1px 20px;
       padding: 0px 0 0px 20px;
@@ -310,7 +326,7 @@
     color: black;
     font-weight: bold;
     font-size: 35px;
-    background: url(/images/icons/icon-mail.webp) no-repeat 0 6px/35px;
+    // background: url(/images/icons/icon-mail.webp) no-repeat 0 6px/35px;
     font-variant: small-caps;
   }
   // .email-header__label
