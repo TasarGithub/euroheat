@@ -7,13 +7,7 @@
 
 .logo {
   max-width: 288px;
-  // height: 95px;
-  // background: url(../images/logo-dark-1.jpg) no-repeat 0 center / 90px auto;
-  /* float: left; */
-  // padding: 0 0 0 70px;
-  // margin: 20px 0 0 0;
   display: flex;
-  // justify-content: space-between;
   align-items: center;
   color: #333;
   font-size: 15px;
@@ -21,7 +15,7 @@
   &__img {
     height: auto;
     max-width: 64px;
-    margin: 0px 10px 0px 0px;
+    margin: 0px 17px 0px 0px;
     flex: 1 1 100%;
     & img {
       // object-fit: cover;
@@ -42,15 +36,18 @@
     max-height: 75px;
     
   }
+  // .logo__title
   &__title{
     display: block;
     font-family: "Montserrat", serif;
     font-weight: 900;
     font-size: 24px;  
-    line-height: 29px;
-    color: $primary-black;
+    line-height: 31px;
+    color: #010101;
     text-align: left;
+    margin: -2px 0 2px 0;
   }
+  // .logo__text
   &__text {
     display: block;
     font-family: "Oswald", serif;
@@ -83,24 +80,31 @@
   }
   // .header__top-wrapper
   &__top-wrapper {
+    // padding: 20px 0 0 0;
+    margin: 20px 0 0 0;
     width: 100%;
-    position: fixed;
-    z-index: 4;
-    background: #fff;
-    padding: 10px 0 0 0;
-    top: 0;
-    &._active {
-      position: fixed;
-      z-index: 4;
-      background: #fff;
-    }
+
+    // position: fixed;
+    // z-index: 4;
+    // background: #fff;
+
+    // top: 0;
+    // &._active {
+    //   position: fixed;
+    //   z-index: 4;
+    //   background: #fff;
+    // }
   }
   // .header__content
   &__content {
+    padding: 20px 30px;
+    height: 115px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0px 0px 10px 0px;
+    background: $bg-grey;
+
+    // margin: 0px 0px 10px 0px;
     // padding: 0 20px;
     // @media screen and ( max-width: 450px){
     // 	padding: 0 10px;
@@ -109,46 +113,58 @@
     //   padding: 0 10px;
     // }
   }
+	// .header__item
+	&__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__item:nth-child(2) {
+    max-width: 721px;
+    width: 100%;
+  }
   // .header__column
   &__column {
-    // flex: 1 1 25%;
+    // flex: 0 1 30%;
     text-align: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-  }
-  // .header__column
-  &__column:nth-child(1) {
-    flex: 0 1 auto;
-    // @media screen and (max-width: 576px) {
-    //   flex: 1 1 30%;
-    // }
-    @media (max-width: $md3+px) {
-      flex: 0 0 auto;
-    }
-  }
-  // .header__column
-  &__column:nth-child(2) {
-    flex: 1 0 auto;
+    // align-items: center;
     flex-direction: column;
-    align-items: center;
-    @media screen and (max-width: 1050px) {
-      flex: 1 0 auto;
-    }
-    // @media screen and (max-width: 576px) {
-    //   flex: 1 1 80%;
-    // }
-  }
-  // .header__column
-  &__column:nth-child(3) {
-    flex: 0 1 auto;
-    flex-direction: column;
-    align-items: flex-end;
 
-    // @media screen and (max-width: 576px) {
-    //   flex: 1 1 30%;
-    // }
   }
+  // .header__column
+  // &__column:nth-child(1) {
+  //   // flex: 0 1 auto;
+  //   // @media screen and (max-width: 576px) {
+  //   //   flex: 1 1 30%;
+  //   // }
+  //   @media (max-width: $md3+px) {
+  //     flex: 0 0 auto;
+  //   }
+  // }
+  // .header__column
+  // &__column:nth-child(2) {
+  //   flex: 1 0 auto;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   @media screen and (max-width: 1050px) {
+  //     flex: 1 0 auto;
+  //   }
+  //   // @media screen and (max-width: 576px) {
+  //   //   flex: 1 1 80%;
+  //   // }
+  // }
+  // .header__column
+  // &__column:nth-child(3) {
+  //   flex: 0 1 auto;
+  //   flex-direction: column;
+  //   align-items: flex-end;
+
+  //   // @media screen and (max-width: 576px) {
+  //   //   flex: 1 1 30%;
+  //   // }
+  // }
 
   // &__column:nth-child(1) {
   // 	flex: 1 1 25%
@@ -160,7 +176,8 @@
   // &__column:last-child {
   // 	flex: 1 1 50%
   // }
-  // .header__contacts
+
+  // .header__email
   &__email {
     display: flex;
     flex-direction: column;
@@ -187,9 +204,9 @@
   }
   // .header__phone
   &__phone {
-    color: #333;
-    font-size: 35px;
-    margin: 0 auto;
+    // margin: 0 auto;
+    max-width: 275px;
+    // height: 47px;
     // margin: 0 30px 0 auto;
     // background: url(../images/icons/phone-braun.png) no-repeat 0 center /
       // contain;
@@ -232,15 +249,21 @@
       padding: 0px 0 0px 20px;
     }
   }
+  // .header__label
+  &-label {
+    font-family: Oswald;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    // border-bottom: 1px dotted #b28d7d;
+    text-align: left;
+    color: $pimary-brown;
+  }
 
   // .header__get-call
   &__get-call {
-    color: #b28d7d;
-    font-size: 16px;
-    line-height: 1.2;
-    text-decoration: none;
-    border-bottom: 1px dotted #b28d7d;
-    text-align: right;
+
   }
   // &__get-call {
   //   padding: 10px 20px;
@@ -277,66 +300,22 @@
 .email-header {
   // .email-header__body
   &__body {
-    // padding: 0px 0 0px 35px;
-    // text-align: left;
-    // background: url(../images/icons/icon-mail.png) no-repeat 0 center / 28px
-    //   auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
 
-    @media screen and (max-width: $md1+px) {
-      // padding: 4px 0 4px 35px;
-      // padding: 0px 0 0px 35px;
-      font-size: $font-phone-md1 -5px;
-      margin: 0 auto;
-    }
-
-    @media screen and (max-width: $md2+px) {
-      font-size: $font-phone-md2 - 5px;
-      margin: 0 auto;
-    }
-    @media screen and (max-width: $md3+px) {
-      font-size: $font-phone-md3 - 4px;
-      // padding: 2px 0 4px 30px;
-      padding: 0px 0 0px 30px;
-      // background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 22px auto;
-    }
-
-    @media (max-width: 580px) {
-      font-size: $font-phone-md4 - 3px;
-      padding: 0px 0 0px 30px;
-    }
-
-    @media (max-width: $md4+px) {
-      font-size: $font-phone-md4 - 2px;
-    }
-    @media screen and (max-width: $md5+px) {
-      font-size: $font-phone-md5 - 2px;
-      // background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 13px auto;
-      // background: none;0
-      // padding: 0px 0 1px 20px;
-      padding: 0px 0 0px 20px;
-      text-decoration: underline;
-    }
+  
   }
   // .email-header__mail
   &__mail {
-    padding: 0 0 0 45px;
-    color: black;
-    font-weight: bold;
-    font-size: 35px;
-    // background: url(/images/icons/icon-mail.webp) no-repeat 0 6px/35px;
-    font-variant: small-caps;
+    // padding: 0 0 0 45px;
+    color: $primary-black;
+    font-family: Oswald;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: left;
+    // font-variant: small-caps;
   }
-  // .email-header__label
-  &__label {
-    font-size: 16px;
-    line-height: 1.2;
-    text-decoration: none;
-    border-bottom: 1px dotted #b28d7d;
-    text-align: right;
-  }
+
 }
 
 // &__work-time {

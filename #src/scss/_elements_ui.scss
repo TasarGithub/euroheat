@@ -1,5 +1,53 @@
 .button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 13px 40px 12px;
+	background:$black;
+	border-radius: 10px;
+	color: $white;
+	font-family: Montserrat;
+	font-weight: 800;
+	font-size: 18px;
+	line-height: 22px;
+	text-transform: uppercase;
+}
 
-border: 1px solid #000;
+.phone{
+	font-family: Oswald;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 36px;
+	color: $black;
+	}
 
+
+	.email {
+  // float: left;
+  display: flex;
+  align-items: center;
+  margin: 0 auto; // 0 0;
+  // color: $dark;
+  font-weight: bold;
+  // font-size: 26px;
+  line-height: 1;
+  text-decoration: none;
+  // padding: 6px 0 6px 35px;
+  padding: 0px 0 0px 35px;
+  text-align: left;
+  // background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 28px auto;
+}
+
+.adress {
+  // background: url("../images/icon_adress.png") no-repeat left center / 40px 20px;
+  // background: url("../images/icon_sprite_2.png") no-repeat left -1822px;
+  padding: 8px 0 8px 40px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.site-map {
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px dashed $light;
 }

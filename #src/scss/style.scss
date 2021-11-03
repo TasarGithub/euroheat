@@ -25,7 +25,7 @@ $fontFamily: "ProximaNova", Arial, sans-serif;
 @import "variables";
 $minWidth: 320px;
 $maxWidth: 1920;
-$maxWidthContainer: 1170;
+$maxWidthContainer: 1276;
 $md1: $maxWidthContainer + 12;
 $md2: 991.98;
 $md3: 767.98;
@@ -227,46 +227,8 @@ body {
 // @import "zerostyle";
 // @import "techstyle";
 
-.phone {
-  // color: #333;
-  // font-size: 35px;
-  font-weight: bold;
-  text-decoration: none;
-  line-height: 1;
-  padding: 0px 0 0px 41px;
-  margin: 0 auto;
-  // margin: 0 30px 0 auto;
-  // background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / contain;
-}
 
-.email {
-  // float: left;
-  display: flex;
-  align-items: center;
-  margin: 0 auto; // 0 0;
-  // color: $dark;
-  font-weight: bold;
-  // font-size: 26px;
-  line-height: 1;
-  text-decoration: none;
-  // padding: 6px 0 6px 35px;
-  padding: 0px 0 0px 35px;
-  text-align: left;
-  // background: url(../images/icon_e-mail.jpg) no-repeat 0 center / 28px auto;
-}
 
-.adress {
-  // background: url("../images/icon_adress.png") no-repeat left center / 40px 20px;
-  // background: url("../images/icon_sprite_2.png") no-repeat left -1822px;
-  padding: 8px 0 8px 40px;
-  font-size: 16px;
-  font-weight: bold;
-}
-.site-map {
-  font-size: 16px;
-  font-weight: bold;
-  border-bottom: 1px dashed $light;
-}
 
 @import "header";
 @import "menu";
