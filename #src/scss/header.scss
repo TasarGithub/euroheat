@@ -1,34 +1,30 @@
-.body__header {
-  margin: 0px 0px 151px 0px;
-  // padding: 20px 0;
-  // @media screen and ( max-width: 450px){
-  // 	padding: 15px 0;
-}
-
 .logo {
   max-width: 288px;
   display: flex;
   align-items: center;
   color: #333;
-  font-size: 15px;
+  flex: 1 0 auto;
+  // font-size: 14px;
+
   line-height: 1;
   &__img {
     height: auto;
     max-width: 64px;
     margin: 0px 17px 0px 0px;
-    flex: 1 1 100%;
     & img {
       // object-fit: cover;
       width: 100%;
       height: 100%;
     }
+    @media (max-width:$md2+px){
+      margin: 0px 16px 0px 0px;
+    }
     @media screen and (max-width: 576px) {
-      max-width: 80px;
+      // max-width: 80px;
       margin: 0px 5px 0px 0px;
     }
     @media screen and (max-width: 400px) {
-      max-width: 60px;
-      margin: 0px 5px 0px 0px;
+      max-width: 48px;
     }
   }
   // .logo__desciption
@@ -42,10 +38,15 @@
     font-family: "Montserrat", serif;
     font-weight: 900;
     font-size: 24px;  
+    // @include adaptiv-font(24,16,1);
     line-height: 31px;
     color: #010101;
     text-align: left;
     margin: -2px 0 2px 0;
+    @media (max-width:$md2+px){
+      font-size: 18px;
+      line-height: 22px;
+    }
   }
   // .logo__text
   &__text {
@@ -54,9 +55,15 @@
     font-weight: 400;
     text-align: left;
     font-size: 14px;
+    // @include adaptiv-font("14","12","1");    
     line-height: 21px;
-    @media (max-width: 660px) {
-      display: none;
+    @media (max-width:$md1+px){
+      font-size: 12px;
+      line-height: 18px;
+    }
+    @media (max-width:$md4+px){
+      font-size: 10px;
+      line-height: 15px;  
     }
   }
 }
@@ -69,20 +76,15 @@
 .header {
   width: 100%;
   background: #fff;
-  //@media (min-width: $md2+px) {
   position: fixed;
   top: 0;
   z-index: 1000;
-  // }
-  // .header__container
-  &__container {
-    margin: 0 auto;
-  }
-  // .header__top-wrapper
-  &__top-wrapper {
+  // padding: 20px 30px;
+  // .header__top
+  &__top {
     // padding: 20px 0 0 0;
-    margin: 20px 0 0 0;
-    width: 100%;
+    // margin: 20px 0 0 0;
+    // width: 100%;
 
     // position: fixed;
     // z-index: 4;
@@ -95,8 +97,12 @@
     //   background: #fff;
     // }
   }
-  // .header__content
-  &__content {
+}
+
+
+.top-header {
+  // .top-header__container
+  &__container {
     padding: 20px 30px;
     height: 115px;
     display: flex;
@@ -112,197 +118,138 @@
     // @media (max-width: $md3+px) {
     //   padding: 0 10px;
     // }
+    @media (max-width:$md2+px){
+      padding: 20px;
+    }
+    @media (max-width:$md3+px){
+      padding: 15px 0;
+      @include adaptiv-value(padding-right,20,7,1);
+      @include adaptiv-value(padding-left,20,7,1);
+    }
+    @media (max-width:$md4+px){
+      padding: 10px 20px;
+    }
   }
-	// .header__item
-	&__item {
+  // .top-header__liaison
+  &__liaison {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;    
+    max-width: 721px;
+    // width: 100%;
+  }
+}
+
+.liaison-header{
+// .liaison-header{__column
+&__column {
+  // flex: 0 1 30%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+  @include adaptiv-value(margin-right, 37, 10, 1);
+  flex: 1 0 auto;
+  @media (max-width:$md1+px){
+      // flex: 1 1 33%;
+  }
+  &_email {
+
+  }
+}
+
+&__column:last-child {
+  margin-right: 0;
+}
+
+
+&__contacts {
+  font-size: 24px;
+  line-height: 36px;
+  max-width: 275px;
+
+  @media screen and (max-width: 1100px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  @media screen and (max-width: $md2+px) {
+    font-size: 16px;
+    line-height: 27px;
+  }
+
+  @media screen and (max-width: $md3+px) {
+    // font-size: $font-md3-1;
+  }
+  @media (max-width: 580px) {
+    // font-size: ($font-md4-1 + 3px);
+  }
+  @media (max-width: $md4+px) {
+    // font-size: $font-md4-1;
+  }
+
+  @media screen and (max-width: $md5+px) {
+    // margin: 0 auto 6px;
+    // display: none;
+    // background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / 13px
+    //   auto; //contain;
+    // font-size: ($font-md4-1);
+    // text-decoration: underline;
+    // background: none;
+    // padding: 0px 0 0px 20px;
+  }
+}
+
+// .liaison-header__label
+&__label {
+  font-weight: 400;
+  @include adaptiv-font(16,10,1);
+  line-height: 24px;
+  text-align: left;
+  color: $pimary-brown;
+}
+
+
+// .liaison-header__request
+  &__request {
+    padding: 13px 40px;
+    background:$black;
+    border-radius: 10px;
+    color: $white;
+    font-family: Montserrat;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  &__item:nth-child(2) {
-    max-width: 721px;
-    width: 100%;
-  }
-  // .header__column
-  &__column {
-    // flex: 0 1 30%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    // align-items: center;
-    flex-direction: column;
-
-  }
-  // .header__column
-  // &__column:nth-child(1) {
-  //   // flex: 0 1 auto;
-  //   // @media screen and (max-width: 576px) {
-  //   //   flex: 1 1 30%;
-  //   // }
-  //   @media (max-width: $md3+px) {
-  //     flex: 0 0 auto;
-  //   }
-  // }
-  // .header__column
-  // &__column:nth-child(2) {
-  //   flex: 1 0 auto;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   @media screen and (max-width: 1050px) {
-  //     flex: 1 0 auto;
-  //   }
-  //   // @media screen and (max-width: 576px) {
-  //   //   flex: 1 1 80%;
-  //   // }
-  // }
-  // .header__column
-  // &__column:nth-child(3) {
-  //   flex: 0 1 auto;
-  //   flex-direction: column;
-  //   align-items: flex-end;
-
-  //   // @media screen and (max-width: 576px) {
-  //   //   flex: 1 1 30%;
-  //   // }
-  // }
-
-  // &__column:nth-child(1) {
-  // 	flex: 1 1 25%
-  // }
-  // &__column:nth-child(4) {
-  // 	flex: 1 1 25%
-  // }
-
-  // &__column:last-child {
-  // 	flex: 1 1 50%
-  // }
-
-  // .header__email
-  &__email {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    @media screen and (max-width: $md2+px) {
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 65px;
+    letter-spacing: 0.6px;
+    & .word {
+      margin: 0 4px 0 0;
+      
     }
-    @media (max-width: $md3+px) {
-      margin: 0 10px 0 0;
-      min-height: 65px;
+    @media (max-width:$md2+px){
+      padding: 13px 19px;        
+      font-size: 13px;
+      line-height: 17px;
+      letter-spacing: 0.6px;
     }
-    @media (max-width: 580px) {
-      min-height: 55px;
+    @media (max-width:$md3+px){
+      padding: 8px 15px;  
+        flex-direction: column; 
+        & .word {
+          margin: 0;
+        }
     }
-    @media (max-width: $md4+px) {
-      min-height: 50px;
+    @media (max-width:$md4+px){
+        display: none; 
     }
-    @media (max-width: $md5+px) {
-      min-height: 40px;
-    }
-  }
-  // .header__phone
-  &__phone {
-    // margin: 0 auto;
-    max-width: 275px;
-    // height: 47px;
-    // margin: 0 30px 0 auto;
-    // background: url(../images/icons/phone-braun.png) no-repeat 0 center /
-      // contain;
-
-    @media screen and (max-width: $md1+px) {
-      // padding: 4px 0 4px 35px;
-      // padding: 0px 0 0px 35px;
-      font-size: $font-phone-md1;
-      margin: 0 auto;
-    }
-    @media screen and (max-width: $md2+px) {
-      // padding: 4px 0 4px 35px;
-      padding: 0px 0 0px 35px;
-      font-size: $font-phone-md2;
-      margin: 0 auto;
-    }
-
-    @media screen and (max-width: $md3+px) {
-      // margin: 0 auto 7px;
-      font-size: $font-phone-md3;
-      // padding: 2px 0 2px 30px;
-      padding: 0px 0 0px 36px;
-    }
-    @media (max-width: 580px) {
-      font-size: ($font-phone-md4 + 3px);
-      padding: 0px 0 0px 30px;
-    }
-    @media (max-width: $md4+px) {
-      font-size: $font-phone-md4;
-    }
-
-    @media screen and (max-width: $md5+px) {
-      // margin: 0 auto 6px;
-      // display: none;
-      // background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / 13px
-      //   auto; //contain;
-      font-size: ($font-phone-md5);
-      text-decoration: underline;
-      // background: none;
-      padding: 0px 0 0px 20px;
-    }
-  }
-  // .header__label
-  &-label {
-    font-family: Oswald;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    text-decoration: none;
-    // border-bottom: 1px dotted #b28d7d;
-    text-align: left;
-    color: $pimary-brown;
-  }
-
-  // .header__get-call
-  &__get-call {
 
   }
-  // &__get-call {
-  //   padding: 10px 20px;
-  //   border-radius: 30px;
-  //   color: $primary;
-  //   font-size: 16px;
-  //   line-height: 1;
-  //   text-decoration: none;
-  //   // border-bottom: 1px dotted $primary-dark;
-  //   background-color: $primary;
-  //   margin: 0 0 0 auto;
-  //   color: $light;
-  //   &:hover {
-  //     background-color: $primary-dark;
-  //     text-decoration: none;
-  //     color: $light;
-  //     // border: none;
-  //   }
-  //   @media screen and (max-width: 768px) {
-  //     padding: 10px 25px;
-  //     font-size: 15px;
-  //   }
-  //   @media (max-width: $md4+px) {
-  //     padding: 10px 14px;
-  //     font-size: 13px;
-  //   }
-  //   @media screen and (max-width: $md5+px) {
-  //     padding: 6px 12px;
-  //     font-size: 12px;
-  //   }
-  // }
 }
 
 .email-header {
-  // .email-header__body
-  &__body {
-
-  
-  }
   // .email-header__mail
   &__mail {
     // padding: 0 0 0 45px;
@@ -310,32 +257,22 @@
     font-family: Oswald;
     font-style: normal;
     font-weight: 700;
-    font-size: 24px;
+    //font-size: 24px;
+    @include adaptiv-font(24,18,1);
     line-height: 36px;
     text-align: left;
+
+    // @media (max-width:$md1+px){
+    //   font-size: 18px;
+    //   line-height: 27px;
+    // }
+    @media (max-width:$md2+px){
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    // text-transform: uppercase;
     // font-variant: small-caps;
   }
 
 }
-
-// &__work-time {
-
-// 	/* float: left; */
-// 	max-width: 280px;
-// 	line-height: 1.0;
-// 	margin: 0 auto ;
-// 	padding: 5px 0 10px 55px;
-// 	font-size: 15px;
-// 	position: relative;
-// 	background: url(../images/clock-icon-5.png) no-repeat 0 center;
-
-// }
-// @media (max-width: $md4+px) {
-//   .header {
-//     &__container {
-//       padding: 0;
-//     }
-//     &__content {
-//       padding: 0;
-//     }
-//   }
