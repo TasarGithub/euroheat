@@ -3617,6 +3617,26 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   text-align: left;
 }
 
+.messengers__whatsapp {
+  padding: 3px 0 3px 35px;
+  background: url(../images/icons/whatsapp.svg) no-repeat;
+  background-position: left 3px;
+  background-size: 28px;
+  margin: 9px 0 0 0;
+}
+
+.messengers__telegram {
+  padding: 3px 0 3px 35px;
+  background-position: left 3px;
+  background-size: 28px;
+  background: url("../images/icons/telegram.svg") no-repeat left/30px;
+}
+
+.messengers__viber {
+  padding: 0 0 0 35px;
+  background: url("../images/icons/viber.svg") no-repeat left/30px;
+}
+
 .header__menu {
   background: #ebebeb;
   position: relative;
