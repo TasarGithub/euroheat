@@ -1,142 +1,146 @@
 <!-- шапка -->
 <div class="header">
-	<div class="header__top top-header">
-		<div class="top-header__container _container">
-			<!-- <div class="header__item"> -->
-			<a class="logo" href="#">
-				<div class="logo__img">
-					<img src="images/icons/logo.svg" alt="Лого Евроклима">
-				</div>
-				<div class="logo__desciption">
-					<span class="logo__title">ЕвроКлима</span>
-					<span class="logo__text">Производство&nbsp;и&nbsp;проектирование <br> теплообменного оборудования</span>
-				</div>
-				<!-- /.logo__desciption -->
+	<div class="header__container">
+		<div class="header__top top-header">
+			<div class="top-header__container _container">
+				<!-- <div class="header__item"> -->
+				<a class="logo" href="#">
+					<div class="logo__img">
+						<img src="images/icons/logo.svg" alt="Лого Евроклима">
+					</div>
+					<div class="logo__desciption">
+						<span class="logo__title">ЕвроКлима</span>
+						<span class="logo__text">Производство&nbsp;и&nbsp;проектирование <br> теплообменного оборудования</span>
+					</div>
+					<!-- /.logo__desciption -->
 
-			</a>
-			<!-- </a> logo -->
+				</a>
+				<!-- </a> logo -->
 
-			<div class="top-header__liaison liaison-header">
+				<div class="top-header__liaison liaison-header">
 
-				<div class="liaison-header__column">
-					<!-- <ul class="liaison-header__column"> -->
-					<!-- <ul class="liaison-header__messengers messengers"> -->
-					<a class="messengers__whatsapp liaison-header__label label href="">whatsapp</a>
+					<div class="liaison-header__column">
+						<!-- <ul class="liaison-header__column"> -->
+						<!-- <ul class="liaison-header__messengers messengers"> -->
+						<a class="messengers__whatsapp liaison-header__label label href="">whatsapp</a>
 					<a class=" messengers__telegram liaison-header__label label href="">telegram</a>
-					<!-- </ul> -->
-					<!-- /.liaison-header__messengers messengers -->
-				</div>
+						<!-- </ul> -->
+						<!-- /.liaison-header__messengers messengers -->
+					</div>
 
-				<!-- <div class=" liaison-header__messengers messenger">
+					<!-- <div class=" liaison-header__messengers messenger">
 
 				</div> -->
-				<!-- /.liaison-header__messenger messenger -->
+					<!-- /.liaison-header__messenger messenger -->
 
 
-				<div class="liaison-header__column liaison-header__column_email">
-					<a class="liaison-header__contacts email" href="mailto:info@euroheater.ru">info@euroheater.ru</span>
-					</a>
-					<!-- /.liaison-header__contacts liaison-header__contacts_email -->
-					<a class="liaison-header__label label" href="mailto:info@euroheater.ru">напишите на почту </a>
+					<div class="liaison-header__column liaison-header__column_email">
+						<a class="liaison-header__contacts email" href="mailto:info@euroheater.ru">info@euroheater.ru</span>
+						</a>
+						<!-- /.liaison-header__contacts liaison-header__contacts_email -->
+						<a class="liaison-header__label label" href="mailto:info@euroheater.ru">напишите на почту </a>
+					</div>
+					<!-- /.liaison-headerr__column -->
+
+					<div class="liaison-header__column">
+						<a class="liaison-header__contacts phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>"> +7 (499) 381-66-40 </a>
+						<a class="liaison-header__label label" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>">9:00-18:00 будни</a>
+					</div>
+					<!-- /.liaison-header__column -->
+
+					<div class="liaison-header__column">
+						<a class="liaison-header__request button" href="#callback_modal" data-toggle="modal"><span class="word">Оставить</span><span>заявку</span></a>
+					</div>
+					<!-- /.liaison-header__column -->
+
 				</div>
-				<!-- /.liaison-headerr__column -->
-
-				<div class="liaison-header__column">
-					<a class="liaison-header__contacts phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>"> +7 (499) 381-66-40 </a>
-					<a class="liaison-header__label label" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>">9:00-18:00 будни</a>
-				</div>
-				<!-- /.liaison-header__column -->
-
-				<div class="liaison-header__column">
-					<a class="liaison-header__request button" href="#callback_modal" data-toggle="modal"><span class="word">Оставить</span><span>заявку</span></a>
-				</div>
-				<!-- /.liaison-header__column -->
-
+				<!-- /.header__liaison liaison-header -->
 			</div>
-			<!-- /.header__liaison liaison-header -->
+			<!-- header__content _container -->
+
+
+
 		</div>
-		<!-- header__content _container -->
+		<!-- /.header__top top-header -->
 
 
+		<!-- меню -->
+		<div class="header__bottom bottom-header">
+			<div class="bottom-header__container _container">
+				<div class="bottom-header__menu menu">
 
-	</div>
-	<!-- /.header__top top-header -->
-</div>
-<!-- header -->
+					<!-- <div class="menu__icon icon-menu">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div> -->
 
+					<nav class="menu__body">
+						<ul class="menu__list">
+							<li>
+								<a class="menu__link" href="/catalog/">
+									Каталог
+								</a>
+							</li>
+							<li>
+								<a class="menu__link" href="/online/">
+									Расчёт <span class="second-words">онлайн</span>
+								</a>
+							</li>
+							<li>
+								<a class="menu__link" href="/proekty/">
+									Проекты
+								</a>
+							</li>
+							<li>
+								<a class="menu__link" href="/kontakty/">
+									Контакты
+								</a>
+							</li>
+							<li>
+								<a class="menu__link" href="/o-nas/">
+									О нас
+								</a>
+							</li>
+						</ul>
+						<div class="menu__burger burger">
+							<span class="burger__line"></span>
+							<span class="burger__line"></span>
+							<span class="burger__line"></span>
+						</div>
 
+						<!-- /.menu__burger burger-->
+					</nav>
+					<!-- /. menu__body -->
+				</div>
+				<!-- /bottom-header__menu menu -->
+				<div class="bottom-header__search search">
+					<div class="ya-site-form ya-site-form_inited_no " data-bem="{&quot;action&quot;:&quot;https://euroheater.ru/search&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Поиск по euroheater.ru&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_blank&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:3,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:2515828,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;поиск&quot;,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}">
 
-
-</div>
-<!-- /.heeder__top-wrapper -->
-
-<!-- меню -->
-<div class="header__menu">
-	<div class="_container">
-
-		<nav class="menu">
-			<ul class="menu__list">
-				<li>
-					<a class="menu__link" href="/catalog/">
-						Каталог
-					</a>
-				</li>
-				<li>
-					<a class="menu__link" href="/price/">
-						Цены
-					</a>
-				</li>
-				<li>
-					<a class="menu__link" href="/online/">
-						Расчёт <span class="second-words">онлайн</span>
-					</a>
-				</li>
-				<li>
-					<a class="menu__link" href="/proekty/">
-						Проекты
-					</a>
-				</li>
-				<li>
-					<a class="menu__link" href="/kontakty/">
-						Контакты
-					</a>
-				</li>
-				<li>
-					<a class="menu__link" href="/o-nas/">
-						О нас
-					</a>
-				</li>
-			</ul>
-			<div class="burger menu__burger">
-				<span class="burger__line"></span>
-				<span class="burger__line"></span>
-				<span class="burger__line"></span>
+						<form action="https://yandex.ru/search/site/" method="get" target="_blank" accept-charset="utf-8"><input type="hidden" name="searchid" value="2515828" /><input type="hidden" name="l10n" value="ru" /><input type="hidden" name="reqenc" value="" /><input type="search" name="text" value="" /><input type="submit" value="Найти" /></form>
+					</div>
+				</div>
+				<!-- /.bottom-header__search search -->
 			</div>
-
-			<!-- /.menu__burger -->
-		</nav>
-
-		<!-- /. menu -->
+			<!-- /.bottom-header__container _container -->
+		</div>
+		<!-- /.header__container-->
 	</div>
-</div>
-<!-- /меню -->
-</div>
+	<!-- header -->
+
+	<!-- <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>"><?php echo $GLOBALS['phone']; ?></a> -->
+
+
+	<!--/. header body__header -->
+	<!-- /шапка -->
 
 
 
-<!-- <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>"><?php echo $GLOBALS['phone']; ?></a> -->
-
-
-<!--/. header body__header -->
-<!-- /шапка -->
-
-
-
-<!-- <div class="header__header-email">
+	<!-- <div class="header__header-email">
 							<a class="header-email" href="mailto:info@euroheater.ru">info@euroheater.ru</a>
 						</div> -->
 
-<!-- <div class="header__column">
+	<!-- <div class="header__column">
 
 					<div class="header__work-time">
 						График работы:<br />
@@ -150,4 +154,4 @@
 						</div>
 					</div> 
 			</div>-->
-<!-- /.header__column -->
+	<!-- /.header__column -->

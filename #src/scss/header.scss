@@ -81,7 +81,13 @@
   z-index: 1000;
   // padding: 20px 30px;
   // .header__top
+  &__container {
+    max-width: 1276px;
+    margin: 0 auto;
+  }
+
   &__top {
+    background: $bg-grey;
     // padding: 20px 0 0 0;
     // margin: 20px 0 0 0;
     // width: 100%;
@@ -97,18 +103,25 @@
     //   background: #fff;
     // }
   }
+
+  // .header__bottom
+  &__bottom {
+    background-color: $bg-black;
+    border-radius: 0px 0px 10px 10px;
+  }
+
 }
 
 
 .top-header {
   // .top-header__container
   &__container {
-    padding: 20px 30px;
+    // padding: 20px 30px;
     height: 115px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: $bg-grey;
+    
 
     // margin: 0px 0px 10px 0px;
     // padding: 0 20px;
@@ -311,4 +324,73 @@
       padding: 0 0 0 35px;
       background: url('../images/icons/viber.svg') no-repeat left/30px;
     }
+}
+
+
+
+.bottom-header {
+		// .bottom-header__container
+		&__container {
+      max-width: 1216px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+		// .bottom-header__menu
+		&__menu {
+      
+    }
+
+		// .bottom-header__search
+		&__search {
+      // align-self: c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+    }
+}
+
+.menu {
+		// .menu__icon
+		&__icon {}
+		// .menu__body
+		&__body {
+
+    }
+		// .menu__list
+		&__list {
+      font-family: Oswald, sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 27px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 58px;
+
+      & li{
+        margin: 0 60px 0 0;
+
+      }
+    }
+		// .menu__link
+		&__link {
+      color: $white;
+    }
+		// .menu__burger
+		&__burger {}
+}
+.icon-menu {
+}
+.second-words {
+}
+.burger {
+		// .burger__line
+		&__line {}
+}
+
+
+.search {
 }

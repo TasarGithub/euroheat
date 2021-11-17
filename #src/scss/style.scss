@@ -25,7 +25,7 @@ $fontFamily: "ProximaNova", Arial, sans-serif;
 @import "variables";
 $minWidth: 320px;
 $maxWidth: 1920;
-$maxWidthContainer: 1276;
+$maxWidthContainer: 1216;
 $md1: $maxWidthContainer + 12;
 $md2: 1000.98;
 $md3: 768.98;
@@ -231,7 +231,7 @@ body {
 
 @import "_elements_ui";
 @import "header";
-@import "menu";
+// @import "menu";
 @import "page";
 @import "home";
 @import "focus";
