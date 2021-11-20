@@ -3815,62 +3815,62 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   color: inherit;
 }
 
-.focus {
+.basic {
   background-color: #f1dfdf;
 }
 
-.focus__container {
+.basic__container {
   padding: 40px 0;
 }
 
-.focus-modal > img {
+.basic-modal > img {
   object-fit: contain;
 }
 
-.focus__cards {
+.basic__cards {
   margin: 0 auto 50px 0;
 }
 
-.focus__item {
+.basic__item {
   min-width: 200px;
   padding: 40px 0 0 0;
   min-height: 300px;
   margin: 0px auto;
 }
 
-.card-focus {
+.card-basic {
   width: 100%;
   text-align: left;
   color: #000000;
   padding: 0 0 20px 0;
 }
 
-.card-focus__row {
+.card-basic__row {
   display: flex;
   justify-content: space-between;
 }
 
-.card-focus__column:nth-child(1) {
+.card-basic__column:nth-child(1) {
   flex: 0 1 80%;
 }
 
-.card-focus__column:nth-child(2) {
+.card-basic__column:nth-child(2) {
   flex: 0 1 20%;
   padding: 0px 10px 0 30px;
 }
 
-.card-focus__body {
+.card-basic__body {
   max-width: 60%;
 }
 
-.card-focus__img-wrap {
+.card-basic__img-wrap {
   width: 100%;
   min-height: 550px;
   margin: 0 auto 20px auto;
   overflow: hidden;
 }
 
-.card-focus__caption {
+.card-basic__caption {
   display: block;
   margin: 0px 0px 10px auto;
   text-align: left;
@@ -3878,7 +3878,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   font-weight: bold;
 }
 
-.card-focus__title {
+.card-basic__title {
   text-align: left;
   font-size: 35px;
   font-weight: 700;
@@ -3887,16 +3887,45 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   color: black;
 }
 
-.card-focus__title > span {
+.card-basic__title > span {
   text-transform: uppercase;
   font-size: 25px;
   display: block;
   margin: 0px 0px 10px 0px;
 }
 
-.card-focus__text {
+.card-basic__text {
   font-size: 25px;
   line-height: 130%;
+}
+
+.behelpful__container {
+  margin-bottom: 150px;
+}
+
+.behelpful__title {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.behelpful__subtitles {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.behelpful__text {
+  margin: 0px 0px 30px 0px;
+  font-size: 30px;
+  text-align: left;
+  border-bottom: 1px solid black;
+  padding: 0px 0px 30px 0px;
+}
+
+.behelpful__hr {
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  margin: 0px 0px 30px 0px;
 }
 
 .advantages__container {
@@ -4427,6 +4456,26 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     font-size: calc( 15px + 15 * ((100vw - 320px) / 896));
   }
 
+  .behelpful__container {
+    margin-bottom: calc( 30px + 120 * ((100vw - 320px) / 896));
+  }
+
+  .behelpful__title {
+    font-size: calc( 16px + 34 * ((100vw - 320px) / 896));
+  }
+
+  .behelpful__title {
+    margin-bottom: calc( 15px + 15 * ((100vw - 320px) / 896));
+  }
+
+  .behelpful__subtitles {
+    font-size: calc( 14px + 16 * ((100vw - 320px) / 896));
+  }
+
+  .behelpful__subtitles {
+    margin-bottom: calc( 15px + 15 * ((100vw - 320px) / 896));
+  }
+
   .advantages__container {
     padding-top: calc( 15px + 35 * ((100vw - 320px) / 896));
   }
@@ -4529,11 +4578,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     font-size: 40px;
   }
 
-  .card-focus__title > span {
+  .card-basic__title > span {
     font-size: 18px;
   }
 
-  .card-focus__title {
+  .card-basic__title {
     font-size: 16px;
   }
 
@@ -4609,11 +4658,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     width: 80%;
   }
 
-  .card-focus__title > span {
+  .card-basic__title > span {
     font-size: 16px;
   }
 
-  .card-focus__title {
+  .card-basic__title {
     font-size: 14px;
   }
 
@@ -4681,11 +4730,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     font-size: 25px;
   }
 
-  .card-focus__title > span {
+  .card-basic__title > span {
     font-size: 15px;
   }
 
-  .card-focus__title {
+  .card-basic__title {
     font-size: 13px;
   }
 
