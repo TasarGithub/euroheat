@@ -126,6 +126,48 @@
   }
 }
 
+
+//====================================================================================================
+.top-home {
+
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   z-index: 2;
+  //   // display: block;
+  //   width: 100%;
+  //   height: 100%;
+  //   background-color: rgba(255, 255, 255, 0.2);
+  // }
+
+  // &__container {
+  //   margin: 0 auto;
+  //   position: relative;
+  //   z-index: 3;
+  //   height: 100%;
+    // background: url("../images/slider-bg3-2_cr_grad.jpg") no-repeat right/contain;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+  
+  // .top-home__body
+
+}
+
+
+
+@media (max-width: $md3+px) {
+  .home__btn {
+    // font-size: 18px;
+    background: #666666 url(../images/icon_sprite_2.webp) no-repeat 38px -1493px;
+  }
+}
+@media (max-width: $md4+px) {
+  .home__btn {
+    // font-size: 14px;
+    background: #666666 url(../images/icon_sprite_2.webp) no-repeat 38px -1493px;
+  }
+}
 //.title__header
 .title {
   &__header {
@@ -140,4 +182,44 @@
   }
 }
 
+.behelpful {
+  // .behelpful__container
+  &__container {
+    @include adaptiv-value(margin-bottom, 150, 30, 1);
+  }
+  // .behelpful__title
+  &__title {
+    @include adaptiv-font(50, 16, 1);
+    @include adaptiv-value(margin-bottom, 30, 15, 1);
+  }
+  // .behelpful__subtitles
+  &__subtitles {
+    @include adaptiv-font(30, 14, 1);
+    @include adaptiv-value(margin-bottom, 30, 15, 1);
+  }
+  // &__list {
+  //   & > li {
+  //     // list-style: disc;
+  //   }
+  // }
 
+  // .behelpful__text
+  &__text {
+    margin: 0px 0px 30px 0px;
+    font-size: 30px;
+    text-align: left;
+    // &:first-child {
+    border-bottom: 1px solid black;
+    // }
+    padding: 0px 0px 30px 0px;
+  }
+
+  //.behelpful__hr
+  &__hr {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin: 0px 0px 30px 0px;
+  }
+  // .behelpful__row
+}
