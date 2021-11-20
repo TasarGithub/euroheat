@@ -42,7 +42,7 @@
     line-height: 31px;
     color: #010101;
     text-align: left;
-    margin: -2px 0 2px 0;
+    margin: 0px 0 2px 0;
     @media (max-width:$md2+px){
       font-size: 18px;
       line-height: 22px;
@@ -162,7 +162,7 @@
     justify-content: center;
     // align-items: center;
     flex-direction: column;
-    @include adaptiv-value(margin-right, 37, 10, 1);
+    @include adaptiv-value(margin-right, 35, 10, 1);
     flex: 1 0 auto;
     @media (max-width:$md1+px){
         // flex: 1 1 33%;
@@ -215,7 +215,7 @@
 // .liaison-header__label
   &__label {
     font-weight: 400;
-    @include adaptiv-font(16,10,1);
+    @include adaptiv-font(15,10,1);
     line-height: 24px;
     text-align: left;
     color: $pimary-brown;
@@ -224,7 +224,7 @@
 
 // .liaison-header__request
   &__request {
-    padding: 13px 40px;
+    padding: 13px 38px;
     background:$black;
     border-radius: 10px;
     color: $white;
