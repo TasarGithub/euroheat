@@ -3380,7 +3380,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 .site-map {
   font-size: 16px;
   font-weight: bold;
-  border-bottom: 1px dashed #fff;
+  border-bottom: 1px dashed #000;
 }
 
 .order_btn {
@@ -3547,7 +3547,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   font-weight: 900;
   font-size: 24px;
   line-height: 31px;
-  color: #010101;
+  color: #000000;
   text-align: left;
   margin: 0px 0 2px 0;
 }
@@ -3558,6 +3558,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   font-weight: 400;
   text-align: left;
   font-size: 14px;
+  color: #000000;
   line-height: 21px;
 }
 
@@ -3583,7 +3584,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .header__bottom {
-  background-color: black;
+  background-color: #a0b5d6;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -3625,14 +3626,14 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   font-size: 15px;
   line-height: 24px;
   text-align: left;
-  color: #95564E;
+  color: #000000;
 }
 
 .liaison-header__request {
   padding: 13px 38px;
-  background: #000000;
+  background: #a0b5d6;
   border-radius: 10px;
-  color: #ffffff;
+  color: #000000;
   font-family: Montserrat;
   font-weight: 800;
   font-size: 18px;
@@ -3708,7 +3709,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .menu__link {
-  color: #ffffff;
+  color: #000;
 }
 
 .page {
@@ -4288,7 +4289,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
+  color: #000;
 }
 
 .footer__content a {
