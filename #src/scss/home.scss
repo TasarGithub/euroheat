@@ -11,21 +11,22 @@
   }
   @include adaptiv-value(padding-bottom, 50, 15, 1);
 
-  & a {
-    color: inherit;
-  }
+  // & a {
+  //   color: inherit;
+  // }
   // .home__container
   &__container {
   }
   // .home__btn
   &__btn {
-    margin: 0 auto 30px auto;
+    margin: 0 auto 30px 0;
     // font-size: 40px;
     @include adaptiv-font(40, 18, 1);
     max-width: 550px;
-    background: #545454 url(../images/icon_sprite_2.webp) no-repeat 51px -1481px;
-    border-radius: 0;
+    background: $bg-elements  url(../images/icon_sprite_2.webp) no-repeat 51px -1481px;
+    border-radius: 10px;
     text-transform: none;
+    color: $font-request;
     // @media (max-width: $md2+px) {
     //   font-size: 20px;
     // }
@@ -41,7 +42,7 @@
     // margin: 0px 0px 20px 0px;
     // padding: 150px 0;
     // @include adaptiv-value(padding-top, 50, 10, 1);
-    // @include adaptiv-value(padding-bottom, 40, 10, 1);
+    @include adaptiv-value(padding-bottom, 40, 10, 1);
     @media (max-width: $md2+px) {
       flex-direction: column;
     }
@@ -73,35 +74,49 @@
       font-size: 25px;
     }
   }
-  // .home__list
-  &__list {
-    width: 50%;
-    // margin: 15px 0px 0px auto;
-    margin: 0px auto 0 0;
-    font-size: 24px;
-    line-height: 36px;
-    @media (max-width: $md3+px) {
-      // margin: 15px auto 0px 0px;
-      width: 80%;
-    }
+
+  // .home__bottom
+  &__bottom {
+    padding: 30px 0 0 0;
   }
-  // .home__link
+}
+
+.list-home {
+  width: 50%;
+  // margin: 15px 0px 0px auto;
+  margin: 0px auto 0 0;
+  font-size: 24px;
+  line-height: 36px;
+  @media (max-width: $md3+px) {
+    // margin: 15px auto 0px 0px;
+    width: 80%;
+  }
+
+  //.list-home__scenarios
+  &__scenarios {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 36px;
+    @include adaptiv-value(margin-bottom, 40, 25, 1);
+  }
+  //.list-home__link
   &__link {
-    text-decoration: initial;
+    // text-decoration: initial;
+    color: $primary-black;
     &:visited{
       text-decoration: Violet;
     }
     // border-bottom: 1px dashed $light;
   }
-  // .home__item
+  //.list-home__item
   &__item {
     width: 100%;
     display: inline-block;
     color: $black-font;
-    margin: 0px 0px 20px 0px;
-    padding: 10px 20px 15px;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 10px 10px 15px;
   }
-  // .home__item--inversion
+  //.list-home__item--inversion
   &__item--inversion {
     display: block;
     color: rgb(50, 50, 50);
@@ -117,10 +132,6 @@
       border-bottom: 1px dashed $bg-title;
       text-transform: uppercase;
     }
-  }
-  // .home__bottom
-  &__bottom {
-    padding: 30px 0 0 0;
   }
 }
 

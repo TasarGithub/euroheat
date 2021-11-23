@@ -40,7 +40,7 @@
     font-size: 24px;  
     // @include adaptiv-font(24,16,1);
     line-height: 31px;
-    color: $font-primary;
+    color: $font-logo;
     text-align: left;
     margin: 0px 0 2px 0;
     @media (max-width:$md2+px){
@@ -55,7 +55,7 @@
     font-weight: 400;
     text-align: left;
     font-size: 14px;
-    color: $font-primary;
+    color: $font-logo;
     // @include adaptiv-font("14","12","1");    
     line-height: 21px;
     @media (max-width:$md1+px){
@@ -228,7 +228,7 @@
     padding: 13px 38px;
     background: $bg-elements;
     border-radius: 10px;
-    color: $font-primary;
+    color: $font-request;
     font-family: Montserrat;
     font-weight: 800;
     font-size: 18px;
@@ -378,7 +378,7 @@
     }
 		// .menu__link
 		&__link {
-      color: $white;
+      color: $font-menu;
     }
 		// .menu__burger
 		&__burger {}
