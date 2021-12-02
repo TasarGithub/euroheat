@@ -3654,8 +3654,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   position: relative;
 }
 
-.icon-menu__before {
+.icon-menu * {
   transition: all 0.5s ease 0s;
+}
+
+.icon-menu__before {
   position: relative;
   visibility: visible;
   opacity: 100%;
@@ -3666,7 +3669,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .icon-menu__after {
-  transition: all 0.5s ease 0s;
   position: relative;
   visibility: visible;
   opacity: 0%;
@@ -4856,6 +4858,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 @media screen and (max-width: 400px) {
   .logo__img {
     max-width: 48px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  nav a:hover {
+    background: yellow;
   }
 }
 

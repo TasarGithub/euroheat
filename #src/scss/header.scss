@@ -277,9 +277,11 @@
   position: relative;
   // .icon-menu__before
       // transition: all 0.3s ease 0s;
-    
+  & * {
+    transition: all 0.5s ease 0s;
+  }
   &__before {
-          transition: all 0.5s ease 0s;
+    // transition: all 0.5s ease 0s;
     position: relative;
     visibility: visible;
     opacity: 100%;
@@ -290,7 +292,7 @@
 
   }
   &__after {
-          transition: all 0.5s ease 0s;
+    // transition: all 0.5s ease 0s;
     position: relative;
     visibility: visible;
     opacity: 0%;
