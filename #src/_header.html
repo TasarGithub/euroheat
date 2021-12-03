@@ -17,10 +17,9 @@
 				</a>
 				<!-- </a> logo -->
 
-				<div class="top-header__liaison liaison-header">
+				<div data-da=".menu__wrapper,450,0" class="top-header__liaison liaison-header">
+
 					<!-- /.liaison-header__messenger messenger RELOCATION in separate file-->
-
-
 					<div class="liaison-header__column liaison-header__column_email">
 						<a class="liaison-header__contacts email" href="mailto:info@euroheater.ru">info@euroheater.ru</span>
 						</a>
@@ -41,15 +40,16 @@
 					<!-- /.liaison-header__column -->
 
 
+
 				</div>
-				<!-- /.header__liaison liaison-header -->
+				<!-- /.top-header__liaison liaison-header -->
+
+				<!-- Бургер -->
 				<div class="header__icon-menu icon-menu">
 					<img class="icon-menu__before" src="images/icons/icon-menu.svg" alt="">
 					<img class="icon-menu__after" src="images/icons/none-menu.svg" alt="">
-					<!-- <span></span>
-					<span></span>
-					<span></span> -->
 				</div>
+				<!--/. header__icon-menu icon-menu -->
 			</div>
 			<!-- header__content _container -->
 
@@ -65,56 +65,60 @@
 				<div class="bottom-header__menu menu">
 
 					<nav class="menu__body">
-						<ul class="menu__list">
-							<li>
-								<a class="menu__link" href="/catalog/">
-									Каталог
-								</a>
-							</li>
-							<li>
-								<a class="menu__link" href="/online/">
-									Расчёт <span class="second-words">онлайн</span>
-								</a>
-							</li>
-							<li>
-								<a class="menu__link" href="/proekty/">
-									Проекты
-								</a>
-							</li>
-							<li>
-								<a class="menu__link" href="/kontakty/">
-									Контакты
-								</a>
-							</li>
-							<li>
-								<a class="menu__link" href="/o-nas/">
-									О нас
-								</a>
-							</li>
-						</ul>
-						<div class="menu__burger burger">
-							<span class="burger__line"></span>
-							<span class="burger__line"></span>
-							<span class="burger__line"></span>
-						</div>
 
-						<!-- /.menu__burger burger-->
+						<div class="menu__wrapper">
+
+							<ul class="menu__list">
+								<li>
+									<a class="menu__link" href="/catalog/">
+										Каталог
+									</a>
+								</li>
+								<li>
+									<a class="menu__link" href="/online/">
+										Расчёт <span class="second-words">онлайн</span>
+									</a>
+								</li>
+								<li>
+									<a class="menu__link" href="/proekty/">
+										Проекты
+									</a>
+								</li>
+								<li>
+									<a class="menu__link" href="/kontakty/">
+										Контакты
+									</a>
+								</li>
+								<li>
+									<a class="menu__link" href="/o-nas/">
+										О нас
+									</a>
+								</li>
+							</ul>
+							<div class="menu__search search">
+								<div class="ya-site-form ya-site-form_inited_no " data-bem="{&quot;action&quot;:&quot;https://euroheater.ru/search&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Поиск по euroheater.ru&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_blank&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:3,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:2515828,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;поиск&quot;,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}">
+
+									<form class="search__form" action="https://yandex.ru/search/site/" method="get" target="_blank" accept-charset="utf-8">
+										<input type="hidden" name="searchid" value="2515828" />
+										<input type="hidden" name="l10n" value="ru" />
+										<input type="hidden" name="reqenc" value="" />
+										<input class="search__input" type="search" name="text" value="" /><input class="search__submit" type="submit" value="" />
+									</form>
+								</div>
+							</div>
+							<!-- /.menu__search search -->
+
+							<p class="menu__copyright copyright">
+
+								© ЕвроКлима 2021
+							</p>
+						</div>
+						<!-- /.menu__wrapper -->
 					</nav>
 					<!-- /. menu__body -->
 				</div>
 				<!-- /bottom-header__menu menu -->
-				<div class="bottom-header__search search">
-					<div class="ya-site-form ya-site-form_inited_no " data-bem="{&quot;action&quot;:&quot;https://euroheater.ru/search&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Поиск по euroheater.ru&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_blank&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:3,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:2515828,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;поиск&quot;,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}">
 
-						<form class="search__form" action="https://yandex.ru/search/site/" method="get" target="_blank" accept-charset="utf-8">
-							<input type="hidden" name="searchid" value="2515828" />
-							<input type="hidden" name="l10n" value="ru" />
-							<input type="hidden" name="reqenc" value="" />
-							<input class="search__input" type="search" name="text" value="" /><input class="search__submit" type="submit" value="" />
-						</form>
-					</div>
-				</div>
-				<!-- /.bottom-header__search search -->
 			</div>
 			<!-- /.bottom-header__container _container -->
 		</div>
@@ -123,6 +127,20 @@
 	<!--/.header__container -->
 </div>
 <!--/.header -->
+
+<!-- Выпадаюшее меню для мобильных-->
+<div class="menu-mobile">
+
+	<div class="menu-mobile__body">
+
+
+
+	</div>
+	<!-- /.menu-mobile__body -->
+
+
+</div>
+<!-- /.menu-mobile -->
 
 <!-- <a class="phone" href="tel:<?php echo $GLOBALS['phone_for_link']; ?>"><?php echo $GLOBALS['phone']; ?></a> -->
 

@@ -50,6 +50,7 @@ body {
 //<ОБОЛОЧКА>===========================================================================================================
 
 .wrapper {
+  position: relative;
   width: 100%;
   min-height: 100%;
   overflow: hidden;
@@ -66,7 +67,9 @@ body {
     }
 }
 
-
+* {
+-webkit-tap-highlight-color: transparent;
+} 
 
 
 //<ОСНОВНАЯ СЕТКА>===========================================================================================================
@@ -123,6 +126,7 @@ body {
 @import "header";
 // @import "menu";
 // @import "page";
+@import "menu-mobile";
 @import "home";
 @import "basic";
 @import "behelpful";
