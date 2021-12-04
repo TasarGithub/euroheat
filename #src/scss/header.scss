@@ -17,7 +17,7 @@
       height: 100%;
     }
     @media (max-width:$md2+px){
-      margin: 0px 16px 0px 0px;
+      margin: 0px 8px 0px 0px;
     }
     @media screen and (max-width: 576px) {
       // max-width: 80px;
@@ -125,7 +125,7 @@
     
 
     // margin: 0px 0px 10px 0px;
-    // padding: 0 20px;
+    padding: 0 20px;
     // @media screen and ( max-width: 450px){
     // 	padding: 0 10px;
     // }
@@ -134,14 +134,15 @@
     // }
     @media (max-width:$md2+px){
       padding: 20px;
+      height: 90px;
     }
     @media (max-width:$md3+px){
-      padding: 15px 0;
-      @include adaptiv-value(padding-right,20,7,1);
-      @include adaptiv-value(padding-left,20,7,1);
+      padding: 10px;
+      // @include adaptiv-value(padding-right,20,7,1);
+      // @include adaptiv-value(padding-left,20,7,1);
     }
     @media (max-width:$md4+px){
-      padding: 10px 20px;
+      // padding: 10px;
     }
   }
   // .top-header__liaison
@@ -154,17 +155,20 @@
     @media (max-width:$md3+px){
         position: relative;
         z-index: 120;   
-        flex-direction: column;
+        // flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        margin: 0 20px 0 auto;
+    }
+    @media (max-width:$md4+px){
+        margin: 0 auto 40px 0;
+        // padding: 0 20px 0 0;
     }
   }
 }
 
 .liaison-header{
-// .liaison-header{__column
-
-
+// .liaison-header__column
   &__column {
       // flex: 0 1 30%;
       text-align: center;
@@ -172,70 +176,40 @@
       justify-content: center;
       // align-items: center;
       flex-direction: column;
-      @include adaptiv-value(margin-right, 35, 10, 1);
+      // @include adaptiv-value(margin-right, 35, 1, 1);
+      margin: 0 35px 0 0; 
       flex: 1 0 auto;
       @media (max-width:$md1+px){
           // flex: 1 1 33%;
+        margin: 0 10px 0 0; 
       }
       @media (max-width:$md3+px){
-          margin: 0 0 10px 0; 
+          // margin: 0 0 5px 0; 
+      }
+      &_email {
+        @media (max-width:$md3+px){
+           margin: 0 10px 0 0; 
+        }
+      }      
+      &_photo {
+        @media (max-width:$md3+px){
+           display: none; 
+        }
       }
     }
-    &_email {
 
-  }
 
+// .liaison-header__column
   &__column:last-child {
     margin-right: 0;
   }
-
+// .liaison-header__contacts
   &__contacts {
-    font-size: 24px;
-    line-height: 36px;
-    max-width: 275px;
 
-    @media screen and (max-width: 1100px) {
-      font-size: 20px;
-      line-height: 30px;
-    }
-    @media screen and (max-width: $md2+px) {
-      font-size: 16px;
-      line-height: 27px;
-    }
-
-    @media screen and (max-width: $md3+px) {
-      // font-size: $font-md3-1;
-    }
-    @media (max-width: 580px) {
-      // font-size: ($font-md4-1 + 3px);
-    }
-    @media (max-width: $md4+px) {
-      // font-size: $font-md4-1;
-    }
-
-    @media screen and (max-width: $md5+px) {
-      // margin: 0 auto 6px;
-      // display: none;
-      // background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / 13px
-      //   auto; //contain;
-      // font-size: ($font-md4-1);
-      // text-decoration: underline;
-      // background: none;
-      // padding: 0px 0 0px 20px;
-    }
   }
 
 // .liaison-header__label
   &__label {
-    font-weight: 400;
-    @include adaptiv-font(15,10,1);
-    line-height: 24px;
-    text-align: left;
-    color: $font-elements;
-    @media (max-width:$md3+px){
-       line-height: 6px;
-
-    }
   }
 
 
@@ -265,16 +239,20 @@
       letter-spacing: 0.6px;
     }
     @media (max-width:$md3+px){
-      display: none; 
+      // display: none; 
       padding: 8px 15px;  
-        flex-direction: column; 
-        & .word {
+      & .word {
           margin: 0;
-        }
+      }
     }
-    @media (max-width:$md4+px){
-        display: none; 
+    @media (max-width:656px){
+      flex-direction: column;
     }
+  
+    @media (max-width:595px){
+      display: none; 
+    }
+
 
   }
 
@@ -317,6 +295,10 @@
     top: 50%;
     left: 5%;
     transform: translateY(-48%);
+    @media (max-width:$md5+px){
+      left: -9%;
+      transform: translateY(-50%);
+    }
 
     // transform: translateX(-50%);
   }
@@ -327,7 +309,7 @@
   // align-items: center;
     width: 64px;
     height: 64px;
-    cursor: pointer; 
+    // cursor: pointer; 
     z-index: 10;
     background: black; //url('../images/icons/icon-menu.svg') no-repeat center;
     border-radius: 50%;
@@ -349,6 +331,11 @@
       }
     }
   }
+  @media (max-width:$md5+px){
+    width: 48px;
+    height: 48px;
+  }
+
   &._active{
     & .icon-menu__before {
       visibility: hidden;
@@ -454,7 +441,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 30px;
+      padding: 0 25px 0 30px;
       height: 58px;
       //  @media (max-width:$md1+px){
       //    max-width: $md11+px;
@@ -462,10 +449,15 @@
       // @media (max-width:$md2+px){
       //    max-width: $md22+px;
       // }
+      @media (max-width:$md3+px){
+         height: 48px; 
+      }
+      @media (max-width:$md4+px){
+        padding: 15px;
+      }
     }
 		// .bottom-header__menu
 		&__menu {
-      
     }
 
 		// .bottom-header__search
@@ -473,17 +465,31 @@
       // align-self: c;
   
     }
+    // .bottom-header__label
+    &__label{
+      @media (max-width:$md3+px){
+         display: none; 
+      }
+    }
+
 }
 
 .menu {
-		// .menu__body
-		&__body {
-      transition: all 1.5s ease 0s;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width:$md3+px){
 
-      // & * {
-      //   transition: all 5.5s ease 0s;
-      // }
     }
+    // .menu__body
+		&__body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 1.5s ease 0s;
+    }
+
 		// .menu__list
 		&__list {
       display: flex;
@@ -502,6 +508,9 @@
           margin: 0 30px 0 0;
           font-size: 17px; 
         }
+        @media (max-width:$md3+px){
+           margin: 0 0 20px 0; 
+        }
       }
     }
 		// .menu__link
@@ -512,6 +521,17 @@
       color: $font-menu;
       display: none;
     }
+    // .menu__contacts
+    &__contacts{
+      display: none;
+      @media (max-width:$md3+px){
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+    // .menu  @media
     @media (max-width:$md3+px){
       &__body{
         // display: flex;
@@ -521,14 +541,15 @@
         // padding: 20px;
 
         // visibility: hidden;
+        
         position: fixed;
         transform: translateX(255%);
         right: 0;
-        top: 115px;
+        top: 90px;
         width: 100%;
         height: 1020px;
-        background: #79a6ee4f; //#8ba9d8;#92A4BA
-;
+        background: #79a6ee9d; //#8ba9d8;#92A4BA
+        justify-content: flex-end;
         z-index: 101;
         // overflow: auto;
         &._active{
@@ -554,7 +575,7 @@
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: column;
-        padding: 20px;
+        padding: 10px 20px;
 
         width: 320px;
         height: 1020px;
@@ -564,7 +585,7 @@
 
       }
       &__copyright {
-                position: relative;
+        position: relative;
         z-index: 120;
         display: block;
       }
@@ -577,6 +598,11 @@
         flex-direction: column;
       }
   
+      &__search{
+        @media (max-width:$md3+px){
+          //  display: none; 
+        }
+      }
 
     }
 }
@@ -600,6 +626,10 @@
     background: #F7F4F3;
     border-radius: 10px;
     // border: 1px solid rgb(8, 0, 0);
+    @media (max-width:$md3+px){
+      @include adaptiv-value(width,280,100,1);
+      height: 25px;
+    }
   }
   &__submit{
     position: absolute;
@@ -611,4 +641,54 @@
     background: url('../images/icons/icon-search.svg') no-repeat center/cover;
     
   }
+
+}
+
+
+.phone, .email{
+    font-size: 24px;
+    line-height: 36px;
+    max-width: 275px;
+
+    @media screen and (max-width: 1100px) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+    @media screen and (max-width: $md2+px) {
+      font-size: 16px;
+      line-height: 27px;
+    }
+
+    @media screen and (max-width: $md3+px) {
+      // font-size: $font-md3-1;
+    }
+    @media (max-width: 580px) {
+      // font-size: ($font-md4-1 + 3px);
+    }
+    @media (max-width: $md4+px) {
+      // font-size: $font-md4-1;
+    }
+
+    @media screen and (max-width: $md5+px) {
+      // margin: 0 auto 6px;
+      // display: none;
+      // background: url(../images/icon_phoneBroun.jpg) no-repeat 0 center / 13px
+      //   auto; //contain;
+      // font-size: ($font-md4-1);
+      // text-decoration: underline;
+      // background: none;
+      // padding: 0px 0 0px 20px;
+    }
+}
+.label {
+    font-weight: 400;
+    @include adaptiv-font(15,10,1);
+    line-height: 24px;
+    text-align: left;
+    color: $font-elements;
+    // padding: 0 0 0 7px;
+    @media (max-width:$md3+px){
+       line-height: 6px;
+
+    }
 }

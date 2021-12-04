@@ -3,7 +3,10 @@
   width: 100%;
   margin: 0 auto;
   // padding: 61px 0 61px 30px;
-  background: url("../images/home/bg-home.jpg") no-repeat right/945px;
+  background: url("../images/home/bg-home.jpg") no-repeat right;
+  @include adaptiv-value(background-size,945,300,1);
+  
+  
   position: relative;
   height: 100%;
   @media (max-width: $md1+px) {
