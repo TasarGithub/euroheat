@@ -155,18 +155,35 @@
 }
 
 
+.h1, .h2, .h3, .h4, .h5, .title, .subtitle {
+  font-family: Montserrat;
+  color: $black-font;  
+}
+
+.h1,
+.h1 a {
+  // font-size: 48px;
+  font-weight: 900;
+
+  @media (max-width:$md2+px){
+
+  }
+}
+
+
+
 
 
 .h2,
 .h2 a {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 39px;
   line-height: 1;
   color: #181818;
 }
 
 .title {
-  font-weight: bold;
+  font-weight: 900;
   // .title--h2
   &--h2 {
     @include adaptiv-font(48, 20, 1);
@@ -186,4 +203,15 @@
   font-size: inherit;
   display: block;
   margin: 0 auto;
+}
+
+
+.btn {
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;
+  background-color: $bg-elements;
+  border-radius: 10px;
+  padding: 13px;
 }
