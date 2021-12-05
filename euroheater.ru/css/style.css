@@ -4781,8 +4781,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   }
 
   .img-page {
-    width: 1500px;
-    top: -770px;
+    top: -820px;
     left: 60%;
   }
 
@@ -4855,21 +4854,17 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   }
 }
 
-@media (max-width: 1000.98px) and (max-width: 1276px) {
-  .img-page {
-    width: calc( 700px + 800 * ((100vw - 320px) / 956));
-  }
-
-  .home__img {
-    width: calc( 220px + 1280 * ((100vw - 320px) / 956));
-  }
-}
-
 @media screen and (max-width: 1000.98px) {
   .phone,
   .email {
     font-size: 16px;
     line-height: 27px;
+  }
+}
+
+@media (max-width: 1000.98px) and (max-width: 1276px) {
+  .home__img {
+    width: calc( 220px + 1280 * ((100vw - 320px) / 956));
   }
 }
 
@@ -4879,6 +4874,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   }
 
   .img-page {
+    width: 1100px;
     top: -670px;
     left: 75%;
   }
@@ -4908,7 +4904,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     z-index: 120;
     justify-content: space-between;
     align-items: center;
-    margin: 0 20px 0 auto;
+    margin: 0 0 0 auto;
   }
 
   .liaison-header__column_email {
@@ -4921,6 +4917,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
   .liaison-header__request {
     padding: 8px 15px;
+    margin: 0 20px 0 0;
   }
 
   .liaison-header__request .word {
@@ -5068,6 +5065,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 @media (max-width: 768.98px) and (max-width: 1276px) {
+  .img-page {
+    width: calc( 800px + 300 * ((100vw - 320px) / 956));
+  }
+
   .search__input {
     width: calc( 100px + 180 * ((100vw - 320px) / 956));
   }
@@ -5086,6 +5087,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 @media (max-width: 620px) {
+  .img-page {
+    width: 1500px;
+    top: -670px;
+    left: 75%;
+  }
+
   .footer__content {
     flex-wrap: wrap;
   }
@@ -5096,6 +5103,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
   .footer__column:nth-child(3) {
     display: none;
+  }
+}
+
+@media (max-width: 620px) and (max-width: 1276px) {
+  .img-page {
+    width: calc( 600px + 900 * ((100vw - 320px) / 956));
   }
 }
 

@@ -158,10 +158,10 @@
         // flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        margin: 0 20px 0 auto;
+        margin: 0 0 0 auto;//20px 0 auto;
     }
     @media (max-width:$md4+px){
-        margin: 0 auto 40px 0;
+        margin: 0 auto 40px 0; // в бургере
         // padding: 0 20px 0 0;
     }
   }
@@ -240,7 +240,8 @@
     }
     @media (max-width:$md3+px){
       // display: none; 
-      padding: 8px 15px;  
+      padding: 8px 15px; 
+      margin: 0 20px 0 0;
       & .word {
           margin: 0;
       }

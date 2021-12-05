@@ -122,14 +122,20 @@ body {
     height: auto;
     z-index: 1;
     @media (max-width:$md2+px){
-        @include adaptiv-value(width,1500,700,1);
+
         // top: 330px;
         // left: 75%
-        top: -770px;
+        top: -820px;
         left: 60%;        
     }
     @media (max-width:$md3+px){
-
+        @include adaptiv-value(width,1100,800,1);
+        // width: 330px;
+        top: -670px;
+        left: 75%;
+    }
+    @media (max-width:620px){
+        @include adaptiv-value(width,1500,600,1);
         // width: 330px;
         top: -670px;
         left: 75%;
