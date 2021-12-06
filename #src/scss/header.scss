@@ -160,8 +160,8 @@
         align-items: center;
         margin: 0 0 0 auto;//20px 0 auto;
     }
-    @media (max-width:$md4+px){
-        margin: 0 auto 40px 0; // в бургере
+    @media (max-width:450px){
+        margin: 0 auto 40px 0; // в бургере на 450 перенос пожтому такой брейк
         // padding: 0 20px 0 0;
     }
   }
