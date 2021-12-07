@@ -13,12 +13,12 @@
   // @include adaptiv-value(background-size,945,300,1);
   
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
 
   height: 100%;
-  @media (max-width: $md1+px) {
-    height: 100%;
-  }
+  // @media (max-width: $md1+px) {
+  //   height: 100%;
+  // }
 
 
   // & a {

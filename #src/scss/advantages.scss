@@ -1,12 +1,6 @@
 .advantages {
   // .advantages__container
-  padding: 0 20px;
-  max-width: 1920px;
-      background-color: $bg-sections;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;  
-    @include adaptiv-value(padding-top,66,40,1);
-    @include adaptiv-value(padding-bottom,66,40,1);
+  background-color: $bg-sections;
   &__container {
     // margin: 0px 0px 30px 0px;
     // padding: 0 20px;
@@ -122,9 +116,6 @@
 		&__img  {
       // flex: 1 0 15%;
       margin: 0 33px 0 0;
-      & img, picture {
-        height: 70%;
-      }
     }
 		// .list-advantages__card
 		&__card {
@@ -180,6 +171,7 @@
     }
 		// .form-advantages__img
 		&__img {
+      margin: 0 33px 0 0;
       @media (max-width:$md3+px){
         margin: 0 22px 0 0;
         text-align: center;
