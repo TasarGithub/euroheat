@@ -61,12 +61,13 @@ body {
 }
 //</ОБОЛОЧКА>===========================================================================================================
 
-@media(hover: hover) and (pointer: fine) {
-    nav a:hover {
-        background: yellow;
-    }
-}
+// @media(hover: hover) and (pointer: fine) {
 
+//   }
+
+
+
+// убираем артефакт - появление фона объекта - при клике в хроме
 * {
 -webkit-tap-highlight-color: transparent;
 } 
@@ -187,5 +188,4 @@ body {
 @import "popup";
 @import "footer";
 @import "my_ui";
-
 

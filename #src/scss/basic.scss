@@ -1,13 +1,19 @@
 .basic {
-
-  //.basic__container 
-  &__container {
+    max-width: 1920px;
     padding: 0 20px;
     @include adaptiv-value(padding-top,96,60,1);
     @include adaptiv-value(padding-bottom,96,40,1);
     background-color: $bg-sections;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;    
+    border-radius: 10px; 
+  //.basic__container 
+  &__container {
+    // padding: 0 20px;
+    // @include adaptiv-value(padding-top,96,60,1);
+    // @include adaptiv-value(padding-bottom,96,40,1);
+    // background-color: $bg-sections;
+    // box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    // border-radius: 10px;    
   }
   position: relative;
   //.basic-modal
