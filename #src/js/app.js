@@ -11,21 +11,21 @@
 
 
 
-let burgerClass = document.querySelector(".burger"),
-  menuClass = document.querySelector(".menu"),
-  menuList = document.querySelector(".menu__list"),
-  body = document.querySelector("body"),
-  headerMenu = document.querySelector(".header__menu");
-// activeClass=document.querySelector(".;
-// console.log("burger: ", burgerClass);
+// let burgerClass = document.querySelector(".burger"),
+//   menuClass = document.querySelector(".menu"),
+//   menuList = document.querySelector(".menu__list"),
+//   body = document.querySelector("body"),
+//   headerMenu = document.querySelector(".header__menu");
+// // activeClass=document.querySelector(".;
+// // console.log("burger: ", burgerClass);
 
-burgerClass.addEventListener("click", function (e) {
-  burgerClass.classList.toggle("_active");
-  menuClass.classList.toggle("_active");
-  menuList.classList.toggle("_active");
-  headerMenu.classList.toggle("_active");
-  body.classList.toggle("_lock");
-});
+// burgerClass.addEventListener("click", function (e) {
+//   burgerClass.classList.toggle("_active");
+//   menuClass.classList.toggle("_active");
+//   menuList.classList.toggle("_active");
+//   headerMenu.classList.toggle("_active");
+//   body.classList.toggle("_lock");
+// });
 
 
 
@@ -33,7 +33,34 @@ const swiper = new Swiper('.projects-slider__container', {
   // Optional parameters
   // direction: 'vertical',
   loop: true,
-  slidesPerView: 3,   //'auto',
+  slidesPerView: 3,
+  spaceBetween: 20,
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0
+    },
+    670: {
+      slidesPerView: 2,
+      spaceBetween: 0
+    },
+    // when window width is >= 480px
+    // 760: {
+    //   slidesPerView: 2,
+    //   spaceBetween: 10
+    // },
+    // when window width is >= 640px
+    1140: {
+      slidesPerView: 3,
+      spaceBetween: 30
+    },
+    1920: {
+      slidesPerView: 3,
+      spaceBetween: 30
+    }
+
+  },
   // autoHeight: true,
   //Отключение функционала, если слайдов меньше чем нужно
   watchOverflow: true,

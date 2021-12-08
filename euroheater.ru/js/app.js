@@ -1591,53 +1591,55 @@ function scroll_animate(event) {
 	//disableScroll();
 }
 ;
-let focusCard = document.querySelectorAll(".focus__card");
-let focusModal = document.querySelector(".focus-modal");
-focusModal.querySelector("div");
-console.log('focusModal.querySelector("div")', focusModal.querySelector("div"));
-let tempFocusItem,
-  cardFocusImg,
-  src = "";
-for (let i = 0; i < focusCard.length; i++) {
-  focusCard[i].addEventListener("click", function () {
-    tempFocusItem = focusCard[i].cloneNode(true);
-    //cardFocusImg = tempFocusItem.querySelector(".card-focus__img");
-    cardFocusImg = tempFocusItem.querySelector("img");
-    console.log("cardFocusImg: ", cardFocusImg);
-    src = cardFocusImg.getAttribute("src");
-    if (src.indexOf("_cr") != -1) {
-      src = src.slice(0, src.length - 6) + ".jpg";
-      cardFocusImg.setAttribute("src", src);
+// let focusCard = document.querySelectorAll(".focus__card");
+// console.log('focusCard: ', focusCard);
+// let focusModal = document.querySelector(".focus-modal");
+// console.log('focusModal: ', focusModal);
+// focusModal.querySelector("div");
+// console.log('focusModal.querySelector("div")', focusModal.querySelector("div"));
+// let tempFocusItem,
+//   cardFocusImg,
+//   src = "";
+// for (let i = 0; i < focusCard.length; i++) {
+//   focusCard[i].addEventListener("click", function () {
+//     tempFocusItem = focusCard[i].cloneNode(true);
+//     //cardFocusImg = tempFocusItem.querySelector(".card-focus__img");
+//     cardFocusImg = tempFocusItem.querySelector("img");
+//     console.log("cardFocusImg: ", cardFocusImg);
+//     src = cardFocusImg.getAttribute("src");
+//     if (src.indexOf("_cr") != -1) {
+//       src = src.slice(0, src.length - 6) + ".jpg";
+//       cardFocusImg.setAttribute("src", src);
 
-      if (focusModal.querySelector("div") != null) {
-        focusModal.querySelector("div").remove();
-        focusModal.prepend(tempFocusItem);
-      } else {
-        focusModal.prepend(tempFocusItem);
-      }
-    }
+//       if (focusModal.querySelector("div") != null) {
+//         focusModal.querySelector("div").remove();
+//         focusModal.prepend(tempFocusItem);
+//       } else {
+//         focusModal.prepend(tempFocusItem);
+//       }
+//     }
 		
-  });
-}
+//   });
+// }
 ;
 
 
 
-let burgerClass = document.querySelector(".burger"),
-  menuClass = document.querySelector(".menu"),
-  menuList = document.querySelector(".menu__list"),
-  body = document.querySelector("body"),
-  headerMenu = document.querySelector(".header__menu");
-// activeClass=document.querySelector(".;
-// console.log("burger: ", burgerClass);
+// let burgerClass = document.querySelector(".burger"),
+//   menuClass = document.querySelector(".menu"),
+//   menuList = document.querySelector(".menu__list"),
+//   body = document.querySelector("body"),
+//   headerMenu = document.querySelector(".header__menu");
+// // activeClass=document.querySelector(".;
+// // console.log("burger: ", burgerClass);
 
-burgerClass.addEventListener("click", function (e) {
-  burgerClass.classList.toggle("_active");
-  menuClass.classList.toggle("_active");
-  menuList.classList.toggle("_active");
-  headerMenu.classList.toggle("_active");
-  body.classList.toggle("_lock");
-});
+// burgerClass.addEventListener("click", function (e) {
+//   burgerClass.classList.toggle("_active");
+//   menuClass.classList.toggle("_active");
+//   menuList.classList.toggle("_active");
+//   headerMenu.classList.toggle("_active");
+//   body.classList.toggle("_lock");
+// });
 
 
 
@@ -1645,7 +1647,34 @@ const swiper = new Swiper('.projects-slider__container', {
   // Optional parameters
   // direction: 'vertical',
   loop: true,
-  slidesPerView: 3,   //'auto',
+  slidesPerView: 3,
+  spaceBetween: 20,
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0
+    },
+    670: {
+      slidesPerView: 2,
+      spaceBetween: 0
+    },
+    // when window width is >= 480px
+    // 760: {
+    //   slidesPerView: 2,
+    //   spaceBetween: 10
+    // },
+    // when window width is >= 640px
+    1140: {
+      slidesPerView: 3,
+      spaceBetween: 30
+    },
+    1920: {
+      slidesPerView: 3,
+      spaceBetween: 30
+    }
+
+  },
   // autoHeight: true,
   //Отключение функционала, если слайдов меньше чем нужно
   watchOverflow: true,

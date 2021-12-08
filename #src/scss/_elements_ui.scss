@@ -171,15 +171,12 @@
 }
 
 
-
-
-
 .h2,
 .h2 a {
   font-weight: 800;
-  font-size: 39px;
-  line-height: 1;
-  color: #181818;
+  @include adaptiv-font(36, 24, 1);
+  line-height: 44 / 36 * 100%;
+  color: #000000;
 }
 
 .title {
@@ -206,12 +203,12 @@
 }
 
 
-.btn {
+.mybtn {
   font-family: Montserrat;
   font-weight: 800;
   font-size: 18px;
   line-height: 22px;
-  background-color: $bg-elements;
+  background-color: $bg-item;
   border-radius: 10px;
   padding: 13px;
 }
