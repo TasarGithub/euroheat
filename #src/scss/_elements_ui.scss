@@ -212,3 +212,37 @@
   border-radius: 10px;
   padding: 13px;
 }
+
+
+.form{
+  &-input{
+      // max-width: 392px;
+      height: 32px;
+      background: #ffffff;// #F7F4F3;
+      border: 1px solid #95564E;
+      box-sizing: border-box;
+      border-radius: 0px 10px 10px 10px;
+      // @media (max-width:$md3+px){
+      //   max-width: 100%;  
+      // }
+  }
+  &-label{
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0 0 10px 0;
+  }
+  &-btn{
+      border-radius: 10px;
+      background-color: #454A58;
+      color: #F7F4F3;// white;
+      text-transform: uppercase;
+      padding: 13px;
+      font-family: Montserrat;
+      font-weight: 800;
+      font-size: 18px;
+      padding: 13px 40px;
+  }
+}
+

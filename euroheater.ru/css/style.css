@@ -214,8 +214,8 @@ body._lock {
   max-width: 1920px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  padding-top: 66px;
-  padding-bottom: 66px;
+  padding-top: 116px;
+  padding-bottom: 96px;
   margin-bottom: 5px;
 }
 
@@ -3572,6 +3572,34 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   padding: 13px;
 }
 
+.form-input {
+  height: 32px;
+  background: #ffffff;
+  border: 1px solid #95564E;
+  box-sizing: border-box;
+  border-radius: 0px 10px 10px 10px;
+}
+
+.form-label {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 0 10px 0;
+}
+
+.form-btn {
+  border-radius: 10px;
+  background-color: #454A58;
+  color: #F7F4F3;
+  text-transform: uppercase;
+  padding: 13px;
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 13px 40px;
+}
+
 .logo {
   max-width: 288px;
   display: flex;
@@ -4274,31 +4302,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 .callculate__block > .input {
   max-width: 392px;
-  height: 32px;
-  background: #ffffff;
-  border: 1px solid #95564E;
-  box-sizing: border-box;
-  border-radius: 0px 10px 10px 10px;
-}
-
-.callculate__block > label {
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  margin: 0 0 10px 0;
 }
 
 .callculate__btn {
-  border-radius: 10px;
-  background-color: #454A58;
-  color: #F7F4F3;
-  text-transform: uppercase;
-  padding: 13px;
-  font-family: Montserrat;
-  font-weight: 800;
   max-width: 269px;
-  font-size: 18px;
 }
 
 .projects__subtitle,
@@ -4378,6 +4385,82 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 .slider-next {
   background: url("../images/icons/icon-arrow-next.svg") no-repeat center/cover;
   right: 0;
+}
+
+.staff__list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.staff__item {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #578bbf;
+  max-width: 392px;
+  width: 100%;
+  color: white;
+  letter-spacing: 0.6px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  margin: 0 0 20px 0;
+}
+
+.staff__foto {
+  border-radius: 7px;
+  overflow: hidden;
+  margin: 0 0 10px 0;
+  max-width: 372px;
+  width: 100%;
+  min-height: 544px;
+  position: relative;
+}
+
+.staff__foto > picture > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.staff__desciptions {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.staff__desciption {
+  margin: 0 0 10px 0;
+}
+
+.staff__desciption_name {
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.staff__list {
+  margin: 0 0 40px 0;
+}
+
+.staff__form {
+  max-width: 400px;
+}
+
+.form-staff__title {
+  font-family: Oswald;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 150%;
+  margin: 0 0 30px 0;
+}
+
+.form-staff__block {
+  margin: 0 0 30px 0;
 }
 
 .info {
@@ -4717,11 +4800,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 @media (max-width: 1276px) {
   ._section-container {
-    padding-top: calc( 40px + 26 * ((100vw - 320px) / 956));
+    padding-top: calc( 40px + 76 * ((100vw - 320px) / 956));
   }
 
   ._section-container {
-    padding-bottom: calc( 40px + 26 * ((100vw - 320px) / 956));
+    padding-bottom: calc( 40px + 56 * ((100vw - 320px) / 956));
   }
 
   .h2,
@@ -4930,6 +5013,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
   .liaison-header__column {
     margin: 0 10px 0 0;
+  }
+
+  .staff__list {
+    justify-content: space-around;
   }
 
   .footer__column:nth-child(2) {
@@ -5432,6 +5519,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
   .form-advantages__callculate {
     width: 100%;
+  }
+
+  .form-staff__title {
+    font-size: 18px;
   }
 
   .usage__title {

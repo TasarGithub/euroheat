@@ -239,21 +239,21 @@
       margin: 0 0 30px 0;
       &>.input {
         max-width: 392px;
-        height: 32px;
-        background: #ffffff;// #F7F4F3;
-        border: 1px solid #95564E;
-        box-sizing: border-box;
-        border-radius: 0px 10px 10px 10px;
+        // height: 32px;
+        // background: #ffffff;// #F7F4F3;
+        // border: 1px solid #95564E;
+        // box-sizing: border-box;
+        // border-radius: 0px 10px 10px 10px;
         @media (max-width:$md3+px){
           max-width: 100%;  
         }
       }
       &>label{
-        font-family: Montserrat;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 18px;
-        margin: 0 0 10px 0;
+        // font-family: Montserrat;
+        // font-weight: 500;
+        // font-size: 14px;
+        // line-height: 18px;
+        // margin: 0 0 10px 0;
       }
 
     }
@@ -266,15 +266,15 @@
 		}
 		// .callculate__btn
 		&__btn {
-      border-radius: 10px;
-      background-color: #454A58;
-      color: #F7F4F3;// white;
-      text-transform: uppercase;
-      padding: 13px;
-      font-family: Montserrat;
-      font-weight: 800;
+      // border-radius: 10px;
+      // background-color: #454A58;
+      // color: #F7F4F3;// white;
+      // text-transform: uppercase;
+      // padding: 13px;
+      // font-family: Montserrat;
+      // font-weight: 800;
+      // font-size: 18px;
       max-width: 269px;
-      font-size: 18px;
       @media (max-width:$md3+px){
         width: 100%;
         max-width: 100%;

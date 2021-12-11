@@ -81,8 +81,8 @@ body {
   max-width: 1920px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;  
-  @include adaptiv-value(padding-top,66,40,1);
-  @include adaptiv-value(padding-bottom,66,40,1);
+  @include adaptiv-value(padding-top,116,40,1);
+  @include adaptiv-value(padding-bottom,96,40,1);
   margin-bottom: 5px;
 }
 ._container {
@@ -193,6 +193,7 @@ body {
 @import "behelpful";
 @import "advantages";
 @import "projects";
+@import "staff";
 @import "info";
 @import "clients";
 @import "usage";
