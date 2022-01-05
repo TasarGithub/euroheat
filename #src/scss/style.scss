@@ -88,6 +88,10 @@ body {
 ._container {
   max-width: $maxWidthContainer + px;
   margin: 0 auto;
+
+  @include adaptiv-value(padding-left,20,10,1);
+  @include adaptiv-value(padding-right,20,10,1);
+
   @media (max-width: $md1+px) {
     // max-width: 970px;
   }
@@ -96,7 +100,9 @@ body {
   }
   @media (max-width: $md3+px) {
     max-width: none;
-    // padding: 0 10px;
+  }
+  @media (max-width:$md4+px){
+      
   }
 }
 //</ОСНОВНАЯ СЕТКА>===========================================================================================================

@@ -2,7 +2,7 @@
   background-color: $bg-sections;
   //.basic__container 
   &__container {
-    // padding: 0 20px;
+    
     // @include adaptiv-value(padding-top,96,60,1);
     // @include adaptiv-value(padding-bottom,96,40,1);
     // background-color: $bg-sections;
@@ -41,11 +41,11 @@
     // border: 1px solid blue;
     // flex: 0 1 30%;
 
-    min-width: 200px;
+    // min-width: 200px;
     padding: 40px 0 0 0;
     // background-color: #f1dfdf;
     // border-radius: 30px;
-    min-height: 300px;
+    // min-height: 300px;
     // display: flex;
     // justify-content: center;
     margin: 0px auto;
@@ -74,7 +74,7 @@
   // .card-basic
   &__row {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     // align-items: center;
     @media (max-width:$md3+px){
       flex-direction: column;
@@ -83,10 +83,10 @@
   // .card-basic
   &__column {
     &:nth-child(1) {
-      flex: 0 1 80%;
+      flex: 0 1 70%;
     }
     &:nth-child(2) {
-      flex: 0 1 20%;
+      flex: 0 1 30%;
       padding: 0px 10px 0 30px;
       // text-align: left;
       @media (max-width:$md3+px){
@@ -107,14 +107,27 @@
     // border: 1px solid #ffffff;
     // max-width: 900px;
     width: 100%;
-    min-height: 550px;
+    // min-height: 550px;
+    padding-bottom: 50%;
     // height: 100%;
-    margin: 0 auto 20px auto;
     // border-radius: 20px;
     overflow: hidden;
     border-radius: 15px;
+    margin: 0 auto 20px auto;
     @media (max-width:$md4+px){
       margin: 0 auto 10px auto;   
+    }
+    &_analog{
+      padding-bottom: 84%;
+    }
+    &_nonstandart{
+      padding-bottom: 73%;
+    }
+    &_vent{
+      padding-bottom: 130%;
+    }
+    &_prom{
+      padding-bottom: 55%;
     }
   }
   // .card-basic
