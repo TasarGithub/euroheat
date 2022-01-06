@@ -94,9 +94,37 @@ const clientsSwiper = new Swiper('.clients-slider__container', {
   // Optional parameters
   // direction: 'vertical',
   loop: true,
-  slidesPerView: 5,   //'auto',
+  slidesPerView: 5,
+  spaceBetween: 10,
   // autoHeight: true,
   //Отключение функционала, если слайдов меньше чем нужно
+  breakpoints: {
+  // when window width is >= 320px
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 0
+    },
+    420: {
+      slidesPerView: 2,
+      spaceBetween: 10
+    },
+    650: {
+      slidesPerView: 3,
+      spaceBetween: 10
+    },
+    900: {
+      slidesPerView: 4,
+      spaceBetween: 10
+    },
+    1140: {
+      slidesPerView: 5,
+      spaceBetween: 20
+    }
+    // 1920: {
+    //   slidesPerView: 5,
+    //   spaceBetween: 30
+    // }
+  },
   watchOverflow: true,
   //Отступ между слайдами
   //spaceBetween: 10,

@@ -4551,11 +4551,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 .clients-slider-prev,
 .clients-slider-next {
-  top: 30%;
+  top: 60%;
 }
 
 .clients-slider-next {
-  right: 5.4%;
+  right: 0;
 }
 
 .usage__body {
