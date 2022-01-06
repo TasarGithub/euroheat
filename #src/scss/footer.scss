@@ -13,7 +13,12 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
     border-radius: 10px 10px 0px 0px;
     padding: 20px;
+    @include adaptiv-value(padding-top, 100, 50, 1);
     background: $bg-grey;
+    @media (max-width:$md5+px){
+      padding: 10px;
+      @include adaptiv-value(padding-top, 30, 20, 1);
+    }
   }
 		// .footer__row
 		&__row {
@@ -107,5 +112,6 @@
       font-size: 14px;
       line-height: 21px;
       flex: 1 1 30%;
+      white-space: nowrap;
     }
 }

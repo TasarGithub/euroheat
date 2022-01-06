@@ -5,11 +5,11 @@
   color: #333;
   flex: 1 0 auto;
   // font-size: 14px;
-
   line-height: 1;
+
   &__img {
     height: auto;
-    max-width: 64px;
+    max-width: 54px;
     margin: 0px 17px 0px 0px;
     & img {
       // object-fit: cover;
@@ -37,12 +37,12 @@
     display: block;
     font-family: "Montserrat", serif;
     font-weight: 900;
-    font-size: 24px;  
+    font-size: 22px;  
     // @include adaptiv-font(24,16,1);
-    line-height: 31px;
+    line-height: 31/24*100%;
     color: $font-logo;
     text-align: left;
-    margin: 0px 0 2px 0;
+    // margin: 0px 0 2px 0;
     @media (max-width:$md2+px){
       font-size: 18px;
       line-height: 22px;
@@ -57,7 +57,7 @@
     font-size: 14px;
     color: $font-logo;
     // @include adaptiv-font("14","12","1");    
-    line-height: 21px;
+    line-height: 16/14*100%;
     @media (max-width:$md1+px){
       font-size: 12px;
       line-height: 18px;
@@ -81,12 +81,12 @@
   top: 0;
   z-index: 100;
   // padding: 20px 30px;
-  // .header__top
+  // .header__container
   &__container {
     max-width: 1276px;
     margin: 0 auto;
   }
-
+  //.header__top
   &__top {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
     background: $bg-grey;
@@ -121,7 +121,7 @@
   // .top-header__container
   &__container {
     // padding: 20px 30px;
-    height: 100px;
+    height: 86px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -137,10 +137,11 @@
     // }
     @media (max-width:$md2+px){
       padding: 20px;
-      height: 90px;
+      // height: px;
     }
     @media (max-width:$md3+px){
       padding: 10px;
+      height: 66px;
       // @include adaptiv-value(padding-right,20,7,1);
       // @include adaptiv-value(padding-left,20,7,1);
     }
@@ -169,6 +170,49 @@
     }
   }
 }
+
+
+.bottom-header {
+		// .bottom-header__container
+		&__container {
+      // max-width: 1216px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 25px 0 30px;
+      height: 40px;
+      //  @media (max-width:$md1+px){
+      //    max-width: $md11+px;
+      // }     
+      // @media (max-width:$md2+px){
+      //    max-width: $md22+px;
+      // }
+      @media (max-width:$md3+px){
+        //  height: 40px; 
+      }
+      @media (max-width:$md4+px){
+        padding: 15px;
+      }
+    }
+		// .bottom-header__menu
+		&__menu {
+    }
+
+		// .bottom-header__search
+		&__search {
+      // align-self: c;
+  
+    }
+    // .bottom-header__label
+    &__label{
+      @media (max-width:$md3+px){
+         display: none; 
+      }
+    }
+
+}
+
 
 .liaison-header{
 // .liaison-header__column
@@ -218,14 +262,14 @@
 
 // .liaison-header__request
   &__request {
-    padding: 13px 38px;
+    padding: 11px 24px;
     background: $bg-elements;
     border-radius: 10px;
     color: $font-request;
     font-family: Montserrat;
     font-weight: 800;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 22/16*100%;
     text-transform: uppercase;
     display: flex;
     justify-content: space-between;
@@ -243,10 +287,12 @@
     }
     @media (max-width:$md3+px){
       // display: none; 
-      padding: 8px 15px; 
+      padding: 4px 15px; 
+      font-size: 10px;
       @include adaptiv-value(margin-right, 20, 5, 1);
       & .word {
-          margin: 0;
+        display: none;
+        margin: 0;
       }
     }
     @media (max-width:656px){
@@ -437,46 +483,7 @@
 
 
 
-.bottom-header {
-		// .bottom-header__container
-		&__container {
-      // max-width: 1216px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 25px 0 30px;
-      height: 48px;
-      //  @media (max-width:$md1+px){
-      //    max-width: $md11+px;
-      // }     
-      // @media (max-width:$md2+px){
-      //    max-width: $md22+px;
-      // }
-      @media (max-width:$md3+px){
-         height: 48px; 
-      }
-      @media (max-width:$md4+px){
-        padding: 15px;
-      }
-    }
-		// .bottom-header__menu
-		&__menu {
-    }
 
-		// .bottom-header__search
-		&__search {
-      // align-self: c;
-  
-    }
-    // .bottom-header__label
-    &__label{
-      @media (max-width:$md3+px){
-         display: none; 
-      }
-    }
-
-}
 
 .menu {
     width: 100%;
@@ -502,8 +509,8 @@
 
       font-family: Oswald, sans-serif;
       font-weight: 700;
-      font-size: 18px;
-      line-height: 27px;
+      font-size: 16px;
+      line-height: 27/18*100%;
       height: auto;
 
       & li{

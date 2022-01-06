@@ -83,10 +83,10 @@
   // .card-basic
   &__column {
     &:nth-child(1) {
-      flex: 0 1 70%;
+      flex: 0 1 60%;
     }
     &:nth-child(2) {
-      flex: 0 1 30%;
+      flex: 0 1 40%;
       padding: 0px 10px 0 30px;
       // text-align: left;
       @media (max-width:$md3+px){
