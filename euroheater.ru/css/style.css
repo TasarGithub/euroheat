@@ -3677,7 +3677,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .top-header__container {
-  height: 115px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3799,7 +3799,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   justify-content: space-between;
   align-items: center;
   padding: 0 25px 0 30px;
-  height: 58px;
+  height: 48px;
 }
 
 .menu {
@@ -4392,7 +4392,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   height: 36px;
   cursor: pointer;
   top: 50%;
-  transform: translate(0, -50%);
+  transform: translate(0, -77%);
 }
 
 .slider-prev {
@@ -5093,7 +5093,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   }
 
   .img-page {
-    top: -820px;
+    top: -780px;
     left: 60%;
   }
 
@@ -5209,7 +5209,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
   .liaison-header__request {
     padding: 8px 15px;
-    margin: 0 20px 0 0;
+    margin-right: 20px;
   }
 
   .liaison-header__request .word {
@@ -5243,6 +5243,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   .icon-menu span:last-child {
     top: auto;
     bottom: 24px;
+  }
+
+  .icon-menu {
+    width: 48px;
+    height: 48px;
   }
 
   .bottom-header__container {
@@ -5405,6 +5410,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     width: calc( 800px + 300 * ((100vw - 320px) / 956));
   }
 
+  .liaison-header__request {
+    margin-right: calc( 5px + 15 * ((100vw - 320px) / 956));
+  }
+
   .search__input {
     width: calc( 100px + 180 * ((100vw - 320px) / 956));
   }
@@ -5517,6 +5526,14 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     width: 100%;
   }
 
+  .slider-prev {
+    left: -5px;
+  }
+
+  .slider-next {
+    right: -5px;
+  }
+
   .form-staff__title {
     font-size: 18px;
   }
@@ -5562,11 +5579,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   .icon-menu__after {
     left: -9%;
     transform: translateY(-50%);
-  }
-
-  .icon-menu {
-    width: 48px;
-    height: 48px;
   }
 }
 

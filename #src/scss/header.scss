@@ -121,7 +121,7 @@
   // .top-header__container
   &__container {
     // padding: 20px 30px;
-    height: 115px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -244,7 +244,7 @@
     @media (max-width:$md3+px){
       // display: none; 
       padding: 8px 15px; 
-      margin: 0 20px 0 0;
+      @include adaptiv-value(margin-right, 20, 5, 1);
       & .word {
           margin: 0;
       }
@@ -335,7 +335,7 @@
       }
     }
   }
-  @media (max-width:$md5+px){
+  @media (max-width:$md3+px){
     width: 48px;
     height: 48px;
   }
@@ -446,7 +446,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 0 25px 0 30px;
-      height: 58px;
+      height: 48px;
       //  @media (max-width:$md1+px){
       //    max-width: $md11+px;
       // }     
