@@ -15,12 +15,18 @@
   justify-content: space-evenly;
   align-items: flex-start;
   // .blocks-info__item
+  @media (max-width:$md2+px){
+    flex-direction: column;
+  }
   &__item {
     position: relative;
     flex: 0 0 30%;
     border: 2px solid #ffffff;
     border-radius: 7px;
     padding: 40px 20px 20px;
+    @media (max-width:$md2+px){
+       @include adaptiv-value(margin-bottom, 30, 10, 1);
+    }
   }
   &__title {
     padding: 0 10px;
@@ -32,6 +38,10 @@
     background: #f0f0f0;
     transform: translateX(-50%);
     white-space: nowrap;
+    @media (max-width:$md2+px){
+       left: 0; 
+       transform: translateX(0);
+    }
   }
   &__quantity {
     color: #999999;

@@ -32,21 +32,21 @@
 		// .staff__foto
 		&__foto {
 			border-radius: 7px;
-			overflow: hidden;
+			// overflow: hidden;
 			margin: 0 0 10px 0;
-
 			max-width: 372px;
 			width: 100%;
-			min-height: 544px;
-			position: relative;
-			&>picture>img {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
+			padding-bottom: 140%;
+			// min-height: 544px;
+			// position: relative;
+			// &>picture>img {
+			// 	position: absolute;
+			// 	top: 0;
+			// 	left: 0;
+			// 	width: 100%;
+			// 	height: 100%;
+			// 	object-fit: cover;
+			// }
 
 			// &>picture>source {
 			// 	position: absolute;

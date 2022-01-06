@@ -4428,21 +4428,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 .staff__foto {
   border-radius: 7px;
-  overflow: hidden;
   margin: 0 0 10px 0;
   max-width: 372px;
   width: 100%;
-  min-height: 544px;
-  position: relative;
-}
-
-.staff__foto > picture > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  padding-bottom: 140%;
 }
 
 .staff__desciptions {
@@ -5144,6 +5133,19 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   .advantages__block {
     flex: 0 1 48%;
   }
+
+  .blocks-info {
+    flex-direction: column;
+  }
+
+  .blocks-info__item {
+    margin-bottom: 30px;
+  }
+
+  .blocks-info__title {
+    left: 0;
+    transform: translateX(0);
+  }
 }
 
 @media screen and (max-width: 1000.98px) {
@@ -5157,6 +5159,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 @media (max-width: 1000.98px) and (max-width: 1276px) {
   .home__img {
     width: calc( 220px + 1280 * ((100vw - 320px) / 956));
+  }
+
+  .blocks-info__item {
+    margin-bottom: calc( 10px + 20 * ((100vw - 320px) / 956));
   }
 }
 
