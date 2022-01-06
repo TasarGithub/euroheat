@@ -4700,15 +4700,20 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 0 0 60px 0;
+  margin-bottom: 40px;
 }
 
 .footer__column {
   flex: 1 1 30%;
 }
 
+.footer__column:first-child {
+  margin: 0 20px 0 0;
+}
+
 .footer__logo {
   flex: 1 1 auto;
+  margin-bottom: 20px;
 }
 
 .footer__location {
@@ -4747,6 +4752,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 .footer-list__link {
   color: #454A58;
+  display: block;
 }
 
 .footer-formalities__item {
@@ -5035,6 +5041,14 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   .clients {
     padding-bottom: calc( 15px + 35 * ((100vw - 320px) / 956));
   }
+
+  .footer__row {
+    margin-bottom: calc( 15px + 25 * ((100vw - 320px) / 956));
+  }
+
+  .footer__logo {
+    margin-bottom: calc( 10px + 10 * ((100vw - 320px) / 956));
+  }
 }
 
 @media (max-width: 1256px) {
@@ -5146,6 +5160,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     left: 0;
     transform: translateX(0);
   }
+
+  .footer-list__link {
+    padding-bottom: 10px;
+  }
 }
 
 @media screen and (max-width: 1000.98px) {
@@ -5163,6 +5181,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
   .blocks-info__item {
     margin-bottom: calc( 10px + 20 * ((100vw - 320px) / 956));
+  }
+
+  .footer-list__link {
+    padding-bottom: calc( 20px + -10 * ((100vw - 320px) / 956));
   }
 }
 
@@ -5220,6 +5242,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
   .liaison-header__request .word {
     margin: 0;
+  }
+
+  .icon-menu__after {
+    left: -9%;
+    transform: translateY(-50%);
   }
 
   .icon-menu {
@@ -5578,13 +5605,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 @media screen and (max-width: 400px) {
   .logo__img {
     max-width: 48px;
-  }
-}
-
-@media (max-width: 400.98px) {
-  .icon-menu__after {
-    left: -9%;
-    transform: translateY(-50%);
   }
 }
 

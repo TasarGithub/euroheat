@@ -299,7 +299,7 @@
     top: 50%;
     left: 5%;
     transform: translateY(-48%);
-    @media (max-width:$md5+px){
+    @media (max-width:$md3+px){
       left: -9%;
       transform: translateY(-50%);
     }
