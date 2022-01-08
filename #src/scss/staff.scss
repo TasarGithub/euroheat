@@ -1,6 +1,26 @@
 .staff {
 		// .staff__container
 		&__container {}
+
+		// .staff__title
+		&__title {
+			font-family: Montserrat;
+			font-weight: 800;
+			// font-size: 36px;
+			@include adaptiv-font(36,20,1);
+			line-height: 44/36*100%;
+			@include adaptiv-value(margin-bottom, 30, 20, 1);
+		}
+		// .staff__subtitle
+		&__subtitle {
+			font-family: Oswald;
+			font-weight: 400;
+			// font-size: 20px;
+			@include adaptiv-font(20,12,1);
+			line-height: 30/20*100%;
+			@include adaptiv-value(margin-bottom, 30, 20, 1);
+		}
+
 		// .staff__list
 		&__list {
 			display: flex;

@@ -113,9 +113,9 @@
     // border-radius: 20px;
     overflow: hidden;
     border-radius: 15px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px 0;
     @media (max-width:$md4+px){
-      margin: 0 auto 10px auto;   
+      margin: 0 auto 10px 0;   
     }
     &_analog{
       padding-bottom: 84%;
@@ -124,7 +124,8 @@
       padding-bottom: 73%;
     }
     &_vent{
-      padding-bottom: 130%;
+      padding-bottom: 100%;
+      width: 76%;
     }
     &_prom{
       padding-bottom: 55%;
@@ -140,6 +141,9 @@
     @media (max-width:$md3+px){
       opacity: 0.6;
       margin: 0 0 20px 0;
+    }
+    &-vent{
+      margin: 0px 0px 10px -100px;
     }
   }
   // .card-basic
