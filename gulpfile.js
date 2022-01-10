@@ -24,17 +24,23 @@ let fonter = require("gulp-fonter");
 let ttf2woff = require("gulp-ttf2woff");
 let ttf2woff2 = require("gulp-ttf2woff2");
 
+let connect = require('gulp-connect-php');
 let project_name = require("path").basename(__dirname);
 
 let src_folder = "#src";
 
 let path = {
   build: {
-    html: project_name + "/",
-    js: project_name + "/js/",
-    css: project_name + "/css/",
-    images: project_name + "/images/",
-    fonts: project_name + "/fonts/",
+    html: __dirname + "/app/templates/",
+    js: __dirname + "/public/js/",
+    css: __dirname + "/public/css/",
+    images: __dirname + "/public/images/",
+    fonts: __dirname + "/public/fonts/",
+    // html: project_name + "/",
+    // js: project_name + "/public/js/",
+    // css: project_name + "/public/css/",
+    // images: project_name + "/public/images/",
+    // fonts: project_name + "/fonts/",
   },
   src: {
     favicon: src_folder + "/images/favicon.{jpg,png,svg,gif,ico,webp}",
@@ -53,22 +59,41 @@ let path = {
     css: src_folder + "/scss/**/*.scss",
     images: src_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
   },
-  clean: "./" + project_name + "/",
+  //clean: "./" + project_name + "/",
+  clean: __dirname + "/public/",
+  clean_template: __dirname + "/app/templates/template_for_main_page_v1.html",
+
 };
 function browserSync(done) {
   browsersync.init({
-    server: {
-      baseDir: "./" + project_name + "/",
-    },
+    // server: {
+    //   // baseDir: "./" + project_name + "/",
+    //   baseDir: __dirname + "/",
+
+    // },
+    proxy: "http://localhost/euroheater.ru/",
     notify: false,
     port: 3000,
   });
 }
+
+
+// var gulp        = require('gulp');
+// var browserSync = require('browser-sync').create();
+
+
+// gulp.task('default', function() {
+//     browserSync.init({
+//         proxy: "http://localhost/test/app"
+//     });
+//     gulp.watch("./app/*.php").on("change", browserSync.reload);
+// });
+
 function html() {
   return src(path.src.html, {})
     .pipe(plumber())
     .pipe(fileinclude())
-    .pipe(webphtml()) // вызывает ошибку при появлении в названи картинки - _
+   // .pipe(webphtml()) // вызывает ошибку при появлении в названи картинки - _
     .pipe(dest(path.build.html))
     .pipe(browsersync.stream());
 }
@@ -94,12 +119,12 @@ function css() {
 			})
 		)
 	*/
-      .pipe(
-        webpcss({
-          webpClass: "._webp",
-          noWebpClass: "._no-webp",
-        })
-      )
+      // .pipe(
+      //   webpcss({
+      //     webpClass: "._webp",
+      //     noWebpClass: "._no-webp",
+      //   })
+      // )
       .pipe(browsersync.stream())
 
       .pipe(dest(path.build.css))
@@ -217,7 +242,8 @@ function fontstyle() {
 
 function cb() {}
 function clean() {
-  return del(path.clean);
+  return del (path.clean_template, path.clean);
+  
 }
 function watchFiles() {
   gulp.watch([path.watch.html], html);
