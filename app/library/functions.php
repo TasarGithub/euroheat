@@ -73,20 +73,21 @@ function cutText($text, $length)
 {
 
 
-// echo "cutText  ".$text.PHP_EOL;
+# echo "cutText  ".$text.PHP_EOL;
+# echo "length  ".$length.PHP_EOL;
     # проверка переменных
 
     if (empty($text) || empty($length)) return;
 
-    // echo "<br/>";
-    // echo "<br/>";
-    // echo "<br/>";
-    // echo "<br/>";
+    //  echo "<br/>";
+    //  echo "<br/>";
+    //  echo "<br/>";
+    //  echo "<br/>";
 
     $text = strip_tags($text);
-//     echo "strip_tags(text): ".$text;
-//       echo "<br/>";
-//     echo "<br/>";
+    //  echo "strip_tags(text): ".$text;
+    //    echo "<br/>";
+    //  echo "<br/>";
 
 //   echo "strlen(text)  :".strlen($text);
 //     echo "<br/>";
@@ -105,10 +106,11 @@ function cutText($text, $length)
     {
 
         # $text = mb_substr($text, 0, $length - 10);
-
+    // echo "length:  ".$length;
+    //  echo "<br/>";
         $text = mb_substr($text, 0, $length);
-    // echo "mb_substr(text):  ".$text;
-    // echo "<br/>";
+    //  echo "mb_substr(text):  ".$text;
+    //  echo "<br/>";
 // зачем  убирать последний символ, если  он кириллица? какой смысл? Где-то еще может использоваться? Это побайтовый сдвиг, для двухбайтовой кодировки Unicod вызывает ошибку
 // выделаем последний символ
 // $endsymbol = mb_substr($text, $length-1);
@@ -254,13 +256,13 @@ function showBlockInFooter()
 
         $GLOBALS['tpl_feedback'] = $feedback_controller->model->getItemsForInsidePages(); # echo '<pre>'.(print_r($GLOBALS['tpl_feedback'], true)).'</pre>'; # exit;
 
-        foreach ($GLOBALS['tpl_feedback'] as &$item) {
+   #     foreach ($GLOBALS['tpl_feedback'] as &$item) {
 
-            $item['feedback'] = cutText($item['feedback'], 190);
+    #        $item['feedback'] = cutText($item['feedback'], 190);
 
             # $item['name'] = cutText($item['name'], 13);
 
-        }
+     #   }
 
         unset($item);
 
@@ -290,11 +292,11 @@ function showBlockInFooter()
 
     $GLOBALS['tpl_faq'] = $faq_controller->model->getRandomItems(5, $GLOBALS['tpl_faq_id_selected']);
 
-    foreach ($GLOBALS['tpl_faq'] as &$item) {
+   # foreach ($GLOBALS['tpl_faq'] as &$item) {
 
-        $item['h1'] = cutText($item['h1'], 55);
+   #     $item['h1'] = cutText($item['h1'], 155);
 
-    } unset($item);
+   # } unset($item);
 
 
 

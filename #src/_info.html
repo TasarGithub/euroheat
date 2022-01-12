@@ -2,24 +2,26 @@
 	<div class="_container info__container">
 		<div class="info__blocks blocks-info">
 			<div class="blocks-info__item">
-				<h3 class="title h2-title blocks-info__title"><a href="/sovet/">Статьи</a></h3>
+				<h2 class="title h2-title blocks-info__title"><a href="/sovet/">Статьи</a></h2>
 
 				<!-- блок статьи -->
 				<?php if (!empty($GLOBALS['tpl_articles'])): # вывод статей ?>
-				<div class="col-sm-4 col-md-4" align="center">
-					<div class="news_b_1">
-
-						<?php foreach ($GLOBALS['tpl_articles'] as $item): ?>
-						<div class="news_b">
-							<div class="date">
-								<?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
-							</div><a href="/sovet/<?php echo $item['date_add_formatted_2']; ?>/">
-								<?php echo $item['h1']; ?>
-							</a>
+				<div class="blocks-info__block">
+					<?php foreach ($GLOBALS['tpl_articles'] as $item): ?>
+					<div class="blocks-info__record">
+						<div class="blocks-info__date">
+							<?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
 						</div>
-						<?php endforeach; ?>
+						<!--/. blocks-info__date -->
+						<a class="blocks-info__link" href="/sovet/<?php echo $item['date_add_formatted_2']; ?>/">
+							<?php echo $item['h1']; ?>
+						</a>
+						<!--/. blocks-info__link -->
 					</div>
+					<?php endforeach; ?>
+
 				</div>
+				<!--/. blocks-info__record -->
 				<?php endif; # /вывод новостей ?>
 				<!-- /блок статьи -->
 
@@ -28,26 +30,27 @@
 
 			<div class="blocks-info__item">
 
-				<h2 class="title h2-title blocks-info__title">Новости</h2>
+				<h2 class="title h2-title blocks-info__title"><a href="/novosti/">Новости</a></h2>
 
 				<!-- блок новости -->
 				<?php if (!empty($GLOBALS['tpl_news'])): # вывод новостей ?>
-				<div class="col-sm-4 col-md-4" align="center">
-					<div class="news_b_1">
-						<div class="gap_1">
-							<div class="h3"><a href="/novosti/">Новости</a></div>
+
+
+
+
+				<div class="blocks-info__block">
+					<?php foreach ($GLOBALS['tpl_news'] as $item): ?>
+					<div class="blocks-info__record">
+						<div class="blocks-info__date">
+							<?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
 						</div>
-						<?php foreach ($GLOBALS['tpl_news'] as $item): ?>
-						<div class="news_b">
-							<div class="date">
-								<?php echo $item['date_add_day'].' '.getRusMonthName($item['date_add_month']).' '.$item['date_add_year']; ?>
-							</div><a href="/novosti/<?php echo $item['date_add_formatted_2']; ?>/">
-								<?php echo $item['h1']; ?>
-							</a>
-						</div>
-						<?php endforeach; ?>
+						<a class="blocks-info__link" href="/novosti/<?php echo $item['date_add_formatted_2']; ?>/">
+							<?php echo $item['h1']; ?>
+						</a>
 					</div>
+					<?php endforeach; ?>
 				</div>
+
 				<?php endif; # /вывод новостей ?>
 				<!-- /блок новости -->
 
@@ -56,24 +59,26 @@
 
 
 			<div class="blocks-info__item">
-				<h2 class="title h2-title blocks-info__title">Вопрос-ответ <span class="blocks-info__quantity">()</span></h2>
+				<h2 class="title h2-title blocks-info__title"><a href="/vopros/">Вопрос-ответ</a>
+					<span>(
+						<?php echo $GLOBALS['tpl_faq_count'];?>)
+					</span>
+				</h2>
 
 				<!-- блок вопрос-ответ -->
 				<?php if (!empty($GLOBALS['tpl_faq'])): # вывод вопросов-ответов ?>
-				<div class="col-sm-4 col-md-4" align="center">
-					<div class="news_b_1">
-						<div class="gap_1">
-							<div class="h3"><a href="/vopros/">Вопрос-ответ</a><span>(
-									<?php echo $GLOBALS['tpl_faq_count']; ?>)
-								</span></div>
-						</div>
-						<?php foreach ($GLOBALS['tpl_faq'] as $item): ?>
-						<div class="news_b"><a href="/vopros/<?php echo $item['url']; ?>/">
-								<?php echo $item['h1']; ?>
-							</a></div>
-						<?php endforeach; ?>
+
+				<div class="blocks-info__record">
+
+					<?php foreach ($GLOBALS['tpl_faq'] as $item): ?>
+					<div class="blocks-info__record">
+						<a class="blocks-info__link" href="/vopros/<?php echo $item['url']; ?>/">
+							<?php echo $item['h1']; ?>
+						</a>
 					</div>
+					<?php endforeach; ?>
 				</div>
+
 				<?php endif; # /вывод вопросов-ответов ?>
 				<!-- /блок вопрос-ответ -->
 

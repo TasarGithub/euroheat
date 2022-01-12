@@ -1,0 +1,58 @@
+# error document
+ErrorDocument 404 http://localhost:3000/euroheater.ru/
+
+# задаем кодировку по умолчанию
+php_value default_charset utf-8
+AddDefaultCharset UTF-8
+
+# directory index
+DirectoryIndex index.php
+
+# php errors
+php_flag display_errors On
+# php_flag display_errors Off
+
+# аналог error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING  ^ E_DEPRECATED);
+php_value error_reporting 22517
+
+# запрет на прямой доступ к 'db.connection.php'
+<Files "db.connection.php">
+deny from all
+</Files>
+
+# запрет на прямой доступ к '*.backup'
+<Files "*.backup">
+deny from all
+</Files>
+
+# apache mod_rewrite
+RewriteEngine on
+
+# Защита от клонов
+# RewriteCond %{HTTP_HOST} !^euroheater\.ru$ [NC]
+# RewriteCond %{HTTP_HOST} !^www\.euroheater\.ru$ [NC]
+# RewriteRule .* - [F,L]
+
+# redirect all pages "without www" to "with www"
+# RewriteCond %{HTTP_HOST} !^www\..*$
+# RewriteRule ^.*$ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# 301 всех запросов с http или без www на https://www.
+# RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
+# RewriteCond %{HTTP_HOST} ^www\. [NC]
+# RewriteRule (.*) https://euroheater.ru%{REQUEST_URI} [R=301,L]
+
+# 301 с www на без-www
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^ %{HTTP:X-Forwarded-Proto}://%1%{REQUEST_URI} [NE,R=301,L]
+
+# 301 от Алекса от 26 декабря 2018
+
+### MVC-движок
+# ЕДИНАЯ ТОЧКА ВХОДА ВСЕХ ЗАПРОСОВ НА САЙТ
+# проверяем, существует ли запрашиваемый файл или директория
+# если нет, то перенаправляем запрос на index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# описание флага QSA: http://httpd.apache.org/docs/2.4/rewrite/flags.html
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]

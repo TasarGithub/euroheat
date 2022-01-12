@@ -72,8 +72,8 @@ function browserSync(done) {
 
     // },
     proxy: "http://localhost/euroheater.ru/",
-    notify: false,
-    port: 3000,
+    // notify: false,
+    // port: 3000,
   });
 }
 
@@ -93,7 +93,7 @@ function html() {
   return src(path.src.html, {})
     .pipe(plumber())
     .pipe(fileinclude())
-   // .pipe(webphtml()) // вызывает ошибку при появлении в названи картинки - _
+    .pipe(webphtml()) // вызывает ошибку при появлении в названи картинки - _
     .pipe(dest(path.build.html))
     .pipe(browsersync.stream());
 }
@@ -119,12 +119,12 @@ function css() {
 			})
 		)
 	*/
-      // .pipe(
-      //   webpcss({
-      //     webpClass: "._webp",
-      //     noWebpClass: "._no-webp",
-      //   })
-      // )
+      .pipe(
+        webpcss({
+          webpClass: "._webp",
+          noWebpClass: "._no-webp",
+        })
+      )
       .pipe(browsersync.stream())
 
       .pipe(dest(path.build.css))
@@ -199,7 +199,7 @@ function fonts_otf() {
         formats: ["ttf"],
       })
     )
-    .pipe(gulp.dest("./" + src_folder + +"/fonts/"));
+    .pipe(gulp.dest("./" + src_folder + "/fonts/"));
 }
 
 function fonts() {

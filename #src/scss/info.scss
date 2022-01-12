@@ -49,6 +49,24 @@
     padding: 0 0 0 8px;
     font-weight: 400;
   }
+
+		// .blocks-info__block
+		&__block {
+
+    }
+		// .blocks-info__record
+		&__record {
+      margin: 0 0 10px 0;
+    }
+		// .blocks-info__date
+		&__date {
+      margin: 0 0 5px 0;
+    }
+		// .blocks-info__link
+		&__link {
+      line-height: 140%;
+    }
+
   // .blocks-info__articles
   &__articles {
   }

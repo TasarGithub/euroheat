@@ -26,7 +26,7 @@ echo "<br>";
 echo "ssfdfsdfs".PHP_EOL;
 # настройки mysql и инициализация соединения: http://ru2.php.net/manual/en/book.pdo.php
 
-// echo "include('db.connection.pdo.php');";
+echo "include('db.connection.pdo.php');";
 
 include('db.connection.pdo.php');
 // echo "dbh: ";
@@ -46,6 +46,17 @@ $router->setPath(MVC_PATH);
 $registry->set('router', $router);
 $router->showRouterInfo = 1; # вывести отладочную информацию
 #$router->showRouterInfo = 0; # вывести отладочную информацию
+
+   echo "<br/>";
+     echo "<br/>";
+     echo "<br/>";
+     echo "<br/>";
+echo "MVC_PATH: ".MVC_PATH;
+   echo "<br/>";
+     echo "<br/>";
+     echo "<br/>";
+     echo "<br/>";
+
 
 # класс защиты пользовательских данных
 $defence = new defence;
