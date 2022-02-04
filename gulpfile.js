@@ -55,13 +55,13 @@ let path = {
   },
   watch: {
     html: src_folder + "/**/*.html",
-    js: src_folder + "/**/*.js",
+    js: src_folder + "/js/**/*.js",
     css: src_folder + "/scss/**/*.scss",
-    images: src_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+    images: src_folder + "/images/**/*.{jpg,png,svg,gif,ico,webp}",
   },
   //clean: "./" + project_name + "/",
   clean: __dirname + "/public/",
-  clean_template: __dirname + "/app/templates/template_for_main_page_v1.html",
+  clean_template: __dirname + "/app/templates/template_*_v1.html",
 
 };
 function browserSync(done) {
@@ -71,7 +71,9 @@ function browserSync(done) {
     //   baseDir: __dirname + "/",
 
     // },
-    proxy: "http://localhost/euroheater.ru/",
+    proxy: 'http://euroheater.local/',
+    host: 'euroheater.local',
+    // open: 'external'
     // notify: false,
     // port: 3000,
   });
@@ -82,21 +84,16 @@ function browserSync(done) {
 // var browserSync = require('browser-sync').create();
 
 
-// gulp.task('default', function() {
-//     browserSync.init({
-//         proxy: "http://localhost/test/app"
-//     });
-//     gulp.watch("./app/*.php").on("change", browserSync.reload);
-// });
 
 function html() {
   return src(path.src.html, {})
     .pipe(plumber())
     .pipe(fileinclude())
-    .pipe(webphtml()) // вызывает ошибку при появлении в названи картинки - _
-    .pipe(dest(path.build.html))
-    .pipe(browsersync.stream());
+    .pipe(webphtml()) // вызывает ошибку при появлении в названи картинки - _, прбелов итд
+    .pipe(dest(path.build.html));
+    // .pipe(htmlReload());
 }
+
 function css() {
   return (
     src(path.src.css, {})
@@ -246,11 +243,29 @@ function clean() {
   
 }
 function watchFiles() {
-  gulp.watch([path.watch.html], html);
+  // gulp.watch([path.watch.html]).on('change', () => {
+  //   plumber();
+  //   fileinclude();
+  //   webphtml(); // вызывает ошибку при появлении в названи картинки - _, прбелов итд
+  //   dest(path.build.html);
+  //   browserSync.reload();
+  //   // done();
+  // });
+  gulp.watch([path.watch.html]).on('change', gulp.series(html, browsersync.reload));
   gulp.watch([path.watch.css], css);
   gulp.watch([path.watch.js], js);
   gulp.watch([path.watch.images], images);
 }
+// function htmlReload() {
+//     html();
+//     gulp.watch([path.watch.html]).on("change", browsersync.reload);
+// }
+  // gulp.watch([path.watch.html].on('change', () =>{
+  //   browserSync.reload();
+  //   done();
+  // }), html);
+
+
 
 // let build = gulp.series(clean, fonts_otf, gulp.parallel(html, css, js, favicon, images), fonts, gulp.parallel(fontstyle));
 // let watch = gulp.parallel(build, watchFiles, browserSync);

@@ -3922,7 +3922,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .home {
-  padding-top: 208px;
+  padding-top: 10px;
   padding-bottom: 50px;
   padding-right: 30px;
   padding-left: 30px;
@@ -4904,7 +4904,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   }
 
   .home {
-    padding-top: calc( 180px + 28 * ((100vw - 320px) / 956));
+    padding-top: calc( 5px + 5 * ((100vw - 320px) / 956));
   }
 
   .home {

@@ -1,5 +1,5 @@
 .home {
-  @include adaptiv-value(padding-top, 208, 180, 1); 
+  @include adaptiv-value(padding-top, 10, 5, 1); 
   @include adaptiv-value(padding-bottom, 50, 15, 1); 
   @include adaptiv-value(padding-right, 30, 15, 1); 
   @include adaptiv-value(padding-left, 30, 15, 1); 

@@ -1,5 +1,5 @@
 # error document
-ErrorDocument 404 http://localhost:3000/euroheater.ru/
+ErrorDocument 404 http://localhost:3000/euroheater.local/
 
 # задаем кодировку по умолчанию
 php_value default_charset utf-8

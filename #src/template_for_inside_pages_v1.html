@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+
+@@include('_head.html', {})
+
+<body>
+    <div class="wrapper">
+        @@include('_header.html', {})
+        <main class="page">
+
+
+            <!-- основной блок -->
+            <section class="inside">
+                <div class="inside__container _container">
+                    <div class="row">
+                        <div class="">
+
+                            <?php if (!empty($GLOBALS['tpl_navigation']) || !empty($GLOBALS['tpl_full_navigation']) && !empty($GLOBALS['tpl_show_navigation']) == 1): # вывдим строку навигации, если она указана в админке ?>
+                            <div class="breadcrumbs">
+                                <?php if (!empty($GLOBALS['tpl_full_navigation'])): # если указана строка навигации в ручном режиме ?>
+                                <?php echo $GLOBALS['tpl_full_navigation']; ?>
+                                <?php elseif (!empty($GLOBALS['tpl_navigation'])): # если строка навигации указана через поле в админке ?>
+                                <?php echo $GLOBALS['tpl_navigation']; ?>
+                                <?php endif; ?>
+                            </div>
+                            <?php endif; # /вывдим строку навигации ?>
+
+                            <?php if (!empty($GLOBALS['tpl_text_before_h1'])): echo $GLOBALS['tpl_text_before_h1']; endif; # вывдим текст до h1 ?>
+
+                            <div id="h1" class="h1 h2">
+                                <?php echo $GLOBALS['tpl_h1']; ?>
+                            </div>
+
+                            <?php echo $GLOBALS['tpl_content']; # выводим контент ?>
+
+                        </div>
+                    </div>
+                </div>
+                <!--/. inside__container _container -->
+
+            </section>
+            <!--/. inside -->
+            <!-- /основной блок -->
+
+
+
+            @@include('_projects.html', {})
+            @@include('_info.html', {})
+            @@include('_clients.html', {})
+
+        </main>
+        <!-- /.page -->
+
+        @@include('_footer.html', {})
+        <!-- @@include('_modal.html', {}) -->
+        <!-- @@include('_service-script.html', {})   YA AMO Jivo -->
+        @@include('_script.html', {})
+
+
+
+    </div>
+    <!-- /.wrapper -->
+    <!-- шапка -->
+
+    <!-- /шапка -->
+
+
+
+
+
+
+
+
+</body>
+
+</html>
